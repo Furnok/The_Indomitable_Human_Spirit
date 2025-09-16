@@ -1,0 +1,10 @@
+using UnityEngine;
+using System;
+
+#ROOTNAMESPACEBEGIN#
+[Serializable]
+public struct #SCRIPTNAME#
+{
+    
+}
+#ROOTNAMESPACEEND#

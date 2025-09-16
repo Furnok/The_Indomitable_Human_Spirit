@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/App/Scenes/SC_MainMenu.unity
+    guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/App/Scenes/SC_Game.unity
+    guid: 21dcb34471d7c434298c8d7874ae1232
+  - enabled: 1
+    path: Assets/App/Scenes/Tests/Killian/SC_Killian.unity
+    guid: 99fcada8d8885634c81c61ce82680712
+  - enabled: 1
+    path: "Assets/App/Scenes/Tests/Timoth\xE9e/SC_Timoth\xE9e.unity"
+    guid: 9d13f18b6dbc35342849d7628e78b324
+  - enabled: 1
+    path: Assets/App/Scenes/Tests/Mathias/SC_Mathias.unity
+    guid: b479f965f89e10c40b111b5633a93210
+  - enabled: 1
+    path: Assets/App/Scenes/Tests/Florian/SC_Florian.unity
+    guid: 217557b2f3e44e74e92fe92babc6e2c8
+  m_configObjects:
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_UseUCBPForAssetBundles: 0

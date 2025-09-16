@@ -1,0 +1,6 @@
+using UnityEngine;
+
+#ROOTNAMESPACEBEGIN#
+[CreateAssetMenu(fileName = "#SCRIPTNAME#", menuName = "Data/RSE/#SCRIPTNAME#")]
+public class #SCRIPTNAME# : BT.ScriptablesObject.RuntimeScriptableEvent<>{}
+#ROOTNAMESPACEEND#
