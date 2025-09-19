@@ -16,7 +16,6 @@ public class S_TempCharacterController : MonoBehaviour
 
     private void Update()
     {
-        // Récupère les inputs
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
 
