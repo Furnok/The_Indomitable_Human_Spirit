@@ -13,13 +13,13 @@ public class S_TestAnimation : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.F))
         {
-            AC_PlayerController.SetFloat("MoveSpeed", 2);
+            AC_PlayerController.SetBool("Parry", true);
         }
         else
         {
-            AC_PlayerController.SetFloat("MoveSpeed", 0);
+            AC_PlayerController.SetBool("Parry", false);
         }
     }
 }
