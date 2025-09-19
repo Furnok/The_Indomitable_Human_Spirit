@@ -7,6 +7,7 @@ public class S_TempCharacterController : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private Animator animator;
 
     //[Header("Input")]
 
@@ -22,5 +23,6 @@ public class S_TempCharacterController : MonoBehaviour
         movement = new Vector3(moveX, 0f, moveZ);
 
         rb.linearVelocity = movement * speed;
+        animator.SetFloat("MoveSpeed", rb.linearVelocity.x);
     }
 }
