@@ -23,6 +23,9 @@ public class S_TempCharacterController : MonoBehaviour
         movement = new Vector3(moveX, 0f, moveZ);
 
         rb.linearVelocity = movement * speed;
-        animator.SetFloat("MoveSpeed", rb.linearVelocity.x);
+
+        float moveSpeed = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z).magnitude;
+
+        animator.SetFloat("MoveSpeed", moveSpeed);
     }
 }
