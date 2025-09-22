@@ -132,7 +132,6 @@ GameObject:
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
   - component: {fileID: 330585549}
-  - component: {fileID: 330585550}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -207,7 +206,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.27545062, y: -0.010473951, z: 0.003001348, w: 0.96125346}
+  m_LocalRotation: {x: 0.27545062, y: -0.010473958, z: 0.00300135, w: 0.9612535}
   m_LocalPosition: {x: 0.08717952, y: 3.998099, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -290,20 +289,6 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
---- !u!114 &330585550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 330585543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4d74fdf3905db645b64f2c95203c872, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rsoCameraPosition: {fileID: 11400000, guid: 99707efacba749443b3ebd78c3911507, type: 2}
-  _rsoCameraRotation: {fileID: 11400000, guid: 04261daa98f35d44f84baecbdcfa77df, type: 2}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1066,6 +1051,8 @@ GameObject:
   - component: {fileID: 2135647310}
   - component: {fileID: 2135647309}
   - component: {fileID: 2135647312}
+  - component: {fileID: 2135647315}
+  - component: {fileID: 2135647314}
   - component: {fileID: 2135647313}
   m_Layer: 0
   m_Name: CinemachineCamera
@@ -1163,7 +1150,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2135647307}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.27545062, y: -0.010473951, z: 0.0030013502, w: 0.9612535}
+  m_LocalRotation: {x: 0.2754506, y: -0.010473958, z: 0.00300135, w: 0.9612535}
   m_LocalPosition: {x: 0.08717952, y: 3.998099, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1211,12 +1198,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cebbd907a03314aa91661a7ba8be16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  virtualCamera: {fileID: 2135647310}
-  splineDolly: {fileID: 2135647309}
   fovPerKnot:
   - 60
-  - 120
+  - 180
   - 60
+  shake1:
+    amplitude: 1
+    frequency: 1
+    duration: 2
+  cinemachineCamera: {fileID: 2135647310}
+  splineDolly: {fileID: 2135647309}
+  perlin: {fileID: 2135647315}
+  rseCameraShake: {fileID: 11400000, guid: beaf63a232cb7b8488844f87f5bc900b, type: 2}
+--- !u!114 &2135647314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135647307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4d74fdf3905db645b64f2c95203c872, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rsoCameraPosition: {fileID: 11400000, guid: 99707efacba749443b3ebd78c3911507, type: 2}
+  rsoCameraRotation: {fileID: 11400000, guid: 04261daa98f35d44f84baecbdcfa77df, type: 2}
+--- !u!114 &2135647315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135647307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 0
+  FrequencyGain: 0
+  m_NoiseOffsets: {x: -631.7113, y: 870.7855, z: 295.7761}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
