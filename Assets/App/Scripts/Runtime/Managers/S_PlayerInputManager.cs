@@ -18,6 +18,7 @@ public class S_PlayerInputManager : MonoBehaviour
     [SerializeField] RSE_OnPlayerMeditation _onPlayerMeditation;
     [SerializeField] RSE_OnPlayerParry _onPlayerParry;
     [SerializeField] RSE_OnPlayerTargeting _onPlayerTargeting;
+    [SerializeField] RSE_OnPlayerTargetingCancel _onPlayerTargetingCancel;
     [SerializeField] RSE_OnPlayerSwapTarget _onPlayerSwapTarget;
 
 
@@ -58,6 +59,7 @@ public class S_PlayerInputManager : MonoBehaviour
         game.Parry.performed += OnParryInput;
         game.PauseUnpause.performed += OnPauseInput;
         game.Targeting.performed += OnTargetingInput;
+        game.Targeting.canceled += OnTargetingCancelInput;
         game.SwapTarget.performed += OnSwapTargetInput;
 
         _playerInputComponent.actions.Enable();
@@ -80,6 +82,7 @@ public class S_PlayerInputManager : MonoBehaviour
         game.Parry.performed -= OnParryInput;
         game.PauseUnpause.performed -= OnPauseInput;
         game.Targeting.performed -= OnTargetingInput;
+        game.Targeting.canceled -= OnTargetingCancelInput;
         game.SwapTarget.performed -= OnSwapTargetInput;
 
         _playerInputComponent.actions.Disable();
@@ -94,6 +97,11 @@ public class S_PlayerInputManager : MonoBehaviour
     void OnTargetingInput(InputAction.CallbackContext ctx)
     {
         _onPlayerTargeting.Call();
+    }
+
+    void OnTargetingCancelInput(InputAction.CallbackContext ctx)
+    {
+        _onPlayerTargetingCancel.Call();
     }
 
     void OnSwapTargetInput(InputAction.CallbackContext ctx)
