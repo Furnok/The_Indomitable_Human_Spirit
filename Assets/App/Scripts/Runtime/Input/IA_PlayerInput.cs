@@ -175,7 +175,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Swap Target"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""421ce48e-138b-4656-94e1-4dee64411430"",
                     ""expectedControlType"": """",
                     ""processors"": """",
@@ -460,70 +460,26 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""1D Axis"",
-                    ""id"": ""81b2dde1-c6a4-40ff-bc71-9561af1b9a08"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Swap Target"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""31d7986e-b439-48fe-93a1-fc206f5cd5ac"",
+                    ""name"": """",
+                    ""id"": ""1f0c34a7-20cf-4135-8791-9758f0f457db"",
                     ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Swap Target"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""73e119c6-6f3c-4bfe-a649-b7072c010055"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Swap Target"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""1D Axis"",
-                    ""id"": ""9eada16d-bb29-4d5b-bd60-2a147d562815"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Swap Target"",
-                    ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
-                    ""id"": ""1e710002-b52a-4f3d-8c00-0bcd0f46d22c"",
-                    ""path"": ""<Mouse>/scroll/down"",
+                    ""name"": """",
+                    ""id"": ""50fee1ea-4313-42c5-a4be-de9080f92f2a"",
+                    ""path"": ""<Mouse>/scroll"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Swap Target"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""1b72c804-22c0-4c71-bf53-ce42708d1196"",
-                    ""path"": ""<Mouse>/scroll/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Swap Target"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 }
             ]
         },
