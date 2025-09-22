@@ -38,7 +38,7 @@ public class S_DynamicSceneSwitcher : EditorWindow
     {
         scenePaths = AssetDatabase.FindAssets("t:Scene")
             .Select(AssetDatabase.GUIDToAssetPath)
-            .Where(path => path.StartsWith("Assets/App/Scenes"))
+            .Where(path => path.StartsWith("Assets/App/Scenes/"))
             .ToArray();
     }
 
