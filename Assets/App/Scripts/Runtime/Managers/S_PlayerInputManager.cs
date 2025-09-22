@@ -9,12 +9,18 @@ public class S_PlayerInputManager : MonoBehaviour
     [Header("References")]
     [SerializeField] PlayerInput _playerInputComponent;
 
-
-    [Header("RSE")]
+    [Header("Output")]
     [SerializeField] RSE_OnPlayerMove _onPlayerMove;
+    [SerializeField] RSE_OnPlayerAttack _onPlayerAttack;
+    [SerializeField] RSE_OnPlayerDodge _onPlayerDodge;
+    [SerializeField] RSE_OnPlayerInteract _onPlayerInteract;
+    [SerializeField] RSE_OnPlayerPause _onPlayerPause;
+    [SerializeField] RSE_OnPlayerMeditation _onPlayerMeditation;
+    [SerializeField] RSE_OnPlayerParry _onPlayerParry;
 
-    private IA_PlayerInput _playerInput;
-    private bool _initialized;
+
+    IA_PlayerInput _playerInput;
+    bool _initialized;
     string _gameMapName;
     string _uiMapName;
 
@@ -43,6 +49,12 @@ public class S_PlayerInputManager : MonoBehaviour
         var game = _playerInput.Game;
         game.Move.performed += OnMoveChanged;
         game.Move.canceled += OnMoveChanged;
+        game.Attack.performed += OnAttack;
+        game.Dodge.performed += OnDodge;
+        game.Interact.performed += OnInteract;
+        game.Meditation.performed += OnMeditation;
+        game.Parry.performed += OnParry;
+        game.PauseUnpause.performed += OnPause;
 
         _playerInputComponent.actions.Enable();
 
@@ -57,9 +69,14 @@ public class S_PlayerInputManager : MonoBehaviour
 
         game.Move.performed -= OnMoveChanged;
         game.Move.canceled -= OnMoveChanged;
+        game.Attack.performed -= OnAttack;
+        game.Dodge.performed -= OnDodge;
+        game.Interact.performed -= OnInteract;
+        game.Meditation.performed -= OnMeditation;
+        game.Parry.performed -= OnParry;
+        game.PauseUnpause.performed -= OnPause;
 
         _playerInputComponent.actions.Disable();
-
     }
 
     private void OnMoveChanged(InputAction.CallbackContext ctx)
@@ -67,27 +84,53 @@ public class S_PlayerInputManager : MonoBehaviour
         _onPlayerMove.Call(ctx.ReadValue<Vector2>());
     }
 
-   
+    void OnAttack(InputAction.CallbackContext ctx)
+    {
+        _onPlayerAttack.Call();
+    }
 
-    public void DeactivateInput()
+    void OnDodge(InputAction.CallbackContext ctx)
+    {
+        _onPlayerDodge.Call();
+    }
+
+    void OnInteract(InputAction.CallbackContext ctx)
+    {
+        _onPlayerInteract.Call();
+    }
+
+    void OnPause(InputAction.CallbackContext ctx)
+    {
+        _onPlayerPause.Call();
+    }
+
+    void OnMeditation(InputAction.CallbackContext ctx)
+    {
+        _onPlayerMeditation.Call();
+    }
+
+    void OnParry(InputAction.CallbackContext ctx)
+    {
+        _onPlayerParry.Call();
+    }
+
+    private void DeactivateInput()
     {
         if (!_initialized) return;
         _playerInputComponent.actions.Disable();
     }
 
-    public void ActivateGameAction()
+    private void ActivateGameAction()
     {
         if (!_initialized) return;
         _playerInputComponent.actions.Enable();
         _playerInputComponent.SwitchCurrentActionMap(_gameMapName);
     }
 
-    public void OnGameOver()
+    private void OnGameOver()
     {
         if (!_initialized) return;
         _playerInputComponent.actions.Enable();
         _playerInputComponent.SwitchCurrentActionMap(_uiMapName);
     }
-
-    
 }

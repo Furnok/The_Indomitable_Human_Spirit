@@ -9,6 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68ef4685234104143ae1ae04eef60282, type: 3}
-  m_Name: RSE_OnPlayerUnpause
+  m_Script: {fileID: 11500000, guid: c38eaf0dd3386ad419b25a044b15341e, type: 3}
+  m_Name: RSO_IsGamePaused
   m_EditorClassIdentifier: 
+  _value: 0

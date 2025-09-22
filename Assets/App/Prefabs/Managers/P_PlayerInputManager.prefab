@@ -77,3 +77,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerInputComponent: {fileID: 3061775233899436240}
   _onPlayerMove: {fileID: 11400000, guid: 881d0608fef60064c9e33701b880054c, type: 2}
+  _onPlayerAttack: {fileID: 11400000, guid: 87ff9d1d837c0324eb87e1b22c96bdf5, type: 2}
+  _onPlayerDodge: {fileID: 11400000, guid: 94854c435a1dfd64483953892ad488de, type: 2}
+  _onPlayerInteract: {fileID: 11400000, guid: 7dddd8b752c27d34f9be002f7e6f2343, type: 2}
+  _onPlayerPause: {fileID: 11400000, guid: f80136b766e3907448f7a7a39ac46b1d, type: 2}
+  _onPlayerMeditation: {fileID: 11400000, guid: aa87952d62bcbfe4aaf4fc954d681148, type: 2}
+  _onPlayerParry: {fileID: 11400000, guid: a21049edad4c9954db34aebff59e9d2e, type: 2}

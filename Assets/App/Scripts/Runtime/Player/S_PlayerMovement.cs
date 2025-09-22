@@ -9,10 +9,10 @@ public class S_PlayerMovement : MonoBehaviour
     [Header("References")]
     [SerializeField] Rigidbody _rigidbody;
 
-    //[Header("Input")]
-
-    [Header("Output")]
+    [Header("Input")]
     [SerializeField] RSE_OnPlayerMove _rseOnPlayerMove;
+
+    //[Header("Output")]
 
     [Header("RSO")]
     [SerializeField] RSO_CameraPosition _rsoCameraPosition;
