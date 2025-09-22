@@ -5,22 +5,18 @@ public class S_PlayerMovement : MonoBehaviour
     [Header("Settings")]
     [SerializeField] float _moveSpeed = 5f;
     [SerializeField] float _turnSpeed = 10f;
-    [SerializeField] float _inputDeadzone = 0.02f;
 
     [Header("References")]
     [SerializeField] Rigidbody _rigidbody;
 
     //[Header("Input")]
 
-    //[Header("Output")]
+    [Header("Output")]
+    [SerializeField] RSE_OnPlayerMove _rseOnPlayerMove;
 
     [Header("RSO")]
     [SerializeField] RSO_CameraPosition _rsoCameraPosition;
     [SerializeField] RSO_CameraRotation _rsoCameraRotation;
-
-
-    [Header("RSE")]
-    [SerializeField] RSE_OnPlayerMove _rseOnPlayerMove;
 
     Vector2 _moveInput;
 
