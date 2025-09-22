@@ -20,12 +20,27 @@ public class S_TempCharacterController : MonoBehaviour
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
 
-        movement = new Vector3(moveX, 0f, moveZ);
+        movement = new Vector3(moveX, 0, moveZ);
 
-        rb.linearVelocity = movement * speed;
+        if (movement != Vector3.zero)
+        {
+            movement.Normalize();
+            Quaternion target = Quaternion.LookRotation(movement, Vector3.up);
+            rb.MoveRotation(Quaternion.Slerp(rb.rotation, target, speed * Time.fixedDeltaTime));
 
-        float moveSpeed = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z).magnitude;
+            Vector3 velocity = movement * speed;
+            velocity.y = rb.linearVelocity.y;
+            rb.linearVelocity = velocity;
 
-        animator.SetFloat("MoveSpeed", moveSpeed);
+            float moveSpeed = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z).magnitude;
+            animator.SetFloat("MoveSpeed", moveSpeed);
+        }
+        else
+        {
+            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+            rb.angularVelocity = Vector3.zero;
+
+            animator.SetFloat("MoveSpeed", 0);
+        }
     }
 }

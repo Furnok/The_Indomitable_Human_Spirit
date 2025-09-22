@@ -863,7 +863,6 @@ MonoBehaviour:
   speed: 5
   rb: {fileID: 1889392139}
   animator: {fileID: 1889392141}
-  moveSpeedParameter: Blend
 --- !u!54 &1889392139
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -872,7 +871,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1889392136}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 10000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
