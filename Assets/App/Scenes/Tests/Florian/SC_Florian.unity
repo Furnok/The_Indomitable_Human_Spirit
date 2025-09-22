@@ -278,7 +278,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da9bff2c670bf6946832f105f83d63b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AC_PlayerController: {fileID: 355196713}
+  ParameterName: Parry
+  RSE_OnAnimationBoolValueChange: {fileID: 11400000, guid: f3b68030aacb033438a094c87c0e44ca, type: 2}
 --- !u!136 &355196716
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -342,8 +343,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  runSpeed: 8
   rb: {fileID: 355196717}
-  animator: {fileID: 355196713}
+  RSE_OnAnimationBoolValueChange: {fileID: 11400000, guid: f3b68030aacb033438a094c87c0e44ca, type: 2}
+  RSE_OnAnimationFloatValueChange: {fileID: 11400000, guid: 647c462e77eded84f8317681638362bb, type: 2}
+--- !u!114 &355196720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355196710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e733e8d1dfa2ba49ac9ac2cd98d7795, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAnimator: {fileID: 355196713}
+  RSE_OnAnimationBoolValueChange: {fileID: 11400000, guid: f3b68030aacb033438a094c87c0e44ca, type: 2}
+  RSE_OnAnimationFloatValueChange: {fileID: 11400000, guid: 647c462e77eded84f8317681638362bb, type: 2}
+  RSE_OnAnimationIntValueChange: {fileID: 11400000, guid: a467fb5f06e053446aa347e2c734b7b7, type: 2}
 --- !u!1 &407839107
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,6 +663,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bfa42ba6d484e4e448024c9acf736ce9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 355196716}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: bfa42ba6d484e4e448024c9acf736ce9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 355196720}
   m_SourcePrefab: {fileID: 100100000, guid: bfa42ba6d484e4e448024c9acf736ce9, type: 3}
 --- !u!1 &1198000221
 GameObject:

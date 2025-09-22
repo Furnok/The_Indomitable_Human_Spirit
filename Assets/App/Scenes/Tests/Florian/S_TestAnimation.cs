@@ -2,24 +2,43 @@ using UnityEngine;
 
 public class S_TestAnimation : MonoBehaviour
 {
-    //[Header("Settings")]
+    [Header("Settings")]
+    [SerializeField] string ParameterName;
 
-    [Header("References")]
-    [SerializeField] Animator AC_PlayerController;
+    //[Header("References")]
 
     //[Header("Input")]
 
-    //[Header("Output")]
+    [Header("Output")]
+    [SerializeField] RSE_OnAnimationBoolValueChange RSE_OnAnimationBoolValueChange;
 
     private void Update()
     {
         if (Input.GetKey(KeyCode.F))
         {
-            AC_PlayerController.SetBool("Parry", true);
+            RSE_OnAnimationBoolValueChange.Call(ParameterName,true);
         }
         else
         {
-            AC_PlayerController.SetBool("Parry", false);
+            RSE_OnAnimationBoolValueChange.Call(ParameterName, false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            RSE_OnAnimationBoolValueChange.Call("isDodging", true);
+        }
+        else
+        {
+            RSE_OnAnimationBoolValueChange.Call("isDodging", false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RSE_OnAnimationBoolValueChange.Call("isHit", true);
+        }
+        else
+        {
+            RSE_OnAnimationBoolValueChange.Call("isHit", false);
         }
     }
 }
