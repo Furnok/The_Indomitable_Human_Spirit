@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEditor.Animations;
 
 public class S_TempCharacterController : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class S_TempCharacterController : MonoBehaviour
     [Header("References")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Animator animator;
+    [S_AnimationName] [SerializeField] private string moveSpeedParameter; 
 
     //[Header("Input")]
 

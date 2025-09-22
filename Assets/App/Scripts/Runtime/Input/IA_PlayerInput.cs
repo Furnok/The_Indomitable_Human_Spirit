@@ -138,7 +138,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Heal"",
+                    ""name"": ""Meditation"",
                     ""type"": ""Button"",
                     ""id"": ""56bc4f67-7dbe-41cd-b777-c7288e2eeac3"",
                     ""expectedControlType"": """",
@@ -217,7 +217,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Heal"",
+                    ""action"": ""Meditation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -377,7 +377,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
         m_Game_Dodge = m_Game.FindAction("Dodge", throwIfNotFound: true);
         m_Game_Parry = m_Game.FindAction("Parry", throwIfNotFound: true);
         m_Game_PauseUnpause = m_Game.FindAction("Pause/Unpause", throwIfNotFound: true);
-        m_Game_Heal = m_Game.FindAction("Heal", throwIfNotFound: true);
+        m_Game_Meditation = m_Game.FindAction("Meditation", throwIfNotFound: true);
         m_Game_Camera = m_Game.FindAction("Camera", throwIfNotFound: true);
         m_Game_Interact = m_Game.FindAction("Interact", throwIfNotFound: true);
         // UI
@@ -469,7 +469,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Game_Dodge;
     private readonly InputAction m_Game_Parry;
     private readonly InputAction m_Game_PauseUnpause;
-    private readonly InputAction m_Game_Heal;
+    private readonly InputAction m_Game_Meditation;
     private readonly InputAction m_Game_Camera;
     private readonly InputAction m_Game_Interact;
     /// <summary>
@@ -504,9 +504,9 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @PauseUnpause => m_Wrapper.m_Game_PauseUnpause;
         /// <summary>
-        /// Provides access to the underlying input action "Game/Heal".
+        /// Provides access to the underlying input action "Game/Meditation".
         /// </summary>
-        public InputAction @Heal => m_Wrapper.m_Game_Heal;
+        public InputAction @Meditation => m_Wrapper.m_Game_Meditation;
         /// <summary>
         /// Provides access to the underlying input action "Game/Camera".
         /// </summary>
@@ -556,9 +556,9 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
             @PauseUnpause.started += instance.OnPauseUnpause;
             @PauseUnpause.performed += instance.OnPauseUnpause;
             @PauseUnpause.canceled += instance.OnPauseUnpause;
-            @Heal.started += instance.OnHeal;
-            @Heal.performed += instance.OnHeal;
-            @Heal.canceled += instance.OnHeal;
+            @Meditation.started += instance.OnMeditation;
+            @Meditation.performed += instance.OnMeditation;
+            @Meditation.canceled += instance.OnMeditation;
             @Camera.started += instance.OnCamera;
             @Camera.performed += instance.OnCamera;
             @Camera.canceled += instance.OnCamera;
@@ -591,9 +591,9 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
             @PauseUnpause.started -= instance.OnPauseUnpause;
             @PauseUnpause.performed -= instance.OnPauseUnpause;
             @PauseUnpause.canceled -= instance.OnPauseUnpause;
-            @Heal.started -= instance.OnHeal;
-            @Heal.performed -= instance.OnHeal;
-            @Heal.canceled -= instance.OnHeal;
+            @Meditation.started -= instance.OnMeditation;
+            @Meditation.performed -= instance.OnMeditation;
+            @Meditation.canceled -= instance.OnMeditation;
             @Camera.started -= instance.OnCamera;
             @Camera.performed -= instance.OnCamera;
             @Camera.canceled -= instance.OnCamera;
@@ -798,12 +798,12 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPauseUnpause(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Heal" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Meditation" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnHeal(InputAction.CallbackContext context);
+        void OnMeditation(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Camera" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

@@ -52,7 +52,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Heal",
+                    "name": "Meditation",
                     "type": "Button",
                     "id": "56bc4f67-7dbe-41cd-b777-c7288e2eeac3",
                     "expectedControlType": "",
@@ -131,7 +131,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Heal",
+                    "action": "Meditation",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
