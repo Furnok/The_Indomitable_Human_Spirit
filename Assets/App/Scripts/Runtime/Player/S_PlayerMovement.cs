@@ -5,6 +5,8 @@ public class S_PlayerMovement : MonoBehaviour
     [Header("Settings")]
     [SerializeField] float _moveSpeed = 5f;
     [SerializeField] float _turnSpeed = 10f;
+    //[S_AnimationName] [SerializeField] string _animParamSpeed;
+    //[S_AnimationName] [SerializeField] string _animParamBool;
 
     [Header("References")]
     [SerializeField] Rigidbody _rigidbody;
@@ -13,6 +15,8 @@ public class S_PlayerMovement : MonoBehaviour
     [SerializeField] RSE_OnPlayerMove _rseOnPlayerMove;
 
     //[Header("Output")]
+    //[SerializeField] RSE_OnAnimationFloatValueChange _rseOnAnimationFloatValueChange;
+    //[SerializeField] RSE_OnAnimationBoolValueChange _rseOnAnimationBoolValueChange;
 
     [Header("RSO")]
     [SerializeField] RSO_CameraPosition _rsoCameraPosition;
@@ -37,6 +41,7 @@ public class S_PlayerMovement : MonoBehaviour
     void Move(Vector2 input)
     {
         _moveInput = input;
+        //_rseOnAnimationFloatValueChange.Call(_animParamSpeed, _moveSpeed);
     }
 
     private void FixedUpdate()
