@@ -269,8 +269,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d74fdf3905db645b64f2c95203c872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rsoCameraPosition: {fileID: 11400000, guid: 99707efacba749443b3ebd78c3911507, type: 2}
-  _rsoCameraRotation: {fileID: 11400000, guid: 04261daa98f35d44f84baecbdcfa77df, type: 2}
+  rsoCameraPosition: {fileID: 0}
+  rsoCameraRotation: {fileID: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0

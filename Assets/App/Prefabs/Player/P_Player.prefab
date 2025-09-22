@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2da3bdb461bcad84c8ae9cca54ae2288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RSE_OnPlayerAwake: {fileID: 11400000, guid: 7abd9c77f54f53c448338eada86f97fc, type: 2}
   RSO_PlayerCenterPosition: {fileID: 11400000, guid: badf6870c62587040b5869c6b54c7781, type: 2}
 --- !u!1 &2251663608484922390
 GameObject:
