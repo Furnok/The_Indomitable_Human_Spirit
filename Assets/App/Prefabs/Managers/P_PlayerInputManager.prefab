@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 9a0ee0cced04c924eaec1c0206678198, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 3
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -83,3 +83,5 @@ MonoBehaviour:
   _onPlayerPause: {fileID: 11400000, guid: f80136b766e3907448f7a7a39ac46b1d, type: 2}
   _onPlayerMeditation: {fileID: 11400000, guid: aa87952d62bcbfe4aaf4fc954d681148, type: 2}
   _onPlayerParry: {fileID: 11400000, guid: a21049edad4c9954db34aebff59e9d2e, type: 2}
+  _onPlayerTargeting: {fileID: 11400000, guid: b5715b3f29f85be4e87180aa0db11aab, type: 2}
+  _onPlayerSwapTarget: {fileID: 11400000, guid: 4529ddf1715466a49afc2e355d08802f, type: 2}

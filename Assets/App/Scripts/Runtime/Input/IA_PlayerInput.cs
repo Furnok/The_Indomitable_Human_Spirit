@@ -163,6 +163,24 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Targeting"",
+                    ""type"": ""Button"",
+                    ""id"": ""2e866809-3319-40e0-88c8-54bd08215699"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Swap Target"",
+                    ""type"": ""Button"",
+                    ""id"": ""421ce48e-138b-4656-94e1-4dee64411430"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -213,7 +231,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""67e21bfb-766b-411a-bb48-6f7f13d19e1a"",
-                    ""path"": ""<Keyboard>/shift"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -236,17 +254,6 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""358e0850-5936-4a03-bdb8-bf3083e592fb"",
                     ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Parry"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5f0cce80-c348-404a-b2f9-22b9b67cab65"",
-                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -429,6 +436,94 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6355f515-3e28-4be6-be25-991e3f2816ba"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Targeting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dff6874b-9d4b-4367-95fc-2b00b05c4b91"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Targeting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""81b2dde1-c6a4-40ff-bc71-9561af1b9a08"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Swap Target"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""31d7986e-b439-48fe-93a1-fc206f5cd5ac"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Swap Target"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""73e119c6-6f3c-4bfe-a649-b7072c010055"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Swap Target"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""9eada16d-bb29-4d5b-bd60-2a147d562815"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Swap Target"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""1e710002-b52a-4f3d-8c00-0bcd0f46d22c"",
+                    ""path"": ""<Mouse>/scroll/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Swap Target"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""1b72c804-22c0-4c71-bf53-ce42708d1196"",
+                    ""path"": ""<Mouse>/scroll/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Swap Target"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -501,6 +596,8 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
         m_Game_Meditation = m_Game.FindAction("Meditation", throwIfNotFound: true);
         m_Game_Camera = m_Game.FindAction("Camera", throwIfNotFound: true);
         m_Game_Interact = m_Game.FindAction("Interact", throwIfNotFound: true);
+        m_Game_Targeting = m_Game.FindAction("Targeting", throwIfNotFound: true);
+        m_Game_SwapTarget = m_Game.FindAction("Swap Target", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Newaction = m_UI.FindAction("New action", throwIfNotFound: true);
@@ -593,6 +690,8 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Game_Meditation;
     private readonly InputAction m_Game_Camera;
     private readonly InputAction m_Game_Interact;
+    private readonly InputAction m_Game_Targeting;
+    private readonly InputAction m_Game_SwapTarget;
     /// <summary>
     /// Provides access to input actions defined in input action map "Game".
     /// </summary>
@@ -636,6 +735,14 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Game/Interact".
         /// </summary>
         public InputAction @Interact => m_Wrapper.m_Game_Interact;
+        /// <summary>
+        /// Provides access to the underlying input action "Game/Targeting".
+        /// </summary>
+        public InputAction @Targeting => m_Wrapper.m_Game_Targeting;
+        /// <summary>
+        /// Provides access to the underlying input action "Game/SwapTarget".
+        /// </summary>
+        public InputAction @SwapTarget => m_Wrapper.m_Game_SwapTarget;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -686,6 +793,12 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @Targeting.started += instance.OnTargeting;
+            @Targeting.performed += instance.OnTargeting;
+            @Targeting.canceled += instance.OnTargeting;
+            @SwapTarget.started += instance.OnSwapTarget;
+            @SwapTarget.performed += instance.OnSwapTarget;
+            @SwapTarget.canceled += instance.OnSwapTarget;
         }
 
         /// <summary>
@@ -721,6 +834,12 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @Targeting.started -= instance.OnTargeting;
+            @Targeting.performed -= instance.OnTargeting;
+            @Targeting.canceled -= instance.OnTargeting;
+            @SwapTarget.started -= instance.OnSwapTarget;
+            @SwapTarget.performed -= instance.OnSwapTarget;
+            @SwapTarget.canceled -= instance.OnSwapTarget;
         }
 
         /// <summary>
@@ -939,6 +1058,20 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnInteract(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Targeting" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTargeting(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Swap Target" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSwapTarget(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

@@ -17,6 +17,8 @@ public class S_PlayerInputManager : MonoBehaviour
     [SerializeField] RSE_OnPlayerPause _onPlayerPause;
     [SerializeField] RSE_OnPlayerMeditation _onPlayerMeditation;
     [SerializeField] RSE_OnPlayerParry _onPlayerParry;
+    [SerializeField] RSE_OnPlayerTargeting _onPlayerTargeting;
+    [SerializeField] RSE_OnPlayerSwapTarget _onPlayerSwapTarget;
 
 
     IA_PlayerInput _playerInput;
@@ -49,12 +51,14 @@ public class S_PlayerInputManager : MonoBehaviour
         var game = _playerInput.Game;
         game.Move.performed += OnMoveChanged;
         game.Move.canceled += OnMoveChanged;
-        game.Attack.performed += OnAttack;
-        game.Dodge.performed += OnDodge;
-        game.Interact.performed += OnInteract;
-        game.Meditation.performed += OnMeditation;
-        game.Parry.performed += OnParry;
-        game.PauseUnpause.performed += OnPause;
+        game.Attack.performed += OnAttackInput;
+        game.Dodge.performed += OnDodgeInput;
+        game.Interact.performed += OnInteractInput;
+        game.Meditation.performed += OnMeditationInput;
+        game.Parry.performed += OnParryInput;
+        game.PauseUnpause.performed += OnPauseInput;
+        game.Targeting.performed += OnTargetingInput;
+        game.SwapTarget.performed += OnSwapTargetInput;
 
         _playerInputComponent.actions.Enable();
 
@@ -69,50 +73,67 @@ public class S_PlayerInputManager : MonoBehaviour
 
         game.Move.performed -= OnMoveChanged;
         game.Move.canceled -= OnMoveChanged;
-        game.Attack.performed -= OnAttack;
-        game.Dodge.performed -= OnDodge;
-        game.Interact.performed -= OnInteract;
-        game.Meditation.performed -= OnMeditation;
-        game.Parry.performed -= OnParry;
-        game.PauseUnpause.performed -= OnPause;
+        game.Attack.performed -= OnAttackInput;
+        game.Dodge.performed -= OnDodgeInput;
+        game.Interact.performed -= OnInteractInput;
+        game.Meditation.performed -= OnMeditationInput;
+        game.Parry.performed -= OnParryInput;
+        game.PauseUnpause.performed -= OnPauseInput;
+        game.Targeting.performed -= OnTargetingInput;
+        game.SwapTarget.performed -= OnSwapTargetInput;
 
         _playerInputComponent.actions.Disable();
     }
 
-    private void OnMoveChanged(InputAction.CallbackContext ctx)
+    #region Input Callback Methods
+    void OnMoveChanged(InputAction.CallbackContext ctx)
     {
         _onPlayerMove.Call(ctx.ReadValue<Vector2>());
     }
 
-    void OnAttack(InputAction.CallbackContext ctx)
+    void OnTargetingInput(InputAction.CallbackContext ctx)
+    {
+        _onPlayerTargeting.Call();
+    }
+
+    void OnSwapTargetInput(InputAction.CallbackContext ctx)
+    {
+        _onPlayerSwapTarget.Call();
+    }
+
+
+    void OnAttackInput(InputAction.CallbackContext ctx)
     {
         _onPlayerAttack.Call();
     }
 
-    void OnDodge(InputAction.CallbackContext ctx)
+    void OnDodgeInput(InputAction.CallbackContext ctx)
     {
         _onPlayerDodge.Call();
     }
 
-    void OnInteract(InputAction.CallbackContext ctx)
+    void OnInteractInput(InputAction.CallbackContext ctx)
     {
         _onPlayerInteract.Call();
     }
 
-    void OnPause(InputAction.CallbackContext ctx)
+    void OnPauseInput(InputAction.CallbackContext ctx)
     {
         _onPlayerPause.Call();
     }
 
-    void OnMeditation(InputAction.CallbackContext ctx)
+    void OnMeditationInput(InputAction.CallbackContext ctx)
     {
         _onPlayerMeditation.Call();
     }
 
-    void OnParry(InputAction.CallbackContext ctx)
+    void OnParryInput(InputAction.CallbackContext ctx)
     {
         _onPlayerParry.Call();
     }
+
+    
+    #endregion
 
     private void DeactivateInput()
     {
