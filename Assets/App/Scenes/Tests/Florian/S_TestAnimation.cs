@@ -22,7 +22,6 @@ public class S_TestAnimation : MonoBehaviour
         {
             RSE_OnAnimationBoolValueChange.Call(ParameterName, false);
         }
-
         if (Input.GetKeyDown(KeyCode.Q))
         {
             RSE_OnAnimationBoolValueChange.Call("isDodging", true);
@@ -31,7 +30,6 @@ public class S_TestAnimation : MonoBehaviour
         {
             RSE_OnAnimationBoolValueChange.Call("isDodging", false);
         }
-
         if (Input.GetKeyDown(KeyCode.R))
         {
             RSE_OnAnimationBoolValueChange.Call("isHit", true);
@@ -39,6 +37,10 @@ public class S_TestAnimation : MonoBehaviour
         else
         {
             RSE_OnAnimationBoolValueChange.Call("isHit", false);
+        }
+        if (Input.GetKeyUp(KeyCode.X))
+        {
+            RSE_OnAnimationBoolValueChange.Call("isDead", true);
         }
     }
 }
