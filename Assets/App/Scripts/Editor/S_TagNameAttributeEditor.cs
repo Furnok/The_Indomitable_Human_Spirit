@@ -14,7 +14,7 @@ namespace App.Scripts.Utils
 
             if (property.propertyType != SerializedPropertyType.String)
             {
-                EditorGUI.LabelField(position, label.text, "Use [TagName] with a String.");
+                EditorGUI.LabelField(position, label.text,"Use [TagName] with a String.");
             }
             else
             {
