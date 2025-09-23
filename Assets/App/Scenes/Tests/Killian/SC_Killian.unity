@@ -465,7 +465,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7834804225770109511, guid: 7e1c9b8eca43d944f85d770af8031848, type: 3}
       propertyPath: m_Name
-      value: P_PlayerInputManager
+      value: P_InputManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1015,6 +1015,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1798777000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1798777001}
+  m_Layer: 0
+  m_Name: -------------------------
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1798777001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798777000}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1910157138
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1468,8 +1499,7 @@ MonoBehaviour:
   - 60
   - 60
   - 60
-  transitionSpeed: 3
-  rotate: 1
+  transitionSpeed: 1
   cinemachineCamera: {fileID: 2135647310}
   splineDolly: {fileID: 2135647309}
   perlin: {fileID: 2135647315}
@@ -1610,13 +1640,14 @@ SceneRoots:
   - {fileID: 1769541790}
   - {fileID: 1581662518}
   - {fileID: 2077803343}
+  - {fileID: 488977047}
+  - {fileID: 1798777001}
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 1487066885}
   - {fileID: 609636340}
   - {fileID: 1484564636}
   - {fileID: 1910157138}
-  - {fileID: 488977047}
   - {fileID: 1925310811}
   - {fileID: 1209068607}
   - {fileID: 1773049958}
