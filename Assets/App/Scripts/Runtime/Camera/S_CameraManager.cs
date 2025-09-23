@@ -85,6 +85,8 @@ public class S_CameraManager : MonoBehaviour
         if (shake != null)
         {
             StopCoroutine(shake);
+            perlin.AmplitudeGain = 0;
+            perlin.FrequencyGain = 0;
             shake = null;
         }
 
