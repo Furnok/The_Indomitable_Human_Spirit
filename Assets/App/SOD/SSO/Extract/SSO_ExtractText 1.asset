@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28a0c2c6a10c76547af5b72511149308, type: 3}
+  m_Name: SSO_ExtractText 1
+  m_EditorClassIdentifier: 
+  _value: "And it came to pass in this age of dark wickedness, that pestilence did
+    invade the face of the earth, and the harvests did perish, and the beasts of
+    the field were smitten with madness. The earth did weep with countless sorrows,
+    and disease did cover the nations as a thick cloud doth cover the angry heavens.
+    For the Adversary, who is called Satan, did arise once more before the Eternal
+    and did say in his heart: \u201CAre they not all inclined to corruption? Are
+    they not all of vain nature?\u201D  And he was called before the throne of Light,
+    and God did say unto him: \u201CHast thou considered My servant Job? He remaineth
+    upright in his heart.\u201D But the Adversary murmured once more and did reply:
+    \u201CSuffer me to touch the work of Thy hands, and Thou shalt see if they do
+    not turn away from Thee.\u201D Then the Eternal, in His infinite wisdom, permitted
+    the beast to blow upon the creation, not to break them, but to prove the free
+    will of the children of Adam.  And thereupon, a thousand plagues were sent upon
+    the earth, and the men were bowed down under the weight of their own misery.
+    In great distress, they did curse the Name of the Eternal, and the temples were
+    cast down, and the altars were defiled with the blood of hatred. But God was
+    not angry, for He saw the truth in the hearts of His creatures.  Then the Deceiver
+    appeared unto them in a form that was not veiled, and did say: \u201CI am he
+    whom ye fear, but I am also your salvation. Turn ye unto me, and I shall deliver
+    you from the evils of this world.\u201D And many among the children of the earth,
+    even the most faithful, did yield to his charms, and did forget their first love.
+    And God was grieved in His spirit.  And it came to pass that He turned His face
+    from the world, and angels fell from the sky, and the Adversary did reign over
+    the earth which he had conquered by seduction. The light did extinguish from
+    the heavens, and the voice of the prophets did cease. The faithful were scattered
+    as seed that is carried away by the wind.  And it came to pass that the man of
+    God, a servant armed with the word and the sword, embarked for a far-off isle,
+    in the forgotten borders of earthly kingdoms. For he had heard tell that there
+    did dwell a village, the last bastion of the faithful unto the Most High, not
+    yet bowed beneath the yoke of the Deceiver."
