@@ -12,6 +12,7 @@ public class S_TargetingManager : MonoBehaviour
     [SerializeField] RSE_OnPlayerTargeting _onPlayerTargeting;
     [SerializeField] RSE_OnPlayerTargetingCancel _onPlayerTargetingCancel;
     [SerializeField] RSE_OnPlayerSwapTarget _onPlayerSwapTarget;
+    [SerializeField] RSE_OnEnemyTargetDied _onEnemyTargetDied;
 
     [Header("Output")]
     [SerializeField] RSE_OnNewTargeting _onNewTargeting;
@@ -43,6 +44,8 @@ public class S_TargetingManager : MonoBehaviour
         _onPlayerTargeting.action += OnPlayerTargetingInput;
         _onPlayerTargetingCancel.action += OnPlayerCancelTargetingInput;
         _onPlayerSwapTarget.action += OnSwapTargetInput;
+
+        _onEnemyTargetDied.action += OnEnemyTargetDied;
     }
 
     private void OnDisable()
@@ -51,6 +54,8 @@ public class S_TargetingManager : MonoBehaviour
         _onPlayerTargeting.action -= OnPlayerTargetingInput;
         _onPlayerTargetingCancel.action -= OnPlayerCancelTargetingInput;
         _onPlayerSwapTarget.action -= OnSwapTargetInput;
+
+        _onEnemyTargetDied.action -= OnEnemyTargetDied;
 
         _playerIsTargeting.Value = false;
     }
@@ -95,6 +100,16 @@ public class S_TargetingManager : MonoBehaviour
         _onPlayerCancelTargeting.Call(_currentTarget);
 
         _currentTarget = null;
+    }
+
+    void OnEnemyTargetDied(GameObject enemy)
+    {
+        if(_currentTarget == enemy)
+        {
+            _playerIsTargeting.Value = false;
+            _onPlayerCancelTargeting.Call(_currentTarget);
+            _currentTarget = null;
+        }
     }
 
     void OnSwapTargetInput()
