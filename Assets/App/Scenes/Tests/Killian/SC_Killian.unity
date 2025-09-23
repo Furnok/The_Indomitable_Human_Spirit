@@ -206,8 +206,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.27545062, y: -0.010473956, z: 0.0030013493, w: 0.9612535}
-  m_LocalPosition: {x: 0.08717952, y: 3.998099, z: -4}
+  m_LocalRotation: {x: 0.2754506, y: -0.010473959, z: 0.0030013502, w: 0.9612535}
+  m_LocalPosition: {x: 0.080033235, y: 3.793325, z: -3.672112}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1348,6 +1348,7 @@ GameObject:
   - component: {fileID: 2135647315}
   - component: {fileID: 2135647314}
   - component: {fileID: 2135647313}
+  - component: {fileID: 2135647317}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -1372,7 +1373,7 @@ MonoBehaviour:
     Position: 0
     Units: 2
   SplineOffset: {x: 0, y: 2, z: -4}
-  CameraRotation: 0
+  CameraRotation: 3
   Damping:
     Enabled: 0
     Position: {x: 0, y: 0, z: 0}
@@ -1444,7 +1445,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2135647307}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2754506, y: -0.010473954, z: 0.0030013432, w: 0.9612535}
+  m_LocalRotation: {x: 0.2754506, y: -0.010473959, z: 0.0030013502, w: 0.9612535}
   m_LocalPosition: {x: 0.08717952, y: 3.998099, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1468,6 +1469,7 @@ MonoBehaviour:
   - 60
   - 60
   transitionSpeed: 3
+  rotate: 1
   cinemachineCamera: {fileID: 2135647310}
   splineDolly: {fileID: 2135647309}
   perlin: {fileID: 2135647315}
@@ -1533,6 +1535,27 @@ MonoBehaviour:
     Time: 0
     Smoothing: 0
     IgnoreY: 0
+--- !u!114 &2135647317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135647307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eb4843bae7d24943842ea23130dcd55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FramingMode: 2
+  FramingSize: 0.4
+  CenterOffset: {x: 0, y: 0}
+  Damping: 1
+  SizeAdjustment: 1
+  LateralAdjustment: 0
+  FovRange: {x: 1, y: 100}
+  DollyRange: {x: -5, y: 5}
+  OrthoSizeRange: {x: 1, y: 1000}
 --- !u!1 &2136200756
 GameObject:
   m_ObjectHideFlags: 0
