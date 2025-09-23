@@ -104,7 +104,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 2
@@ -154,8 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2da3bdb461bcad84c8ae9cca54ae2288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RSE_OnPlayerAwake: {fileID: 11400000, guid: 7abd9c77f54f53c448338eada86f97fc, type: 2}
-  RSO_PlayerCenterPosition: {fileID: 11400000, guid: badf6870c62587040b5869c6b54c7781, type: 2}
+  rseAddTargetCenter: {fileID: 11400000, guid: 7abd9c77f54f53c448338eada86f97fc, type: 2}
 --- !u!1 &2251663608484922390
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,6 +197,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2119236248560379878}
+  - component: {fileID: 6446866077925391527}
+  - component: {fileID: 2327319095763880264}
   m_Layer: 0
   m_Name: TargetingArea
   m_TagString: Untagged
@@ -220,6 +221,40 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5650813067181656210}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &6446866077925391527
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3328064749793518765}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2327319095763880264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3328064749793518765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3d90791718c5749b0fe800bf2d8a52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyInTargetingArea: {fileID: 11400000, guid: ff704b8af82513742ae3d2b8935b4fcd, type: 2}
 --- !u!1 &6917712685740118504
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,6 +460,7 @@ MonoBehaviour:
   _turnSpeed: 10
   _rigidbody: {fileID: 5912313540901051841}
   _rseOnPlayerMove: {fileID: 11400000, guid: 881d0608fef60064c9e33701b880054c, type: 2}
+  _rseOnAnimationBoolValueChange: {fileID: 11400000, guid: f3b68030aacb033438a094c87c0e44ca, type: 2}
   _rsoCameraPosition: {fileID: 11400000, guid: 99707efacba749443b3ebd78c3911507, type: 2}
   _rsoCameraRotation: {fileID: 11400000, guid: 04261daa98f35d44f84baecbdcfa77df, type: 2}
 --- !u!114 &4027691058420794931
