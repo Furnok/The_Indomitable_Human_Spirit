@@ -7,24 +7,24 @@ public class S_CameraTargetManager : MonoBehaviour
     [SerializeField] private CinemachineTargetGroup targetGroupe;
 
     [Header("Input")]
-    [SerializeField] private RSE_AddTargetCenter rseAddTargetCenter;
-    [SerializeField] private RSE_RemoveTargetCenter rseRemoveTargetCenter;
+    [SerializeField] private RSE_OnNewTargeting rseOnNewTargeting;
+    [SerializeField] private RSE_OnPlayerCancelTargeting rseOnPlayerCancelTargeting;
 
     private void OnEnable()
     {
-        rseAddTargetCenter.action += AddTarget;
-        rseRemoveTargetCenter.action += RemoveTarget;
+        rseOnNewTargeting.action += AddTarget;
+        rseOnPlayerCancelTargeting.action += RemoveTarget;
     }
 
     private void OnDisable()
     {
-        rseAddTargetCenter.action -= AddTarget;
-        rseRemoveTargetCenter.action -= RemoveTarget;
+        rseOnNewTargeting.action -= AddTarget;
+        rseOnPlayerCancelTargeting.action -= RemoveTarget;
     }
 
     private void AddTarget(GameObject target)
     {
-        if (targetGroupe.FindMember(target.transform) == -1)
+        if (target != null && targetGroupe.FindMember(target.transform) == -1)
         {
             targetGroupe.AddMember(target.transform, 1f, 1f);
         }
@@ -32,7 +32,7 @@ public class S_CameraTargetManager : MonoBehaviour
 
     private void RemoveTarget(GameObject target)
     {
-        if (targetGroupe.FindMember(target.transform) >= 0)
+        if (target != null && targetGroupe.FindMember(target.transform) >= 0)
         {
             targetGroupe.RemoveMember(target.transform);
         }

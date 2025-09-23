@@ -17,8 +17,9 @@ public class S_CameraManager : MonoBehaviour
     [Header("Input")]
     [SerializeField] private RSE_CameraShake rseCameraShake;
 
-    private Coroutine shake;
+    private Coroutine shake = null;
     private float currentZOffset = -4;
+    private CinemachineCamera[] allVCams = null;
 
     private void OnEnable()
     {
@@ -30,7 +31,12 @@ public class S_CameraManager : MonoBehaviour
         rseCameraShake.action -= CameraShake;
     }
 
-    void Update()
+    private void Start()
+    {
+        allVCams = FindObjectsByType<CinemachineCamera>(FindObjectsSortMode.None);
+    }
+
+    private void Update()
     {
         CameraOffsetZ();
     }
@@ -43,11 +49,17 @@ public class S_CameraManager : MonoBehaviour
     {
         if (targetGroup.Targets.Count > 1)
         {
-            Vector3 enemyLocalPos = targetGroup.Targets[1].Object.transform.InverseTransformPoint(targetGroup.Targets[0].Object.transform.position);
+            Vector3 enemyLocalPos = targetGroup.Targets[0].Object.transform.InverseTransformPoint(targetGroup.Targets[1].Object.transform.position);
 
             float targetZ = (enemyLocalPos.z < 0) ? Mathf.Abs(-4) : -Mathf.Abs(-4);
 
             currentZOffset = Mathf.Lerp(currentZOffset, targetZ, Time.deltaTime * transitionSpeed);
+
+            splineDolly.SplineOffset = new Vector3(splineDolly.SplineOffset.x, splineDolly.SplineOffset.y, currentZOffset);
+        }
+        else
+        {
+            currentZOffset = Mathf.Lerp(currentZOffset, -4, Time.deltaTime * transitionSpeed);
 
             splineDolly.SplineOffset = new Vector3(splineDolly.SplineOffset.x, splineDolly.SplineOffset.y, currentZOffset);
         }
