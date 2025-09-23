@@ -16,7 +16,7 @@ public class S_PlayerMovement : MonoBehaviour
 
     //[Header("Output")]
     //[SerializeField] RSE_OnAnimationFloatValueChange _rseOnAnimationFloatValueChange;
-    //[SerializeField] RSE_OnAnimationBoolValueChange _rseOnAnimationBoolValueChange;
+    [SerializeField] RSE_OnAnimationBoolValueChange _rseOnAnimationBoolValueChange;
 
     [Header("RSO")]
     [SerializeField] RSO_CameraPosition _rsoCameraPosition;
@@ -41,7 +41,15 @@ public class S_PlayerMovement : MonoBehaviour
     void Move(Vector2 input)
     {
         _moveInput = input;
-        //_rseOnAnimationFloatValueChange.Call(_animParamSpeed, _moveSpeed);
+
+        if(_moveInput != Vector2.zero)
+        {
+            _rseOnAnimationBoolValueChange.Call("isMoving", true);
+        }
+        else
+        {
+            _rseOnAnimationBoolValueChange.Call("isMoving", false);
+        }
     }
 
     private void FixedUpdate()
