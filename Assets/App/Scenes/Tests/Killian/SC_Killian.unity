@@ -206,7 +206,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38249615, y: -0.0100668995, z: 0.004167746, w: 0.92389286}
+  m_LocalRotation: {x: 0.27545062, y: -0.010473956, z: 0.0030013493, w: 0.9612535}
   m_LocalPosition: {x: 0.08717952, y: 3.998099, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -410,6 +410,11 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
+--- !u!4 &458887572 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1244334032862505836, guid: 96487d6d348a332488e91b511fd34486, type: 3}
+  m_PrefabInstance: {fileID: 1910157138}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &488977047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -896,7 +901,10 @@ MonoBehaviour:
   PositionMode: 0
   RotationMode: 1
   UpdateMethod: 2
-  Targets: []
+  Targets:
+  - Object: {fileID: 458887572}
+    Weight: 1
+    Radius: 1
   m_LegacyTargets: []
 --- !u!4 &1769541790
 Transform:
@@ -907,7 +915,7 @@ Transform:
   m_GameObject: {fileID: 1769541788}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -926,7 +934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetGroupe: {fileID: 1769541789}
-  rseTargetCenter: {fileID: 11400000, guid: 7abd9c77f54f53c448338eada86f97fc, type: 2}
+  rseAddTargetCenter: {fileID: 11400000, guid: 7abd9c77f54f53c448338eada86f97fc, type: 2}
   rseRemoveTargetCenter: {fileID: 11400000, guid: eb298157a943e5b4380a5dee5318b636, type: 2}
 --- !u!1 &1773049955
 GameObject:
@@ -1017,6 +1025,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1482638154804927166, guid: 96487d6d348a332488e91b511fd34486, type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099938378365133201, guid: 96487d6d348a332488e91b511fd34486, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7856911075351289306, guid: 96487d6d348a332488e91b511fd34486, type: 3}
@@ -1362,20 +1374,20 @@ MonoBehaviour:
   SplineOffset: {x: 0, y: 2, z: -4}
   CameraRotation: 0
   Damping:
-    Enabled: 1
+    Enabled: 0
     Position: {x: 0, y: 0, z: 0}
     Angular: 0
   AutomaticDolly:
     Enabled: 1
     Method:
-      rid: 38275606210675072
+      rid: 38275626346741887
   m_LegacyPosition: -1
   m_LegacyUnits: 0
   m_LegacySpline: {fileID: 0}
   references:
     version: 2
     RefIds:
-    - rid: 38275606210675072
+    - rid: 38275626346741887
       type: {class: SplineAutoDolly/NearestPointToTarget, ns: Unity.Cinemachine, asm: Unity.Cinemachine}
       data:
         PositionOffset: 0
@@ -1432,7 +1444,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2135647307}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38249612, y: -0.0100668995, z: 0.0041677444, w: 0.92389286}
+  m_LocalRotation: {x: 0.2754506, y: -0.010473954, z: 0.0030013432, w: 0.9612535}
   m_LocalPosition: {x: 0.08717952, y: 3.998099, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1455,9 +1467,11 @@ MonoBehaviour:
   - 60
   - 60
   - 60
+  transitionSpeed: 3
   cinemachineCamera: {fileID: 2135647310}
   splineDolly: {fileID: 2135647309}
   perlin: {fileID: 2135647315}
+  targetGroup: {fileID: 1769541789}
   rseCameraShake: {fileID: 11400000, guid: beaf63a232cb7b8488844f87f5bc900b, type: 2}
 --- !u!114 &2135647314
 MonoBehaviour:
@@ -1508,8 +1522,8 @@ MonoBehaviour:
       Enabled: 0
       Size: {x: 0.2, y: 0.2}
     HardLimits:
-      Enabled: 0
-      Size: {x: 0.8, y: 0.8}
+      Enabled: 1
+      Size: {x: 1, y: 1}
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
   TargetOffset: {x: 0, y: 0, z: 0}

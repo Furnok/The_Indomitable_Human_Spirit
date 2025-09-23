@@ -1,3 +1,4 @@
+using FMOD.Studio;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Splines;
@@ -6,16 +7,19 @@ public class S_CameraManager : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private float[] fovPerKnot;
+    [SerializeField] private float transitionSpeed;
 
     [Header("References")]
     [SerializeField] private CinemachineCamera cinemachineCamera;
     [SerializeField] private CinemachineSplineDolly splineDolly;
     [SerializeField] private CinemachineBasicMultiChannelPerlin perlin;
+    [SerializeField] private CinemachineTargetGroup targetGroup;
 
     [Header("Input")]
     [SerializeField] private RSE_CameraShake rseCameraShake;
 
     private Coroutine shake;
+    private float currentZOffset = -4;
 
     private void OnEnable()
     {
@@ -27,9 +31,27 @@ public class S_CameraManager : MonoBehaviour
         rseCameraShake.action -= CameraShake;
     }
 
+    void Update()
+    {
+        CameraOffsetZ();
+    }
+
     private void LateUpdate()
     {
         FOV();
+    }
+    private void CameraOffsetZ()
+    {
+        if (targetGroup.Targets.Count > 1)
+        {
+            Vector3 enemyLocalPos = targetGroup.Targets[1].Object.transform.InverseTransformPoint(targetGroup.Targets[0].Object.transform.position);
+
+            float targetZ = (enemyLocalPos.z < 0) ? Mathf.Abs(-4) : -Mathf.Abs(-4);
+
+            currentZOffset = Mathf.Lerp(currentZOffset, targetZ, Time.deltaTime * transitionSpeed);
+
+            splineDolly.SplineOffset = new Vector3(splineDolly.SplineOffset.x, splineDolly.SplineOffset.y, currentZOffset);
+        }
     }
 
     private void FOV()
