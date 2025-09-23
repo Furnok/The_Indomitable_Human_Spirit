@@ -175,7 +175,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Swap Target"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""421ce48e-138b-4656-94e1-4dee64411430"",
                     ""expectedControlType"": """",
                     ""processors"": """",

@@ -255,8 +255,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e3d90791718c5749b0fe800bf2d8a52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sphereCollider: {fileID: 6446866077925391527}
   _onEnemyEnterTargetingRange: {fileID: 11400000, guid: 857c3a1874fe4f34b9a4e7de1355f9c0, type: 2}
   _onEnemyExitTargetingRange: {fileID: 11400000, guid: 9464073673f74034da5e08cf174a885c, type: 2}
+  _playerTargetRangeRadius: {fileID: 11400000, guid: 5be727c44da2ea945accbd91b94caaf1, type: 2}
 --- !u!114 &7568779669292623956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,7 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86791ed345447804e9d12210228a9ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gizmoColor: {r: 0, g: 1, b: 0, a: 0.078431375}
+  _gizmoColor: {r: 0, g: 1, b: 0, a: 0.09803922}
   _drawGizmos: 1
   _detectionCollider: {fileID: 6446866077925391527}
 --- !u!1 &6917712685740118504
@@ -473,13 +475,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a7a3689dba90f64192efd8c10bdac38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 5
-  _turnSpeed: 10
   _rigidbody: {fileID: 5912313540901051841}
   _rseOnPlayerMove: {fileID: 11400000, guid: 881d0608fef60064c9e33701b880054c, type: 2}
   _rseOnAnimationBoolValueChange: {fileID: 11400000, guid: f3b68030aacb033438a094c87c0e44ca, type: 2}
   _rsoCameraPosition: {fileID: 11400000, guid: 99707efacba749443b3ebd78c3911507, type: 2}
   _rsoCameraRotation: {fileID: 11400000, guid: 04261daa98f35d44f84baecbdcfa77df, type: 2}
+  _rsoPlayerPosition: {fileID: 11400000, guid: a3d33267cdb3a0a43bb8ab4811624f21, type: 2}
+  _ssoPlayerMovementSpeed: {fileID: 11400000, guid: b43e32b83f1e2e4498095e81d876a99a, type: 2}
+  _ssoPlayerTurnSpeed: {fileID: 11400000, guid: f54a24fbd6b664141bb3da5077f567bc, type: 2}
 --- !u!114 &4027691058420794931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -571,7 +574,7 @@ GameObject:
   - component: {fileID: 4512159813083063934}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

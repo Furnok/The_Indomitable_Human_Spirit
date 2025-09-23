@@ -5,7 +5,8 @@ public class S_TargetDetector : MonoBehaviour
     //[Header("Settings")]
     
 
-    //[Header("References")]
+    [Header("References")]
+    [SerializeField] SphereCollider _sphereCollider;
 
     //[Header("Input")]
 
@@ -15,9 +16,12 @@ public class S_TargetDetector : MonoBehaviour
 
     //[Header("RSO")]
 
+    [Header("SSO")]
+    [SerializeField] SSO_PlayerTargetRangeRadius _playerTargetRangeRadius;
+
     private void Awake()
     {
-        
+        _sphereCollider.radius = _playerTargetRangeRadius.Value;
     }
     private void OnTriggerEnter(Collider other)
     {

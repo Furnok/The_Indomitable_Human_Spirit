@@ -2,11 +2,7 @@ using UnityEngine;
 
 public class S_PlayerMovement : MonoBehaviour
 {
-    [Header("Settings")]
-    [SerializeField] float _moveSpeed = 5f;
-    [SerializeField] float _turnSpeed = 10f;
-    //[S_AnimationName] [SerializeField] string _animParamSpeed;
-    //[S_AnimationName] [SerializeField] string _animParamBool;
+    //[Header("Settings")]
 
     [Header("References")]
     [SerializeField] Rigidbody _rigidbody;
@@ -14,19 +10,30 @@ public class S_PlayerMovement : MonoBehaviour
     [Header("Input")]
     [SerializeField] RSE_OnPlayerMove _rseOnPlayerMove;
 
-    //[Header("Output")]
-    //[SerializeField] RSE_OnAnimationFloatValueChange _rseOnAnimationFloatValueChange;
+    [Header("Output")]
     [SerializeField] RSE_OnAnimationBoolValueChange _rseOnAnimationBoolValueChange;
 
     [Header("RSO")]
     [SerializeField] RSO_CameraPosition _rsoCameraPosition;
     [SerializeField] RSO_CameraRotation _rsoCameraRotation;
+    [SerializeField] RSO_PlayerPosition _rsoPlayerPosition;
+
+    [Header("SSO")]
+    [SerializeField] SSO_PlayerMovementSpeed _ssoPlayerMovementSpeed;
+    [SerializeField] SSO_PlayerTurnSpeed _ssoPlayerTurnSpeed;
 
     Vector2 _moveInput;
 
     private void Awake()
     {
+        _rsoPlayerPosition.Value = transform.position;
+
         _rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
+    }
+
+    private void OnDestroy()
+    {
+        _rsoPlayerPosition.Value = Vector3.zero;
     }
     private void OnEnable()
     {
@@ -36,6 +43,7 @@ public class S_PlayerMovement : MonoBehaviour
     private void OnDisable()
     {
         _rseOnPlayerMove.action -= Move;
+        _rsoPlayerPosition.Value = Vector3.zero;
     }
 
     void Move(Vector2 input)
@@ -70,7 +78,7 @@ public class S_PlayerMovement : MonoBehaviour
         {
             desiredDir.Normalize();
             Quaternion target = Quaternion.LookRotation(desiredDir, Vector3.up);
-            _rigidbody.MoveRotation(Quaternion.Slerp(_rigidbody.rotation, target, _turnSpeed * Time.fixedDeltaTime));
+            _rigidbody.MoveRotation(Quaternion.Slerp(_rigidbody.rotation, target, _ssoPlayerTurnSpeed.Value * Time.fixedDeltaTime));
         }
         else
         {
@@ -79,13 +87,15 @@ public class S_PlayerMovement : MonoBehaviour
         }
 
         float inputMag = Mathf.Clamp01(_moveInput.magnitude);
-        Vector3 desiredVel = desiredDir * _moveSpeed * inputMag;
+        Vector3 desiredVel = desiredDir * _ssoPlayerMovementSpeed.Value * inputMag;
 
 
         Vector3 velocity = _rigidbody.linearVelocity;
         velocity.x = desiredVel.x;
         velocity.z = desiredVel.z;
         _rigidbody.linearVelocity = velocity;
+
+        _rsoPlayerPosition.Value = transform.position;
     }
 }
 
