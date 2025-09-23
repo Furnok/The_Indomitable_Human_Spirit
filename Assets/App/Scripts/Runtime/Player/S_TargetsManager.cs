@@ -11,7 +11,8 @@ public class S_TargetManager : MonoBehaviour
     [SerializeField] RSE_OnEnemyEnterTargetingRange _onEnemyEnterTargetingRange;
     [SerializeField] RSE_OnEnemyExitTargetingRange _onEnemyExitTargetingRange;
 
-    //[Header("Output")]
+    [Header("Output")]
+    [SerializeField] RSE_OnTargetsInRangeChange _onTargetsInRangeChange;
 
     HashSet<GameObject> _enemiesInRange = new HashSet<GameObject>();
 
@@ -32,6 +33,9 @@ public class S_TargetManager : MonoBehaviour
         if (!_enemiesInRange.Contains(enemy))
         {
             _enemiesInRange.Add(enemy);
+
+            _onTargetsInRangeChange.Call(_enemiesInRange);
+
             Debug.Log("Enemy in range: " + enemy.name);
         }
     }
@@ -41,6 +45,9 @@ public class S_TargetManager : MonoBehaviour
         if (_enemiesInRange.Contains(enemy))
         {
             _enemiesInRange.Remove(enemy);
+
+            _onTargetsInRangeChange.Call(_enemiesInRange);
+
             Debug.Log("Enemy out of range: " + enemy.name);
         }
     }
