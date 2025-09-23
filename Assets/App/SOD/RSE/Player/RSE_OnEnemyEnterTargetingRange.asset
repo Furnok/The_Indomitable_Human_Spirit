@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca6dd8fd217be5744b28503425381e04, type: 3}
-  m_Name: RSO_EnemyInTargetingArea
+  m_Script: {fileID: 11500000, guid: bc009eb39f9c0aa4cb659ca3a84e0151, type: 3}
+  m_Name: RSE_OnEnemyEnterTargetingRange
   m_EditorClassIdentifier: 
-  _value:
-    enemyGO: {fileID: 0}

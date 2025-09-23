@@ -4,5 +4,6 @@ using System;
 [Serializable]
 public struct EnemyInfo
 {
-    public GameObject enemyGO;
+    public int enemyID;
+    public Vector3 lastPostion;
 }
