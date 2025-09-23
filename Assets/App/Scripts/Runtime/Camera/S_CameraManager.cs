@@ -1,4 +1,3 @@
-using FMOD.Studio;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Splines;
@@ -8,6 +7,7 @@ public class S_CameraManager : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float[] fovPerKnot;
     [SerializeField] private float transitionSpeed;
+    [SerializeField] private bool rotate;
 
     [Header("References")]
     [SerializeField] private CinemachineCamera cinemachineCamera;
@@ -42,7 +42,7 @@ public class S_CameraManager : MonoBehaviour
     }
     private void CameraOffsetZ()
     {
-        if (targetGroup.Targets.Count > 1)
+        if (targetGroup.Targets.Count > 1 && rotate)
         {
             Vector3 enemyLocalPos = targetGroup.Targets[1].Object.transform.InverseTransformPoint(targetGroup.Targets[0].Object.transform.position);
 
