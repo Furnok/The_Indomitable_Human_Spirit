@@ -15,6 +15,7 @@ public class S_TargetingManager : MonoBehaviour
 
     [Header("Output")]
     [SerializeField] RSE_OnNewTargeting _onNewTargeting;
+    [SerializeField] RSE_OnPlayerCancelTargeting _onPlayerCancelTargeting;
 
     [Header("RSO")]
     [SerializeField] RSO_PlayerIsTargeting _playerIsTargeting;
@@ -22,6 +23,9 @@ public class S_TargetingManager : MonoBehaviour
 
     [Header("RSO")]
     [SerializeField] SSO_PlayerTargetRangeRadius _playerTargetRangeRadius;
+
+    [Header("SSO")]
+    [SerializeField] SSO_PlayerMaxDistanceTargeting _playerMaxDistanceTargeting;
 
     GameObject _currentTarget;
     HashSet<GameObject> _targetsPosible = new HashSet<GameObject>();
@@ -33,7 +37,6 @@ public class S_TargetingManager : MonoBehaviour
 
     private void OnEnable()
     {
-
         _playerIsTargeting.Value = false;
 
         _onTargetsInRangeChange.action += OnChangeTargetsPosible;
@@ -50,7 +53,20 @@ public class S_TargetingManager : MonoBehaviour
         _onPlayerSwapTarget.action -= OnSwapTargetInput;
 
         _playerIsTargeting.Value = false;
+    }
 
+    private void FixedUpdate()
+    {
+        if(_currentTarget != null && _playerIsTargeting.Value == true)
+        {
+            float distance = Vector3.Distance(_playerPosition.Value, _currentTarget.transform.position);
+            if (distance > _playerMaxDistanceTargeting.Value)
+            {
+                _playerIsTargeting.Value = false;
+                _onPlayerCancelTargeting.Call(_currentTarget);
+                _currentTarget = null;
+            }
+        }
     }
 
     void OnChangeTargetsPosible(HashSet<GameObject> targetsList)
@@ -75,6 +91,9 @@ public class S_TargetingManager : MonoBehaviour
     void OnPlayerCancelTargetingInput()
     {
         _playerIsTargeting.Value = false;
+
+        _onPlayerCancelTargeting.Call(_currentTarget);
+
         _currentTarget = null;
     }
 
@@ -82,11 +101,12 @@ public class S_TargetingManager : MonoBehaviour
     {
         if (_targetsPosible.Count == 0 || _playerIsTargeting.Value == false) return;
 
-        _currentTarget = TargetSelection();
+        var newTarget = TargetSelection();
 
-        if (_currentTarget != null)
+        if (newTarget != null && newTarget != _currentTarget)
         {
-            _onNewTargeting.Call(_currentTarget);
+            _currentTarget = newTarget;
+            _onNewTargeting.Call(newTarget);
             Debug.Log("New Target Selected");
         }
     }

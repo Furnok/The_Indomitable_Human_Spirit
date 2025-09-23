@@ -17,6 +17,7 @@ public class S_TargetsDebug : MonoBehaviour
     [SerializeField] RSE_OnEnemyEnterTargetingRange _onEnemyEnterTargetingRange;
     [SerializeField] RSE_OnEnemyExitTargetingRange _onEnemyExitTargetingRange;
     [SerializeField] RSE_OnNewTargeting _onNewTargeting;
+    [SerializeField] RSE_OnPlayerCancelTargeting _onPlayerCancelTargeting;
 
     //[Header("Output")]
 
@@ -34,6 +35,7 @@ public class S_TargetsDebug : MonoBehaviour
         _onEnemyEnterTargetingRange.action += AddTarget;
         _onEnemyExitTargetingRange.action += RemoveTarget;
         _onNewTargeting.action += OnNewTargeting;
+        _onPlayerCancelTargeting.action += OnCancelTargeting;
     }
 
     private void OnDisable()
@@ -41,6 +43,7 @@ public class S_TargetsDebug : MonoBehaviour
         _onEnemyEnterTargetingRange.action -= AddTarget;
         _onEnemyExitTargetingRange.action -= RemoveTarget;
         _onNewTargeting.action -= OnNewTargeting;
+        _onPlayerCancelTargeting.action -= OnCancelTargeting;
     }
 
     private void AddTarget(GameObject target)
@@ -76,6 +79,8 @@ public class S_TargetsDebug : MonoBehaviour
 
         foreach (var target in _targets)
         {
+            if (_playerIsTargeting.Value == true && _canDrawTarget == true && target == _target) continue;
+
             Gizmos.color = _gizmoColor;
             Vector3 pos = new Vector3(target.position.x, target.position.y + _gizmoHeightOffset, target.position.z);
             Gizmos.DrawSphere(pos, _gizmoRadius);
@@ -93,5 +98,11 @@ public class S_TargetsDebug : MonoBehaviour
     {
         _target = target.transform;
         _canDrawTarget = true;
+    }
+
+    void OnCancelTargeting(GameObject target)
+    {
+        _canDrawTarget = false;
+        _target = null;
     }
 }
