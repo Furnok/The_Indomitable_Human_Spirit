@@ -9,7 +9,8 @@ public class S_EnemyRangeDetection : MonoBehaviour
 
     //[Header("References")]
 
-    //[Header("Input")]
+    [Header("Input")]
+    [SerializeField] RSO_TargetValue RSO_TargetValue;
 
     //[Header("Output")]
     private void OnTriggerEnter(Collider other)
@@ -17,6 +18,7 @@ public class S_EnemyRangeDetection : MonoBehaviour
         if (other.CompareTag(playerTag))
         {
             targetDetected = other.gameObject;
+            RSO_TargetValue.Value = targetDetected;
         }
         
     }
@@ -25,6 +27,7 @@ public class S_EnemyRangeDetection : MonoBehaviour
         if (other.CompareTag(playerTag))
         {
             targetDetected = null;
+            RSO_TargetValue.Value = null;
         }
     }
 }

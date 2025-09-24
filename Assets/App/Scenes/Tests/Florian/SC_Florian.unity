@@ -405,6 +405,7 @@ MonoBehaviour:
   rb: {fileID: 355196717}
   RSE_OnAnimationBoolValueChange: {fileID: 11400000, guid: f3b68030aacb033438a094c87c0e44ca, type: 2}
   RSE_OnAnimationFloatValueChange: {fileID: 11400000, guid: 647c462e77eded84f8317681638362bb, type: 2}
+  movement: {x: 0, y: 0, z: 0}
 --- !u!114 &355196720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -704,6 +705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTag: Player
+  RSO_TargetValue: {fileID: 11400000, guid: 4c1e49609b8fa8941a4623328de0c8b4, type: 2}
 --- !u!135 &484952176
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -861,16 +863,6 @@ Transform:
   - {fileID: 476571056}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &775618764 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7856911075351289306, guid: 96487d6d348a332488e91b511fd34486, type: 3}
-  m_PrefabInstance: {fileID: 681031178}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &775618770 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8422035382403967805, guid: 96487d6d348a332488e91b511fd34486, type: 3}
-  m_PrefabInstance: {fileID: 681031178}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &778672785
 GameObject:
   m_ObjectHideFlags: 0
@@ -1330,7 +1322,6 @@ MonoBehaviour:
   - rid: 962615282891227410
   - rid: 962615282891227534
   - rid: 962615284563181827
-  - rid: 962615286015459421
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -1371,15 +1362,7 @@ MonoBehaviour:
           m_Value0: 17844675967421454390
           m_Value1: 9773497856253695007
         Name: Player
-        m_Value: {fileID: 775618764}
-    - rid: 962615286015459421
-      type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 11556651166112835508
-          m_Value1: 3625862488812309863
-        Name: New Transform
-        m_Value: {fileID: 775618770}
+        m_Value: {fileID: 0}
 --- !u!95 &1677078939
 Animator:
   serializedVersion: 7
