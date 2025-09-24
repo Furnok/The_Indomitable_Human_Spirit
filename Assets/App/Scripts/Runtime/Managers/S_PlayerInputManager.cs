@@ -16,11 +16,12 @@ public class S_PlayerInputManager : MonoBehaviour
     [SerializeField] RSE_OnPlayerInteract _onPlayerInteract;
     [SerializeField] RSE_OnPlayerPause _onPlayerPause;
     [SerializeField] RSE_OnPlayerMeditation _onPlayerMeditation;
+    [SerializeField] RSE_OnPlayerMeditationCancel _onPlayerMeditationCancel;
     [SerializeField] RSE_OnPlayerParry _onPlayerParry;
     [SerializeField] RSE_OnPlayerTargeting _onPlayerTargeting;
     [SerializeField] RSE_OnPlayerTargetingCancel _onPlayerTargetingCancel;
     [SerializeField] RSE_OnPlayerSwapTarget _onPlayerSwapTarget;
-
+    [SerializeField] RSE_OnPlayerHeal _OnPlayerHeal;
 
     IA_PlayerInput _playerInput;
     bool _initialized;
@@ -56,11 +57,13 @@ public class S_PlayerInputManager : MonoBehaviour
         game.Dodge.performed += OnDodgeInput;
         game.Interact.performed += OnInteractInput;
         game.Meditation.performed += OnMeditationInput;
+        game.Meditation.canceled += OnMeditationCancelInput;
         game.Parry.performed += OnParryInput;
-        game.PauseUnpause.performed += OnPauseInput;
+        game.Pause.performed += OnPauseInput;
         game.Targeting.performed += OnTargetingInput;
         game.Targeting.canceled += OnTargetingCancelInput;
         game.SwapTarget.performed += OnSwapTargetInput;
+        game.Heal.performed += OnHealInput;
 
         _playerInputComponent.actions.Enable();
 
@@ -79,11 +82,13 @@ public class S_PlayerInputManager : MonoBehaviour
         game.Dodge.performed -= OnDodgeInput;
         game.Interact.performed -= OnInteractInput;
         game.Meditation.performed -= OnMeditationInput;
+        game.Meditation.canceled -= OnMeditationCancelInput;
         game.Parry.performed -= OnParryInput;
-        game.PauseUnpause.performed -= OnPauseInput;
+        game.Pause.performed -= OnPauseInput;
         game.Targeting.performed -= OnTargetingInput;
         game.Targeting.canceled -= OnTargetingCancelInput;
         game.SwapTarget.performed -= OnSwapTargetInput;
+        game.Heal.performed -= OnHealInput;
 
         _playerInputComponent.actions.Disable();
     }
@@ -135,12 +140,22 @@ public class S_PlayerInputManager : MonoBehaviour
         _onPlayerMeditation.Call();
     }
 
+    void OnMeditationCancelInput(InputAction.CallbackContext ctx)
+    {
+        _onPlayerMeditationCancel.Call();
+    }
+
     void OnParryInput(InputAction.CallbackContext ctx)
     {
         _onPlayerParry.Call();
     }
 
-    
+    void OnHealInput(InputAction.CallbackContext ctx)
+    {
+        _OnPlayerHeal.Call();
+    }
+
+
     #endregion
 
     private void DeactivateInput()

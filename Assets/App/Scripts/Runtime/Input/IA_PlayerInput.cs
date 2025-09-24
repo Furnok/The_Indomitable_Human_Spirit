@@ -129,7 +129,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Pause/Unpause"",
+                    ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""c5f90b2a-21ee-44c4-9da0-c93da947b0bf"",
                     ""expectedControlType"": """",
@@ -177,6 +177,15 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                     ""name"": ""Swap Target"",
                     ""type"": ""Button"",
                     ""id"": ""421ce48e-138b-4656-94e1-4dee64411430"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Heal"",
+                    ""type"": ""Button"",
+                    ""id"": ""4c01dc36-2992-4ee4-be66-f582d0cbf5c0"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -279,7 +288,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Pause/Unpause"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -290,7 +299,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Pause/Unpause"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -301,7 +310,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Pause/Unpause"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -312,14 +321,14 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Pause/Unpause"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""03f19c81-1e53-452e-92b1-8c263c3b576d"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/c"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -330,7 +339,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""acd50baa-a5de-4996-a76b-fa00659f0926"",
-                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""path"": ""<Gamepad>/dpad/down"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -480,6 +489,28 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Swap Target"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2883aeaf-e0e9-4ebc-b29a-e0f38dad126b"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Heal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""48672be3-6e81-4920-89b8-250dda3efa9f"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Heal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -548,12 +579,13 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
         m_Game_Attack = m_Game.FindAction("Attack", throwIfNotFound: true);
         m_Game_Dodge = m_Game.FindAction("Dodge", throwIfNotFound: true);
         m_Game_Parry = m_Game.FindAction("Parry", throwIfNotFound: true);
-        m_Game_PauseUnpause = m_Game.FindAction("Pause/Unpause", throwIfNotFound: true);
+        m_Game_Pause = m_Game.FindAction("Pause", throwIfNotFound: true);
         m_Game_Meditation = m_Game.FindAction("Meditation", throwIfNotFound: true);
         m_Game_Camera = m_Game.FindAction("Camera", throwIfNotFound: true);
         m_Game_Interact = m_Game.FindAction("Interact", throwIfNotFound: true);
         m_Game_Targeting = m_Game.FindAction("Targeting", throwIfNotFound: true);
         m_Game_SwapTarget = m_Game.FindAction("Swap Target", throwIfNotFound: true);
+        m_Game_Heal = m_Game.FindAction("Heal", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Newaction = m_UI.FindAction("New action", throwIfNotFound: true);
@@ -642,12 +674,13 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Game_Attack;
     private readonly InputAction m_Game_Dodge;
     private readonly InputAction m_Game_Parry;
-    private readonly InputAction m_Game_PauseUnpause;
+    private readonly InputAction m_Game_Pause;
     private readonly InputAction m_Game_Meditation;
     private readonly InputAction m_Game_Camera;
     private readonly InputAction m_Game_Interact;
     private readonly InputAction m_Game_Targeting;
     private readonly InputAction m_Game_SwapTarget;
+    private readonly InputAction m_Game_Heal;
     /// <summary>
     /// Provides access to input actions defined in input action map "Game".
     /// </summary>
@@ -676,9 +709,9 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Parry => m_Wrapper.m_Game_Parry;
         /// <summary>
-        /// Provides access to the underlying input action "Game/PauseUnpause".
+        /// Provides access to the underlying input action "Game/Pause".
         /// </summary>
-        public InputAction @PauseUnpause => m_Wrapper.m_Game_PauseUnpause;
+        public InputAction @Pause => m_Wrapper.m_Game_Pause;
         /// <summary>
         /// Provides access to the underlying input action "Game/Meditation".
         /// </summary>
@@ -699,6 +732,10 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Game/SwapTarget".
         /// </summary>
         public InputAction @SwapTarget => m_Wrapper.m_Game_SwapTarget;
+        /// <summary>
+        /// Provides access to the underlying input action "Game/Heal".
+        /// </summary>
+        public InputAction @Heal => m_Wrapper.m_Game_Heal;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -737,9 +774,9 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
             @Parry.started += instance.OnParry;
             @Parry.performed += instance.OnParry;
             @Parry.canceled += instance.OnParry;
-            @PauseUnpause.started += instance.OnPauseUnpause;
-            @PauseUnpause.performed += instance.OnPauseUnpause;
-            @PauseUnpause.canceled += instance.OnPauseUnpause;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
             @Meditation.started += instance.OnMeditation;
             @Meditation.performed += instance.OnMeditation;
             @Meditation.canceled += instance.OnMeditation;
@@ -755,6 +792,9 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
             @SwapTarget.started += instance.OnSwapTarget;
             @SwapTarget.performed += instance.OnSwapTarget;
             @SwapTarget.canceled += instance.OnSwapTarget;
+            @Heal.started += instance.OnHeal;
+            @Heal.performed += instance.OnHeal;
+            @Heal.canceled += instance.OnHeal;
         }
 
         /// <summary>
@@ -778,9 +818,9 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
             @Parry.started -= instance.OnParry;
             @Parry.performed -= instance.OnParry;
             @Parry.canceled -= instance.OnParry;
-            @PauseUnpause.started -= instance.OnPauseUnpause;
-            @PauseUnpause.performed -= instance.OnPauseUnpause;
-            @PauseUnpause.canceled -= instance.OnPauseUnpause;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
             @Meditation.started -= instance.OnMeditation;
             @Meditation.performed -= instance.OnMeditation;
             @Meditation.canceled -= instance.OnMeditation;
@@ -796,6 +836,9 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
             @SwapTarget.started -= instance.OnSwapTarget;
             @SwapTarget.performed -= instance.OnSwapTarget;
             @SwapTarget.canceled -= instance.OnSwapTarget;
+            @Heal.started -= instance.OnHeal;
+            @Heal.performed -= instance.OnHeal;
+            @Heal.canceled -= instance.OnHeal;
         }
 
         /// <summary>
@@ -987,12 +1030,12 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnParry(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Pause/Unpause" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Pause" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnPauseUnpause(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Meditation" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
@@ -1028,6 +1071,13 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSwapTarget(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Heal" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnHeal(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

@@ -82,7 +82,9 @@ MonoBehaviour:
   _onPlayerInteract: {fileID: 11400000, guid: 7dddd8b752c27d34f9be002f7e6f2343, type: 2}
   _onPlayerPause: {fileID: 11400000, guid: f80136b766e3907448f7a7a39ac46b1d, type: 2}
   _onPlayerMeditation: {fileID: 11400000, guid: aa87952d62bcbfe4aaf4fc954d681148, type: 2}
+  _onPlayerMeditationCancel: {fileID: 11400000, guid: 9f2bc997828386a48a309669dcf584e1, type: 2}
   _onPlayerParry: {fileID: 11400000, guid: a21049edad4c9954db34aebff59e9d2e, type: 2}
   _onPlayerTargeting: {fileID: 11400000, guid: b5715b3f29f85be4e87180aa0db11aab, type: 2}
   _onPlayerTargetingCancel: {fileID: 11400000, guid: e7c8e675e790c2a44a00f20297f51dc8, type: 2}
   _onPlayerSwapTarget: {fileID: 11400000, guid: 4529ddf1715466a49afc2e355d08802f, type: 2}
+  _OnPlayerHeal: {fileID: 11400000, guid: 4c1dd4b878a2bbe49bee7a0802da40cf, type: 2}

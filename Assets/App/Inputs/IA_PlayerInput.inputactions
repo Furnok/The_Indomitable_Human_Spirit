@@ -43,7 +43,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Pause/Unpause",
+                    "name": "Pause",
                     "type": "Button",
                     "id": "c5f90b2a-21ee-44c4-9da0-c93da947b0bf",
                     "expectedControlType": "",
@@ -91,6 +91,15 @@
                     "name": "Swap Target",
                     "type": "Button",
                     "id": "421ce48e-138b-4656-94e1-4dee64411430",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Heal",
+                    "type": "Button",
+                    "id": "4c01dc36-2992-4ee4-be66-f582d0cbf5c0",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -193,7 +202,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Pause/Unpause",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -204,7 +213,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Pause/Unpause",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -215,7 +224,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Pause/Unpause",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -226,14 +235,14 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Pause/Unpause",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "03f19c81-1e53-452e-92b1-8c263c3b576d",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -244,7 +253,7 @@
                 {
                     "name": "",
                     "id": "acd50baa-a5de-4996-a76b-fa00659f0926",
-                    "path": "<Gamepad>/dpad/up",
+                    "path": "<Gamepad>/dpad/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -392,6 +401,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Swap Target",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2883aeaf-e0e9-4ebc-b29a-e0f38dad126b",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Heal",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "48672be3-6e81-4920-89b8-250dda3efa9f",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Heal",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
