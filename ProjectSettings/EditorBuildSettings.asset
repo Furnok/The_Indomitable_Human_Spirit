@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/App/Scenes/Tests/Killian/SC_Killian.unity
     guid: 99fcada8d8885634c81c61ce82680712
   - enabled: 1
-    path: "Assets/App/Scenes/Tests/Timothee/SC_Timoth\xE9e.unity"
+    path: Assets/App/Scenes/Tests/Timothee/SC_Timothee.unity
     guid: 9d13f18b6dbc35342849d7628e78b324
   - enabled: 1
     path: Assets/App/Scenes/Tests/Mathias/SC_Mathias.unity
