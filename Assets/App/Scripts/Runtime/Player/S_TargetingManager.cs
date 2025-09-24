@@ -130,7 +130,10 @@ public class S_TargetingManager : MonoBehaviour
 
         if (newTarget != null && newTarget != _currentTarget)
         {
+            _onPlayerCancelTargeting.Call(_currentTarget);
+
             _currentTarget = newTarget;
+
             _onNewTargeting.Call(newTarget);
             Debug.Log("New Target Selected");
         }
