@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d5a4114b2ab8c244a14b40bd907af2b, type: 3}
   m_Name: SSO_PlayerStrafeSpeed
   m_EditorClassIdentifier: 
-  _value: 3
+  _value: 5

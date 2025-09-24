@@ -65,9 +65,8 @@ public class S_PlayerMovement : MonoBehaviour
     }
 
 
-    private void FixedUpdate()
+    private void Update()
     {
-        
         if (_rsoPlayerIsTargeting.Value && _rsoTargetPosition.Value != null)
         {
             Vector3 directionToTarget = _rsoTargetPosition.Value - transform.position;
@@ -99,45 +98,49 @@ public class S_PlayerMovement : MonoBehaviour
             _rsoPlayerPosition.Value = transform.position;
             return;
         }
+    }
 
-
-
-        Quaternion camRot = _rsoCameraRotation ? _rsoCameraRotation.Value : Quaternion.identity; //take the rotation of the camera if exist otherwise take the world
-
-        Vector3 camForward = camRot * Vector3.forward;
-        camForward.y = 0f; //ignore vertical camera forward
-        camForward.Normalize();
-
-        Vector3 camRight = camRot * Vector3.right;
-        camRight.y = 0f;
-        camRight.Normalize();
-
-        Vector3 desiredDir = camRight * _moveInput.x + camForward * _moveInput.y; //desired direction in world space from the input and the camera orientation
-
-        if (_moveInput != Vector2.zero) //turn character only if there is some input
+    private void FixedUpdate()
+    {
+        if (!_rsoPlayerIsTargeting.Value)
         {
-            desiredDir.Normalize();
-            Quaternion target = Quaternion.LookRotation(desiredDir, Vector3.up);
-            _rigidbody.MoveRotation(Quaternion.Slerp(_rigidbody.rotation, target, _ssoPlayerTurnSpeed.Value * Time.fixedDeltaTime));
+            Quaternion camRot = _rsoCameraRotation ? _rsoCameraRotation.Value : Quaternion.identity; //take the rotation of the camera if exist otherwise take the world
+
+            Vector3 camForward = camRot * Vector3.forward;
+            camForward.y = 0f; //ignore vertical camera forward
+            camForward.Normalize();
+
+            Vector3 camRight = camRot * Vector3.right;
+            camRight.y = 0f;
+            camRight.Normalize();
+
+            Vector3 desiredDir = camRight * _moveInput.x + camForward * _moveInput.y; //desired direction in world space from the input and the camera orientation
+
+            if (_moveInput != Vector2.zero) //turn character only if there is some input
+            {
+                desiredDir.Normalize();
+                Quaternion target = Quaternion.LookRotation(desiredDir, Vector3.up);
+                _rigidbody.MoveRotation(Quaternion.Slerp(_rigidbody.rotation, target, _ssoPlayerTurnSpeed.Value * Time.fixedDeltaTime));
+            }
+            else
+            {
+                _rigidbody.angularVelocity = Vector3.zero;
+                desiredDir = Vector3.zero;
+            }
+
+            float inputMag = Mathf.Clamp01(_moveInput.magnitude);
+            Vector3 desiredVel = desiredDir * _ssoPlayerMovementSpeed.Value * inputMag;
+
+
+            Vector3 velocity = _rigidbody.linearVelocity;
+            velocity.x = desiredVel.x;
+            velocity.z = desiredVel.z;
+            _rigidbody.linearVelocity = velocity;
+
+            _rseOnAnimationFloatValueChange.Call("MoveSpeed", velocity.magnitude);
+
+            _rsoPlayerPosition.Value = transform.position;
         }
-        else
-        {
-            _rigidbody.angularVelocity = Vector3.zero;
-            desiredDir = Vector3.zero;
-        }
-
-        float inputMag = Mathf.Clamp01(_moveInput.magnitude);
-        Vector3 desiredVel = desiredDir * _ssoPlayerMovementSpeed.Value * inputMag;
-
-
-        Vector3 velocity = _rigidbody.linearVelocity;
-        velocity.x = desiredVel.x;
-        velocity.z = desiredVel.z;
-        _rigidbody.linearVelocity = velocity;
-
-        _rseOnAnimationFloatValueChange.Call("MoveSpeed", velocity.magnitude);
-
-        _rsoPlayerPosition.Value = transform.position;
     }
 }
 

@@ -36,33 +36,9 @@ public class S_CameraManager : MonoBehaviour
         allVCams = FindObjectsByType<CinemachineCamera>(FindObjectsSortMode.None);
     }
 
-    private void Update()
-    {
-        CameraOffsetZ();
-    }
-
     private void LateUpdate()
     {
         FOV();
-    }
-    private void CameraOffsetZ()
-    {
-        if (targetGroup.Targets.Count > 1)
-        {
-            Vector3 enemyLocalPos = targetGroup.Targets[0].Object.transform.InverseTransformPoint(targetGroup.Targets[1].Object.transform.position);
-
-            float targetZ = (enemyLocalPos.z < 0) ? Mathf.Abs(-4) : -Mathf.Abs(-4);
-
-            currentZOffset = Mathf.Lerp(currentZOffset, targetZ, Time.deltaTime * transitionSpeed);
-
-            splineDolly.SplineOffset = new Vector3(splineDolly.SplineOffset.x, splineDolly.SplineOffset.y, currentZOffset);
-        }
-        else
-        {
-            currentZOffset = Mathf.Lerp(currentZOffset, -4, Time.deltaTime * transitionSpeed);
-
-            splineDolly.SplineOffset = new Vector3(splineDolly.SplineOffset.x, splineDolly.SplineOffset.y, currentZOffset);
-        }
     }
 
     private void FOV()
