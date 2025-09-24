@@ -96,6 +96,7 @@ public class S_TargetsDebug : MonoBehaviour
 
     void OnNewTargeting(GameObject target)
     {
+        Debug.Log("Drawing Target");
         _target = target.transform;
         _canDrawTarget = true;
     }

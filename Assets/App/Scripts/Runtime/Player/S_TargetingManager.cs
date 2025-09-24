@@ -22,11 +22,12 @@ public class S_TargetingManager : MonoBehaviour
     [SerializeField] RSO_PlayerIsTargeting _playerIsTargeting;
     [SerializeField] RSO_PlayerPosition _playerPosition;
 
-    [Header("RSO")]
-    [SerializeField] SSO_PlayerTargetRangeRadius _playerTargetRangeRadius;
+    //[Header("RSO")]
 
     [Header("SSO")]
     [SerializeField] SSO_PlayerMaxDistanceTargeting _playerMaxDistanceTargeting;
+    [SerializeField] SSO_PlayerTargetRangeRadius _playerTargetRangeRadius;
+
 
     GameObject _currentTarget;
     HashSet<GameObject> _targetsPosible = new HashSet<GameObject>();
@@ -90,6 +91,7 @@ public class S_TargetingManager : MonoBehaviour
 
         if (_currentTarget != null)
         {
+
             _onNewTargeting.Call(_currentTarget);
         }
 
@@ -135,18 +137,17 @@ public class S_TargetingManager : MonoBehaviour
             _currentTarget = newTarget;
 
             _onNewTargeting.Call(newTarget);
-            Debug.Log("New Target Selected");
         }
     }
 
     GameObject TargetSelection()
     {
         GameObject selectedTarget = null;
-        float minDistance = _playerTargetRangeRadius.Value;
+        float minDistance = _playerTargetRangeRadius.Value + 1.0f;
         foreach (var target in _targetsPosible)
         {
             float distance = Vector3.Distance(_playerPosition.Value, target.transform.position);
-            if (distance < minDistance && _currentTarget != target)
+            if (distance <= minDistance && _currentTarget != target)
             {
                 minDistance = distance;
                 selectedTarget = target;
