@@ -68,7 +68,10 @@ public class S_TargetingManager : MonoBehaviour
             if (distance > _playerMaxDistanceTargeting.Value)
             {
                 _playerIsTargeting.Value = false;
-                _onPlayerCancelTargeting.Call(_currentTarget);
+                if(_currentTarget != null)
+                {
+                    _onPlayerCancelTargeting.Call(_currentTarget);
+                }
                 _currentTarget = null;
             }
         }
@@ -97,7 +100,10 @@ public class S_TargetingManager : MonoBehaviour
     {
         _playerIsTargeting.Value = false;
 
-        _onPlayerCancelTargeting.Call(_currentTarget);
+        if(_currentTarget != null)
+        {
+            _onPlayerCancelTargeting.Call(_currentTarget);
+        }
 
         _currentTarget = null;
     }
@@ -107,7 +113,11 @@ public class S_TargetingManager : MonoBehaviour
         if(_currentTarget == enemy)
         {
             _playerIsTargeting.Value = false;
-            _onPlayerCancelTargeting.Call(_currentTarget);
+            if (_currentTarget != null)
+            {
+                _onPlayerCancelTargeting.Call(_currentTarget);
+            }
+
             _currentTarget = null;
         }
     }
