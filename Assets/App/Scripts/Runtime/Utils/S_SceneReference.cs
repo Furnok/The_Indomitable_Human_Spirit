@@ -1,20 +1,15 @@
 using System;
-using System.IO;
 using UnityEngine;
 
 [Serializable]
 public class S_SceneReference
 {
     [SerializeField] private string sceneGUID = "";
-
-    public string Name
-    {
-        get
-        {
-            string path = UnityEditor.AssetDatabase.GUIDToAssetPath(sceneGUID);
-            return Path.GetFileNameWithoutExtension(path);
-        }
-    }
+    [SerializeField] private string scenePath = "";
 
     public string GUID => sceneGUID;
+
+    public string Path => scenePath;
+
+    public string Name => System.IO.Path.GetFileNameWithoutExtension(scenePath);
 }
