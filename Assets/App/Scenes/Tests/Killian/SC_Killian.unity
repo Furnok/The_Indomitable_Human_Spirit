@@ -976,9 +976,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagPlayer: Player
-  sceneName:
-    sceneGUID: b479f965f89e10c40b111b5633a93210
-    scenePath: Assets/App/Scenes/Tests/Mathias/SC_Mathias.unity
   rseOnPlayerInteract: {fileID: 11400000, guid: 7dddd8b752c27d34f9be002f7e6f2343, type: 2}
 --- !u!65 &996710451
 BoxCollider:
