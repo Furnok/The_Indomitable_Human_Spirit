@@ -1322,6 +1322,7 @@ MonoBehaviour:
   - rid: 962615282891227410
   - rid: 962615282891227534
   - rid: 962615284563181827
+  - rid: 962615288144855308
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -1363,6 +1364,14 @@ MonoBehaviour:
           m_Value1: 9773497856253695007
         Name: Player
         m_Value: {fileID: 0}
+    - rid: 962615288144855308
+      type: {class: 'BlackboardVariable`1[[RSO_TargetValue, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 8392210555693157996
+          m_Value1: 17011784034359710703
+        Name: TargetValue
+        m_Value: {fileID: 11400000, guid: 4c1e49609b8fa8941a4623328de0c8b4, type: 2}
 --- !u!95 &1677078939
 Animator:
   serializedVersion: 7
