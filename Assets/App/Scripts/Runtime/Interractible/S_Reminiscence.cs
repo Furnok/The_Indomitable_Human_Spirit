@@ -35,6 +35,6 @@ public class S_Reminiscence : MonoBehaviour
 
     private void Interract()
     {
-        Debug.Log("Interract.");
+        Debug.Log("Interract");
     }
 }
