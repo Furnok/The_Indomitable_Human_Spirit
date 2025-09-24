@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e03763d95b35ad4db3de44222a11208, type: 3}
   m_Name: SSO_PlayerTargetRangeRadius
   m_EditorClassIdentifier: 
-  _value: 5
+  _value: 7

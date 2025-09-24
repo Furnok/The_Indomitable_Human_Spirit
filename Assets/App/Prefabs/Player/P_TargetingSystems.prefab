@@ -93,5 +93,6 @@ MonoBehaviour:
   _onPlayerCancelTargeting: {fileID: 11400000, guid: d8d0a24f7352ea84ba1f5614f16bb752, type: 2}
   _playerIsTargeting: {fileID: 11400000, guid: 53017e014e6ba384988975c6a7762355, type: 2}
   _playerPosition: {fileID: 11400000, guid: a3d33267cdb3a0a43bb8ab4811624f21, type: 2}
-  _playerTargetRangeRadius: {fileID: 11400000, guid: 5be727c44da2ea945accbd91b94caaf1, type: 2}
+  _targetPosition: {fileID: 11400000, guid: 3f7350d94d82e7a4ab2f89bed6a65c11, type: 2}
   _playerMaxDistanceTargeting: {fileID: 11400000, guid: 541adfab7eb5e28439bb20fb68f82377, type: 2}
+  _playerTargetRangeRadius: {fileID: 11400000, guid: 5be727c44da2ea945accbd91b94caaf1, type: 2}

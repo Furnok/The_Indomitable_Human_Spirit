@@ -478,11 +478,15 @@ MonoBehaviour:
   _rigidbody: {fileID: 5912313540901051841}
   _rseOnPlayerMove: {fileID: 11400000, guid: 881d0608fef60064c9e33701b880054c, type: 2}
   _rseOnAnimationBoolValueChange: {fileID: 11400000, guid: f3b68030aacb033438a094c87c0e44ca, type: 2}
+  _rseOnAnimationFloatValueChange: {fileID: 11400000, guid: 647c462e77eded84f8317681638362bb, type: 2}
   _rsoCameraPosition: {fileID: 11400000, guid: 99707efacba749443b3ebd78c3911507, type: 2}
   _rsoCameraRotation: {fileID: 11400000, guid: 04261daa98f35d44f84baecbdcfa77df, type: 2}
   _rsoPlayerPosition: {fileID: 11400000, guid: a3d33267cdb3a0a43bb8ab4811624f21, type: 2}
+  _rsoPlayerIsTargeting: {fileID: 11400000, guid: 53017e014e6ba384988975c6a7762355, type: 2}
+  _rsoTargetPosition: {fileID: 11400000, guid: 3f7350d94d82e7a4ab2f89bed6a65c11, type: 2}
   _ssoPlayerMovementSpeed: {fileID: 11400000, guid: b43e32b83f1e2e4498095e81d876a99a, type: 2}
   _ssoPlayerTurnSpeed: {fileID: 11400000, guid: f54a24fbd6b664141bb3da5077f567bc, type: 2}
+  _ssoPlayerStrafeSpeed: {fileID: 11400000, guid: fc01f15ac7215e9449924aef805344c7, type: 2}
 --- !u!114 &4027691058420794931
 MonoBehaviour:
   m_ObjectHideFlags: 0

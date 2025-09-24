@@ -21,6 +21,7 @@ public class S_TargetingManager : MonoBehaviour
     [Header("RSO")]
     [SerializeField] RSO_PlayerIsTargeting _playerIsTargeting;
     [SerializeField] RSO_PlayerPosition _playerPosition;
+    [SerializeField] RSO_TargetPosition _targetPosition;
 
     //[Header("RSO")]
 
@@ -91,7 +92,6 @@ public class S_TargetingManager : MonoBehaviour
 
         if (_currentTarget != null)
         {
-
             _onNewTargeting.Call(_currentTarget);
         }
 
@@ -105,6 +105,7 @@ public class S_TargetingManager : MonoBehaviour
         if(_currentTarget != null)
         {
             _onPlayerCancelTargeting.Call(_currentTarget);
+            _targetPosition.Value = Vector3.zero;
         }
 
         _currentTarget = null;
@@ -118,6 +119,7 @@ public class S_TargetingManager : MonoBehaviour
             if (_currentTarget != null)
             {
                 _onPlayerCancelTargeting.Call(_currentTarget);
+                _targetPosition.Value = Vector3.zero;
             }
 
             _currentTarget = null;
@@ -153,6 +155,12 @@ public class S_TargetingManager : MonoBehaviour
                 selectedTarget = target;
             }
         }
+
+        if(selectedTarget != null)
+        {
+            _targetPosition.Value = selectedTarget.transform.position;
+        }
+
         return selectedTarget;
     }
 }
