@@ -12,27 +12,29 @@ public class S_CameraManager : MonoBehaviour
     [SerializeField] private CinemachineCamera cinemachineCameraRail;
     [SerializeField] private CinemachineCamera cinemachineCameraPlayer;
     [SerializeField] private CinemachineSplineDolly splineDolly;
-    [SerializeField] private CinemachineBasicMultiChannelPerlin perlin;
     [SerializeField] private CinemachineTargetGroup targetGroup;
 
     [Header("Input")]
-    [SerializeField] private RSE_CameraShake rseCameraShake;
     [SerializeField] private RSO_PlayerIsTargeting rsoplayerIsTargeting;
-
+    [SerializeField] private RSE_CameraShake rseCameraShake;
+    
     private Coroutine shake = null;
-    private CinemachineCamera[] allVCams = null;
+    //private CinemachineCamera[] allVCams = null;
 
     private CinemachineCamera currentCamera = null;
 
     private void OnEnable()
     {
         rsoplayerIsTargeting.onValueChanged += SwitchCameraTargeting;
+        rseCameraShake.action += CameraShake;
+
         currentCamera = cinemachineCameraRail;
     }
 
     private void OnDisable()
     {
         rsoplayerIsTargeting.onValueChanged -= SwitchCameraTargeting;
+        rseCameraShake.action -= CameraShake;
     }
 
     private void SwitchCameraTargeting(bool value)
@@ -48,6 +50,32 @@ public class S_CameraManager : MonoBehaviour
             cinemachineCameraRail.Priority = 3;
             cinemachineCameraPlayer.Priority = 2;
             currentCamera = cinemachineCameraRail;
+        }
+    }
+
+    private void CameraShake(S_ClassCameraShake classCameraShake)
+    {
+        CinemachineBasicMultiChannelPerlin cam = currentCamera.GetComponent<CinemachineBasicMultiChannelPerlin>();
+
+        if (cam != null)
+        {
+            if (shake != null)
+            {
+                StopCoroutine(shake);
+
+                cam.AmplitudeGain = 0;
+                cam.FrequencyGain = 0;
+                shake = null;
+            }
+
+            cam.AmplitudeGain = classCameraShake.amplitude;
+            cam.FrequencyGain = classCameraShake.frequency;
+
+            shake = StartCoroutine(S_Utils.Delay(classCameraShake.duration, () =>
+            {
+                cam.AmplitudeGain = 0;
+                cam.FrequencyGain = 0;
+            }));
         }
     }
 
@@ -119,26 +147,6 @@ public class S_CameraManager : MonoBehaviour
         float fov = Mathf.Lerp(fovA, fovB, t);
 
         cinemachineCameraRail.Lens.FieldOfView = fov;
-    }
-
-    private void CameraShake(S_ClassCameraShake classCameraShake)
-    {
-        if (shake != null)
-        {
-            StopCoroutine(shake);
-            perlin.AmplitudeGain = 0;
-            perlin.FrequencyGain = 0;
-            shake = null;
-        }
-
-        perlin.AmplitudeGain = classCameraShake.amplitude;
-        perlin.FrequencyGain = classCameraShake.frequency;
-
-        shake = StartCoroutine(S_Utils.Delay(classCameraShake.duration, () =>
-        {
-            perlin.AmplitudeGain = 0;
-            perlin.FrequencyGain = 0;
-        }));
     }
     */
 }

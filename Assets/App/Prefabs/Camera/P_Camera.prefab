@@ -287,10 +287,9 @@ MonoBehaviour:
   cinemachineCameraRail: {fileID: 6665886335072390688}
   cinemachineCameraPlayer: {fileID: 1672942525794789939}
   splineDolly: {fileID: 8027296687413834593}
-  perlin: {fileID: 1402925255849798563}
   targetGroup: {fileID: 7231235895692806913}
-  rseCameraShake: {fileID: 11400000, guid: beaf63a232cb7b8488844f87f5bc900b, type: 2}
   rsoplayerIsTargeting: {fileID: 11400000, guid: 53017e014e6ba384988975c6a7762355, type: 2}
+  rseCameraShake: {fileID: 11400000, guid: beaf63a232cb7b8488844f87f5bc900b, type: 2}
 --- !u!1 &2353625282950689260
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,7 +606,7 @@ MonoBehaviour:
       Curvature: {x: 2, y: 11}
       BarrelClipping: 0.25
       Anamorphism: 0
-  BlendHint: 1
+  BlendHint: 0
 --- !u!114 &518404607617930128
 MonoBehaviour:
   m_ObjectHideFlags: 0
