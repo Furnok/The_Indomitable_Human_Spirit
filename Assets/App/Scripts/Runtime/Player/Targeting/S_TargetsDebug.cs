@@ -11,22 +11,16 @@ public class S_TargetsDebug : MonoBehaviour
     [SerializeField] float _gizmoHeightOffset = 1.5f;
     [SerializeField] bool _drawGizmos = true;
 
-    //[Header("References")]
-
     [Header("Input")]
     [SerializeField] RSE_OnEnemyEnterTargetingRange _onEnemyEnterTargetingRange;
     [SerializeField] RSE_OnEnemyExitTargetingRange _onEnemyExitTargetingRange;
     [SerializeField] RSE_OnNewTargeting _onNewTargeting;
     [SerializeField] RSE_OnPlayerCancelTargeting _onPlayerCancelTargeting;
 
-    //[Header("Output")]
-
-    [Header("RSO")]
+    [Header("Output")]
     [SerializeField] RSO_PlayerIsTargeting _playerIsTargeting;
 
-
     HashSet<Transform> _targets = new HashSet<Transform>();
-
     bool _canDrawTarget = false;
     Transform _target = null;
 

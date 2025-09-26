@@ -3,10 +3,6 @@ using UnityEngine;
 
 public class S_TargetingManager : MonoBehaviour
 {
-    //[Header("Settings")]
-
-    //[Header("References")]
-
     [Header("Input")]
     [SerializeField] RSE_OnTargetsInRangeChange _onTargetsInRangeChange;
     [SerializeField] RSE_OnPlayerTargeting _onPlayerTargeting;
@@ -17,18 +13,11 @@ public class S_TargetingManager : MonoBehaviour
     [Header("Output")]
     [SerializeField] RSE_OnNewTargeting _onNewTargeting;
     [SerializeField] RSE_OnPlayerCancelTargeting _onPlayerCancelTargeting;
-
-    [Header("RSO")]
     [SerializeField] RSO_PlayerIsTargeting _playerIsTargeting;
     [SerializeField] RSO_PlayerPosition _playerPosition;
     [SerializeField] RSO_TargetPosition _targetPosition;
-
-    //[Header("RSO")]
-
-    [Header("SSO")]
     [SerializeField] SSO_PlayerMaxDistanceTargeting _playerMaxDistanceTargeting;
     [SerializeField] SSO_PlayerTargetRangeRadius _playerTargetRangeRadius;
-
 
     GameObject _currentTarget;
     HashSet<GameObject> _targetsPosible = new HashSet<GameObject>();

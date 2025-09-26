@@ -5,12 +5,8 @@ public class S_Reminiscence : MonoBehaviour
     [Header("Settings")]
     [S_TagName] [SerializeField] private string tagPlayer;
 
-    //[Header("References")]
-
     [Header("Input")]
     [SerializeField] private RSE_OnPlayerInteract rseOnPlayerInteract;
-
-    //[Header("Output")]
 
     private void OnDisable()
     {

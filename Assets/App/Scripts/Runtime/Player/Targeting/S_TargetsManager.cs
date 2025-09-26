@@ -3,10 +3,6 @@ using System.Collections.Generic;
 
 public class S_TargetManager : MonoBehaviour
 {
-    //[Header("Settings")]
-
-    //[Header("References")]
-
     [Header("Input")]
     [SerializeField] RSE_OnEnemyEnterTargetingRange _onEnemyEnterTargetingRange;
     [SerializeField] RSE_OnEnemyExitTargetingRange _onEnemyExitTargetingRange;

@@ -2,14 +2,7 @@ using UnityEngine;
 
 public class S_DebugDirection : MonoBehaviour
 {
-    //[Header("Settings")]
-
-    //[Header("References")]
-
-    //[Header("Input")]
-
-    //[Header("Output")]
-
+    [Header("Settings")]
     [SerializeField] float _length = 2.0f;
     [SerializeField] float _yOffset = 1.3f;
     [SerializeField] Color _color = Color.green;

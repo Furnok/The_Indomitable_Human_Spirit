@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class S_PlayerMovement : MonoBehaviour
 {
-    //[Header("Settings")]
-
     [Header("References")]
     [SerializeField] Rigidbody _rigidbody;
 
@@ -13,15 +11,11 @@ public class S_PlayerMovement : MonoBehaviour
     [Header("Output")]
     [SerializeField] RSE_OnAnimationBoolValueChange _rseOnAnimationBoolValueChange;
     [SerializeField] RSE_OnAnimationFloatValueChange _rseOnAnimationFloatValueChange;
-
-    [Header("RSO")]
     [SerializeField] RSO_CameraPosition _rsoCameraPosition;
     [SerializeField] RSO_CameraRotation _rsoCameraRotation;
     [SerializeField] RSO_PlayerPosition _rsoPlayerPosition;
     [SerializeField] RSO_PlayerIsTargeting _rsoPlayerIsTargeting;
     [SerializeField] RSO_TargetPosition _rsoTargetPosition;
-
-    [Header("SSO")]
     [SerializeField] SSO_PlayerMovementSpeed _ssoPlayerMovementSpeed;
     [SerializeField] SSO_PlayerTurnSpeed _ssoPlayerTurnSpeed;
     [SerializeField] SSO_PlayerStrafeSpeed _ssoPlayerStrafeSpeed;
@@ -39,6 +33,7 @@ public class S_PlayerMovement : MonoBehaviour
     {
         _rsoPlayerPosition.Value = Vector3.zero;
     }
+
     private void OnEnable()
     {
         _rseOnPlayerMove.action += Move;
@@ -63,7 +58,6 @@ public class S_PlayerMovement : MonoBehaviour
             _rseOnAnimationBoolValueChange.Call("isMoving", false);
         }
     }
-
 
     private void Update()
     {

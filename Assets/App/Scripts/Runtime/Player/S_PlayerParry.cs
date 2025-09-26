@@ -2,14 +2,8 @@ using UnityEngine;
 
 public class S_PlayerParry : MonoBehaviour
 {
-    //[Header("Settings")]
-
-    //[Header("References")]
-
     [Header("Input")]
     [SerializeField] RSE_OnPlayerParry _onPlayerParry;
-
-    //[Header("Output")]
 
     private void OnEnable()
     {

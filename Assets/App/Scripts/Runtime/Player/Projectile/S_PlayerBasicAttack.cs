@@ -5,17 +5,14 @@ public class S_PlayerBasicAttack : MonoBehaviour
     [Header("Settings")]
     [SerializeField] float _delayIncantationAttack = 0.5f;
 
-    //[Header("References")]
-
     [Header("Input")]
     [SerializeField] RSE_OnPlayerAttack _onPlayerAttack;
 
-    //[Header("Output")]
-
-    [Header("RSO")]
+    [Header("Output")]
     [SerializeField] RSO_PlayerIsTargeting _playerIsTargeting;
 
     bool _canAttack = true;
+
     private void OnEnable()
     {
         _onPlayerAttack.action += OnPlayerAttackInput;

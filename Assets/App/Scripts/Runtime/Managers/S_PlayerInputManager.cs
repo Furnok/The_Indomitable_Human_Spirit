@@ -4,8 +4,6 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInput))]
 public class S_PlayerInputManager : MonoBehaviour
 {
-    //[Header("Settings")]
-
     [Header("References")]
     [SerializeField] PlayerInput _playerInputComponent;
 

@@ -2,14 +2,8 @@ using UnityEngine;
 
 public class S_PlayerDodge : MonoBehaviour
 {
-    //[Header("Settings")]
-
-    //[Header("References")]
-
     [Header("Input")]
     [SerializeField] RSE_OnPlayerDodge _onPlayerDodge;
-
-    //[Header("Output")]
 
     void OnEnable()
     {

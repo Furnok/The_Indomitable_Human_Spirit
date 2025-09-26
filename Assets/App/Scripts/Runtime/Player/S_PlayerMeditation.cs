@@ -2,15 +2,9 @@ using UnityEngine;
 
 public class S_PlayerMeditation : MonoBehaviour
 {
-    //[Header("Settings")]
-
-    //[Header("References")]
-
     [Header("Input")]
     [SerializeField] RSE_OnPlayerMeditation _onPlayerMeditation;
     [SerializeField] RSE_OnPlayerMeditationCancel _onPlayerMeditationCancel;
-
-    //[Header("Output")]
 
     private void OnEnable()
     {

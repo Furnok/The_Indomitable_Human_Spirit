@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using UnityEngine;
 
 public class S_PlayerProjectileManager : MonoBehaviour
@@ -10,14 +9,10 @@ public class S_PlayerProjectileManager : MonoBehaviour
     [SerializeField] Transform _spawnProjectileParent;
     [SerializeField] S_PlayerProjectile _projectilePrefab;
 
-    //[Header("Input")]
-
-    //[Header("Output")]
-
-    ObjectPool<S_PlayerProjectile> _projectilePool;
+    S_ObjectPool<S_PlayerProjectile> _projectilePool;
 
     private void Awake()
     {
-        _projectilePool = new ObjectPool<S_PlayerProjectile>(_projectilePrefab, _initialPoolSize, _spawnProjectileParent);
+        _projectilePool = new S_ObjectPool<S_PlayerProjectile>(_projectilePrefab, _initialPoolSize, _spawnProjectileParent);
     }
 }

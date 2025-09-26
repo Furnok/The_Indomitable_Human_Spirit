@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPool<T> where T : MonoBehaviour
+public class S_ObjectPool<T> where T : MonoBehaviour
 {
     private readonly T prefab;
     private readonly Transform parentTransform;
     private readonly Queue<T> pool = new Queue<T>();
 
-    public ObjectPool(T prefab, int initialSize, Transform parentTransform = null)
+    public S_ObjectPool(T prefab, int initialSize, Transform parentTransform = null)
     {
         this.prefab = prefab;
         this.parentTransform = parentTransform;

@@ -9,12 +9,6 @@ public class S_TargetsDetectorDebug : MonoBehaviour
     [Header("References")]
     [SerializeField] SphereCollider _detectionCollider;
 
-    //[Header("Input")]
-
-    //[Header("Output")]
-    
-    //[Header("RSO")]
-
     private void OnDrawGizmos()
     {
         if (!enabled || !_drawGizmos) return;

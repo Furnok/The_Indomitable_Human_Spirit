@@ -1,11 +1,10 @@
 using UnityEngine;
 using Unity.Behavior;
-using UnityEngine.Events;
-using System;
 using UnityEngine.AI;
 
-public class Entity : MonoBehaviour
+public class S_Entity : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] BehaviorGraphAgent agent;
     [SerializeField] NavMeshAgent enemyNavMesh;
     [SerializeField] S_EnemyRangeDetection S_EnemyRangeDetection;
@@ -15,13 +14,14 @@ public class Entity : MonoBehaviour
         agent.SetVariableValue<GameObject>("Player", Target);
         if(Target != null)
         {
-            agent.SetVariableValue<EnemyState>("EnemyState", EnemyState.Chase);
+            agent.SetVariableValue<S_EnumEnemyState>("EnemyState", S_EnumEnemyState.Chase);
         }
         else
         {
-            agent.SetVariableValue<EnemyState>("EnemyState", EnemyState.Patrol);
+            agent.SetVariableValue<S_EnumEnemyState>("EnemyState", S_EnumEnemyState.Patrol);
         }
     }
+
     private void Update()
     {
         agent.SetVariableValue<float>("StopDistance", enemyNavMesh.stoppingDistance);

@@ -5,8 +5,6 @@ public class S_Extract : MonoBehaviour
     [Header("Settings")]
     [S_TagName][SerializeField] string tagPlayer;
 
-    //[Header("References")]
-
     [Header("Input")]
     [SerializeField] SSO_ExtractText SSO_ExtractText;
     [SerializeField] RSE_DisplayExtract RSE_DisplayExtract;
@@ -27,6 +25,7 @@ public class S_Extract : MonoBehaviour
             RSE_OnPlayerInteract.action += ExtractInteract;
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag(tagPlayer))
@@ -34,6 +33,7 @@ public class S_Extract : MonoBehaviour
             RSE_OnPlayerInteract.action -= ExtractInteract;
         }
     }
+
     void ExtractInteract()
     {
         RSE_DisplayExtract.Call(true);

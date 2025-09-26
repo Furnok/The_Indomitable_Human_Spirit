@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public struct EnemyInfo
+public struct S_StructEnemyInfo
 {
     public int enemyID;
     public Vector3 lastPostion;

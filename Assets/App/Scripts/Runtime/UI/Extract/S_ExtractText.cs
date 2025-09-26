@@ -6,21 +6,20 @@ using UnityEngine.UI;
 public class S_ExtractText : MonoBehaviour
 {
     [Header("Settings")]
-    string textExtract;
     [SerializeField] float duration;
     [SerializeField] float scrollStart;
-    private bool userIsScrolling = false;
-    private float userScrollThreshold = 0.05f;
-    private Tweener textDisplay;
 
     [Header("References")]
     [SerializeField] TextMeshProUGUI textContent;
     [SerializeField] ScrollRect scrollRect;
 
-    //[Header("Input")]
-
     [Header("Output")]
     [SerializeField] RSE_ExtractTextInfo RSE_ExtractTextInfo;
+
+    string textExtract;
+    private bool userIsScrolling = false;
+    private float userScrollThreshold = 0.05f;
+    private Tweener textDisplay;
 
     private void OnEnable()
     {
