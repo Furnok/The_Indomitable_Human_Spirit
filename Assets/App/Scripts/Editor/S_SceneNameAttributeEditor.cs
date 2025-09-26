@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -11,44 +10,43 @@ namespace App.Scripts.Utils
     {
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
+            SerializedProperty guidProp = property.FindPropertyRelative("sceneGUID");
+            SerializedProperty pathProp = property.FindPropertyRelative("scenePath");
+
             EditorGUI.BeginProperty(position, label, property);
 
-            // Get Property
-            SerializedProperty sceneGUIDProp = property.FindPropertyRelative("sceneGUID");
+            // Get all scenes in build
+            var buildScenePaths = EditorBuildSettings.scenes
+                .Where(s => s.enabled)
+                .Select(s => s.path)
+                .ToArray();
 
-            if (sceneGUIDProp == null)
+            var buildScenes = buildScenePaths
+                .Select(path => AssetDatabase.LoadAssetAtPath<SceneAsset>(path))
+                .Where(scene => scene != null)
+                .ToArray();
+
+            // Get current scene from GUID
+            string guid = guidProp.stringValue;
+            string resolvedPath = AssetDatabase.GUIDToAssetPath(guid);
+            SceneAsset currentScene = AssetDatabase.LoadAssetAtPath<SceneAsset>(resolvedPath);
+
+            // Keep scenePath in sync with GUID
+            pathProp.stringValue = resolvedPath;
+
+            // Show popup
+            int currentIndex = Array.IndexOf(buildScenes, currentScene);
+            string[] sceneNames = buildScenes.Select(s => s.name).ToArray();
+            int newIndex = EditorGUI.Popup(position, label.text, currentIndex, sceneNames);
+
+            if (newIndex >= 0 && newIndex < buildScenes.Length)
             {
-                EditorGUI.LabelField(position, label.text, "Invalid SceneReference.");
-                EditorGUI.EndProperty();
-                return;
-            }
+                SceneAsset selectedScene = buildScenes[newIndex];
+                string path = AssetDatabase.GetAssetPath(selectedScene);
+                string newGUID = AssetDatabase.AssetPathToGUID(path);
 
-            var buildScenes = EditorBuildSettings.scenes;
-            if (buildScenes.Length == 0)
-            {
-                EditorGUI.LabelField(position, label.text, "No Scenes in Build Settings.");
-                EditorGUI.EndProperty();
-                return;
-            }
-
-            // Get List of Scene Paths and Names
-            var scenePaths = buildScenes.Select(scene => scene.path).ToArray();
-            var sceneNames = scenePaths.Select(Path.GetFileNameWithoutExtension).ToArray();
-            var sceneGUIDs = scenePaths.Select(AssetDatabase.AssetPathToGUID).ToArray();
-
-            // Find Index based on GUID
-            int selectedIndex = Array.IndexOf(sceneGUIDs, sceneGUIDProp.stringValue);
-            if (selectedIndex < 0)
-            {
-                selectedIndex = 0;
-                sceneGUIDProp.stringValue = sceneGUIDs[selectedIndex];
-            }
-
-            // Display Dropdown
-            int newIndex = EditorGUI.Popup(position, label.text, selectedIndex, sceneNames);
-            if (newIndex != selectedIndex)
-            {
-                sceneGUIDProp.stringValue = sceneGUIDs[newIndex];
+                guidProp.stringValue = newGUID;
+                pathProp.stringValue = path; // keep in sync
             }
 
             EditorGUI.EndProperty();

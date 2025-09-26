@@ -2,29 +2,30 @@ using UnityEngine;
 
 public class S_CameraPosRot : MonoBehaviour
 {
-    //[Header("Settings")]
-
-    //[Header("References")]
-
-    [Header("RSO")]
-
-    [SerializeField] RSO_CameraPosition _rsoCameraPosition;
-    [SerializeField] RSO_CameraRotation _rsoCameraRotation;
-
-
-    //[Header("Output")]
-
+    [Header("Output")]
+    [SerializeField] private RSO_CameraPosition rsoCameraPosition;
+    [SerializeField] private RSO_CameraRotation rsoCameraRotation;
 
     private void LateUpdate()
     {
-        if (_rsoCameraPosition != null)
-        {
-            _rsoCameraPosition.Value = transform.position;
-        }
+        CameraPosition();
 
-        if (_rsoCameraRotation != null)
+        CameraRotation();
+    }
+
+    private void CameraPosition()
+    {
+        if (rsoCameraPosition != null)
         {
-            _rsoCameraRotation.Value = transform.rotation;
+            rsoCameraPosition.Value = transform.position;
+        }
+    }
+
+    private void CameraRotation()
+    {
+        if (rsoCameraRotation != null)
+        {
+            rsoCameraRotation.Value = transform.rotation;
         }
     }
 }

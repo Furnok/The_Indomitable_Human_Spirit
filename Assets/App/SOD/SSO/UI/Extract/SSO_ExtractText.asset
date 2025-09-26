@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28a0c2c6a10c76547af5b72511149308, type: 3}
+  m_Name: SSO_ExtractText
+  m_EditorClassIdentifier: 
+  _value: "Et il advint en ce si\xE8cle de t\xE9n\xE9breuse m\xE9chancet\xE9, que
+    pestilence envahit la face de la terre, et les moissons p\xE9rirent, et les b\xEAtes
+    du champ furent frapp\xE9es d'\xE9garement. La terre pleura de douleurs innombrables,
+    et la maladie couvrit les nations comme la nu\xE9e \xE9paisse couvre les cieux
+    en col\xE8re. Car l\u2019Adversaire, celui qu\u2019on appelle Satan, se leva
+    de nouveau devant l\u2019\xC9ternel et dit en son c\u0153ur : \xAB Ne sont-ils
+    point tous enclins \xE0 la corruption ? Ne sont-ils point tous d\u2019une nature
+    vaine ? \xBB  Et il fut rappel\xE9 devant le tr\xF4ne de Lumi\xE8re, et Dieu
+    lui dit : \xAB As-tu consid\xE9r\xE9 Mon serviteur Job ? Il demeure int\xE8gre
+    en son c\u0153ur. \xBB Mais l\u2019Adversaire murmura de nouveau et r\xE9pliqua
+    : \xAB Laisse que je touche l\u2019\u0153uvre de Tes mains, et Tu verras s\u2019ils
+    ne se d\xE9tournent point de Toi. \xBB Alors l\u2019\xC9ternel, dans Sa sagesse
+    infinie, permit \xE0 la b\xEAte de souffler sur la cr\xE9ation, non pour les
+    briser, mais pour \xE9prouver le libre arbitre des enfants d'Adam.  Et lors,
+    mille plaies furent envoy\xE9es sur la terre, et les hommes furent courb\xE9s
+    sous le poids de leur propre mis\xE8re. En grande d\xE9tresse, ils maudirent
+    le Nom de l\u2019\xC9ternel, et les temples furent abattus, et les autels souill\xE9s
+    du sang de la haine. Mais Dieu ne se mit point en col\xE8re, car Il voyait la
+    v\xE9rit\xE9 dans les c\u0153urs de Ses cr\xE9atures.  Alors le Trompeur apparut
+    \xE0 eux sous une forme qui n'\xE9tait point voil\xE9e, et dit : \xAB Je suis
+    celui que vous craignez, mais je suis aussi votre salut. Tournez-vous vers moi,
+    et je vous d\xE9livrerai des maux de ce monde. \xBB Et beaucoup parmi les enfants
+    de la terre, m\xEAme les plus fid\xE8les, c\xE9d\xE8rent \xE0 ses charmes, et
+    oubli\xE8rent leur premier amour. Et Dieu fut afflig\xE9 dans Son esprit.  Et
+    il advint qu'Il d\xE9tourna sa face du monde, et les anges tomb\xE8rent du ciel,
+    et l\u2019Adversaire r\xE9gna sur la terre qu\u2019il avait conquise par la s\xE9duction.
+    La lumi\xE8re s\u2019\xE9teignit des cieux, et la voix des proph\xE8tes se tut.
+    Les fid\xE8les furent diss\xE9min\xE9s comme la semence emport\xE9e par le vent. 
+    Et il advint que l\u2019homme de Dieu, un serviteur arm\xE9 de la parole et du
+    fer, s\u2019embarqua pour une \xEEle lointaine, en des confins oubli\xE9s des
+    royaumes terrestres. Car il avait ou\xEF dire que l\xE0-bas demeurait un village,
+    dernier bastion des fid\xE8les au Tr\xE8s-Haut, non encore courb\xE9 sous le
+    joug du Trompeur."

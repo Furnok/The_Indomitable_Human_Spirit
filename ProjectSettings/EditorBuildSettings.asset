@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/App/Scenes/Tests/Killian/SC_Killian.unity
     guid: 99fcada8d8885634c81c61ce82680712
   - enabled: 1
-    path: "Assets/App/Scenes/Tests/Timoth\xE9e/SC_Timoth\xE9e.unity"
+    path: Assets/App/Scenes/Tests/Timothee/SC_Timothee.unity
     guid: 9d13f18b6dbc35342849d7628e78b324
   - enabled: 1
     path: Assets/App/Scenes/Tests/Mathias/SC_Mathias.unity
@@ -24,5 +24,6 @@ EditorBuildSettings:
     path: Assets/App/Scenes/Tests/Florian/SC_Florian.unity
     guid: 217557b2f3e44e74e92fe92babc6e2c8
   m_configObjects:
+    com.unity.dt.app-ui: {fileID: 11400000, guid: 99f9c9493070a9d4c979a8fec7c5a8d3, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

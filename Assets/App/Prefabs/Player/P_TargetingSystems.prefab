@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9000548150038542157
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7707149597379928539}
+  - component: {fileID: 4611886481859220416}
+  - component: {fileID: 5137824383630075845}
+  - component: {fileID: 3915845219449643475}
+  m_Layer: 0
+  m_Name: P_TargetingSystems
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7707149597379928539
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9000548150038542157}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4611886481859220416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9000548150038542157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52a975fafc36f2a4bad486bb9e275476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onEnemyEnterTargetingRange: {fileID: 11400000, guid: 857c3a1874fe4f34b9a4e7de1355f9c0, type: 2}
+  _onEnemyExitTargetingRange: {fileID: 11400000, guid: 9464073673f74034da5e08cf174a885c, type: 2}
+  _onTargetsInRangeChange: {fileID: 11400000, guid: 6660d5373f88799428a248d2c3615ece, type: 2}
+--- !u!114 &5137824383630075845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9000548150038542157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74df846ae39265c429806def2a117faf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gizmoColor: {r: 1, g: 0.6859843, b: 0, a: 1}
+  _gizmoTargetColor: {r: 1, g: 0, b: 0, a: 1}
+  _gizmoRadius: 0.1
+  _gizmoTargetRadius: 0.3
+  _gizmoHeightOffset: 1.5
+  _drawGizmos: 1
+  _onEnemyEnterTargetingRange: {fileID: 11400000, guid: 857c3a1874fe4f34b9a4e7de1355f9c0, type: 2}
+  _onEnemyExitTargetingRange: {fileID: 11400000, guid: 9464073673f74034da5e08cf174a885c, type: 2}
+  _onNewTargeting: {fileID: 11400000, guid: c5f673ce9067f6241b1df96e6d83520f, type: 2}
+  _onPlayerCancelTargeting: {fileID: 11400000, guid: d8d0a24f7352ea84ba1f5614f16bb752, type: 2}
+  _playerIsTargeting: {fileID: 11400000, guid: 53017e014e6ba384988975c6a7762355, type: 2}
+--- !u!114 &3915845219449643475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9000548150038542157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 664d8c97572328f42a0561385b17b4c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onTargetsInRangeChange: {fileID: 11400000, guid: 6660d5373f88799428a248d2c3615ece, type: 2}
+  _onPlayerTargeting: {fileID: 11400000, guid: b5715b3f29f85be4e87180aa0db11aab, type: 2}
+  _onPlayerTargetingCancel: {fileID: 11400000, guid: e7c8e675e790c2a44a00f20297f51dc8, type: 2}
+  _onPlayerSwapTarget: {fileID: 11400000, guid: 4529ddf1715466a49afc2e355d08802f, type: 2}
+  _onEnemyTargetDied: {fileID: 11400000, guid: a6d4a41f4054c224a832b2ce84286687, type: 2}
+  _onNewTargeting: {fileID: 11400000, guid: c5f673ce9067f6241b1df96e6d83520f, type: 2}
+  _onPlayerCancelTargeting: {fileID: 11400000, guid: d8d0a24f7352ea84ba1f5614f16bb752, type: 2}
+  _playerIsTargeting: {fileID: 11400000, guid: 53017e014e6ba384988975c6a7762355, type: 2}
+  _playerPosition: {fileID: 11400000, guid: a3d33267cdb3a0a43bb8ab4811624f21, type: 2}
+  _targetPosition: {fileID: 11400000, guid: 3f7350d94d82e7a4ab2f89bed6a65c11, type: 2}
+  _playerMaxDistanceTargeting: {fileID: 11400000, guid: 541adfab7eb5e28439bb20fb68f82377, type: 2}
+  _playerTargetRangeRadius: {fileID: 11400000, guid: 5be727c44da2ea945accbd91b94caaf1, type: 2}
