@@ -18,7 +18,6 @@ public class S_CameraManager : MonoBehaviour
     [SerializeField] private RSE_CameraShake rseCameraShake;
 
     private Coroutine shake = null;
-    private float currentZOffset = -4;
     private CinemachineCamera[] allVCams = null;
 
     private void OnEnable()

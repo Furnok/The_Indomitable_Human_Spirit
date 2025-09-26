@@ -35,8 +35,6 @@ public class S_TargetManager : MonoBehaviour
             _enemiesInRange.Add(enemy);
 
             _onTargetsInRangeChange.Call(_enemiesInRange);
-
-            Debug.Log("Enemy in range: " + enemy.name);
         }
     }
 
@@ -47,8 +45,6 @@ public class S_TargetManager : MonoBehaviour
             _enemiesInRange.Remove(enemy);
 
             _onTargetsInRangeChange.Call(_enemiesInRange);
-
-            Debug.Log("Enemy out of range: " + enemy.name);
         }
     }
 }
