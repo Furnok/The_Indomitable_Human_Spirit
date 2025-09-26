@@ -2,10 +2,12 @@ using UnityEngine;
 using Unity.Behavior;
 using UnityEngine.Events;
 using System;
+using UnityEngine.AI;
 
 public class Entity : MonoBehaviour
 {
-    public BehaviorGraphAgent agent;
+    [SerializeField] BehaviorGraphAgent agent;
+    [SerializeField] NavMeshAgent enemyNavMesh;
     [SerializeField] S_EnemyRangeDetection S_EnemyRangeDetection;
 
     void SetTarget(GameObject Target)
@@ -19,6 +21,10 @@ public class Entity : MonoBehaviour
         {
             agent.SetVariableValue<EnemyState>("EnemyState", EnemyState.Patrol);
         }
+    }
+    private void Update()
+    {
+        agent.SetVariableValue<float>("StopDistance", enemyNavMesh.stoppingDistance);
     }
 
     private void OnEnable()
