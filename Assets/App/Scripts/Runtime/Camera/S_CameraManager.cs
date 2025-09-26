@@ -9,16 +9,49 @@ public class S_CameraManager : MonoBehaviour
     [SerializeField] private float transitionSpeed;
 
     [Header("References")]
-    [SerializeField] private CinemachineCamera cinemachineCamera;
+    [SerializeField] private CinemachineCamera cinemachineCameraRail;
+    [SerializeField] private CinemachineCamera cinemachineCameraPlayer;
     [SerializeField] private CinemachineSplineDolly splineDolly;
     [SerializeField] private CinemachineBasicMultiChannelPerlin perlin;
     [SerializeField] private CinemachineTargetGroup targetGroup;
 
     [Header("Input")]
     [SerializeField] private RSE_CameraShake rseCameraShake;
+    [SerializeField] private RSO_PlayerIsTargeting rsoplayerIsTargeting;
 
     private Coroutine shake = null;
     private CinemachineCamera[] allVCams = null;
+
+    private CinemachineCamera currentCamera = null;
+
+    private void OnEnable()
+    {
+        rsoplayerIsTargeting.onValueChanged += SwitchCameraTargeting;
+        currentCamera = cinemachineCameraRail;
+    }
+
+    private void OnDisable()
+    {
+        rsoplayerIsTargeting.onValueChanged -= SwitchCameraTargeting;
+    }
+
+    private void SwitchCameraTargeting(bool value)
+    {
+        if (value)
+        {
+            cinemachineCameraRail.Priority = 2;
+            cinemachineCameraPlayer.Priority = 3;
+            currentCamera = cinemachineCameraPlayer;
+        }
+        else
+        {
+            cinemachineCameraRail.Priority = 3;
+            cinemachineCameraPlayer.Priority = 2;
+            currentCamera = cinemachineCameraRail;
+        }
+    }
+
+    /*
 
     private void OnEnable()
     {
@@ -42,7 +75,7 @@ public class S_CameraManager : MonoBehaviour
 
     private void FOV()
     {
-        if (cinemachineCamera == null || splineDolly == null)
+        if (cinemachineCameraRail == null || splineDolly == null)
             return;
 
         var spline = splineDolly.Spline;
@@ -85,7 +118,7 @@ public class S_CameraManager : MonoBehaviour
 
         float fov = Mathf.Lerp(fovA, fovB, t);
 
-        cinemachineCamera.Lens.FieldOfView = fov;
+        cinemachineCameraRail.Lens.FieldOfView = fov;
     }
 
     private void CameraShake(S_ClassCameraShake classCameraShake)
@@ -107,4 +140,5 @@ public class S_CameraManager : MonoBehaviour
             perlin.FrequencyGain = 0;
         }));
     }
+    */
 }
