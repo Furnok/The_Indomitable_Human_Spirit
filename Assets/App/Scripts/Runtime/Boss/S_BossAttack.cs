@@ -105,6 +105,8 @@ public class S_BossAttack : MonoBehaviour
     private Vector3 pingPongPeakPos;
     private int pingPongAnimNumb = 0;
     private bool pingPongInAir = false;
+
+
     private void OnEnable()
     {
         onExecuteAttack.action += DoAttackChoose;
@@ -330,10 +332,10 @@ public class S_BossAttack : MonoBehaviour
     #endregion
     private void Balls()
     {
-        StartCoroutine(BallsFly());
+        StartCoroutine(BallsFly(true));
     }
 
-    private IEnumerator BallsFly()
+    private IEnumerator BallsFly(bool stun)
     {
         if (currentAttack == null || currentAttack.listComboData == null || currentAttack.listComboData.Count == 0)
             yield break;
@@ -379,11 +381,11 @@ public class S_BossAttack : MonoBehaviour
                 rbBody.isKinematic = true;
                 pingPongAnimNumb = animNumb;
                 pingPongInAir = true;
-                StartCoroutine(BallsCoroutine(animNumb));
+                StartCoroutine(BallsCoroutine(animNumb,stun));
             });
     }
 
-    private IEnumerator BallsCoroutine(int value)
+    private IEnumerator BallsCoroutine(int value, bool stun)
     {
         yield return null;
         bossNavMeshAgent.enabled = false;
@@ -404,17 +406,25 @@ public class S_BossAttack : MonoBehaviour
 
             if (currentAttack.listComboData[i].attackData.attackType == S_EnumEnemyAttackType.Projectile)
             {
-                yield return new WaitForSeconds(currentAttack.listComboData[i].attackData.timeCast);
+                for(int j = 0; j < currentAttack.listComboData[i].attackData.numberOfProjectiles; j++)
+                {
+                    yield return new WaitForSeconds(currentAttack.listComboData[i].attackData.timeCast);
 
-                S_EnemyProjectile projectileInstance = Instantiate(enemyProjectile, projectileBallsSpawn.transform.position, Quaternion.identity);
-                projectileInstance.Initialize(aimPointBoss, aimPointPlayer, currentAttack.listComboData[i].attackData);
+                    S_EnemyProjectile projectileInstance = Instantiate(enemyProjectile, projectileBallsSpawn.transform.position, Quaternion.identity);
+                    projectileInstance.Initialize(aimPointBoss, aimPointPlayer, currentAttack.listComboData[i].attackData);
+                }
+               
             }
-            yield return null;
-            
+            yield return new WaitForSeconds(currentAttack.listComboData[i].attackData.timeInterval);
+
         }
+        yield return null;
         bossNavMeshAgent.enabled = true;
         rbBody.isKinematic = false;
-        rseOnBossStun.Call(S_EnumBossState.Stun);
+        if (stun)
+        {
+            rseOnBossStun.Call(S_EnumBossState.Stun);
+        }
     }
 
     #region Gathering

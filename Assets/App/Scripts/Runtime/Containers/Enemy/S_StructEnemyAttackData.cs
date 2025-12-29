@@ -17,6 +17,13 @@ public struct S_StructEnemyAttackData
     [SuffixLabel("s", Overlay = true)]
     public float timeCast;
 
+    [ShowIf("isProjectile")]
+    [SuffixLabel("s", Overlay = true)]
+    public float timeInterval;
+
+    [ShowIf("isProjectile")]
+    public int numberOfProjectiles;
+
     [Title("Damage")]
     [ShowIf("isTyped")]
     public float damage;
