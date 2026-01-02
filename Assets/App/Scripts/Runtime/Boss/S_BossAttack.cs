@@ -328,8 +328,10 @@ public class S_BossAttack : MonoBehaviour
             yield return null;
             pingPongAnimNumb = i;
         }
-    } 
+    }
     #endregion
+
+    #region Balls
     private void Balls()
     {
         StartCoroutine(BallsFly(true));
@@ -381,7 +383,7 @@ public class S_BossAttack : MonoBehaviour
                 rbBody.isKinematic = true;
                 pingPongAnimNumb = animNumb;
                 pingPongInAir = true;
-                StartCoroutine(BallsCoroutine(animNumb,stun));
+                StartCoroutine(BallsCoroutine(animNumb, stun));
             });
     }
 
@@ -406,14 +408,14 @@ public class S_BossAttack : MonoBehaviour
 
             if (currentAttack.listComboData[i].attackData.attackType == S_EnumEnemyAttackType.Projectile)
             {
-                for(int j = 0; j < currentAttack.listComboData[i].attackData.numberOfProjectiles; j++)
+                for (int j = 0; j < currentAttack.listComboData[i].attackData.numberOfProjectiles; j++)
                 {
                     yield return new WaitForSeconds(currentAttack.listComboData[i].attackData.timeCast);
 
                     S_EnemyProjectile projectileInstance = Instantiate(enemyProjectile, projectileBallsSpawn.transform.position, Quaternion.identity);
                     projectileInstance.Initialize(aimPointBoss, aimPointPlayer, currentAttack.listComboData[i].attackData);
                 }
-               
+
             }
             yield return new WaitForSeconds(currentAttack.listComboData[i].attackData.timeInterval);
 
@@ -425,7 +427,8 @@ public class S_BossAttack : MonoBehaviour
         {
             rseOnBossStun.Call(S_EnumBossState.Stun);
         }
-    }
+    } 
+    #endregion
 
     #region Gathering
     private void Gathering()
@@ -511,10 +514,87 @@ public class S_BossAttack : MonoBehaviour
         bossNavMeshAgent.enabled = true;
         rseOnEndAttack.Call();
 
-    } 
+    }
     #endregion
+
+    #region WingsOfHell
     private void WingsOfHell()
     {
+        StartCoroutine(WingsOfHellFly());
     }
+
+    private IEnumerator WingsOfHellFly()
+    {
+        if (currentAttack == null || currentAttack.listComboData == null || currentAttack.listComboData.Count == 0)
+            yield break;
+
+        int animNumb = 0;
+        bossNavMeshAgent.enabled = false;
+
+        string overrideKey = (animNumb % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
+        overrideController[overrideKey] = currentAttack.listComboData[animNumb].animation;
+
+        Debug.Log("Play JumpFall Animation");
+        animator.SetTrigger(animNumb == 0 ? attackParam : comboParam);
+
+
+        yield return new WaitForSeconds(currentAttack.listComboData[animNumb].animation.length);
+        animNumb++;
+        pingPongStartPos = rbBody.position;
+        pingPongPeakPos = pingPongStartPos + Vector3.up * jumpPowerPingPong;
+
+        overrideKey = (animNumb % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
+        overrideController[overrideKey] = currentAttack.listComboData[animNumb].animation;
+
+        Debug.Log("Play Fly Prepa Animation");
+        animator.SetTrigger(animNumb == 0 ? attackParam : comboParam);
+
+        yield return new WaitForSeconds(currentAttack.listComboData[animNumb].animation.length);
+        animNumb++;
+
+        rbBody.DOMove(pingPongPeakPos, durationPingPong)
+            .SetEase(Ease.OutQuad)
+            .OnStart(() =>
+            {
+                overrideKey = (animNumb % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
+                if (animNumb < currentAttack.listComboData.Count)
+                    overrideController[overrideKey] = currentAttack.listComboData[animNumb].animation;
+
+                Debug.Log("Play Fly Up Animation");
+                animator.SetTrigger(animNumb == 0 ? attackParam : comboParam);
+                animNumb++;
+            })
+            .OnComplete(() =>
+            {
+                rbBody.isKinematic = true;
+                pingPongAnimNumb = animNumb;
+                pingPongInAir = true;
+                StartCoroutine(WingsOfHellCoroutine(animNumb));
+            });
+    }
+
+    private IEnumerator WingsOfHellCoroutine(int value)
+    {
+        yield return null;
+        bossNavMeshAgent.enabled = false;
+        for (int i = value; i < currentAttack.listComboData.Count; i++)
+        {
+            string overrideKey = (i % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
+            overrideController[overrideKey] = currentAttack.listComboData[i].animation;
+            rootMotionModifier.Setup(currentAttack.listComboData[i].rootMotionMultiplier);
+            bossAttackData.SetAttackMode(currentAttack.listComboData[i].attackData);
+            if (currentAttack.listComboData[i].showVFXAttackType) bossAttackData.VFXAttackType();
+            animator.SetTrigger(i == 0 ? attackParam : comboParam);
+            yield return new WaitForSeconds(currentAttack.listComboData[i].animation.length);
+            if (currentAttack.listComboData[i].attackData.attackType == S_EnumEnemyAttackType.Projectile)
+            {
+                yield return new WaitForSeconds(currentAttack.listComboData[i].attackData.timeCast);
+                S_BossProjectile projectileInstance = Instantiate(bossProjectile, projectilePingPongSpawn.transform.position, Quaternion.identity);
+                projectileInstance.Initialize(aimPointBoss, aimPointPlayer, currentAttack.listComboData[i].attackData);
+            }
+            yield return null;
+        }
+    } 
+    #endregion
     #endregion
 }
