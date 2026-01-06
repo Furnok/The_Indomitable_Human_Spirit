@@ -15,7 +15,7 @@ LICENSE:
 Distributed under the MIT License.
 
 ASSETS AND THIRD-PARTY LICENSES:  
-Synty Studios Assets (Characters, Props, Animations, Sprites).
+Synty Studios Assets (Characters, Props, Animations, Sprites).  
 Used Under Synty Studios License. All Rights Reserved by Synty Studios.  
 For More Informations, see: "https://syntystudios.com/".
  
