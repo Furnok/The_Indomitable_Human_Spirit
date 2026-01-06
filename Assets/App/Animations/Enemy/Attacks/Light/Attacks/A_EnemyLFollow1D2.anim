@@ -61583,6 +61583,20 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.13333334
+    functionName: PlayFmod
+    data: event:/Player/Combat/HitPrep
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.16666664
+    functionName: PlayFmod
+    data: event:/Player/Combat/HitNear
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.26666668
     functionName: EnableWeaponCollider
     data: 

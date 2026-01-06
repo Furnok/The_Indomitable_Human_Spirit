@@ -10192,6 +10192,33 @@
         <member name="M:Sirenix.OdinInspector.Editor.OdinVisualDesignerConfig.ToggleFavorite(System.Type)">
             <returns>The favorite state *after* toggling.</returns>
         </member>
+        <member name="M:Sirenix.OdinInspector.Editor.OdinVisualDesigner.OpenForType(System.Type)">
+            <summary>
+            Opens the Visual Designer for the specified <see cref="T:System.Type"/>.
+            </summary>
+            <param name="type">The type to display and customize in the Visual Designer.</param>
+            <returns>
+            The opened <see cref="T:Sirenix.OdinInspector.Editor.OdinEditorWindow"/>, or <c>null</c> if the window could not be opened.
+            </returns>
+        </member>
+        <member name="M:Sirenix.OdinInspector.Editor.OdinVisualDesigner.OpenForInstance(System.Object)">
+            <summary>
+            Opens the Visual Designer for the specified object instance.
+            </summary>
+            <param name="instance">The object instance to display and customize in the Visual Designer.</param>
+            <returns>
+            The opened <see cref="T:Sirenix.OdinInspector.Editor.OdinEditorWindow"/>, or <c>null</c> if the window could not be opened or the instance was <c>null</c>.
+            </returns>
+        </member>
+        <member name="M:Sirenix.OdinInspector.Editor.OdinVisualDesigner.OpenForProperty(Sirenix.OdinInspector.Editor.InspectorProperty)">
+            <summary>
+            Opens the Visual Designer for the specified <see cref="T:Sirenix.OdinInspector.Editor.InspectorProperty"/>.
+            </summary>
+            <param name="property">The property to display and customize in the Visual Designer.</param>
+            <returns>
+            The opened <see cref="T:Sirenix.OdinInspector.Editor.OdinEditorWindow"/>, or <c>null</c> if the window could not be opened.
+            </returns>
+        </member>
         <member name="P:Sirenix.OdinInspector.Editor.OdinObjectSelector.SelectorProperty">
             <summary>
             The <see cref="T:Sirenix.OdinInspector.Editor.InspectorProperty"/> that was used in the last 'Show' call.

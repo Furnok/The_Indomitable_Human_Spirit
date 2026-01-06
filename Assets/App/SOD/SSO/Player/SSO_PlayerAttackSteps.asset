@@ -134,7 +134,7 @@ MonoBehaviour:
       reflectDmgMul: 0
       reflectMax: 0
   - step: 3
-    multipliers: 8
+    multipliers: 6
     ammountConvitionNeeded: 38
     timeHoldingInput: 1.2
     speed: 10
@@ -174,7 +174,7 @@ MonoBehaviour:
       reflectDmgMul: 0
       reflectMax: 0
   - step: 4
-    multipliers: 10
+    multipliers: 8
     ammountConvitionNeeded: 63
     timeHoldingInput: 1.5
     speed: 10

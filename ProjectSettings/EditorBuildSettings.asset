@@ -6,14 +6,23 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/App/Scenes/Tests/Killian/SC_Killian.unity
-    guid: e882b4b841b9f7b41b47a09dbc02127b
+    path: Assets/App/Scenes/SC_MainV1.unity
+    guid: b2539c53cd8755042bb5c5fcf7ab0cbd
+  - enabled: 1
+    path: Assets/App/Scenes/SC_MainArena.unity
+    guid: b61801952843e2942a42a0b5c2e5ac5b
+  - enabled: 1
+    path: Assets/App/Scenes/SC_Gym.unity
+    guid: e98a98817d2971541b4782440cf9eed8
   - enabled: 1
     path: Assets/App/Scenes/Tests/Timothee/Playtests/SC_Playtest.unity
     guid: 82ccd5d8a76d95749a306fe211efdb92
   - enabled: 1
     path: Assets/App/Scenes/SC_Game.unity
     guid: f7a1e4de93e70714e84d4a79bfbfa094
+  - enabled: 1
+    path: Assets/App/Scenes/Tests/Killian/SC_Killian.unity
+    guid: e882b4b841b9f7b41b47a09dbc02127b
   - enabled: 1
     path: Assets/App/Scenes/Tests/Florian/SC_Florian.unity
     guid: c9c7fe05baee64243a80562477ccfb64

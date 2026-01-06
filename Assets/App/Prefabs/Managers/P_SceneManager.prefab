@@ -46,15 +46,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelsName:
-  - sceneName: SC_Killian
-    sceneGUID: e882b4b841b9f7b41b47a09dbc02127b
-    scenePath: Assets/App/Scenes/Tests/Killian/SC_Killian.unity
+  - sceneName: SC_MainV1
+    sceneGUID: b2539c53cd8755042bb5c5fcf7ab0cbd
+    scenePath: Assets/App/Scenes/SC_MainV1.unity
+  - sceneName: SC_MainArena
+    sceneGUID: b61801952843e2942a42a0b5c2e5ac5b
+    scenePath: Assets/App/Scenes/SC_MainArena.unity
   - sceneName: SC_Playtest
     sceneGUID: 82ccd5d8a76d95749a306fe211efdb92
     scenePath: Assets/App/Scenes/Tests/Timothee/Playtests/SC_Playtest.unity
   - sceneName: SC_Game
     sceneGUID: f7a1e4de93e70714e84d4a79bfbfa094
     scenePath: Assets/App/Scenes/SC_Game.unity
+  - sceneName: SC_Killian
+    sceneGUID: e882b4b841b9f7b41b47a09dbc02127b
+    scenePath: Assets/App/Scenes/Tests/Killian/SC_Killian.unity
   - sceneName: SC_Florian
     sceneGUID: c9c7fe05baee64243a80562477ccfb64
     scenePath: Assets/App/Scenes/Tests/Florian/SC_Florian.unity

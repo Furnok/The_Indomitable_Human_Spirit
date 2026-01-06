@@ -192,4 +192,5 @@ MonoBehaviour:
   playerMat: {fileID: 2100000, guid: 6548b5bace388d2448daab8c8e3e506b, type: 2}
   rendered: {fileID: 6361965147665062620}
   ssoProjectileData: {fileID: 11400000, guid: 23b95da35d5e45f41bcdb4cb89596898, type: 2}
-  rseOnEndAttack: {fileID: 11400000, guid: df61dd20dc38205418f8426747ea5149, type: 2}
+  onEndFly: {fileID: 11400000, guid: 4250bf271bad23e42ab1b18f912469ba, type: 2}
+  onBossStun: {fileID: 11400000, guid: e52f886ca2039f34da187674d8e07a81, type: 2}

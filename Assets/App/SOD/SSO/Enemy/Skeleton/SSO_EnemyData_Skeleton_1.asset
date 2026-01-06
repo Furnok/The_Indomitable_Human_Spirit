@@ -52,7 +52,7 @@ MonoBehaviour:
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
-          convictionReduction: 20
+          convictionReduction: 1
           convictionParryGain: 5
           lastAttack: 0
           attackDirection: {x: 0, y: 0, z: 0}
@@ -73,7 +73,7 @@ MonoBehaviour:
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
-          convictionReduction: 20
+          convictionReduction: 1
           convictionParryGain: 5
           lastAttack: 0
           attackDirection: {x: 0, y: 0, z: 0}
@@ -94,7 +94,7 @@ MonoBehaviour:
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
-          convictionReduction: 20
+          convictionReduction: 1
           convictionParryGain: 5
           lastAttack: 0
           attackDirection: {x: 0, y: 0, z: 0}

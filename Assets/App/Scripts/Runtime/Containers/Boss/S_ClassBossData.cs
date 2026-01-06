@@ -15,6 +15,9 @@ public class S_ClassBossData
 
     public S_EnumBossPhaseState phaseState;
 
+    [Title("Stun")]
+    public float stunDuration = 0;
+
     [Title("Chase")]
     public float distanceToChase = 0;
 

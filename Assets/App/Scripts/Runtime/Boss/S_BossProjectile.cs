@@ -36,7 +36,10 @@ public class S_BossProjectile : MonoBehaviour, I_AttackProvider, I_ReflectablePr
     [SerializeField] private SSO_ProjectileData ssoProjectileData;
 
     [TabGroup("Outputs")]
-    [SerializeField] private RSE_OnEndAttack rseOnEndAttack;
+    [SerializeField] private RSE_OnEndFly onEndFly;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnBossStun onBossStun;
 
     private Transform owner = null;
     private Transform player = null;
@@ -55,6 +58,7 @@ public class S_BossProjectile : MonoBehaviour, I_AttackProvider, I_ReflectablePr
     private Vector3 origin = Vector3.zero;
     private Transform startAimPoint = null;
     private bool _canReflect = true;
+    private bool bossHit= false;
 
     private float arcHeightMultiplier => ssoProjectileData.Value.arcHeightMultiplier;
     private float arcDirection => ssoProjectileData.Value.arcDirection;
@@ -226,14 +230,18 @@ public class S_BossProjectile : MonoBehaviour, I_AttackProvider, I_ReflectablePr
             if (damageable != null)
             {
                 damageable.TakeDamage(attackData.damage);
-                
+                bossHit = true;
+                Debug.Log("Get Stun");
+                onBossStun.Call(S_EnumBossState.Stun);
                 Destroy(gameObject);
             }
         }
     }
     private void OnDestroy()
     {
-        rseOnEndAttack.Call();
+        if(bossHit) return;
+        Debug.Log("Fly End");
+        onEndFly.Call();
     }
     public ref S_StructEnemyAttackData GetAttackData()
     {

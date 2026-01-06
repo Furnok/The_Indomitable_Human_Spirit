@@ -161,7 +161,7 @@ MonoBehaviour:
     m_Value: 20000
   groundTint:
     m_OverrideState: 1
-    m_Value: {r: 0.119538434, g: 0.09084173, b: 0.09250642, a: 1}
+    m_Value: {r: 0.09084173, g: 0.10293779, b: 0.119538434, a: 1}
   groundColorTexture:
     m_OverrideState: 1
     m_Value: {fileID: 8900000, guid: b4789fd93adf256469a4e109296c94af, type: 3}
@@ -194,10 +194,10 @@ MonoBehaviour:
     m_Value: 1
   horizonTint:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 0, b: 0, a: 1}
+    m_Value: {r: 0, g: 0.736887, b: 1, a: 1}
   zenithTint:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 0, b: 0, a: 1}
+    m_Value: {r: 0, g: 0.70177174, b: 1, a: 1}
   horizonZenithShift:
     m_OverrideState: 1
     m_Value: 1
@@ -582,7 +582,7 @@ MonoBehaviour:
     m_Value: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   tint:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 0.5330188, b: 0.5330188, a: 1}
+    m_Value: {r: 0.53333336, g: 0.9146164, b: 1, a: 1}
   maxFogDistance:
     m_OverrideState: 1
     m_Value: 5000
@@ -609,7 +609,7 @@ MonoBehaviour:
     m_Value: 1
   albedo:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 0, b: 0, a: 1}
+    m_Value: {r: 0, g: 0.7213807, b: 1, a: 1}
   globalLightProbeDimmer:
     m_OverrideState: 1
     m_Value: 1

@@ -2,6 +2,7 @@
 using FMODUnity;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class S_UIMainMenu : MonoBehaviour
@@ -9,6 +10,10 @@ public class S_UIMainMenu : MonoBehaviour
     [TabGroup("References")]
     [Title("Save")]
     [SerializeField, S_SaveName] private string saveName;
+
+    [TabGroup("References")]
+    [Title("Levels")]
+    [SerializeField] private S_SceneReference levelName;
 
     [TabGroup("References")]
     [Title("Audio")]
@@ -66,6 +71,9 @@ public class S_UIMainMenu : MonoBehaviour
 
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnLoadData rseOnLoadData;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnLoadScene rseOnLoadScene;
 
     [TabGroup("Outputs")]
     [SerializeField] private RSO_Navigation rsoNavigation;
@@ -214,6 +222,26 @@ public class S_UIMainMenu : MonoBehaviour
             {
                 rseOnQuitGame.Call();
                 rsoNavigation.Value.selectableFocus = null;
+            }));
+        }
+    }
+
+    public void GYM()
+    {
+        if (!isTransit)
+        {
+            isTransit = true;
+
+            rseOnHideMouseCursor.Call();
+
+            rseOnFadeOut.Call();
+
+            StartCoroutine(S_Utils.DelayRealTime(ssoFadeTime.Value, () =>
+            {
+                rseOnCloseAllWindows.Call();
+                rsoNavigation.Value.selectableFocus = null;
+
+                rseOnLoadScene.Call(levelName.Name);
             }));
         }
     }
