@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 941580863371954528}
   - component: {fileID: 2709645350659721066}
   - component: {fileID: 150563850403501601}
-  m_Layer: 12
+  m_Layer: 13
   m_Name: FBX_Statue
   m_TagString: Obstacle
   m_Icon: {fileID: 0}

@@ -1,12 +1,11 @@
 ﻿using FMODUnity;
 using Sirenix.OdinInspector;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class S_PlayerDodge : MonoBehaviour
 {
-    #region Variableables
+    #region Variables
     [TabGroup("Settings")]
     [SerializeField] private float edgeProbeHeight = 0.5f;
 
@@ -19,6 +18,9 @@ public class S_PlayerDodge : MonoBehaviour
 
     [TabGroup("References")]
     [SerializeField] private LayerMask obstacleMask;
+
+    [TabGroup("References")]
+    [SerializeField] private LayerMask obstacle2Mask;
 
     [TabGroup("References")]
     [Title("Animations")]
@@ -406,6 +408,12 @@ public class S_PlayerDodge : MonoBehaviour
         obstacleMask, QueryTriggerInteraction.Ignore);
 
         if (overlapping) return 0f;
+
+        bool overlapping2 = Physics.CheckCapsule(
+        bottom, top, radius,
+        obstacle2Mask, QueryTriggerInteraction.Ignore);
+
+        if (overlapping2) return 0f;
 
         float castDist = maxDist + stopFromWall;
 

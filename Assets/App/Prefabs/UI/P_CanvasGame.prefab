@@ -6103,7 +6103,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0.2.3
+  m_text: 0.2.4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
@@ -29542,6 +29542,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 284ed8a9f91f32640b09638b5c93ab84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelName:
+    sceneName: 
+    sceneGUID: 
+    scenePath: 
   uiSound:
     Guid:
       Data1: 847927044

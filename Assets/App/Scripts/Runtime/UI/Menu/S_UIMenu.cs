@@ -1,10 +1,15 @@
 ﻿using FMODUnity;
 using Sirenix.OdinInspector;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class S_UIMenu : MonoBehaviour
 {
+    [TabGroup("References")]
+    [Title("Levels")]
+    [SerializeField] private S_SceneReference levelName;
+
     [TabGroup("References")]
     [Title("Audio")]
     [SerializeField] private EventReference uiSound;
@@ -122,8 +127,16 @@ public class S_UIMenu : MonoBehaviour
 
                 rseOnGamePause.Call(false);
 
-                Scene currentScene = SceneManager.GetActiveScene();
-                rseOnLoadScene.Call(currentScene.name);
+                if (!string.IsNullOrEmpty(levelName.Name))
+                {
+                    Scene currentScene = SceneManager.GetActiveScene();
+                    rseOnLoadScene.Call(levelName.Name);
+                }
+                else
+                {
+                    Scene currentScene = SceneManager.GetActiveScene();
+                    rseOnLoadScene.Call(currentScene.name);
+                }
             }));
         }
     }
