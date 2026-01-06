@@ -1,6 +1,5 @@
 ﻿using FMODUnity;
 using Sirenix.OdinInspector;
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
