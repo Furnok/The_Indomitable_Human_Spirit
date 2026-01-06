@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _value:
     health: 100
-    speedPatrol: 2.5
-    speedChase: 4
-    speedStrafe: 1.5
+    speedPatrol: 0
+    speedChase: 0
+    speedStrafe: 0
     strafeWaitTimeMin: 2
     strafeWaitTimeMax: 3
     strafeRotationMin: 30
@@ -32,7 +32,7 @@ MonoBehaviour:
     startPatrolWaitMax: 3
     timeBeforeChaseMin: 0.2
     timeBeforeChaseMax: 0.5
-    timeDisplay: 0
+    timeDisplay: 3
     controllerOverride: {fileID: 22100000, guid: cae966d33f19b4242ab9041cca2e1f84, type: 2}
     listCombos:
     - listAnimationsCombos:
@@ -44,6 +44,8 @@ MonoBehaviour:
           goSourceId: 0
           attackType: 0
           timeCast: 0
+          timeInterval: 0
+          numberOfProjectiles: 0
           damage: 0
           knockbackHitDuration: 0
           knockbackHitDistance: 0
@@ -64,7 +66,9 @@ MonoBehaviour:
           attackId: 0
           goSourceId: 0
           attackType: 3
-          timeCast: 0.1
+          timeCast: 0.5
+          timeInterval: 0
+          numberOfProjectiles: 0
           damage: 20
           knockbackHitDuration: 0.3
           knockbackHitDistance: 2
@@ -86,6 +90,8 @@ MonoBehaviour:
           goSourceId: 0
           attackType: 0
           timeCast: 0
+          timeInterval: 0
+          numberOfProjectiles: 0
           damage: 0
           knockbackHitDuration: 0
           knockbackHitDistance: 0
@@ -107,6 +113,8 @@ MonoBehaviour:
           goSourceId: 0
           attackType: 0
           timeCast: 0
+          timeInterval: 0
+          numberOfProjectiles: 0
           damage: 0
           knockbackHitDuration: 0
           knockbackHitDistance: 0
@@ -127,7 +135,9 @@ MonoBehaviour:
           attackId: 0
           goSourceId: 0
           attackType: 3
-          timeCast: 0.1
+          timeCast: 0.5
+          timeInterval: 0
+          numberOfProjectiles: 0
           damage: 20
           knockbackHitDuration: 0.3
           knockbackHitDistance: 2
@@ -149,6 +159,8 @@ MonoBehaviour:
           goSourceId: 0
           attackType: 0
           timeCast: 0
+          timeInterval: 0
+          numberOfProjectiles: 0
           damage: 0
           knockbackHitDuration: 0
           knockbackHitDistance: 0
@@ -170,6 +182,8 @@ MonoBehaviour:
           goSourceId: 0
           attackType: 0
           timeCast: 0
+          timeInterval: 0
+          numberOfProjectiles: 0
           damage: 0
           knockbackHitDuration: 0
           knockbackHitDistance: 0
@@ -190,7 +204,9 @@ MonoBehaviour:
           attackId: 0
           goSourceId: 0
           attackType: 3
-          timeCast: 0.1
+          timeCast: 0.5
+          timeInterval: 0
+          numberOfProjectiles: 0
           damage: 20
           knockbackHitDuration: 0.3
           knockbackHitDistance: 2
@@ -212,6 +228,8 @@ MonoBehaviour:
           goSourceId: 0
           attackType: 0
           timeCast: 0
+          timeInterval: 0
+          numberOfProjectiles: 0
           damage: 0
           knockbackHitDuration: 0
           knockbackHitDistance: 0
@@ -233,6 +251,8 @@ MonoBehaviour:
           goSourceId: 0
           attackType: 0
           timeCast: 0
+          timeInterval: 0
+          numberOfProjectiles: 0
           damage: 0
           knockbackHitDuration: 0
           knockbackHitDistance: 0
@@ -253,7 +273,9 @@ MonoBehaviour:
           attackId: 0
           goSourceId: 0
           attackType: 3
-          timeCast: 2
+          timeCast: 0.5
+          timeInterval: 0
+          numberOfProjectiles: 0
           damage: 20
           knockbackHitDuration: 0.3
           knockbackHitDistance: 2
@@ -275,6 +297,8 @@ MonoBehaviour:
           goSourceId: 0
           attackType: 0
           timeCast: 0
+          timeInterval: 0
+          numberOfProjectiles: 0
           damage: 0
           knockbackHitDuration: 0
           knockbackHitDistance: 0
@@ -296,6 +320,8 @@ MonoBehaviour:
           goSourceId: 0
           attackType: 0
           timeCast: 0
+          timeInterval: 0
+          numberOfProjectiles: 0
           damage: 0
           knockbackHitDuration: 0
           knockbackHitDistance: 0
@@ -316,7 +342,9 @@ MonoBehaviour:
           attackId: 0
           goSourceId: 0
           attackType: 3
-          timeCast: 0.1
+          timeCast: 0.5
+          timeInterval: 0
+          numberOfProjectiles: 0
           damage: 20
           knockbackHitDuration: 0.3
           knockbackHitDistance: 2
@@ -338,6 +366,8 @@ MonoBehaviour:
           goSourceId: 0
           attackType: 0
           timeCast: 0
+          timeInterval: 0
+          numberOfProjectiles: 0
           damage: 0
           knockbackHitDuration: 0
           knockbackHitDistance: 0
@@ -352,5 +382,5 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       distanceMin: 1
-      distanceToChase: 5
+      distanceToChase: 10.5
       distanceToLoseAttack: 15
