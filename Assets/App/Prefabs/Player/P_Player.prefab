@@ -3307,7 +3307,7 @@ MonoBehaviour:
       Data2: 1273314652
       Data3: 1681901210
       Data4: 1026055606
-    Path: event:/Player/Combat/ConvictionAccumulation
+    Path: event:/Player/Combat/Attack/ConvictionAccumulation
   _attackPerformedSound:
     Guid:
       Data1: 0
