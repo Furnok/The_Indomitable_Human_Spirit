@@ -850,6 +850,7 @@ public class S_Enemy : MonoBehaviour
     {
         isHeavyHit = true;
 
+        animator.SetBool(idleAttack, false);
         animator.SetTrigger(hitHeavyParam);
 
         if (resetAttack != null)
@@ -866,19 +867,30 @@ public class S_Enemy : MonoBehaviour
 
         stunCoroutine = StartCoroutine(S_Utils.Delay(ssoEnemyData.Value.waitStun, () =>
         {
-            /*if (pendingState.HasValue)
+            if (target != null)
             {
-                UpdateState(pendingState.Value);
+                SetCombo();
 
-                pendingState = null;
+                navMeshAgent.speed = ssoEnemyData.Value.speedChase;
 
-                if (pendingTarget != null)
-                {
-                    SetTarget(pendingTarget);
-                    pendingTarget = null;
-                }
+                UpdateState(S_EnumEnemyState.Chasing);
             }
-            else UpdateState(S_EnumEnemyState.Chasing);*/
+            else
+            {
+                detectionCollider.enabled = false;
+
+                ResetEnemy();
+
+                navMeshAgent.speed = ssoEnemyData.Value.speedChase;
+
+                if (returnBackCoroutine != null)
+                {
+                    StopCoroutine(returnBackCoroutine);
+                    returnBackCoroutine = null;
+                }
+
+                returnBackCoroutine = StartCoroutine(ReturnBack());
+            }
         }));
     }
     #endregion
