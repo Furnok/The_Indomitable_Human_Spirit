@@ -23,7 +23,7 @@ MonoBehaviour:
     strafeRotationMax: 90
     detectionRange: 10
     detectionAggroRangeMax: 50
-    attackCooldown: 3
+    attackCooldown: 2
     waitStun: 0.6
     rotationTime: 0.6
     patrolPointWaitMin: 1
