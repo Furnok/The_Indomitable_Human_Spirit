@@ -75,6 +75,9 @@ public class S_CameraManager : MonoBehaviour
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnSkipCancelInput rseOnSkipCancelInput;
 
+    [TabGroup("Inputs")]
+    [SerializeField] private RSE_OnSkipIntro rseOnSkipIntro;
+
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnCinematicInputEnabled rseOnCinematicInputEnabled;
 
@@ -156,6 +159,7 @@ public class S_CameraManager : MonoBehaviour
         rseOnCinematicFinish.action += FinishCinematic;
         rseOnSkipInput.action += StartSkip;
         rseOnSkipCancelInput.action += StopSkip;
+        rseOnSkipIntro.action += SkipIntro;
     }
 
     private void OnDisable()
@@ -172,6 +176,7 @@ public class S_CameraManager : MonoBehaviour
         rseOnCinematicFinish.action -= FinishCinematic;
         rseOnSkipInput.action -= StartSkip;
         rseOnSkipCancelInput.action -= StopSkip;
+        rseOnSkipIntro.action -= SkipIntro;
     }
 
     private void Update()
@@ -378,6 +383,17 @@ public class S_CameraManager : MonoBehaviour
             rseOnDisplayUIGame.Call(true);
             rseOnGameInputEnabled.Call();
         }
+    }
+
+    private void SkipIntro()
+    {
+        var anim = cinemachineCameraIntro.GetComponent<Animator>();
+        if (anim) anim.enabled = false;
+
+        cinemachineCameraIntro.Priority = Unfocus;
+        cinemachineCameraRail.Priority = Focus;
+        currentCam = cinemachineCameraRail;
+        currentMode = ModeCamera.Rail;
     }
 
     private void SwitchCinematicCamera(int index)
