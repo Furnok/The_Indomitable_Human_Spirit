@@ -9,7 +9,7 @@ public class S_EnemyMaxTravelZone : MonoBehaviour
 
     [TabGroup("References")]
     [Title("Colliders")]
-    [SerializeField] private BoxCollider box;
+    [SerializeField] private SphereCollider detectionCollider;
 
     [TabGroup("References")]
     [Title("Scripts")]
@@ -31,6 +31,6 @@ public class S_EnemyMaxTravelZone : MonoBehaviour
 
     public void Setup(SSO_EnemyData enemyData)
     {
-        box.size = new Vector3(enemyData.Value.detectionAggroRangeMax, enemyData.Value.detectionAggroRangeMax, enemyData.Value.detectionAggroRangeMax);
+        detectionCollider.radius = enemyData.Value.detectionAggroRangeMax;
     }
 }

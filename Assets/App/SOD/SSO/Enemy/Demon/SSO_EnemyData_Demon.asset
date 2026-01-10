@@ -22,8 +22,8 @@ MonoBehaviour:
     strafeRotationMin: 30
     strafeRotationMax: 90
     detectionRange: 10
-    detectionAggroRangeMax: 50
-    attackCooldown: 3
+    detectionAggroRangeMax: 11
+    attackCooldown: 2
     waitStun: 0.6
     rotationTime: 0.6
     patrolPointWaitMin: 1
@@ -382,5 +382,5 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       distanceMin: 1
-      distanceToChase: 10.5
-      distanceToLoseAttack: 15
+      distanceToChase: 12
+      distanceToLoseAttack: 13.2

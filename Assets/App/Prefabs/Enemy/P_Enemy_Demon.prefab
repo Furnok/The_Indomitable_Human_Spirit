@@ -2560,6 +2560,22 @@ PrefabInstance:
       propertyPath: spawnProjectilePoint
       value: 
       objectReference: {fileID: 2058934923921469545}
+    - target: {fileID: 445208566684554611, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
+      propertyPath: patrolPointsList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 445208566684554611, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
+      propertyPath: 'patrolPointsList.Array.data[1]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 445208566684554611, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
+      propertyPath: 'patrolPointsList.Array.data[2]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 445208566684554611, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
+      propertyPath: 'patrolPointsList.Array.data[3]'
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1039572514723219672, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
       propertyPath: m_Name
       value: Demon
@@ -2567,6 +2583,10 @@ PrefabInstance:
     - target: {fileID: 1536210782470915829, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
       propertyPath: m_Center.y
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2811589338267356800, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
+      propertyPath: canMove
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3632286962636762960, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2588,10 +2608,12 @@ PrefabInstance:
       propertyPath: m_WarningMessage
       value: "\nBinding warning: Some generic clip(s) animate transforms that are
         already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'Jaw'\n\tFrom animation clip 'Makashi_Opening'\n\tFrom
-        animation clip 'MakashiFollow_1'\n\tFrom animation clip 'MakashiFollow_2'\n\tFrom
-        animation clip 'MakashiFollow_3'\n\tFrom animation clip 'MakashiFollow_4'\n\tFrom
-        animation clip 'A_Attack_HeavyFlourish_Sword'"
+        by Humanoid clips.\n\tTransform 'Jaw'\n\tFrom animation clip 'A_EnemyLAttack1D1'\n\tFrom
+        animation clip 'A_EnemyLAttack2D1'\n\tFrom animation clip 'A_EnemyLAttack3D1'\n\tFrom
+        animation clip 'Makashi_Opening'\n\tFrom animation clip 'A_EnemyLFollow1D1'\n\tFrom
+        animation clip 'A_EnemyLFollow1D2'\n\tFrom animation clip 'A_EnemyLFollow1D3'\n\tFrom
+        animation clip 'A_EnemyLFollow2D1'\n\tFrom animation clip 'A_EnemyLFollow2D2'\n\tFrom
+        animation clip 'A_EnemyLFollow2D3'\n\tand more ..."
       objectReference: {fileID: 0}
     - target: {fileID: 6177182004407894465, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
       propertyPath: m_Height
@@ -2623,6 +2645,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7389261747006536606, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
       propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7837490951314405229, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
+      propertyPath: m_Size.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7837490951314405229, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
+      propertyPath: m_Size.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7837490951314405229, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
+      propertyPath: m_Size.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7951420853597671006, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7951420853597671006, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7972417589024532759, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
@@ -2698,7 +2740,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7837995734532070324}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4238934561793798638, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
+    - {fileID: 3932769474522726717, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
+    - {fileID: 481751962266192794, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8382064584298650195, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
       insertIndex: -1

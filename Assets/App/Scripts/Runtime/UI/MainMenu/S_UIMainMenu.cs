@@ -76,6 +76,9 @@ public class S_UIMainMenu : MonoBehaviour
     [SerializeField] private RSE_OnLoadScene rseOnLoadScene;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnSkipIntro rseOnSkipIntro;
+
+    [TabGroup("Outputs")]
     [SerializeField] private RSO_Navigation rsoNavigation;
 
     [TabGroup("Outputs")]
@@ -177,6 +180,7 @@ public class S_UIMainMenu : MonoBehaviour
                 rseOnDataLoad.Call();
                 rseOnDisplayUIGame.Call(true);
                 rseOnGameInputEnabled.Call();
+                rseOnSkipIntro.Call();
                 rsoInGame.Value = true;
 
                 StartCoroutine(S_Utils.DelayRealTime(1.2f, () => 

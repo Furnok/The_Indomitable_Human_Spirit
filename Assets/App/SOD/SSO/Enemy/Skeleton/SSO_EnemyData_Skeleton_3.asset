@@ -22,8 +22,8 @@ MonoBehaviour:
     strafeRotationMin: 30
     strafeRotationMax: 90
     detectionRange: 5
-    detectionAggroRangeMax: 50
-    attackCooldown: 3
+    detectionAggroRangeMax: 30
+    attackCooldown: 2
     waitStun: 0.6
     rotationTime: 0.6
     patrolPointWaitMin: 1
@@ -44,6 +44,8 @@ MonoBehaviour:
           goSourceId: 0
           attackType: 2
           timeCast: 0
+          timeInterval: 0
+          numberOfProjectiles: 0
           damage: 20
           knockbackHitDuration: 0.1
           knockbackHitDistance: 2
@@ -65,6 +67,8 @@ MonoBehaviour:
           goSourceId: 0
           attackType: 2
           timeCast: 0
+          timeInterval: 0
+          numberOfProjectiles: 0
           damage: 20
           knockbackHitDuration: 0.1
           knockbackHitDistance: 2
@@ -86,6 +90,8 @@ MonoBehaviour:
           goSourceId: 0
           attackType: 2
           timeCast: 0
+          timeInterval: 0
+          numberOfProjectiles: 0
           damage: 20
           knockbackHitDuration: 0.1
           knockbackHitDistance: 2
@@ -107,6 +113,8 @@ MonoBehaviour:
           goSourceId: 0
           attackType: 2
           timeCast: 0
+          timeInterval: 0
+          numberOfProjectiles: 0
           damage: 20
           knockbackHitDuration: 0.1
           knockbackHitDistance: 2
@@ -128,6 +136,8 @@ MonoBehaviour:
           goSourceId: 0
           attackType: 2
           timeCast: 0
+          timeInterval: 0
+          numberOfProjectiles: 0
           damage: 20
           knockbackHitDuration: 0.1
           knockbackHitDistance: 2
@@ -149,6 +159,8 @@ MonoBehaviour:
           goSourceId: 0
           attackType: 2
           timeCast: 0
+          timeInterval: 0
+          numberOfProjectiles: 0
           damage: 20
           knockbackHitDuration: 0.1
           knockbackHitDistance: 2
@@ -170,6 +182,8 @@ MonoBehaviour:
           goSourceId: 0
           attackType: 2
           timeCast: 0
+          timeInterval: 0
+          numberOfProjectiles: 0
           damage: 20
           knockbackHitDuration: 0.1
           knockbackHitDistance: 2
@@ -191,6 +205,8 @@ MonoBehaviour:
           goSourceId: 0
           attackType: 2
           timeCast: 0
+          timeInterval: 0
+          numberOfProjectiles: 0
           damage: 20
           knockbackHitDuration: 0.1
           knockbackHitDistance: 2
@@ -212,6 +228,8 @@ MonoBehaviour:
           goSourceId: 0
           attackType: 2
           timeCast: 0
+          timeInterval: 0
+          numberOfProjectiles: 0
           damage: 20
           knockbackHitDuration: 0.1
           knockbackHitDistance: 2
@@ -227,4 +245,4 @@ MonoBehaviour:
           contactPoint: {x: 0, y: 0, z: 0}
       distanceMin: 1
       distanceToChase: 2
-      distanceToLoseAttack: 3
+      distanceToLoseAttack: 5

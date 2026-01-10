@@ -942,6 +942,7 @@ MonoBehaviour:
   rseOnPlayerCenter: {fileID: 11400000, guid: 0a40b7ab63540b84891bec3b379c9b89, type: 2}
   rseOnSkipInput: {fileID: 11400000, guid: 05e8c7ca072a92146962c150e93eb31c, type: 2}
   rseOnSkipCancelInput: {fileID: 11400000, guid: de9971957d02b954588dc0600794c05f, type: 2}
+  rseOnSkipIntro: {fileID: 11400000, guid: 4556bd85d01d6c945b521ee4cb86752e, type: 2}
   rseOnCinematicInputEnabled: {fileID: 11400000, guid: 4a8e19feb57a19146b6b4bf5ad1cf371, type: 2}
   rseOnGameInputEnabled: {fileID: 11400000, guid: 0526673c0b0752b418ffdef1cdaaf184, type: 2}
   rseOnDisplayUIGame: {fileID: 11400000, guid: 0bf0c368d4c90d841af1c0dbb89f0901, type: 2}
