@@ -742,7 +742,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 2
+  m_Radius: 5
   m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &2811589338267356800
 MonoBehaviour:
@@ -1331,7 +1331,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1081287201517365919}
-  - component: {fileID: 7837490951314405229}
+  - component: {fileID: 4216739653353338393}
   - component: {fileID: 5830951658339230131}
   m_Layer: 0
   m_Name: MaxTravelZone
@@ -1355,8 +1355,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7972417589024532759}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &7837490951314405229
-BoxCollider:
+--- !u!135 &4216739653353338393
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1368,14 +1368,14 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 50, y: 50, z: 50}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 10
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!114 &5830951658339230131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1389,7 +1389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTag: Player
-  box: {fileID: 7837490951314405229}
+  detectionCollider: {fileID: 4216739653353338393}
   enemy: {fileID: 445208566684554611}
 --- !u!1 &9149232510415803103
 GameObject:

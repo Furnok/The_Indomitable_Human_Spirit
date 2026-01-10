@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public class S_Enemy : MonoBehaviour
 {
@@ -509,14 +510,7 @@ public class S_Enemy : MonoBehaviour
             if (currentState != S_EnumEnemyState.ReturnBack)
             {
                 animator.SetBool(idleAttack, false);
-
-                if (returnBackCoroutine != null)
-                {
-                    StopCoroutine(returnBackCoroutine);
-                    returnBackCoroutine = null;
-                }
-
-                returnBackCoroutine = StartCoroutine(ReturnBack());
+                animator.SetTrigger(stopAttackParam);
 
                 if (resetAttack != null)
                 {
@@ -525,6 +519,20 @@ public class S_Enemy : MonoBehaviour
                 }
 
                 resetAttack = StartCoroutine(S_Utils.Delay(ssoEnemyData.Value.attackCooldown, () => canAttack = true));
+
+                rootMotionModifier.Setup(1, 0);
+
+                ResetEnemy();
+
+                navMeshAgent.speed = ssoEnemyData.Value.speedChase;
+
+                if (returnBackCoroutine != null)
+                {
+                    StopCoroutine(returnBackCoroutine);
+                    returnBackCoroutine = null;
+                }
+
+                returnBackCoroutine = StartCoroutine(ReturnBack());
             }
         }
     }
@@ -786,6 +794,12 @@ public class S_Enemy : MonoBehaviour
                     break;
                 }
             }
+            else
+            {
+                enemyAttackData.DisableWeaponCollider();
+                enemyAttackData.VFXStopTrail();
+                break;
+            }
 
             yield return null;
         }
@@ -937,8 +951,7 @@ public class S_Enemy : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (patrolPointsList == null || patrolPointsList.Count < 2)
-            return;
+        if (patrolPointsList == null || patrolPointsList.Count < 2) return;
 
         Gizmos.color = Color.yellow;
 
