@@ -17,6 +17,7 @@ MonoBehaviour:
     walkSpeed: 3
     runSpeed: 5
     phaseState: 1
+    timeDisplay: 0
     stunDuration: 0
     distanceToChase: 1.5
     distanceToRun: 25
@@ -33,4 +34,34 @@ MonoBehaviour:
     maxTimeChooseAttack: 0
     rotationTime: 0.6
     controllerOverride: {fileID: 22100000, guid: aba806f790b329a418f1c420ffacdb92, type: 2}
-    listAttack: []
+    listAttack:
+    - attackName: Balls
+      isSpecialAttack: 0
+      timeAfterAttack: 3
+      isAttackDistance: 0
+      pvBossUnlock: 100
+      difficultyLevel: 5
+      listComboData:
+      - animation: {fileID: 7400000, guid: 53ad5fb40b18ceb4796751c5c9d5c39a, type: 2}
+        rootMotionMultiplier: 2
+        showVFXAttackType: 1
+        attackData:
+          attackId: 0
+          goSourceId: 0
+          attackType: 1
+          timeCast: 0
+          timeInterval: 0
+          numberOfProjectiles: 0
+          damage: 0
+          knockbackHitDuration: 0
+          knockbackHitDistance: 0
+          knockbackOnParryDuration: 0
+          knockbackOnParrryDistance: 0
+          parryToleranceBeforeHit: 0
+          parryToleranceAfterHit: 0
+          invicibilityDuration: 0
+          convictionReduction: 0
+          convictionParryGain: 0
+          lastAttack: 0
+          attackDirection: {x: 0, y: 0, z: 0}
+          contactPoint: {x: 0, y: 0, z: 0}

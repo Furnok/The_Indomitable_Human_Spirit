@@ -2557,6 +2557,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_BossPhase1
       objectReference: {fileID: 0}
+    - target: {fileID: 2795595827533505534, guid: 26b32e26939d3614f9dc5380b22f3191, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4283267785218327364, guid: 26b32e26939d3614f9dc5380b22f3191, type: 3}
       propertyPath: m_LocalPosition.x
       value: -40

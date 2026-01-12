@@ -109,6 +109,12 @@ public class S_Boss : MonoBehaviour
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnPlayerRespawn rseOnPlayerRespawn;
 
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnDisplayBossHealth rseOnDisplayBossHealth;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnUpdateBossHealth rseOnUpdateBossHealth;
+
     private List<S_ClassAttackOwned> listAttackOwneds = new();
     private List<S_ClassAttackOwned> listAttackOwnedPossibilities = new();
     private S_EnumBossState currentState = S_EnumBossState.Idle;
@@ -188,6 +194,10 @@ public class S_Boss : MonoBehaviour
         if (currentPhaseState == S_EnumBossPhaseState.Phase1)
         {
             bossPhase1UI.Setup(ssoBossData);
+        }
+        else if(currentPhaseState == S_EnumBossPhaseState.Phase2)
+        {
+            rseOnUpdateBossHealth.Call(health);
         }
         UpdateLastHealthValue();
     }
@@ -338,6 +348,12 @@ public class S_Boss : MonoBehaviour
             bossAttack.aimPointPlayer = aimPoint;
             UpdateState(S_EnumBossState.Chase);
             StartCoroutine(GainDifficultyLevel());
+
+            if(currentPhaseState == S_EnumBossPhaseState.Phase2)
+            {
+                rseOnUpdateBossHealth.Call(health);
+                rseOnDisplayBossHealth.Call(true);
+            }
         }
         else
         {
@@ -347,6 +363,10 @@ public class S_Boss : MonoBehaviour
                 if (currentPhaseState == S_EnumBossPhaseState.Phase1)
                 {
                     bossPhase1UI.UpdateHealthBar(health);
+                }
+                else if(currentPhaseState == S_EnumBossPhaseState.Phase2)
+                {
+                    rseOnUpdateBossHealth.Call(health);
                 }
             }
 
@@ -452,8 +472,12 @@ public class S_Boss : MonoBehaviour
         {
             bossPhase1UI.UpdateHealthBar(health);
         }
+        else if(currentPhaseState == S_EnumBossPhaseState.Phase2)
+        {
+            rseOnUpdateBossHealth.Call(health);
+        }
 
-        UpdateLastHealthValue();
+            UpdateLastHealthValue();
 
         if (health <= 0) UpdateState(S_EnumBossState.Death);
     }
@@ -469,6 +493,11 @@ public class S_Boss : MonoBehaviour
     {
         isDead = true;
         animator.SetTrigger(deathParam);
+
+        if (currentPhaseState == S_EnumBossPhaseState.Phase2)
+        {
+            rseOnDisplayBossHealth.Call(false);
+        }
 
         StopAllCoroutines();
 
@@ -493,6 +522,10 @@ public class S_Boss : MonoBehaviour
             if (currentPhaseState == S_EnumBossPhaseState.Phase1)
             {
                 bossPhase1UI.UpdateHealthBar(health);
+            }
+            else if (currentPhaseState == S_EnumBossPhaseState.Phase2)
+            {
+                rseOnUpdateBossHealth.Call(health);
             }
         }
 

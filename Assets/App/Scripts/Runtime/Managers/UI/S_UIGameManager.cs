@@ -84,6 +84,9 @@ public class S_UIGameManager : MonoBehaviour
     [SerializeField] private RSE_OnDisplayBossHealth rseOnDisplayBossHealth;
 
     [TabGroup("Inputs")]
+    [SerializeField] private RSE_OnUpdateBossHealth rseOnUpdateBossHealth;
+
+    [TabGroup("Inputs")]
     [SerializeField] private RSE_OnPlayerHealthUpdate rseOnPlayerHealthUpdate;
 
     [TabGroup("Inputs")]
@@ -186,6 +189,7 @@ public class S_UIGameManager : MonoBehaviour
     private Tween convictionTween = null;
     private Tween preconvictionTween = null;
     private Tween skipTween = null;
+    private Tween bossHealthTween = null;
 
     private Coroutine resetCoroutine = null;
     private Coroutine resetSaveCoroutine = null;
@@ -209,6 +213,7 @@ public class S_UIGameManager : MonoBehaviour
     private void OnEnable()
     {
         rseOnDisplayBossHealth.action += DisplayBossHealth;
+        rseOnUpdateBossHealth.action += SetBossHealthSliderValue;
         rseOnPlayerHealthUpdate.action += SetHealthSliderValue;
         rseOnPlayerConvictionUpdate.action += SetConvictionSliderValue;
         rsoPreconsumedConviction.onValueChanged += SetPreconvictionSliderValue;
@@ -224,6 +229,7 @@ public class S_UIGameManager : MonoBehaviour
     private void OnDisable()
     {
         rseOnDisplayBossHealth.action -= DisplayBossHealth;
+        rseOnUpdateBossHealth.action -= SetBossHealthSliderValue;
         rseOnPlayerHealthUpdate.action -= SetHealthSliderValue;
         rseOnPlayerConvictionUpdate.action -= SetConvictionSliderValue;
         rsoPreconsumedConviction.onValueChanged -= SetPreconvictionSliderValue;
@@ -238,6 +244,7 @@ public class S_UIGameManager : MonoBehaviour
         healthTween?.Kill();
         convictionTween?.Kill();
         preconvictionTween?.Kill();
+        bossHealthTween?.Kill();
     }
 
     #region UI Game
@@ -260,7 +267,12 @@ public class S_UIGameManager : MonoBehaviour
             });
         }
     }
+    private void SetBossHealthSliderValue(float health)
+    {
+        bossHealthTween?.Kill();
 
+        bossHealthTween = sliderBossHealth.DOValue(health, ssoAnimationSlider.Value).SetEase(Ease.OutCubic);
+    }
     private void SetHealthSliderValue(float health)
     {
         healthTween?.Kill();
