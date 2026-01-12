@@ -15,9 +15,11 @@ public class S_ClassSettingsSaved
     public bool controllerRumble = true;
 
     [Title("Screen")]
+    public int resolutionIndex = -1;
+
     public bool fullScreen = true;
 
-    public int resolutionIndex = -1;
+    public int qualityIndex = 0;
 
     [Title("Audio")]
     public List<S_ClassVolume> listVolumes = new()

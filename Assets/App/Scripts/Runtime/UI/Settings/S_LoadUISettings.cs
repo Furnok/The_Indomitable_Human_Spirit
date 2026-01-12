@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.SmartFormat.Utilities;
 using UnityEngine.UI;
 
 public class S_LoadUISettings : MonoBehaviour
@@ -30,6 +31,9 @@ public class S_LoadUISettings : MonoBehaviour
 
     [TabGroup("References")]
     [SerializeField] private Toggle toggleFullscreen;
+
+    [TabGroup("References")]
+    [SerializeField] private TMP_Dropdown dropDownQuality;
 
     [TabGroup("References")]
     [SerializeField] private List<Slider> listSliderVolume;
@@ -67,6 +71,8 @@ public class S_LoadUISettings : MonoBehaviour
         LoadResolutions();
 
         LoadFullScreen();
+
+        LoadQuality();
 
         LoadVolumes();
 
@@ -137,6 +143,11 @@ public class S_LoadUISettings : MonoBehaviour
     private void LoadFullScreen()
     {
         toggleFullscreen.isOn = rsoSettingsSaved.Value.fullScreen;
+    }
+
+    private void LoadQuality()
+    {
+        dropDownQuality.value = rsoSettingsSaved.Value.qualityIndex;
     }
 
     private void LoadVolumes()

@@ -62,7 +62,7 @@ public class S_UISettings : MonoBehaviour
     [SerializeField] private Selectable dropDownResolutions;
 
     [TabGroup("References")]
-    [SerializeField] private Selectable toggleFullscreen;
+    [SerializeField] private Selectable dropDownQuality;
 
     [TabGroup("References")]
     [SerializeField] private Selectable sliderMainVolume;
@@ -378,7 +378,7 @@ public class S_UISettings : MonoBehaviour
             nav = buttonApply.navigation;
             nav.mode = Navigation.Mode.Explicit;
 
-            nav.selectOnUp = toggleFullscreen;
+            nav.selectOnUp = dropDownQuality;
             nav.selectOnDown = buttonGraphics;
 
             buttonApply.navigation = nav;
@@ -386,7 +386,7 @@ public class S_UISettings : MonoBehaviour
             nav = buttonReset.navigation;
             nav.mode = Navigation.Mode.Explicit;
 
-            nav.selectOnUp = toggleFullscreen;
+            nav.selectOnUp = dropDownQuality;
             nav.selectOnDown = buttonGraphics;
 
             buttonReset.navigation = nav;
@@ -394,7 +394,7 @@ public class S_UISettings : MonoBehaviour
             nav = buttonReturn.navigation;
             nav.mode = Navigation.Mode.Explicit;
 
-            nav.selectOnUp = toggleFullscreen;
+            nav.selectOnUp = dropDownQuality;
             nav.selectOnDown = buttonGraphics;
 
             buttonReturn.navigation = nav;

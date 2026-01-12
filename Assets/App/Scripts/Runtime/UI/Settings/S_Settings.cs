@@ -170,6 +170,11 @@ public class S_Settings : MonoBehaviour
         if (isLoaded && rsoSettingsSaved.Value.fullScreen != value) rsoSettingsSaved.Value.fullScreen = value;
     }
 
+    public void UpdateQuality(int index)
+    {
+        if (isLoaded && rsoSettingsSaved.Value.qualityIndex != index) rsoSettingsSaved.Value.qualityIndex = index;
+    }
+
     public void UpdateMainVolume(float value)
     {
         if (isLoaded && rsoSettingsSaved.Value.listVolumes[0].volume != value)
@@ -284,6 +289,8 @@ public class S_Settings : MonoBehaviour
         else Screen.fullScreenMode = FullScreenMode.Windowed;
 
         Screen.fullScreen = rsoSettingsSaved.Value.fullScreen;
+
+        QualitySettings.SetQualityLevel(rsoSettingsSaved.Value.qualityIndex, true);
 
         rseOnSaveData.Call(saveSettingsName, true);
     }

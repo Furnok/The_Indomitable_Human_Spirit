@@ -288,6 +288,8 @@ public class S_DataManagement : MonoBehaviour
 
         Screen.fullScreen = rsoSettingsSaved.Value.fullScreen;
 
+        QualitySettings.SetQualityLevel(rsoSettingsSaved.Value.qualityIndex, true);
+
         audioMaster.setVolume(rsoSettingsSaved.Value.listVolumes[0].volume / 100);
         audioMusic.setVolume(rsoSettingsSaved.Value.listVolumes[1].volume / 100);
         audioSounds.setVolume(rsoSettingsSaved.Value.listVolumes[2].volume / 100);
