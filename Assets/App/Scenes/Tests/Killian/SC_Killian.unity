@@ -5001,14 +5001,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_CanvasGame
       objectReference: {fileID: 0}
-    - target: {fileID: 3677968079688610705, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
-      propertyPath: _parryRumbleData
-      value: 
-      objectReference: {fileID: 11400000, guid: 9d40557d5303f1243ab80673c0fd8be1, type: 2}
-    - target: {fileID: 3677968079688610705, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
-      propertyPath: _onRumbleRequested
-      value: 
-      objectReference: {fileID: 11400000, guid: 398d5ea3b7e14d0458a5cba996361021, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
