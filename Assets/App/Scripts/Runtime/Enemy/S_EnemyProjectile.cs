@@ -52,7 +52,7 @@ public class S_EnemyProjectile : MonoBehaviour, I_AttackProvider, I_ReflectableP
     private bool randomizeArc => ssoProjectileData.Value.randomizeArc;
     private float arcRandomDirectionMin => ssoProjectileData.Value.arcRandomDirectionMin;
     private float arcRandomDirectionMax => ssoProjectileData.Value.arcRandomDirectionMax;
-    private float travelTime => ssoProjectileData.Value.travelTime;
+    private float travelTime;
 
     public void Initialize(Transform owner, Transform target = null, S_StructEnemyAttackData attackData = new())
     {
@@ -65,6 +65,19 @@ public class S_EnemyProjectile : MonoBehaviour, I_AttackProvider, I_ReflectableP
 
         owner.gameObject.TryGetComponent<I_AimPointProvider>(out I_AimPointProvider aimPointProvider);
         startAimPoint = aimPointProvider != null ? aimPointProvider.GetAimPoint() : null;
+
+        travelTime = ssoProjectileData.Value.travelTime;
+        this.startPos = transform.position;
+
+        Vector3 toTarget = target != null ? (target.position - startPos) : transform.forward * 10f;
+
+        float dist = toTarget.magnitude;
+
+        float baseTravel = ssoProjectileData.Value.travelTime;
+        float distRef = 12f;
+        float scaledTravel = baseTravel * (dist / distRef);
+        scaledTravel = Mathf.Clamp(scaledTravel, 0.12f, baseTravel);
+        travelTime = scaledTravel;
 
         CalculateControlPoint();
     }
