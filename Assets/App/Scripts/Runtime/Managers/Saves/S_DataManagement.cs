@@ -51,6 +51,8 @@ public class S_DataManagement : MonoBehaviour
 
     private void Awake()
     {
+        Application.targetFrameRate = 120;
+
         audioMaster = RuntimeManager.GetBus("bus:/");
         audioMusic = RuntimeManager.GetBus("bus:/Music");
         audioSounds = RuntimeManager.GetBus("bus:/Sounds");

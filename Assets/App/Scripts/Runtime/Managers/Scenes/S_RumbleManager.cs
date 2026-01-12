@@ -11,6 +11,9 @@ public class S_RumbleManager : MonoBehaviour
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnRumbleStopChannel _onRumbleStopChannel;
 
+    [TabGroup("Inputs")]
+    [SerializeField] private RSE_OnRumbleStop _onRumbleStop;
+
     [TabGroup("Outputs")]
     [SerializeField] private RSO_SettingsSaved _rsoSettingsSaved;
 
@@ -26,12 +29,14 @@ public class S_RumbleManager : MonoBehaviour
     {
         _onRumbleRequested.action += OnRumbleRequested;
         _onRumbleStopChannel.action += OnRumbleStopChannel;
+        _onRumbleStop.action += StopAllRumble;
     }
 
     private void OnDisable()
     {
         _onRumbleRequested.action -= OnRumbleRequested;
         _onRumbleStopChannel.action -= OnRumbleStopChannel;
+        _onRumbleStop.action -= StopAllRumble;
 
         StopAllRumble();
     }
