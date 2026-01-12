@@ -56,7 +56,7 @@ public class S_UISettings : MonoBehaviour
     [SerializeField] private Selectable dropDownLanguages;
 
     [TabGroup("References")]
-    [SerializeField] private Selectable toggleHoldLockTarget;
+    [SerializeField] private Selectable toggleDevMode;
 
     [TabGroup("References")]
     [SerializeField] private Selectable dropDownResolutions;
@@ -139,7 +139,7 @@ public class S_UISettings : MonoBehaviour
             nav = buttonApply.navigation;
             nav.mode = Navigation.Mode.Explicit;
 
-            nav.selectOnUp = toggleHoldLockTarget;
+            nav.selectOnUp = toggleDevMode;
             nav.selectOnDown = buttonGameplay;
 
             buttonApply.navigation = nav;
@@ -147,7 +147,7 @@ public class S_UISettings : MonoBehaviour
             nav = buttonReset.navigation;
             nav.mode = Navigation.Mode.Explicit;
 
-            nav.selectOnUp = toggleHoldLockTarget;
+            nav.selectOnUp = toggleDevMode;
             nav.selectOnDown = buttonGameplay;
 
             buttonReset.navigation = nav;
@@ -155,7 +155,7 @@ public class S_UISettings : MonoBehaviour
             nav = buttonReturn.navigation;
             nav.mode = Navigation.Mode.Explicit;
 
-            nav.selectOnUp = toggleHoldLockTarget;
+            nav.selectOnUp = toggleDevMode;
             nav.selectOnDown = buttonGameplay;
 
             buttonReturn.navigation = nav;
@@ -314,7 +314,7 @@ public class S_UISettings : MonoBehaviour
             nav = buttonApply.navigation;
             nav.mode = Navigation.Mode.Explicit;
 
-            nav.selectOnUp = toggleHoldLockTarget;
+            nav.selectOnUp = toggleDevMode;
             nav.selectOnDown = buttonGameplay;
 
             buttonApply.navigation = nav;
@@ -322,7 +322,7 @@ public class S_UISettings : MonoBehaviour
             nav = buttonReset.navigation;
             nav.mode = Navigation.Mode.Explicit;
 
-            nav.selectOnUp = toggleHoldLockTarget;
+            nav.selectOnUp = toggleDevMode;
             nav.selectOnDown = buttonGameplay;
 
             buttonReset.navigation = nav;
@@ -330,7 +330,7 @@ public class S_UISettings : MonoBehaviour
             nav = buttonReturn.navigation;
             nav.mode = Navigation.Mode.Explicit;
 
-            nav.selectOnUp = toggleHoldLockTarget;
+            nav.selectOnUp = toggleDevMode;
             nav.selectOnDown = buttonGameplay;
 
             buttonReturn.navigation = nav;

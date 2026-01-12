@@ -11,8 +11,12 @@ public class S_ClassSettingsSaved
     [Title("Target")]
     public bool holdLockTarget = false;
 
-    [Title("Target")]
+    [Title("Others")]
     public bool controllerRumble = true;
+
+    public bool activateTuto = true;
+
+    public bool devMode = false;
 
     [Title("Screen")]
     public int resolutionIndex = -1;

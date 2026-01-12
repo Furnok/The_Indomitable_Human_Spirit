@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Localization.SmartFormat.Utilities;
 using UnityEngine.UI;
 
 public class S_LoadUISettings : MonoBehaviour
@@ -25,6 +24,12 @@ public class S_LoadUISettings : MonoBehaviour
 
     [TabGroup("References")]
     [SerializeField] private Toggle toggleControllerRumble;
+
+    [TabGroup("References")]
+    [SerializeField] private Toggle toggleActivateTuto;
+
+    [TabGroup("References")]
+    [SerializeField] private Toggle toggleDevMode;
 
     [TabGroup("References")]
     [SerializeField] private TMP_Dropdown dropDownResolutions;
@@ -68,6 +73,10 @@ public class S_LoadUISettings : MonoBehaviour
 
         LoadControllerRumble();
 
+        LoadActivateTuto();
+
+        LoadDevMode();
+
         LoadResolutions();
 
         LoadFullScreen();
@@ -92,6 +101,16 @@ public class S_LoadUISettings : MonoBehaviour
     private void LoadControllerRumble()
     {
         toggleControllerRumble.isOn = rsoSettingsSaved.Value.controllerRumble;
+    }
+
+    private void LoadActivateTuto()
+    {
+        toggleActivateTuto.isOn = rsoSettingsSaved.Value.activateTuto;
+    }
+
+    private void LoadDevMode()
+    {
+        toggleDevMode.isOn = rsoSettingsSaved.Value.devMode;
     }
 
     private int GetResolutions(int index)

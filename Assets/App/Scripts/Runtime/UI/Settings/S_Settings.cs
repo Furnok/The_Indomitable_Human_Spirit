@@ -24,6 +24,12 @@ public class S_Settings : MonoBehaviour
     [SerializeField] private RSE_OnSaveData rseOnSaveData;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnConsole rseOnConsole;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnCancelTargeting rseOnCancelTargeting;
+
+    [TabGroup("Outputs")]
     [SerializeField] private RSO_SettingsSaved rsoSettingsSaved;
 
     private bool isLoaded = false;
@@ -131,11 +137,28 @@ public class S_Settings : MonoBehaviour
     public void UpdateHoldLockTarget(bool value)
     {
         if (isLoaded && rsoSettingsSaved.Value.holdLockTarget != value) rsoSettingsSaved.Value.holdLockTarget = value;
+
+        if (rsoSettingsSaved.Value.holdLockTarget) rseOnCancelTargeting.Call();
     }
 
     public void UpdateControllerRumble(bool value)
     {
         if (isLoaded && rsoSettingsSaved.Value.controllerRumble != value) rsoSettingsSaved.Value.controllerRumble = value;
+    }
+
+    public void UpdateActivateTuto(bool value)
+    {
+        if (isLoaded && rsoSettingsSaved.Value.activateTuto != value) rsoSettingsSaved.Value.activateTuto = value;
+    }
+
+    public void UpdateDevMode(bool value)
+    {
+        if (isLoaded && rsoSettingsSaved.Value.devMode != value)
+        {
+            rsoSettingsSaved.Value.devMode = value;
+
+            if (!rsoSettingsSaved.Value.devMode) rseOnConsole.Call();
+        }
     }
 
     private Resolution GetResolutions(int index)
