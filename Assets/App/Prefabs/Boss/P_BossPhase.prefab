@@ -987,6 +987,7 @@ MonoBehaviour:
   rootMotionModifier: {fileID: 3231315390003761703}
   bossAttackData: {fileID: 461593203997373390}
   bossAttack: {fileID: 6465511601208726001}
+  bossPhase1UI: {fileID: 0}
   rseOnPlayerGettingHit: {fileID: 11400000, guid: 0bde5f6bad322664c9a88a5237c9d868, type: 2}
   rseOnPlayerDeath: {fileID: 11400000, guid: 05b30ffda8ad63c4d82da9ab419e36e1, type: 2}
   rseOnEndAttack: {fileID: 11400000, guid: df61dd20dc38205418f8426747ea5149, type: 2}
@@ -1802,9 +1803,9 @@ GameObject:
   - component: {fileID: 9194433492713377969}
   - component: {fileID: 3961580513568290508}
   - component: {fileID: 7670651181594837628}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Reflect
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

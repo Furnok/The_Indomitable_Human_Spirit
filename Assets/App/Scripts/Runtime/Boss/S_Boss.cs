@@ -84,6 +84,10 @@ public class S_Boss : MonoBehaviour
     [TabGroup("References")]
     [SerializeField] private S_BossAttack bossAttack;
 
+    [TabGroup("References")]
+    [ShowIf("@ssoBossData != null && ssoBossData.Value.phaseState == S_EnumBossPhaseState.Phase1")]
+    [SerializeField] private S_BossPhase1UI bossPhase1UI;
+
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnPlayerGettingHit rseOnPlayerGettingHit;
 
@@ -144,7 +148,7 @@ public class S_Boss : MonoBehaviour
     private bool isAttacking = false;
     private bool isStrafe = false;
     private bool unlockRotate = false;
-    
+
     #endregion
 
     private void Awake()
@@ -181,7 +185,10 @@ public class S_Boss : MonoBehaviour
 
             listAttackOwneds.Add(attackData);
         }
-
+        if (currentPhaseState == S_EnumBossPhaseState.Phase1)
+        {
+            bossPhase1UI.Setup(ssoBossData);
+        }
         UpdateLastHealthValue();
     }
 
@@ -337,6 +344,10 @@ public class S_Boss : MonoBehaviour
             if (health != maxHealth)
             {
                 health = maxHealth;
+                if (currentPhaseState == S_EnumBossPhaseState.Phase1)
+                {
+                    bossPhase1UI.UpdateHealthBar(health);
+                }
             }
 
             aimPoint = null;
@@ -437,6 +448,11 @@ public class S_Boss : MonoBehaviour
     {
         health = Mathf.Max(health - damage, 0);
 
+        if (currentPhaseState == S_EnumBossPhaseState.Phase1)
+        {
+            bossPhase1UI.UpdateHealthBar(health);
+        }
+
         UpdateLastHealthValue();
 
         if (health <= 0) UpdateState(S_EnumBossState.Death);
@@ -474,7 +490,10 @@ public class S_Boss : MonoBehaviour
         if (health != ssoBossData.Value.health)
         {
             health = ssoBossData.Value.health;
-            //enemyUI.UpdateHealthBar(health);
+            if (currentPhaseState == S_EnumBossPhaseState.Phase1)
+            {
+                bossPhase1UI.UpdateHealthBar(health);
+            }
         }
 
         aimPoint = null;
