@@ -147,7 +147,7 @@ public class S_UIGameManager : MonoBehaviour
     [SerializeField] private RSO_InConsole rsoInConsole;
 
     [TabGroup("Outputs")]
-    [SerializeField] private RSO_GameInPause rsoGameInPause;
+    [SerializeField] private RSO_InGame rsoInGame;
 
     [TabGroup("Outputs")]
     [SerializeField] private RSO_Navigation rsoNavigation;
@@ -444,7 +444,7 @@ public class S_UIGameManager : MonoBehaviour
                         rsoConsoleDisplay.Value = false;
                         rsoInConsole.Value = false;
 
-                        if (rsoGameInPause.Value)
+                        if (!rsoInGame.Value)
                         {
                             rseOnUIInputEnabled.Call();
 
@@ -474,7 +474,7 @@ public class S_UIGameManager : MonoBehaviour
                 rsoConsoleDisplay.Value = false;
                 rsoInConsole.Value = false;
 
-                if (rsoGameInPause.Value)
+                if (!rsoInGame.Value)
                 {
                     rseOnUIInputEnabled.Call();
 
