@@ -18,7 +18,7 @@ MonoBehaviour:
     ammountConvitionNeeded: 0
     timeHoldingInput: 0
     speed: 10
-    color: {r: 0, g: 0, b: 0, a: 0}
+    color: {r: 1, g: 0.7530705, b: 0, a: 0}
     projectileData:
       arcHeightMultiplier: 2
       arcDirection: 0
@@ -58,7 +58,7 @@ MonoBehaviour:
     ammountConvitionNeeded: 12
     timeHoldingInput: 0.6
     speed: 10
-    color: {r: 0, g: 0, b: 0, a: 0}
+    color: {r: 1, g: 0.7529412, b: 0, a: 0}
     projectileData:
       arcHeightMultiplier: 2
       arcDirection: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
     ammountConvitionNeeded: 24
     timeHoldingInput: 0.9
     speed: 10
-    color: {r: 0, g: 0, b: 0, a: 0}
+    color: {r: 1, g: 0.8496671, b: 0.3915094, a: 0}
     projectileData:
       arcHeightMultiplier: 2
       arcDirection: 0
@@ -138,7 +138,7 @@ MonoBehaviour:
     ammountConvitionNeeded: 38
     timeHoldingInput: 1.2
     speed: 10
-    color: {r: 0, g: 0, b: 0, a: 0}
+    color: {r: 1, g: 0.8839623, b: 0.5330188, a: 0}
     projectileData:
       arcHeightMultiplier: 2
       arcDirection: 0
@@ -178,7 +178,7 @@ MonoBehaviour:
     ammountConvitionNeeded: 63
     timeHoldingInput: 1.5
     speed: 10
-    color: {r: 0, g: 0, b: 0, a: 0}
+    color: {r: 1, g: 0.9275805, b: 0.7028302, a: 0}
     projectileData:
       arcHeightMultiplier: 2
       arcDirection: 0
@@ -218,7 +218,7 @@ MonoBehaviour:
     ammountConvitionNeeded: 110
     timeHoldingInput: 1.8
     speed: 10
-    color: {r: 0, g: 0, b: 0, a: 0}
+    color: {r: 1, g: 1, b: 1, a: 0}
     projectileData:
       arcHeightMultiplier: 2
       arcDirection: 0

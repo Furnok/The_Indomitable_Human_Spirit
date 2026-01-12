@@ -61,7 +61,7 @@ MonoBehaviour:
     dodgeCooldown: 0.8
     parryDuration: 0.1
     parryCooldown: 0.1
-    projectileLifeTime: 2
+    projectileLifeTime: 210
     delayBeforeCastAttack: 0.2
     timeWaitBetweenSteps: 0.3
     attackOffset: {x: 0.7, y: 1.6, z: 0}
