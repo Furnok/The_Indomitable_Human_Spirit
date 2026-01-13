@@ -779,12 +779,30 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
         },
         {
             ""name"": ""Tutorial"",
-            ""id"": ""68f77758-4cd2-4ac6-82b8-23e0d0f6af0c"",
+            ""id"": ""3f673471-1ac8-4d5c-9d80-6d7771e2dcc1"",
             ""actions"": [
                 {
                     ""name"": ""Next"",
                     ""type"": ""Button"",
-                    ""id"": ""ec03fb4a-da05-4bcf-9053-53e0dff1fbc8"",
+                    ""id"": ""1f83d5f9-3534-489c-a0d8-0414fe187add"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Heal"",
+                    ""type"": ""Button"",
+                    ""id"": ""b84989dd-dc28-481f-a198-ca742e2b23ec"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Targeting"",
+                    ""type"": ""Button"",
+                    ""id"": ""b031c54d-43b0-4a06-a889-cb4d47bc4773"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -793,7 +811,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Swap Target"",
                     ""type"": ""Button"",
-                    ""id"": ""071efed9-1a46-4a71-859d-1ac22a0d5c34"",
+                    ""id"": ""fbe6ae06-ed47-4c88-90ff-5331e561f5cf"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -802,7 +820,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Parry"",
                     ""type"": ""Button"",
-                    ""id"": ""e81a406a-0810-4155-9afd-51dd4d7ca1c2"",
+                    ""id"": ""5c2f7ead-6be6-4cc2-be2a-139490d0a74f"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -811,7 +829,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
-                    ""id"": ""a5ee4f98-dda5-4f52-83ff-58ee164cbf82"",
+                    ""id"": ""e868f3f0-0fcd-4fd4-bf7d-c20c32fa417c"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -820,7 +838,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Dodge"",
                     ""type"": ""Button"",
-                    ""id"": ""ad7ab51b-57dc-42b3-8c77-5b6abe2237c4"",
+                    ""id"": ""99d5f0f4-096c-48ab-9d80-e9b1125a3522"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -829,17 +847,17 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Attack"",
                     ""type"": ""Button"",
-                    ""id"": ""0519c502-63be-403d-b23c-910cc46f5202"",
+                    ""id"": ""a5acde16-c344-4da3-9e97-3d0837ad3bf4"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold(duration=0.7,pressPoint=0.5)"",
                     ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""24fcde31-1bef-4499-bb45-790d243e6b5f"",
+                    ""id"": ""4225420c-7d43-4ec4-934c-e65660e2e86f"",
                     ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -850,7 +868,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""bdc9b4d6-5f74-423a-99bd-d7c4c896d873"",
+                    ""id"": ""80881a12-233a-494e-b758-1235bfea8915"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -861,7 +879,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""835f4af6-4af8-44a5-a728-5c0b6ee8e876"",
+                    ""id"": ""ccf1186b-c95b-4451-8e25-132707608e48"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -872,7 +890,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""96b0e38d-b477-4720-8bd9-25366aa6af13"",
+                    ""id"": ""d203c26a-6801-4b27-8256-f36a3201799c"",
                     ""path"": ""<Keyboard>/anyKey"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -882,8 +900,63 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
+                    ""name"": """",
+                    ""id"": ""0f3761e2-f0e2-42cc-8092-b60bf4f1c8bc"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Controller"",
+                    ""action"": ""Heal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""62e4dcee-9bb3-4ee9-aaae-1924a4f187f5"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard and mouse"",
+                    ""action"": ""Heal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""421f4a80-8d69-4cc7-b34a-594b02962c40"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Controller"",
+                    ""action"": ""Targeting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""919d9822-e1b0-4d84-a8ae-765c456e671a"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Controller"",
+                    ""action"": ""Targeting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""00db2e28-6c26-4d68-91ec-984e89e63a26"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard and mouse"",
+                    ""action"": ""Targeting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
                     ""name"": ""1D Axis"",
-                    ""id"": ""52f4e4d6-da54-45c4-a187-4099d19e62cb"",
+                    ""id"": ""e154eb91-be4e-4cea-a768-6c1f5aa15950"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -894,7 +967,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""negative"",
-                    ""id"": ""9a137cd8-b9ac-4498-ba2e-97c608ecbcdb"",
+                    ""id"": ""a3003b1d-55de-4406-ad1f-00852800e81c"",
                     ""path"": ""<Gamepad>/rightStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -905,7 +978,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""positive"",
-                    ""id"": ""d5a93c0e-de42-4d30-b3bf-266ec6a1978a"",
+                    ""id"": ""7ec73831-aabb-4927-965e-f8ae9c753804"",
                     ""path"": ""<Gamepad>/rightStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -916,7 +989,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""1D Axis"",
-                    ""id"": ""65a38dbd-b4c0-455c-8b27-ae73f0e9501e"",
+                    ""id"": ""305eb276-e6c4-4c6f-818e-6338f0e430f5"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -927,7 +1000,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""negative"",
-                    ""id"": ""a4f69792-9981-4812-b66f-15932bd9e4b3"",
+                    ""id"": ""6814f415-f366-4005-8a19-507e817cd5fd"",
                     ""path"": ""<Mouse>/scroll/down"",
                     ""interactions"": """",
                     ""processors"": ""AxisDeadzone"",
@@ -938,7 +1011,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""positive"",
-                    ""id"": ""0b0432fc-c723-43c6-bbb0-91002d62d325"",
+                    ""id"": ""855be2bc-185b-4c27-8f00-d470c4f60b0c"",
                     ""path"": ""<Mouse>/scroll/up"",
                     ""interactions"": """",
                     ""processors"": ""AxisDeadzone"",
@@ -949,7 +1022,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""7439a4ac-3c7d-4416-a3fd-41c347a7011b"",
+                    ""id"": ""452c2251-6985-4d66-bd86-73192c281bf8"",
                     ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -960,7 +1033,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""cfae71f3-bfcd-4467-96f4-9f65ae00dae4"",
+                    ""id"": ""888e8b64-93b2-4c60-a7c9-1f6a8013c4cb"",
                     ""path"": ""<Keyboard>/alt"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -971,7 +1044,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""1dd18197-1ba3-4640-bbae-a45b58c05977"",
+                    ""id"": ""68a155e4-2877-443b-abe8-2deaf002461f"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -982,7 +1055,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""0a20bf10-19b8-40ee-9ca1-c360493bb2bb"",
+                    ""id"": ""d08faa74-65fb-4d40-a9d9-869fd3c5e0a5"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -993,7 +1066,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""cb6dd34a-9a11-47c9-b902-529a4c075293"",
+                    ""id"": ""11a4c9a9-24d6-41e3-bdea-5dbd5d2331f3"",
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1004,7 +1077,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""3d8a4605-4cc8-41d2-b351-12b1a5d34324"",
+                    ""id"": ""844dab1a-0742-43e3-bc92-b3e363fea8e3"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1015,7 +1088,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c60347fb-91cf-4d28-833b-8c20a8314522"",
+                    ""id"": ""8268955b-3cd9-4da9-88e1-4a9bba83cf7d"",
                     ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1026,7 +1099,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""40b8f92a-24ee-4d5a-9325-c18e43e8403f"",
+                    ""id"": ""a466ffed-76b0-4df7-9df8-b8146119b74b"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -1091,6 +1164,8 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
         // Tutorial
         m_Tutorial = asset.FindActionMap("Tutorial", throwIfNotFound: true);
         m_Tutorial_Next = m_Tutorial.FindAction("Next", throwIfNotFound: true);
+        m_Tutorial_Heal = m_Tutorial.FindAction("Heal", throwIfNotFound: true);
+        m_Tutorial_Targeting = m_Tutorial.FindAction("Targeting", throwIfNotFound: true);
         m_Tutorial_SwapTarget = m_Tutorial.FindAction("Swap Target", throwIfNotFound: true);
         m_Tutorial_Parry = m_Tutorial.FindAction("Parry", throwIfNotFound: true);
         m_Tutorial_Interact = m_Tutorial.FindAction("Interact", throwIfNotFound: true);
@@ -1589,6 +1664,8 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Tutorial;
     private List<ITutorialActions> m_TutorialActionsCallbackInterfaces = new List<ITutorialActions>();
     private readonly InputAction m_Tutorial_Next;
+    private readonly InputAction m_Tutorial_Heal;
+    private readonly InputAction m_Tutorial_Targeting;
     private readonly InputAction m_Tutorial_SwapTarget;
     private readonly InputAction m_Tutorial_Parry;
     private readonly InputAction m_Tutorial_Interact;
@@ -1609,6 +1686,14 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Tutorial/Next".
         /// </summary>
         public InputAction @Next => m_Wrapper.m_Tutorial_Next;
+        /// <summary>
+        /// Provides access to the underlying input action "Tutorial/Heal".
+        /// </summary>
+        public InputAction @Heal => m_Wrapper.m_Tutorial_Heal;
+        /// <summary>
+        /// Provides access to the underlying input action "Tutorial/Targeting".
+        /// </summary>
+        public InputAction @Targeting => m_Wrapper.m_Tutorial_Targeting;
         /// <summary>
         /// Provides access to the underlying input action "Tutorial/SwapTarget".
         /// </summary>
@@ -1658,6 +1743,12 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
             @Next.started += instance.OnNext;
             @Next.performed += instance.OnNext;
             @Next.canceled += instance.OnNext;
+            @Heal.started += instance.OnHeal;
+            @Heal.performed += instance.OnHeal;
+            @Heal.canceled += instance.OnHeal;
+            @Targeting.started += instance.OnTargeting;
+            @Targeting.performed += instance.OnTargeting;
+            @Targeting.canceled += instance.OnTargeting;
             @SwapTarget.started += instance.OnSwapTarget;
             @SwapTarget.performed += instance.OnSwapTarget;
             @SwapTarget.canceled += instance.OnSwapTarget;
@@ -1687,6 +1778,12 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
             @Next.started -= instance.OnNext;
             @Next.performed -= instance.OnNext;
             @Next.canceled -= instance.OnNext;
+            @Heal.started -= instance.OnHeal;
+            @Heal.performed -= instance.OnHeal;
+            @Heal.canceled -= instance.OnHeal;
+            @Targeting.started -= instance.OnTargeting;
+            @Targeting.performed -= instance.OnTargeting;
+            @Targeting.canceled -= instance.OnTargeting;
             @SwapTarget.started -= instance.OnSwapTarget;
             @SwapTarget.performed -= instance.OnSwapTarget;
             @SwapTarget.canceled -= instance.OnSwapTarget;
@@ -1897,6 +1994,20 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnNext(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Heal" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnHeal(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Targeting" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnTargeting(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Swap Target" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
