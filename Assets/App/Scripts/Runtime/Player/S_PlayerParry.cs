@@ -7,6 +7,12 @@ public class S_PlayerParry : MonoBehaviour
     [Title("Animation")]
     [SerializeField, S_AnimationName] string _parryParam;
 
+    [TabGroup("References")]
+    [SerializeField] private GameObject _weaponHand;
+
+    [TabGroup("References")]
+    [SerializeField] private GameObject _weaponBack;
+
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnPlayerParryInput rseOnPlayerParry;
 
@@ -64,6 +70,9 @@ public class S_PlayerParry : MonoBehaviour
     private void TryParry()
     {
         if (_playerStateTransitions.Value.CanTransition(_playerCurrentState.Value, S_EnumPlayerState.Parrying) == false || _parryUp == false) return;
+
+        _weaponHand.SetActive(true);
+        _weaponBack.SetActive(false);
 
         _onPlayerAddState.Call(S_EnumPlayerState.Parrying);
 
