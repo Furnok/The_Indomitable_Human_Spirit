@@ -105,8 +105,10 @@ public class S_CameraManager : MonoBehaviour
 
     private void Awake()
     {
-        currentMode = ModeCamera.Player;
         cinemachineCameraPlayer.Target.TrackingTarget = playerPoint;
+
+        currentCam = cinemachineCameraPlayer;
+        currentMode = ModeCamera.Player;
 
         LookActivated(true);
     }
@@ -239,6 +241,9 @@ public class S_CameraManager : MonoBehaviour
         else
         {
             LookActivated(true);
+
+            currentCam = cinemachineCameraPlayer;
+            currentMode = ModeCamera.Player;
 
             rseOnDisplayUIGame.Call(true);
             rseOnGameInputEnabled.Call();
