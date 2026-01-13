@@ -2410,10 +2410,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_BossPhase2
       objectReference: {fileID: 0}
-    - target: {fileID: 5972448417234124833, guid: 0172bb772cbf6cd438211f41bb4053c4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2543,15 +2539,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 918399970063036874, guid: 26b32e26939d3614f9dc5380b22f3191, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 918399970063036874, guid: 26b32e26939d3614f9dc5380b22f3191, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 918399970063036874, guid: 26b32e26939d3614f9dc5380b22f3191, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2795595827533505534, guid: 26b32e26939d3614f9dc5380b22f3191, type: 3}
       propertyPath: m_Name
@@ -2559,7 +2555,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2795595827533505534, guid: 26b32e26939d3614f9dc5380b22f3191, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4283267785218327364, guid: 26b32e26939d3614f9dc5380b22f3191, type: 3}
       propertyPath: m_LocalPosition.x

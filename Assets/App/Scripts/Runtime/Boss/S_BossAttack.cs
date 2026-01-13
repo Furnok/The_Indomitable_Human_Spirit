@@ -51,11 +51,17 @@ public class S_BossAttack : MonoBehaviour
     [SerializeField] private GameObject projectileBallsSpawn;
 
     [TabGroup("References")]
+    [SerializeField] private GameObject fireProjectileSpawn;
+
+    [TabGroup("References")]
     [Title("Scripts")]
     [SerializeField] private S_BossRootMotionModifier rootMotionModifier;
 
     [TabGroup("References")]
     [SerializeField] private S_BossAttackData bossAttackData;
+
+    [TabGroup("References")]
+    [SerializeField] private S_FireProjectile fireProjectile;
 
     [TabGroup("References")]
     [Title("Center")]
@@ -504,12 +510,16 @@ public class S_BossAttack : MonoBehaviour
         overrideKey = (animNumb % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
         overrideController[overrideKey] = currentAttack.listComboData[animNumb].animation;
 
-        bossAttackData.SetAttackMode(currentAttack.listComboData[animNumb].attackData);
+        Debug.Log("Play Particle + Animation + Set AttackMode");
+        animator.SetTrigger(animNumb == 0 ? attackParam : comboParam);
+
+        yield return new WaitForSeconds(currentAttack.listComboData[animNumb].animation.length);
 
         if (currentAttack.listComboData[animNumb].showVFXAttackType) bossAttackData.VFXAttackType();
 
-        Debug.Log("Play Particle + Animation + Set AttackMode");
-        animator.SetTrigger(animNumb == 0 ? attackParam : comboParam);
+        S_FireProjectile s_FireProjectile = Instantiate(fireProjectile, fireProjectileSpawn.transform.position, Quaternion.identity);
+        s_FireProjectile.Initialize(transform.rotation, currentAttack.listComboData[animNumb].attackData);
+
         rseOnPlayParticle.Call();
         bossNavMeshAgent.enabled = true;
         rseOnEndAttack.Call();
