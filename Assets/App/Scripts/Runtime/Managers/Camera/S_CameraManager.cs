@@ -86,7 +86,6 @@ public class S_CameraManager : MonoBehaviour
     [TabGroup("Outputs")]
     [SerializeField] private SSO_CameraData ssoCameraData;
 
-    private ModeCamera currentMode = ModeCamera.None;
     private CinemachineCamera currentCam = null;
     private Transform playerPos = null;
     private Transform currentTarget = null;
@@ -108,7 +107,6 @@ public class S_CameraManager : MonoBehaviour
         cinemachineCameraPlayer.Target.TrackingTarget = playerPoint;
 
         currentCam = cinemachineCameraPlayer;
-        currentMode = ModeCamera.Player;
 
         LookActivated(true);
     }
@@ -208,7 +206,6 @@ public class S_CameraManager : MonoBehaviour
         cinemachineCameraPlayer.Priority = Focus;
         currentCam.Priority = Unfocus;
         currentCam = cinemachineCameraPlayer;
-        currentMode = ModeCamera.Player;
 
         LookActivated(true);
     }
@@ -227,7 +224,6 @@ public class S_CameraManager : MonoBehaviour
             rseOnCinematicInputEnabled.Call();
 
             currentCam = cinemachineCameraIntro;
-            currentMode = ModeCamera.Cinematic;
 
             var anim = currentCam.GetComponent<Animator>();
             if (anim)
@@ -243,7 +239,6 @@ public class S_CameraManager : MonoBehaviour
             LookActivated(true);
 
             currentCam = cinemachineCameraPlayer;
-            currentMode = ModeCamera.Player;
 
             rseOnDisplayUIGame.Call(true);
             rseOnGameInputEnabled.Call();
@@ -272,7 +267,6 @@ public class S_CameraManager : MonoBehaviour
         cinemachineCameraPlayer.Priority = Unfocus;
         cinemachineCameraCinematic[index].Priority = FocusCinematic;
         currentCam = cinemachineCameraCinematic[index];
-        currentMode = ModeCamera.Cinematic;
 
         rseOnCancelTargeting.Call();
 

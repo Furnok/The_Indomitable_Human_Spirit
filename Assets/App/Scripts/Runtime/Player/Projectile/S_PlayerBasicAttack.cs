@@ -200,15 +200,15 @@ public class S_PlayerBasicAttack : MonoBehaviour
 
     private void OnAttackReleased()
     {
-        _weaponHand.SetActive(false);
-        _weaponBack.SetActive(true);
-
         _isHolding = false;
         rseOnAnimationBoolValueChange.Call(_attackParam, false);
 
         rseOnSendConsoleMessage.Call("Player Launch Attack!");
 
         _rseOnRumbleStopChannel.Call(S_EnumRumbleChannel.ChargeAttack);
+
+        _weaponHand.SetActive(false);
+        _weaponBack.SetActive(true);
     }
 
     /*

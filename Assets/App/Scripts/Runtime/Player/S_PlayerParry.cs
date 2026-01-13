@@ -106,6 +106,9 @@ public class S_PlayerParry : MonoBehaviour
                     if (_parryCoroutine != null) StopCoroutine(_parryCoroutine);
 
                     _onPlayerAddState.Call(S_EnumPlayerState.None);
+
+                    _weaponHand.SetActive(false);
+                    _weaponBack.SetActive(true);
                 }));
             }));
         }));
@@ -118,6 +121,9 @@ public class S_PlayerParry : MonoBehaviour
         StopCoroutine(_parryCoroutine);
 
         ResetValue();
+
+        _weaponHand.SetActive(false);
+        _weaponBack.SetActive(true);
     }
 
     private void ResetValue()
