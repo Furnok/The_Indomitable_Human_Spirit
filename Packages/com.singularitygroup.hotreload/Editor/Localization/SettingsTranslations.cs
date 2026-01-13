@@ -131,10 +131,10 @@ namespace SingularityGroup.HotReload.Editor.Localization {
                 SettingsAutoRecompileOff = "When enabled, recompile happens automatically after code changes that Hot Reload doesn't support.";
                 SettingsAutoRecompileInspectorOn = "Hot Reload will trigger recompilation for inspector field changes that are not supported in Edit mode.";
                 SettingsAutoRecompileInspectorOff = "Enable to trigger recompilation for inspector field changes that are not supported in Edit mode.";
-                SettingsAutoRecompilePartialOn = "Hot Reload will recompile partially unsupported changes.";
-                SettingsAutoRecompilePartialOff = "Enable to recompile partially unsupported changes.";
-                SettingsDisplayMonobehaviourOn = "Hot Reload will display new monobehaviour methods as partially unsupported.";
-                SettingsDisplayMonobehaviourOff = "Enable to display new monobehaviour methods as partially unsupported.";
+                SettingsAutoRecompilePartialOn = "Hot Reload will recompile partially supported changes.";
+                SettingsAutoRecompilePartialOff = "Enable to recompile partially supported changes.";
+                SettingsDisplayMonobehaviourOn = "Hot Reload will display new monobehaviour methods as partially supported.";
+                SettingsDisplayMonobehaviourOff = "Enable to display new monobehaviour methods as partially supported.";
                 SettingsRecompileImmediatelyOn = "Unsupported changes will be recompiled immediately.";
                 SettingsRecompileImmediatelyOff = "Unsupported changes will be recompiled when editor is focused. Enable to recompile immediately.";
                 SettingsRecompilePlayModeOn = "Hot Reload will exit Play Mode to recompile unsupported changes.";
@@ -159,7 +159,7 @@ namespace SingularityGroup.HotReload.Editor.Localization {
                 ToggleCompilingIndication = "Compiling Unsupported Changes Indication";
                 ToggleAutoRecompile = "Auto recompile unsupported changes (recommended)";
                 ToggleAutoRecompileInspector = "Auto recompile inspector field edits";
-                ToggleAutoRecompilePartial = "Include partially unsupported changes";
+                ToggleAutoRecompilePartial = "Include partially supported changes";
                 ToggleDisplayMonobehaviour = "Display new Monobehaviour methods as partially supported";
                 ToggleRecompileImmediately = "Recompile immediately";
                 ToggleRecompilePlayMode = "Recompile in Play Mode";

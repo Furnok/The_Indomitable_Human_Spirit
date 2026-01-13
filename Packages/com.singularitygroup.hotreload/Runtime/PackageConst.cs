@@ -7,10 +7,10 @@ namespace SingularityGroup.HotReload {
         public static bool IsAssetStoreBuild => false;
 
         
-        public const string Version = "1.13.13";
+        public const string Version = "1.13.15";
         // Never higher than Version
         // Used for the download
-        public const string ServerVersion = "1.13.11";
+        public const string ServerVersion = "1.13.15";
         public const string PackageName = "com.singularitygroup.hotreload";
         public const string DefaultLocale = Localization.Locale.English;
         // avoids unreachable code warnings from using const
