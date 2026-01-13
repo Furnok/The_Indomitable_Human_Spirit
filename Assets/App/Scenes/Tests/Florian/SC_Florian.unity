@@ -211,7 +211,9 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1213021771004338432, guid: b40847abdb388e54794a37b68e5bf3ac, type: 3}
       propertyPath: m_WarningMessage
-      value: 
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'Jaw'\n\tFrom animation clip 'A_Attack_HeavyFlourish_Sword'"
       objectReference: {fileID: 0}
     - target: {fileID: 2818859625446955190, guid: b40847abdb388e54794a37b68e5bf3ac, type: 3}
       propertyPath: m_Name
@@ -713,6 +715,59 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1121744088300672380, guid: 709123c95f2726c46b4bf0178217e257, type: 3}
   m_PrefabInstance: {fileID: 271528431}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &273399164
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 273399166}
+  - component: {fileID: 273399165}
+  m_Layer: 0
+  m_Name: GameObject_02
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &273399165
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 273399164}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 30, y: 15, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &273399166
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 273399164}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.70710576, z: -0, w: 0.7071078}
+  m_LocalPosition: {x: -55.5, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &281155039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1096,6 +1151,59 @@ Transform:
   - {fileID: 281155040}
   - {fileID: 1271687768}
   - {fileID: 414420763}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &437779008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 437779010}
+  - component: {fileID: 437779009}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &437779009
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437779008}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 30, y: 15, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &437779010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437779008}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -40, y: 1, z: 15.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &448377532
@@ -1646,6 +1754,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7834620151722910443, guid: c156732cb46eb1c4f825606c4264be76, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'Eyes'\n\tFrom animation clip 'A_PlayerDodgeF'\n\tFrom
+        animation clip 'A_PlayerDodgeR'\n\tFrom animation clip 'A_PlayerDodgeB'\n\tFrom
+        animation clip 'A_PlayerDodgeL'\n\tFrom animation clip 'A_PlayerHitLB'\n\tFrom
+        animation clip 'A_PlayerHitHB'\n\tFrom animation clip 'A_PlayerDeath'\n\tFrom
+        animation clip 'A_PlayerParry_Movement_1'"
+      objectReference: {fileID: 0}
     - target: {fileID: 8313228278302547986, guid: c156732cb46eb1c4f825606c4264be76, type: 3}
       propertyPath: m_Name
       value: P_Player
@@ -1958,6 +2076,59 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1121744088300672380, guid: 709123c95f2726c46b4bf0178217e257, type: 3}
   m_PrefabInstance: {fileID: 1071724722}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1147827605
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1147827607}
+  - component: {fileID: 1147827606}
+  m_Layer: 0
+  m_Name: GameObject_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1147827606
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147827605}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 30, y: 15, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1147827607
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147827605}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -40, y: 1, z: -15.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1156532499
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2366,6 +2537,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1173214819416248163, guid: 0172bb772cbf6cd438211f41bb4053c4, type: 3}
+      propertyPath: maxDistanceJumpGathering
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5717509932139896987, guid: 0172bb772cbf6cd438211f41bb4053c4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -40
@@ -2874,3 +3049,6 @@ SceneRoots:
   - {fileID: 1171208532}
   - {fileID: 1843555619}
   - {fileID: 1443061275}
+  - {fileID: 437779010}
+  - {fileID: 273399166}
+  - {fileID: 1147827607}

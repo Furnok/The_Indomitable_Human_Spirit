@@ -669,7 +669,7 @@ MonoBehaviour:
     CameraRadius: 0.4
     UseFollowTarget:
       Enabled: 1
-      YOffset: 0
+      YOffset: 0.4
     Strategy: 0
     MaximumEffort: 4
     SmoothingTime: 0

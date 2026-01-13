@@ -147,22 +147,28 @@ public class S_CameraManager : MonoBehaviour
 
         if (currentTarget)
         {
-            // Direction player -> enemy
             Vector3 dir = currentTarget.position - playerPos.position;
-            dir.y = 0;
 
-            if (dir.sqrMagnitude < 0.001f)
-                return;
+            if (dir.sqrMagnitude < 0.001f) return;
 
             float targetYaw = Quaternion.LookRotation(dir).eulerAngles.y;
 
-            // Smoothly rotate orbit toward enemy
             cinemachineCameraPlayer.GetComponent<CinemachineOrbitalFollow>().HorizontalAxis.Value =
-                Mathf.LerpAngle(
-                    cinemachineCameraPlayer.GetComponent<CinemachineOrbitalFollow>().HorizontalAxis.Value,
-                    targetYaw,
-                    Time.deltaTime * 7
-                );
+            Mathf.LerpAngle(
+                cinemachineCameraPlayer.GetComponent<CinemachineOrbitalFollow>().HorizontalAxis.Value,
+                targetYaw,
+                Time.deltaTime * 5f
+            );
+
+            float targetPitch = Quaternion.LookRotation(dir).eulerAngles.x;
+            targetPitch = Mathf.Clamp(targetPitch, ssoCameraData.Value.minVerticalCameraPlayer, ssoCameraData.Value.maxVerticalCameraPlayer);
+
+            cinemachineCameraPlayer.GetComponent<CinemachineOrbitalFollow>().VerticalAxis.Value = 
+            Mathf.LerpAngle(
+                cinemachineCameraPlayer.GetComponent<CinemachineOrbitalFollow>().VerticalAxis.Value,
+                targetPitch,
+                Time.deltaTime * 5f
+            );
         }
 
         HandlePlayerFade();
