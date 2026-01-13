@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class S_PlayerMovement : MonoBehaviour
 {
+    #region Inspector
     [TabGroup("Settings")]
     [SerializeField] private float groundCheckDist = 0.5f;
 
@@ -127,12 +128,13 @@ public class S_PlayerMovement : MonoBehaviour
 
     [TabGroup("Outputs")]
     [SerializeField] private SSO_PlayerStats _playerStats;
+    #endregion
 
     private float maxSlopeAngle => _playerStats.Value.maxSlopeAngle;
     private float maxDownStepAngle => _playerStats.Value.maxSlopeAngle;
 
     private Vector2 moveInput = Vector2.zero;
-    private bool inputCanceledOrNoInput = true;
+    //private bool inputCanceledOrNoInput = true;
     private Quaternion camRotInInputPerformed = Quaternion.identity;
     private Transform target = null;
 
@@ -360,14 +362,14 @@ public class S_PlayerMovement : MonoBehaviour
     {
         moveInput = input;
 
-        if (moveInput != Vector2.zero)
-        {
-            inputCanceledOrNoInput = false;
-        }
-        else
-        {
-            inputCanceledOrNoInput = true;
-        }
+        //if (moveInput != Vector2.zero)
+        //{
+        //    inputCanceledOrNoInput = false;
+        //}
+        //else
+        //{
+        //    inputCanceledOrNoInput = true;
+        //}
     }
 
     private void DoKnockbackOnHit(S_StructAttackContact attackContact)
@@ -563,7 +565,7 @@ public class S_PlayerMovement : MonoBehaviour
         }
         else
         {
-            Quaternion camRot = (inputCanceledOrNoInput ? (rsoCameraRotation ? rsoCameraRotation.Value : Quaternion.identity) : camRotInInputPerformed);
+            Quaternion camRot = (/*inputCanceledOrNoInput ? (*/rsoCameraRotation ? rsoCameraRotation.Value : Quaternion.identity/*) : camRotInInputPerformed*/);
 
             Vector3 camF = camRot * Vector3.forward; camF.y = 0f; camF.Normalize();
             Vector3 camR = camRot * Vector3.right; camR.y = 0f; camR.Normalize();
@@ -571,7 +573,7 @@ public class S_PlayerMovement : MonoBehaviour
             desiredDir = camR * moveInput.x + camF * moveInput.y;
             baseSpeed = (running ? _playerStats.Value.runSpeed : _playerStats.Value.moveSpeed) * inputMag;
 
-            if (inputCanceledOrNoInput) camRotInInputPerformed = camRot;
+            //if (inputCanceledOrNoInput) camRotInInputPerformed = camRot;
         }
 
         if (desiredDir.sqrMagnitude > 1e-6f) desiredDir.Normalize();
