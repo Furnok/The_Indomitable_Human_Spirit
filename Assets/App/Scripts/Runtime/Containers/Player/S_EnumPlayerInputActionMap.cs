@@ -4,5 +4,5 @@
     Game,
     UI,
     Cinematic,
-    Tutortial
+    Tutorial
 }

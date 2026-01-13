@@ -26,6 +26,10 @@ public class S_EnemyAttackData : MonoBehaviour
     [TabGroup("References")]
     [SerializeField] private S_EnemyWeapon enemyWeapon;
 
+    [TabGroup("Output")]
+    [SerializeField] RSE_OnRequestStartTutorialStep _onRequestStartTutorialStep;
+
+
     private S_StructEnemyAttackData attackData;
 
     public void SetAttackMode(S_StructEnemyAttackData enemyAttackData)
@@ -84,5 +88,11 @@ public class S_EnemyAttackData : MonoBehaviour
         if (particlesTrail == null || particlesTrail.Count == 0) return;
 
         foreach (ParticleSystem particle in particlesTrail) particle.Stop();
+    }
+
+    public void TriggerTutorialParryStep()
+    {
+        if (_onRequestStartTutorialStep != null)
+            _onRequestStartTutorialStep.Call(S_EnumTutorialStep.Parry);
     }
 }

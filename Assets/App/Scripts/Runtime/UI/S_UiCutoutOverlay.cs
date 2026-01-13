@@ -28,6 +28,7 @@ public class S_UiCutoutOverlay : MonoBehaviour
     {
         if (_overlayRoot == null || _highlight == null) return;
         UpdatePanels();
+        ChangeStatePanelCutout();
     }
 
     private void OnEnable()

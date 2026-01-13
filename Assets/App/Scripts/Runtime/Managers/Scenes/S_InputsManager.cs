@@ -25,6 +25,9 @@ public class S_InputsManager : MonoBehaviour
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnCinematicInputEnabled rseOnCinematicInputEnabled;
 
+    [TabGroup("Inputs")]
+    [SerializeField] RSE_OnRequestStartTutorialStep _onRequestStartTutorialStep;
+
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnPlayerMove rseOnPlayerMove;
 
@@ -72,6 +75,10 @@ public class S_InputsManager : MonoBehaviour
 
     [TabGroup("Outputs")]
     [SerializeField] private RSO_CurrentInputActionMap rsoCurrentInputActionMap;
+
+    [TabGroup("Outputs")]
+    [SerializeField] RSE_OnTutorialStepCompleted _onTutorialStepCompleted;
+
     #endregion
 
     private IA_PlayerInput iaPlayerInput = null;
@@ -116,6 +123,8 @@ public class S_InputsManager : MonoBehaviour
 
         _onPlayerDeathRse.action += DeactivateInput;
         _onPlayerRespawnRse.action += ActivateGameActionInput;
+
+        _onRequestStartTutorialStep.action += ActivateInputTutoStep;
     }
 
     private void OnDisable()
@@ -128,6 +137,8 @@ public class S_InputsManager : MonoBehaviour
 
         _onPlayerDeathRse.action -= DeactivateInput;
         _onPlayerRespawnRse.action -= ActivateGameActionInput;
+
+        _onRequestStartTutorialStep.action -= ActivateInputTutoStep;
 
         playerInput.actions.Disable();
         DisableGameInputs();
@@ -282,6 +293,7 @@ public class S_InputsManager : MonoBehaviour
         EnableGameInputs();
         DisableUIInputs();
         DisableCinematicInputs();
+        DisableTutorialInputs();
 
         playerInput.actions.Disable();
         playerInput.SwitchCurrentActionMap(gameMapName);
@@ -315,6 +327,7 @@ public class S_InputsManager : MonoBehaviour
         DisableGameInputs();
         EnableUIInputs();
         DisableCinematicInputs();
+        DisableTutorialInputs();
 
         playerInput.actions.Disable();
         playerInput.SwitchCurrentActionMap(uiMapName);
@@ -348,6 +361,7 @@ public class S_InputsManager : MonoBehaviour
         DisableGameInputs();
         DisableUIInputs();
         EnableCinematicInputs();
+        DisableTutorialInputs();
 
         playerInput.actions.Disable();
         playerInput.SwitchCurrentActionMap(cinematicMapName);
@@ -361,6 +375,7 @@ public class S_InputsManager : MonoBehaviour
     {
         DisableTutorialInputs();
         iaPlayerInput.Tutorial.Parry.performed += OnParryInput;
+        iaPlayerInput.Tutorial.Parry.performed += _ => FinishActionStep(S_EnumTutorialStep.Parry);
     }
 
     void EnableTutoriaSwapTargetInput()
@@ -402,6 +417,12 @@ public class S_InputsManager : MonoBehaviour
         //iaPlayerInput.Tutorial.Next.performed += ;
     }
 
+    void FinishActionStep(S_EnumTutorialStep step)
+    {
+        _onTutorialStepCompleted.Call(step);
+        ActivateGameActionInput();
+    }
+
     private void DisableTutorialInputs()
     {
         var tutorial = iaPlayerInput.Tutorial;
@@ -428,7 +449,37 @@ public class S_InputsManager : MonoBehaviour
         playerInput.SwitchCurrentActionMap(tutorialMapName);
         playerInput.currentActionMap.Enable();
 
-        rsoCurrentInputActionMap.Value = S_EnumPlayerInputActionMap.Tutortial;
+        rsoCurrentInputActionMap.Value = S_EnumPlayerInputActionMap.Tutorial;
+    }
+
+    void ActivateInputTutoStep(S_EnumTutorialStep tutoStep)
+    {
+        ActivateTutorialActionInput();
+
+        switch (tutoStep)
+        {
+            case S_EnumTutorialStep.Movement:
+                break;
+            case S_EnumTutorialStep.Dodge:
+                break;
+            case S_EnumTutorialStep.Attack:
+                break;
+            case S_EnumTutorialStep.Health:
+                break;
+            case S_EnumTutorialStep.Conviction:
+                break;
+            case S_EnumTutorialStep.Parry:
+                EnableTutorialParryInput();
+                break;
+            case S_EnumTutorialStep.Targeting:
+                break;
+            case S_EnumTutorialStep.AttackSignaling:
+                break;
+            case S_EnumTutorialStep.Interact:
+                break;
+            default:
+                break;
+        }
     }
 
 }

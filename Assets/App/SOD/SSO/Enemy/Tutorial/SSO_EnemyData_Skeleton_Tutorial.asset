@@ -15,7 +15,7 @@ MonoBehaviour:
   _value:
     health: 100
     speedPatrol: 2.5
-    speedChase: 4
+    speedChase: 10
     speedStrafe: 1.5
     strafeWaitTimeMin: 2
     strafeWaitTimeMax: 3
@@ -26,17 +26,17 @@ MonoBehaviour:
     attackCooldown: 2
     waitStun: 0.6
     rotationTime: 0.6
-    patrolPointWaitMin: 1
-    patrolPointWaitMax: 3
-    startPatrolWaitMin: 1
-    startPatrolWaitMax: 3
+    patrolPointWaitMin: 0
+    patrolPointWaitMax: 0.1
+    startPatrolWaitMin: 0
+    startPatrolWaitMax: 0.1
     timeBeforeChaseMin: 0.2
     timeBeforeChaseMax: 0.5
     timeDisplay: 3
     controllerOverride: {fileID: 22100000, guid: cae966d33f19b4242ab9041cca2e1f84, type: 2}
     listCombos:
     - listAnimationsCombos:
-      - animation: {fileID: 7400000, guid: 73f0a4f99c3191a4da6b4baa1477cc8c, type: 2}
+      - animation: {fileID: 7400000, guid: d9d2521efd2346d4c84d8e38bf765865, type: 2}
         rootMotionMultiplier: 1
         showVFXAttackType: 1
         attackData:
