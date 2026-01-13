@@ -65,7 +65,7 @@ MonoBehaviour:
           lastAttack: 0
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
-      - animation: {fileID: 0}
+      - animation: {fileID: -7623267165986489915, guid: c7f8eb7f54ed75246b7d3bb2919bc111, type: 3}
         rootMotionMultiplier: 2
         showVFXAttackType: 0
         attackData:
@@ -134,29 +134,6 @@ MonoBehaviour:
           lastAttack: 0
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
-      - animation: {fileID: 7667018580565293932, guid: a09f3cda3c572104d8747dabcae98bf7, type: 3}
-        rootMotionMultiplier: 2
-        showVFXAttackType: 0
-        attackData:
-          attackId: 0
-          goSourceId: 0
-          attackType: 0
-          timeCast: 0
-          timeInterval: 0
-          numberOfProjectiles: 0
-          damage: 0
-          knockbackHitDuration: 0
-          knockbackHitDistance: 0
-          knockbackOnParryDuration: 0
-          knockbackOnParrryDistance: 0
-          parryToleranceBeforeHit: 0
-          parryToleranceAfterHit: 0
-          invicibilityDuration: 0
-          convictionReduction: 0
-          convictionParryGain: 0
-          lastAttack: 0
-          attackDirection: {x: 0, y: 0, z: 0}
-          contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 1290614447729222346, guid: 5ee4ab8352f04a14ba0be9eeee765828, type: 3}
         rootMotionMultiplier: 2
         showVFXAttackType: 1
@@ -167,7 +144,7 @@ MonoBehaviour:
           timeCast: 0
           timeInterval: 0
           numberOfProjectiles: 0
-          damage: 50
+          damage: 1
           knockbackHitDuration: 0
           knockbackHitDistance: 0
           knockbackOnParryDuration: 0
@@ -177,6 +154,6 @@ MonoBehaviour:
           invicibilityDuration: 0
           convictionReduction: 0
           convictionParryGain: 0
-          lastAttack: 0
+          lastAttack: 1
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}

@@ -26,6 +26,9 @@ public class S_FireProjectile : MonoBehaviour, I_AttackProvider
         transform.rotation = rotation;
         this.attackData = attackData;
         isInitialized = true;
+
+        Debug.Log(this.attackData.attackType);
+        Debug.Log(this.attackData.damage);
     }
 
     private void Update()
@@ -42,22 +45,6 @@ public class S_FireProjectile : MonoBehaviour, I_AttackProvider
 
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("Fire Projectile Hit 1");
-        if (other.CompareTag(tagHurt) && other.TryGetComponent(out I_Damageable damageable))
-        {
-            Debug.Log("Fire Projectile Hit 2");
-            if (damageable != null)
-            {
-                Debug.Log("Fire Projectile Hit 3");
-                damageable.TakeDamage(attackData.damage);
-                Destroy(gameObject);
-            }
-        }
-    }
-
     public ref S_StructEnemyAttackData GetAttackData()
     {
         return ref attackData;
