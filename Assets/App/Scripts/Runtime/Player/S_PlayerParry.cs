@@ -1,4 +1,5 @@
 ﻿using Sirenix.OdinInspector;
+using System.Collections;
 using UnityEngine;
 
 public class S_PlayerParry : MonoBehaviour
@@ -49,6 +50,7 @@ public class S_PlayerParry : MonoBehaviour
     private float _parryDuration => _playerStats.Value.parryDuration;
 
     private Coroutine _parryCoroutine = null;
+    private Coroutine _weaponParryCoroutine = null;
 
     private bool _parryUp = true;
 
@@ -71,9 +73,6 @@ public class S_PlayerParry : MonoBehaviour
     {
         if (_playerStateTransitions.Value.CanTransition(_playerCurrentState.Value, S_EnumPlayerState.Parrying) == false || _parryUp == false) return;
 
-        _weaponHand.SetActive(true);
-        _weaponBack.SetActive(false);
-
         _onPlayerAddState.Call(S_EnumPlayerState.Parrying);
 
         rseOnSendConsoleMessage.Call("Player Pary!");
@@ -87,6 +86,9 @@ public class S_PlayerParry : MonoBehaviour
         }));
 
         rseOnAnimationBoolValueChange.Call(_parryParam, true);
+
+        _weaponHand.SetActive(true);
+        _weaponBack.SetActive(false);
 
         _parryCoroutine = StartCoroutine(S_Utils.Delay(_animationTransitionDelays.Value.parryStartupDelay, () =>
         {
@@ -107,8 +109,13 @@ public class S_PlayerParry : MonoBehaviour
 
                     _onPlayerAddState.Call(S_EnumPlayerState.None);
 
-                    _weaponHand.SetActive(false);
-                    _weaponBack.SetActive(true);
+                    if (_weaponParryCoroutine != null) StopCoroutine(_weaponParryCoroutine);
+
+                    _weaponParryCoroutine = StartCoroutine(S_Utils.Delay(0.6f, () =>
+                    {
+                        _weaponHand.SetActive(false);
+                        _weaponBack.SetActive(true);
+                    }));
                 }));
             }));
         }));
@@ -121,6 +128,8 @@ public class S_PlayerParry : MonoBehaviour
         StopCoroutine(_parryCoroutine);
 
         ResetValue();
+
+        if (_weaponParryCoroutine != null) StopCoroutine(_weaponParryCoroutine);
 
         _weaponHand.SetActive(false);
         _weaponBack.SetActive(true);
