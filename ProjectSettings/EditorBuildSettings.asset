@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/App/Scenes/SC_Gym.unity
     guid: e98a98817d2971541b4782440cf9eed8
   - enabled: 1
-    path: Assets/App/Scenes/Tests/Timothee/Playtests/SC_Playtest.unity
+    path: Assets/App/Scenes/SC_Playtest.unity
     guid: 82ccd5d8a76d95749a306fe211efdb92
   - enabled: 1
     path: Assets/App/Scenes/Tests/Killian/SC_Killian.unity
