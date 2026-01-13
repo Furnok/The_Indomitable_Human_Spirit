@@ -55,9 +55,9 @@ MonoBehaviour:
   - sceneName: SC_Playtest
     sceneGUID: 82ccd5d8a76d95749a306fe211efdb92
     scenePath: Assets/App/Scenes/Tests/Timothee/Playtests/SC_Playtest.unity
-  - sceneName: SC_Game
-    sceneGUID: f7a1e4de93e70714e84d4a79bfbfa094
-    scenePath: Assets/App/Scenes/SC_Game.unity
+  - sceneName: SC_Gym
+    sceneGUID: e98a98817d2971541b4782440cf9eed8
+    scenePath: Assets/App/Scenes/SC_Gym.unity
   - sceneName: SC_Killian
     sceneGUID: e882b4b841b9f7b41b47a09dbc02127b
     scenePath: Assets/App/Scenes/Tests/Killian/SC_Killian.unity
