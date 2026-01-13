@@ -157,17 +157,17 @@ public class S_CameraManager : MonoBehaviour
             Mathf.LerpAngle(
                 cinemachineCameraPlayer.GetComponent<CinemachineOrbitalFollow>().HorizontalAxis.Value,
                 targetYaw,
-                Time.deltaTime * 7
+                Time.deltaTime * 5f
             );
 
             float targetPitch = Quaternion.LookRotation(dir).eulerAngles.x;
-            targetPitch = Mathf.Clamp(targetPitch, -10f, 45f);
+            targetPitch = Mathf.Clamp(targetPitch, ssoCameraData.Value.minVerticalCameraPlayer, ssoCameraData.Value.maxVerticalCameraPlayer);
 
             cinemachineCameraPlayer.GetComponent<CinemachineOrbitalFollow>().VerticalAxis.Value = 
             Mathf.LerpAngle(
                 cinemachineCameraPlayer.GetComponent<CinemachineOrbitalFollow>().VerticalAxis.Value,
                 targetPitch,
-                Time.deltaTime * 7f
+                Time.deltaTime * 5f
             );
         }
 
