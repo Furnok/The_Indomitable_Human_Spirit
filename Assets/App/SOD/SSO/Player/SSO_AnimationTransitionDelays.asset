@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SSO_AnimationTransitionDelays
   m_EditorClassIdentifier: 
   _value:
-    dodgeStartupDelay: 0.0000001
-    parryStartupDelay: 0.1
+    dodgeStartupDelay: 0.001
+    parryStartupDelay: 0.001
     attackStartupDelay: 0.1
     healStartupDelay: 0.1
     dodgeRecoveryDelay: 0.1
