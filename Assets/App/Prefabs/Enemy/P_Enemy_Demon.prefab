@@ -2592,6 +2592,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 3.8
       objectReference: {fileID: 0}
+    - target: {fileID: 4216739653353338393, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
+      propertyPath: m_Center.y
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4234250431613318041, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 3.2
@@ -2608,12 +2612,7 @@ PrefabInstance:
       propertyPath: m_WarningMessage
       value: "\nBinding warning: Some generic clip(s) animate transforms that are
         already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'Jaw'\n\tFrom animation clip 'A_EnemyLAttack1D1'\n\tFrom
-        animation clip 'A_EnemyLAttack2D1'\n\tFrom animation clip 'A_EnemyLAttack3D1'\n\tFrom
-        animation clip 'Makashi_Opening'\n\tFrom animation clip 'A_EnemyLFollow1D1'\n\tFrom
-        animation clip 'A_EnemyLFollow1D2'\n\tFrom animation clip 'A_EnemyLFollow1D3'\n\tFrom
-        animation clip 'A_EnemyLFollow2D1'\n\tFrom animation clip 'A_EnemyLFollow2D2'\n\tFrom
-        animation clip 'A_EnemyLFollow2D3'\n\tand more ..."
+        by Humanoid clips.\n\tTransform 'Jaw'\n\tFrom animation clip 'A_Attack_HeavyFlourish_Sword'"
       objectReference: {fileID: 0}
     - target: {fileID: 6177182004407894465, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
       propertyPath: m_Height
