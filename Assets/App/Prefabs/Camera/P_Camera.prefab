@@ -313,9 +313,9 @@ MonoBehaviour:
   - m_EditModeType: 1
     m_Knots:
     - Position:
-        x: 0
+        x: -13
         y: 50
-        z: -7
+        z: -22
       TangentIn:
         x: 0
         y: 0
@@ -331,9 +331,9 @@ MonoBehaviour:
           z: 0.2871991
           w: 0.9138016
     - Position:
-        x: 0
+        x: -13
         y: 6
-        z: -7
+        z: -22
       TangentIn:
         x: 0
         y: 0
@@ -408,8 +408,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3510103054638301004}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.20106587, y: 0.000000023381652, z: -0.000000014983495, w: 0.9795778}
-  m_LocalPosition: {x: 0, y: 3, z: -3.5}
+  m_LocalRotation: {x: 0.18494129, y: -0.000000014165965, z: 0.000000002665859, w: 0.9827496}
+  m_LocalPosition: {x: -12.11, y: 33.88494, z: 92.53398}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -470,24 +470,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b5d7c088409d9a40b7b09aa707777f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetOffset: {x: 0, y: 0, z: 0}
+  TargetOffset: {x: 0, y: 1, z: 0}
   TrackerSettings:
     BindingMode: 4
-    PositionDamping: {x: 0.2, y: 0.2, z: 0.2}
+    PositionDamping: {x: 1, y: 1, z: 1}
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
-  OrbitStyle: 1
-  Radius: 5
+  OrbitStyle: 0
+  Radius: 7
   Orbits:
     Top:
-      Radius: 3.2
+      Radius: 7
       Height: 2.2
     Center:
-      Radius: 3.5
+      Radius: 6
       Height: 1.5
     Bottom:
-      Radius: 4
+      Radius: 3
       Height: 0.5
     SplineCurvature: 0.5
   RecenteringTarget: 2
@@ -540,10 +540,10 @@ MonoBehaviour:
       Size: {x: 0.1, y: 0.2}
     HardLimits:
       Enabled: 1
-      Size: {x: 0.2, y: 0.3}
+      Size: {x: 0.2, y: 0.4}
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
-  TargetOffset: {x: 0, y: 0, z: 0}
+  TargetOffset: {x: 0, y: 0.5, z: 0}
   Damping: {x: 0.5, y: 0.5}
   Lookahead:
     Enabled: 0
@@ -791,7 +791,7 @@ Transform:
   m_GameObject: {fileID: 3839073689257792411}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 50, z: -7}
+  m_LocalPosition: {x: -13, y: 50, z: -22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -867,7 +867,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   volumeAnchorOverride: {fileID: 0}
-  antialiasing: 0
+  antialiasing: 3
   SMAAQuality: 2
   dithering: 0
   stopNaNs: 0
@@ -1076,7 +1076,7 @@ Transform:
   m_GameObject: {fileID: 4428407907808187189}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 50, z: -7}
+  m_LocalPosition: {x: -13, y: 50, z: -22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
