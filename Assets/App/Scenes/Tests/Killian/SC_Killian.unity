@@ -4738,11 +4738,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_CanvasGame
       objectReference: {fileID: 0}
+    - target: {fileID: 8056213273916310995, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
+      propertyPath: defaultWindow
+      value: 
+      objectReference: {fileID: 3316049811810972054}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
+--- !u!1 &3316049811810972054 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6324976944753795977, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
+  m_PrefabInstance: {fileID: 3316049811810972053}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8630298198351531622
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4864,9 +4873,9 @@ SceneRoots:
   - {fileID: 86451883539409684}
   - {fileID: 1057685730}
   - {fileID: 2003795454}
-  - {fileID: 1828615478}
-  - {fileID: 1375758650}
   - {fileID: 310053353}
+  - {fileID: 1375758650}
+  - {fileID: 1828615478}
   - {fileID: 2025255289}
   - {fileID: 1326747072220661111}
   - {fileID: 9073463423605201680}
@@ -4877,9 +4886,9 @@ SceneRoots:
   - {fileID: 1252152894}
   - {fileID: 8630298198351531622}
   - {fileID: 262071951}
-  - {fileID: 1659810929}
-  - {fileID: 1077534996}
   - {fileID: 940150805}
+  - {fileID: 1077534996}
+  - {fileID: 1659810929}
   - {fileID: 926326914}
   - {fileID: 239068043}
   - {fileID: 902350578}

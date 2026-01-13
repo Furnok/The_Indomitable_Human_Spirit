@@ -14638,7 +14638,7 @@ MonoBehaviour:
       Data3: -366633846
       Data4: 1118062684
     Path: event:/UI/UIOpen
-  defaultWindow: {fileID: 6324976944753795977}
+  defaultWindow: {fileID: 7090280352426310551}
   mainMenuWindow: {fileID: 7090280352426310551}
   menuWindow: {fileID: 8445063460506897426}
   gameWindow: {fileID: 6324976944753795977}
