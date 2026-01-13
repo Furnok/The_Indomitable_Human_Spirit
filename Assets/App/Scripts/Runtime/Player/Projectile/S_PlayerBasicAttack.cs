@@ -110,6 +110,8 @@ public class S_PlayerBasicAttack : MonoBehaviour
 
     EventInstance _convictionAccumulationInstance;
 
+    private Coroutine _weaponAttackCoroutine = null;
+
     private void Awake()
     {
         _preconsumedConviction.Value = 0;
@@ -207,8 +209,13 @@ public class S_PlayerBasicAttack : MonoBehaviour
 
         _rseOnRumbleStopChannel.Call(S_EnumRumbleChannel.ChargeAttack);
 
-        _weaponHand.SetActive(false);
-        _weaponBack.SetActive(true);
+        if (_weaponAttackCoroutine != null) StopCoroutine(_weaponAttackCoroutine);
+
+        _weaponAttackCoroutine = StartCoroutine(S_Utils.Delay(0.3f, () =>
+        {
+            _weaponHand.SetActive(false);
+            _weaponBack.SetActive(true);
+        }));
     }
 
     /*
