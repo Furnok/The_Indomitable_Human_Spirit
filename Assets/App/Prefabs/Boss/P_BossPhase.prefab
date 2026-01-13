@@ -1060,8 +1060,10 @@ MonoBehaviour:
   enemyProjectile: {fileID: 7501301468289437560, guid: 2ed9513c34b0abb4facaadc6e39513ea, type: 3}
   projectilePingPongSpawn: {fileID: 3886568817711710598}
   projectileBallsSpawn: {fileID: 3886568817711710598}
+  fireProjectileSpawn: {fileID: 3886568817711710598}
   rootMotionModifier: {fileID: 3231315390003761703}
   bossAttackData: {fileID: 461593203997373390}
+  fireProjectile: {fileID: 1958341879068977330, guid: 58d6cd12a4369b04a9ee0d9a2ca04185, type: 3}
   aimPointBoss: {fileID: 1991927486943782219}
   boss: {fileID: 2728780361816490054}
   bossNavMeshAgent: {fileID: 338046699455560462}
