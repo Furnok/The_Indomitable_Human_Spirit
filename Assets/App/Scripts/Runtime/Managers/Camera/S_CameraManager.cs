@@ -59,6 +59,9 @@ public class S_CameraManager : MonoBehaviour
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnSkipIntro rseOnSkipIntro;
 
+    [TabGroup("Inputs")]
+    [SerializeField] private RSE_OnResetCam rseOnResetCam;
+
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnCinematicInputEnabled rseOnCinematicInputEnabled;
 
@@ -123,6 +126,7 @@ public class S_CameraManager : MonoBehaviour
         rseOnSkipInput.action += StartSkip;
         rseOnSkipCancelInput.action += StopSkip;
         rseOnSkipIntro.action += SkipIntro;
+        rseOnResetCam.action += ResetCam;
     }
 
     private void OnDisable()
@@ -137,6 +141,7 @@ public class S_CameraManager : MonoBehaviour
         rseOnSkipInput.action -= StartSkip;
         rseOnSkipCancelInput.action -= StopSkip;
         rseOnSkipIntro.action -= SkipIntro;
+        rseOnResetCam.action -= ResetCam;
     }
 
     private void Update()
@@ -208,6 +213,12 @@ public class S_CameraManager : MonoBehaviour
         currentCam = cinemachineCameraPlayer;
 
         LookActivated(true);
+    }
+
+    private void ResetCam()
+    {
+        cinemachineCameraPlayer.GetComponent<CinemachineOrbitalFollow>().HorizontalAxis.Value = cinemachineCameraPlayer.GetComponent<CinemachineOrbitalFollow>().HorizontalAxis.Center;
+        cinemachineCameraPlayer.GetComponent<CinemachineOrbitalFollow>().VerticalAxis.Value = cinemachineCameraPlayer.GetComponent<CinemachineOrbitalFollow>().VerticalAxis.Center;
     }
     #endregion
 

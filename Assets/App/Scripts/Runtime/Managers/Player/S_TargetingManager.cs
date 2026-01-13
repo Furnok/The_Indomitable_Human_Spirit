@@ -68,6 +68,9 @@ public class S_TargetingManager : MonoBehaviour
     [SerializeField] private RSE_OnAnimationBoolValueChange rseOnAnimationBoolValueChange;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnResetCam rseOnResetCam;
+
+    [TabGroup("Outputs")]
     [SerializeField] private RSO_PlayerIsTargeting rsoPlayerIsTargeting;
 
     [TabGroup("Outputs")]
@@ -386,7 +389,11 @@ public class S_TargetingManager : MonoBehaviour
             return;
         }
 
-        if (targetsPossible.Count == 0 || rsoPlayerIsTargeting.Value == true) return;
+        if (targetsPossible.Count == 0 || rsoPlayerIsTargeting.Value == true)
+        {
+            rseOnResetCam.Call();
+            return;
+        }
 
         currentTarget = TargetSelection();
 
