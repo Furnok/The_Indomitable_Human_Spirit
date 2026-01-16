@@ -6,10 +6,11 @@ public enum S_EnumTutorialStep
     Movement = 1,
     Dodge = 2,
     Attack = 3,
-    Health = 4,
+    Heal = 4,
     Conviction = 5,
     Parry = 6,
     Targeting = 7,
     AttackSignaling = 8,
     Interact = 9,
+    SwapTarget = 10
 }

@@ -26,7 +26,7 @@ public class S_InputsManager : MonoBehaviour
     [SerializeField] private RSE_OnCinematicInputEnabled rseOnCinematicInputEnabled;
 
     [TabGroup("Inputs")]
-    [SerializeField] RSE_OnRequestStartTutorialStep _onRequestStartTutorialStep;
+    [SerializeField] RSE_OnRequestAcceptedTutorialStep _onRequestAcceptedTutorialStep;
 
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnPlayerMove rseOnPlayerMove;
@@ -90,6 +90,8 @@ public class S_InputsManager : MonoBehaviour
     private string cinematicMapName = "";
     private string tutorialMapName = "";
 
+    private System.Action<InputAction.CallbackContext> _currentNextInputCallback = null;
+
     private void Awake()
     {
         if (playerInput == null)
@@ -124,7 +126,7 @@ public class S_InputsManager : MonoBehaviour
         _onPlayerDeathRse.action += DeactivateInput;
         _onPlayerRespawnRse.action += ActivateGameActionInput;
 
-        _onRequestStartTutorialStep.action += ActivateInputTutoStep;
+        _onRequestAcceptedTutorialStep.action += ActivateInputTutoStep;
     }
 
     private void OnDisable()
@@ -138,7 +140,7 @@ public class S_InputsManager : MonoBehaviour
         _onPlayerDeathRse.action -= DeactivateInput;
         _onPlayerRespawnRse.action -= ActivateGameActionInput;
 
-        _onRequestStartTutorialStep.action -= ActivateInputTutoStep;
+        _onRequestAcceptedTutorialStep.action -= ActivateInputTutoStep;
 
         playerInput.actions.Disable();
         DisableGameInputs();
@@ -382,52 +384,71 @@ public class S_InputsManager : MonoBehaviour
     {
         DisableTutorialInputs();
         iaPlayerInput.Tutorial.SwapTarget.performed += OnSwapTargetInput;
+        iaPlayerInput.Tutorial.SwapTarget.performed += _ => FinishActionStep(S_EnumTutorialStep.SwapTarget);
     }
 
     void EnableTutorialDodgeInput()
     {
         DisableTutorialInputs();
         iaPlayerInput.Tutorial.Dodge.performed += OnDodgeInput;
+        iaPlayerInput.Tutorial.Dodge.performed += _ => FinishActionStep(S_EnumTutorialStep.Dodge);
     }
     void EnableTutorialAttackInput()
     {
         DisableTutorialInputs();
         iaPlayerInput.Tutorial.Attack.performed += OnAttackInput;
         iaPlayerInput.Tutorial.Attack.canceled += OnAttackInputCancel;
+        iaPlayerInput.Tutorial.Attack.performed += _ => FinishActionStep(S_EnumTutorialStep.Attack);
     }
     void EnableTutorialInteractInput()
     {
         DisableTutorialInputs();
         iaPlayerInput.Tutorial.Interact.performed += OnInteractInput;
+        iaPlayerInput.Tutorial.Interact.performed += _ => FinishActionStep(S_EnumTutorialStep.Interact);
     }
     void EnableTutorialTargetingInput()
     {
         DisableTutorialInputs();
         iaPlayerInput.Tutorial.Targeting.performed += OnTargetingInput;
+        iaPlayerInput.Tutorial.Targeting.performed += _ => FinishActionStep(S_EnumTutorialStep.Targeting);
     }
     void EnableTutorialHealInput()
     {
         DisableTutorialInputs();
         iaPlayerInput.Tutorial.Heal.performed += OnHealInput;
+        iaPlayerInput.Tutorial.Heal.performed += _ => FinishActionStep(S_EnumTutorialStep.Heal);
     }
 
-    void EnableTutorialNextInput()
+    void EnableTutorialNextInput(S_EnumTutorialStep step)
     {
         DisableTutorialInputs();
-        //iaPlayerInput.Tutorial.Next.performed += ;
+
+        _currentNextInputCallback = _ => FinishActionStep(step);
+        iaPlayerInput.Tutorial.Next.performed += _currentNextInputCallback;
     }
 
     void FinishActionStep(S_EnumTutorialStep step)
     {
         _onTutorialStepCompleted.Call(step);
-        ActivateGameActionInput();
+
+        if (_currentNextInputCallback != null)
+        {
+            iaPlayerInput.Tutorial.Next.performed -= _currentNextInputCallback;
+            _currentNextInputCallback = null;
+        }
+
+        //ActivateGameActionInput();
     }
 
     private void DisableTutorialInputs()
     {
         var tutorial = iaPlayerInput.Tutorial;
         tutorial.Parry.performed -= OnParryInput;
-        //tutorial.Next.performed -= ; //Need to add action to this event
+        if (_currentNextInputCallback != null)
+        {
+            tutorial.Next.performed -= _currentNextInputCallback;
+            _currentNextInputCallback = null;
+        }
         tutorial.SwapTarget.performed -= OnSwapTargetInput;
         tutorial.Dodge.performed -= OnDodgeInput;
         tutorial.Attack.performed -= OnAttackInput;
@@ -459,23 +480,36 @@ public class S_InputsManager : MonoBehaviour
         switch (tutoStep)
         {
             case S_EnumTutorialStep.Movement:
+                EnableTutorialNextInput(S_EnumTutorialStep.Movement);
                 break;
             case S_EnumTutorialStep.Dodge:
+                EnableTutorialDodgeInput();
                 break;
             case S_EnumTutorialStep.Attack:
+                EnableTutorialAttackInput();
                 break;
-            case S_EnumTutorialStep.Health:
+            case S_EnumTutorialStep.Heal:
+                EnableTutorialHealInput();
                 break;
             case S_EnumTutorialStep.Conviction:
+                EnableTutorialNextInput(S_EnumTutorialStep.Conviction);
                 break;
             case S_EnumTutorialStep.Parry:
                 EnableTutorialParryInput();
                 break;
             case S_EnumTutorialStep.Targeting:
+                EnableTutorialTargetingInput();
                 break;
             case S_EnumTutorialStep.AttackSignaling:
+                EnableTutorialNextInput(S_EnumTutorialStep.AttackSignaling);
                 break;
             case S_EnumTutorialStep.Interact:
+                EnableTutorialInteractInput();
+                break;
+            case S_EnumTutorialStep.SwapTarget:
+                EnableTutoriaSwapTargetInput();
+                break;
+            case S_EnumTutorialStep.None:
                 break;
             default:
                 break;
