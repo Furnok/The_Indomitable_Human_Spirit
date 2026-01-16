@@ -5,7 +5,7 @@
 			<value>HitPrep</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{d427cbc8-acfe-4341-98e1-f3897e7f129e}</destination>
@@ -119,7 +119,6 @@
 	<object class="MixerBusEffectChain" id="{449bb553-c628-4368-86ab-6f1274b4a8bf}">
 		<relationship name="effects">
 			<destination>{1cfbd81d-9b87-4385-a9e0-e2519eda901e}</destination>
-			<destination>{388807b2-af23-4f4d-947c-af15f686209f}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{9e555272-1ca1-4081-a581-a44e4994cb21}" />
@@ -145,7 +144,6 @@
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{1cfbd81d-9b87-4385-a9e0-e2519eda901e}" />
-	<object class="SpatialiserEffect" id="{388807b2-af23-4f4d-947c-af15f686209f}" />
 	<object class="SingleSound" id="{3a3351f4-56c0-4c03-8345-d431aedfe94b}">
 		<relationship name="audioFile">
 			<destination>{2fd0d3f4-2ff3-49fe-90bb-c7d45b4723a4}</destination>
@@ -186,7 +184,7 @@
 			<value>0</value>
 		</property>
 		<property name="value">
-			<value>0</value>
+			<value>-8.5</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{39f2d7d7-89ec-4284-ba2d-f61fd99b90d4}">
@@ -194,7 +192,7 @@
 			<value>0.98728813559322037</value>
 		</property>
 		<property name="value">
-			<value>10</value>
+			<value>1.5</value>
 		</property>
 	</object>
 </objects>
