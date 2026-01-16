@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInput))]
 public class S_InputsManager : MonoBehaviour
 {
+    #region Inpector Fields
     [TabGroup("References")]
     [Title("Player Input")]
     [SerializeField] private PlayerInput playerInput;
@@ -23,6 +24,9 @@ public class S_InputsManager : MonoBehaviour
 
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnCinematicInputEnabled rseOnCinematicInputEnabled;
+
+    [TabGroup("Inputs")]
+    [SerializeField] RSE_OnRequestStartTutorialStep _onRequestStartTutorialStep;
 
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnPlayerMove rseOnPlayerMove;
@@ -72,6 +76,11 @@ public class S_InputsManager : MonoBehaviour
     [TabGroup("Outputs")]
     [SerializeField] private RSO_CurrentInputActionMap rsoCurrentInputActionMap;
 
+    [TabGroup("Outputs")]
+    [SerializeField] RSE_OnTutorialStepCompleted _onTutorialStepCompleted;
+
+    #endregion
+
     private IA_PlayerInput iaPlayerInput = null;
 
     private bool initialized = false;
@@ -79,6 +88,7 @@ public class S_InputsManager : MonoBehaviour
     private string gameMapName = "";
     private string uiMapName = "";
     private string cinematicMapName = "";
+    private string tutorialMapName = "";
 
     private void Awake()
     {
@@ -96,6 +106,7 @@ public class S_InputsManager : MonoBehaviour
         gameMapName = iaPlayerInput.Game.Get().name;
         uiMapName = iaPlayerInput.UI.Get().name;
         cinematicMapName = iaPlayerInput.Cinematic.Get().name;
+        tutorialMapName = iaPlayerInput.Tutorial.Get().name;
 
         rsoCurrentInputActionMap.Value = S_EnumPlayerInputActionMap.None;
     }
@@ -112,6 +123,8 @@ public class S_InputsManager : MonoBehaviour
 
         _onPlayerDeathRse.action += DeactivateInput;
         _onPlayerRespawnRse.action += ActivateGameActionInput;
+
+        _onRequestStartTutorialStep.action += ActivateInputTutoStep;
     }
 
     private void OnDisable()
@@ -124,6 +137,8 @@ public class S_InputsManager : MonoBehaviour
 
         _onPlayerDeathRse.action -= DeactivateInput;
         _onPlayerRespawnRse.action -= ActivateGameActionInput;
+
+        _onRequestStartTutorialStep.action -= ActivateInputTutoStep;
 
         playerInput.actions.Disable();
         DisableGameInputs();
@@ -278,6 +293,7 @@ public class S_InputsManager : MonoBehaviour
         EnableGameInputs();
         DisableUIInputs();
         DisableCinematicInputs();
+        DisableTutorialInputs();
 
         playerInput.actions.Disable();
         playerInput.SwitchCurrentActionMap(gameMapName);
@@ -311,6 +327,7 @@ public class S_InputsManager : MonoBehaviour
         DisableGameInputs();
         EnableUIInputs();
         DisableCinematicInputs();
+        DisableTutorialInputs();
 
         playerInput.actions.Disable();
         playerInput.SwitchCurrentActionMap(uiMapName);
@@ -344,6 +361,7 @@ public class S_InputsManager : MonoBehaviour
         DisableGameInputs();
         DisableUIInputs();
         EnableCinematicInputs();
+        DisableTutorialInputs();
 
         playerInput.actions.Disable();
         playerInput.SwitchCurrentActionMap(cinematicMapName);
@@ -352,4 +370,116 @@ public class S_InputsManager : MonoBehaviour
         rsoCurrentInputActionMap.Value = S_EnumPlayerInputActionMap.Cinematic;
     }
     #endregion
+
+    private void EnableTutorialParryInput()
+    {
+        DisableTutorialInputs();
+        iaPlayerInput.Tutorial.Parry.performed += OnParryInput;
+        iaPlayerInput.Tutorial.Parry.performed += _ => FinishActionStep(S_EnumTutorialStep.Parry);
+    }
+
+    void EnableTutoriaSwapTargetInput()
+    {
+        DisableTutorialInputs();
+        iaPlayerInput.Tutorial.SwapTarget.performed += OnSwapTargetInput;
+    }
+
+    void EnableTutorialDodgeInput()
+    {
+        DisableTutorialInputs();
+        iaPlayerInput.Tutorial.Dodge.performed += OnDodgeInput;
+    }
+    void EnableTutorialAttackInput()
+    {
+        DisableTutorialInputs();
+        iaPlayerInput.Tutorial.Attack.performed += OnAttackInput;
+        iaPlayerInput.Tutorial.Attack.canceled += OnAttackInputCancel;
+    }
+    void EnableTutorialInteractInput()
+    {
+        DisableTutorialInputs();
+        iaPlayerInput.Tutorial.Interact.performed += OnInteractInput;
+    }
+    void EnableTutorialTargetingInput()
+    {
+        DisableTutorialInputs();
+        iaPlayerInput.Tutorial.Targeting.performed += OnTargetingInput;
+    }
+    void EnableTutorialHealInput()
+    {
+        DisableTutorialInputs();
+        iaPlayerInput.Tutorial.Heal.performed += OnHealInput;
+    }
+
+    void EnableTutorialNextInput()
+    {
+        DisableTutorialInputs();
+        //iaPlayerInput.Tutorial.Next.performed += ;
+    }
+
+    void FinishActionStep(S_EnumTutorialStep step)
+    {
+        _onTutorialStepCompleted.Call(step);
+        ActivateGameActionInput();
+    }
+
+    private void DisableTutorialInputs()
+    {
+        var tutorial = iaPlayerInput.Tutorial;
+        tutorial.Parry.performed -= OnParryInput;
+        //tutorial.Next.performed -= ; //Need to add action to this event
+        tutorial.SwapTarget.performed -= OnSwapTargetInput;
+        tutorial.Dodge.performed -= OnDodgeInput;
+        tutorial.Attack.performed -= OnAttackInput;
+        tutorial.Attack.canceled -= OnAttackInputCancel;
+        tutorial.Interact.performed -= OnInteractInput;
+        tutorial.Targeting.performed -= OnTargetingInput;
+        tutorial.Heal.performed -= OnHealInput;
+    }
+
+    private void ActivateTutorialActionInput()
+    {
+        if (!initialized) return;
+
+        DisableGameInputs();
+        DisableUIInputs();
+        DisableCinematicInputs();
+
+        playerInput.actions.Disable();
+        playerInput.SwitchCurrentActionMap(tutorialMapName);
+        playerInput.currentActionMap.Enable();
+
+        rsoCurrentInputActionMap.Value = S_EnumPlayerInputActionMap.Tutorial;
+    }
+
+    void ActivateInputTutoStep(S_EnumTutorialStep tutoStep)
+    {
+        ActivateTutorialActionInput();
+
+        switch (tutoStep)
+        {
+            case S_EnumTutorialStep.Movement:
+                break;
+            case S_EnumTutorialStep.Dodge:
+                break;
+            case S_EnumTutorialStep.Attack:
+                break;
+            case S_EnumTutorialStep.Health:
+                break;
+            case S_EnumTutorialStep.Conviction:
+                break;
+            case S_EnumTutorialStep.Parry:
+                EnableTutorialParryInput();
+                break;
+            case S_EnumTutorialStep.Targeting:
+                break;
+            case S_EnumTutorialStep.AttackSignaling:
+                break;
+            case S_EnumTutorialStep.Interact:
+                break;
+            default:
+                break;
+        }
+    }
+
 }

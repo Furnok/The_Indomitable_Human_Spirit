@@ -56,13 +56,13 @@ public class S_UISettings : MonoBehaviour
     [SerializeField] private Selectable dropDownLanguages;
 
     [TabGroup("References")]
-    [SerializeField] private Selectable toggleHoldLockTarget;
+    [SerializeField] private Selectable toggleDevMode;
 
     [TabGroup("References")]
     [SerializeField] private Selectable dropDownResolutions;
 
     [TabGroup("References")]
-    [SerializeField] private Selectable toggleFullscreen;
+    [SerializeField] private Selectable dropDownQuality;
 
     [TabGroup("References")]
     [SerializeField] private Selectable sliderMainVolume;
@@ -139,7 +139,7 @@ public class S_UISettings : MonoBehaviour
             nav = buttonApply.navigation;
             nav.mode = Navigation.Mode.Explicit;
 
-            nav.selectOnUp = toggleHoldLockTarget;
+            nav.selectOnUp = toggleDevMode;
             nav.selectOnDown = buttonGameplay;
 
             buttonApply.navigation = nav;
@@ -147,7 +147,7 @@ public class S_UISettings : MonoBehaviour
             nav = buttonReset.navigation;
             nav.mode = Navigation.Mode.Explicit;
 
-            nav.selectOnUp = toggleHoldLockTarget;
+            nav.selectOnUp = toggleDevMode;
             nav.selectOnDown = buttonGameplay;
 
             buttonReset.navigation = nav;
@@ -155,7 +155,7 @@ public class S_UISettings : MonoBehaviour
             nav = buttonReturn.navigation;
             nav.mode = Navigation.Mode.Explicit;
 
-            nav.selectOnUp = toggleHoldLockTarget;
+            nav.selectOnUp = toggleDevMode;
             nav.selectOnDown = buttonGameplay;
 
             buttonReturn.navigation = nav;
@@ -200,7 +200,9 @@ public class S_UISettings : MonoBehaviour
 
     private void CloseEscape()
     {
-        if (rsoInConsole.Value && dropDownLanguages?.GetComponent<TMP_Dropdown>()?.IsExpanded == true || dropDownResolutions?.GetComponent<TMP_Dropdown>()?.IsExpanded == true)
+        if (rsoInConsole.Value) return;
+
+        if (rsoInConsole.Value && dropDownLanguages?.GetComponent<TMP_Dropdown>()?.IsExpanded == true || dropDownResolutions?.GetComponent<TMP_Dropdown>()?.IsExpanded == true || dropDownQuality?.GetComponent<TMP_Dropdown>()?.IsExpanded == true)
         {
             return;
         }
@@ -314,7 +316,7 @@ public class S_UISettings : MonoBehaviour
             nav = buttonApply.navigation;
             nav.mode = Navigation.Mode.Explicit;
 
-            nav.selectOnUp = toggleHoldLockTarget;
+            nav.selectOnUp = toggleDevMode;
             nav.selectOnDown = buttonGameplay;
 
             buttonApply.navigation = nav;
@@ -322,7 +324,7 @@ public class S_UISettings : MonoBehaviour
             nav = buttonReset.navigation;
             nav.mode = Navigation.Mode.Explicit;
 
-            nav.selectOnUp = toggleHoldLockTarget;
+            nav.selectOnUp = toggleDevMode;
             nav.selectOnDown = buttonGameplay;
 
             buttonReset.navigation = nav;
@@ -330,7 +332,7 @@ public class S_UISettings : MonoBehaviour
             nav = buttonReturn.navigation;
             nav.mode = Navigation.Mode.Explicit;
 
-            nav.selectOnUp = toggleHoldLockTarget;
+            nav.selectOnUp = toggleDevMode;
             nav.selectOnDown = buttonGameplay;
 
             buttonReturn.navigation = nav;
@@ -378,7 +380,7 @@ public class S_UISettings : MonoBehaviour
             nav = buttonApply.navigation;
             nav.mode = Navigation.Mode.Explicit;
 
-            nav.selectOnUp = toggleFullscreen;
+            nav.selectOnUp = dropDownQuality;
             nav.selectOnDown = buttonGraphics;
 
             buttonApply.navigation = nav;
@@ -386,7 +388,7 @@ public class S_UISettings : MonoBehaviour
             nav = buttonReset.navigation;
             nav.mode = Navigation.Mode.Explicit;
 
-            nav.selectOnUp = toggleFullscreen;
+            nav.selectOnUp = dropDownQuality;
             nav.selectOnDown = buttonGraphics;
 
             buttonReset.navigation = nav;
@@ -394,7 +396,7 @@ public class S_UISettings : MonoBehaviour
             nav = buttonReturn.navigation;
             nav.mode = Navigation.Mode.Explicit;
 
-            nav.selectOnUp = toggleFullscreen;
+            nav.selectOnUp = dropDownQuality;
             nav.selectOnDown = buttonGraphics;
 
             buttonReturn.navigation = nav;

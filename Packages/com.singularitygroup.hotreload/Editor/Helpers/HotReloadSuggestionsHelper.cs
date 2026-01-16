@@ -48,6 +48,8 @@ namespace SingularityGroup.HotReload.Editor {
                 return !HotReloadState.ShowedAddMonobehaviourMethods;
             } else if (hotReloadSuggestionKind == HotReloadSuggestionKind.DetailedErrorReportingIsEnabled) {
                 return !CheckSuggestionShown(HotReloadSuggestionKind.DetailedErrorReportingIsEnabled);
+            } else if (hotReloadSuggestionKind == HotReloadSuggestionKind.UTF8EncodingRequired) {
+                return true;
             }
             return false;
         }
@@ -65,6 +67,8 @@ namespace SingularityGroup.HotReload.Editor {
                 HotReloadState.ShowedFieldInitializerExistingInstancesUnedited = true;
             } else if (hotReloadSuggestionKind == HotReloadSuggestionKind.AddMonobehaviourMethod) {
                 HotReloadState.ShowedAddMonobehaviourMethods = true;
+            } else if (hotReloadSuggestionKind == HotReloadSuggestionKind.UTF8EncodingRequired) {
+                // Allow showing it multiple times
             } else {
                 return;
             }
@@ -447,7 +451,24 @@ namespace SingularityGroup.HotReload.Editor {
                 iconType: AlertType.UnsupportedChange,
                 hasExitButton: false
             )},
-            
+            { HotReloadSuggestionKind.UTF8EncodingRequired, new AlertEntry(
+                AlertType.Suggestion, 
+                Translations.Suggestions.UTF8EncodingRequiredTitle,
+                Translations.Suggestions.UTF8EncodingRequiredMessage,
+                actionData: () => {
+                    GUILayout.Space(8f);
+                    using (new EditorGUILayout.HorizontalScope()) {
+                        if (GUILayout.Button(Translations.Suggestions.ButtonOK)) {
+                            SetSuggestionInactive(HotReloadSuggestionKind.UTF8EncodingRequired);
+                        }
+                        GUILayout.FlexibleSpace();
+                    }
+                },
+                timestamp: DateTime.Now,
+                entryType: EntryType.Foldout,
+                iconType: AlertType.UnsupportedChange,
+                hasExitButton: false
+            )},
         };
         
         static ListRequest listRequest;

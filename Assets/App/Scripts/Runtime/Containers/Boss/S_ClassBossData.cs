@@ -15,6 +15,10 @@ public class S_ClassBossData
 
     public S_EnumBossPhaseState phaseState;
 
+    [Title("UI")]
+    [ShowIf("isPhase1")]
+    public float timeDisplay;
+
     [Title("Stun")]
     public float stunDuration = 0;
 
@@ -57,4 +61,6 @@ public class S_ClassBossData
     public AnimatorOverrideController controllerOverride = null;
 
     public List<S_ClassBossAttack> listAttack = new();
+
+    private bool isPhase1 => phaseState == S_EnumBossPhaseState.Phase1;
 }

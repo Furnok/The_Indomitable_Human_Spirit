@@ -26,10 +26,19 @@ public class S_LoadUISettings : MonoBehaviour
     [SerializeField] private Toggle toggleControllerRumble;
 
     [TabGroup("References")]
+    [SerializeField] private Toggle toggleActivateTuto;
+
+    [TabGroup("References")]
+    [SerializeField] private Toggle toggleDevMode;
+
+    [TabGroup("References")]
     [SerializeField] private TMP_Dropdown dropDownResolutions;
 
     [TabGroup("References")]
     [SerializeField] private Toggle toggleFullscreen;
+
+    [TabGroup("References")]
+    [SerializeField] private TMP_Dropdown dropDownQuality;
 
     [TabGroup("References")]
     [SerializeField] private List<Slider> listSliderVolume;
@@ -64,9 +73,15 @@ public class S_LoadUISettings : MonoBehaviour
 
         LoadControllerRumble();
 
+        LoadActivateTuto();
+
+        LoadDevMode();
+
         LoadResolutions();
 
         LoadFullScreen();
+
+        LoadQuality();
 
         LoadVolumes();
 
@@ -86,6 +101,16 @@ public class S_LoadUISettings : MonoBehaviour
     private void LoadControllerRumble()
     {
         toggleControllerRumble.isOn = rsoSettingsSaved.Value.controllerRumble;
+    }
+
+    private void LoadActivateTuto()
+    {
+        toggleActivateTuto.isOn = rsoSettingsSaved.Value.activateTuto;
+    }
+
+    private void LoadDevMode()
+    {
+        toggleDevMode.isOn = rsoSettingsSaved.Value.devMode;
     }
 
     private int GetResolutions(int index)
@@ -137,6 +162,11 @@ public class S_LoadUISettings : MonoBehaviour
     private void LoadFullScreen()
     {
         toggleFullscreen.isOn = rsoSettingsSaved.Value.fullScreen;
+    }
+
+    private void LoadQuality()
+    {
+        dropDownQuality.value = rsoSettingsSaved.Value.qualityIndex;
     }
 
     private void LoadVolumes()

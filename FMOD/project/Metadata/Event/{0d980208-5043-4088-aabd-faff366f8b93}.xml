@@ -5,7 +5,7 @@
 			<value>HitNear</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{d427cbc8-acfe-4341-98e1-f3897e7f129e}</destination>
@@ -91,7 +91,7 @@
 	</object>
 	<object class="MultiSound" id="{3d5f60df-7820-4366-a20f-a264be2c3f45}">
 		<relationship name="sounds">
-			<destination>{1f415e12-ad59-4780-9e11-f13733a3848b}</destination>
+			<destination>{861333fa-16f8-48be-be8d-3793e3d18985}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{7555213a-83d0-4c55-8f95-58121f0f41ec}">
@@ -102,23 +102,41 @@
 	<object class="MixerBusPanner" id="{96a4f87e-1d0f-45d3-8e04-3dc372c4f25f}" />
 	<object class="MixerBusEffectChain" id="{1453eae8-e09d-45b4-9ad7-83bd9541eb6b}">
 		<relationship name="effects">
+			<destination>{2a15fa82-472b-41e5-90e0-474177e1e66c}</destination>
 			<destination>{9f7668c3-972b-4f1d-ad71-c4f7610c9967}</destination>
-			<destination>{70968ac6-3e3b-451f-9d0f-e6b3b7f9fb8c}</destination>
-			<destination>{1fe2509b-e8cc-4cb1-9051-d471f1b94d6f}</destination>
+			<destination>{e059f25d-ec30-4f02-867c-c299f4e3b1e2}</destination>
+			<destination>{1f2c8af3-5dbc-47ba-ba52-0bd03318a2fd}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{9ae153f9-6917-4263-ba98-0b619d9bf04c}" />
-	<object class="SingleSound" id="{1f415e12-ad59-4780-9e11-f13733a3848b}">
+	<object class="SingleSound" id="{861333fa-16f8-48be-be8d-3793e3d18985}">
 		<relationship name="audioFile">
 			<destination>{0aa7a8fb-32ce-47b7-a246-f97c7b90e95f}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{1438b344-5220-4ceb-b459-a6aaf98f3f61}" />
-	<object class="MixerBusFader" id="{9f7668c3-972b-4f1d-ad71-c4f7610c9967}" />
-	<object class="SFXReverbEffect" id="{70968ac6-3e3b-451f-9d0f-e6b3b7f9fb8c}">
-		<property name="decayTime">
-			<value>2800</value>
+	<object class="GainEffect" id="{2a15fa82-472b-41e5-90e0-474177e1e66c}">
+		<property name="gain">
+			<value>10</value>
 		</property>
 	</object>
-	<object class="SpatialiserEffect" id="{1fe2509b-e8cc-4cb1-9051-d471f1b94d6f}" />
+	<object class="MixerBusFader" id="{9f7668c3-972b-4f1d-ad71-c4f7610c9967}" />
+	<object class="ThreeEQEffect" id="{e059f25d-ec30-4f02-867c-c299f4e3b1e2}">
+		<property name="lowGain">
+			<value>10</value>
+		</property>
+		<property name="midGain">
+			<value>10</value>
+		</property>
+		<property name="highGain">
+			<value>-80</value>
+		</property>
+		<property name="lowCrossover">
+			<value>1150</value>
+		</property>
+		<property name="highCrossover">
+			<value>2500</value>
+		</property>
+	</object>
+	<object class="SFXReverbEffect" id="{1f2c8af3-5dbc-47ba-ba52-0bd03318a2fd}" />
 </objects>

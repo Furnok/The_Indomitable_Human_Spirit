@@ -82,6 +82,10 @@ namespace SingularityGroup.HotReload.Editor.Localization {
             public static string DebuggerMethodsMessage;
             public static string DebuggerMethodsConfirmation;
             
+            // Hot Reloaded Requires UTF8 Encoding
+            public static string UTF8EncodingRequiredTitle;
+            public static string UTF8EncodingRequiredMessage;
+            
             public static void LoadEnglish() {
                 // Button texts
                 ButtonDocs = "Docs";
@@ -124,9 +128,7 @@ namespace SingularityGroup.HotReload.Editor.Localization {
                 
                 // Multidimensional Arrays
                 MultidimensionalArraysTitle = "Use jagged instead of multidimensional arrays";
-                MultidimensionalArraysMessage = "Hot Reload doesn't support methods with multidimensional arrays ([,]). You can work around this by using jagged arrays ([][])"
-
-;
+                MultidimensionalArraysMessage = "Hot Reload doesn't support methods with multidimensional arrays ([,]). You can work around this by using jagged arrays ([][])";
                 
                 // Editors Without HR Running
                 EditorsWithoutHRTitle = "Some Unity instances don't have Hot Reload running.";
@@ -165,6 +167,10 @@ namespace SingularityGroup.HotReload.Editor.Localization {
                 DebuggerMethodsTitle = "Hot Reload may interfere with your debugger session";
                 DebuggerMethodsMessage = "Some debugger features, like variable inspection, might not work as expected for methods patched during the Hot Reload session. A full Unity recompile is required to get the full debugger experience.";
                 DebuggerMethodsConfirmation = "Using the Recompile button will stop Play Mode.\n\nDo you wish to proceed?";
+                
+                // Hot Reloaded Requires UTF8 Encoding
+                UTF8EncodingRequiredTitle = "Change file encoding to UTF-8";
+                UTF8EncodingRequiredMessage = "Unknown source file encoding detected. Change the encoding of the code editor to UTF-8 to resolve this problem.";
             }
             
             public static void LoadSimplifiedChinese() {
@@ -248,6 +254,10 @@ namespace SingularityGroup.HotReload.Editor.Localization {
                 DebuggerMethodsTitle = "Hot Reload 可能会干扰您的调试会话";
                 DebuggerMethodsMessage = "某些调试器功能，例如变量检查，对于在 Hot Reload 会话期间修补的方法可能无法按预期工作。需要完整的 Unity 重新编译才能获得完整的调试器体验。";
                 DebuggerMethodsConfirmation = "使用“重新编译”按钮将停止播放模式。\n\n您希望继续吗？";
+                
+                // Hot Reloaded Requires UTF8 Encoding
+                UTF8EncodingRequiredTitle = "将文件编码更改为 UTF-8";
+                UTF8EncodingRequiredMessage = "检测到未知的源文件编码。请将代码编辑器的编码更改为 UTF-8 以解决此问题。";
             }
         }
     }

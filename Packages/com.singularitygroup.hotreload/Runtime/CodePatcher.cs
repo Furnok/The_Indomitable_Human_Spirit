@@ -82,6 +82,18 @@ namespace SingularityGroup.HotReload {
                     Log.Error($"{Localization.Translations.Logging.LoadingPatchesFromDiskError}\n{ex}");
                 }
             }
+#if UNITY_EDITOR
+            // Unity event methods are not assigned outside the scene. 
+            // So we need to ensure they are added when entering play mode from edit mode
+            EditorApplication.playModeStateChanged += state => {
+                if (state != PlayModeStateChange.EnteredPlayMode) {
+                    return;
+                }
+                foreach (var unityEventMethod in unityEventMethods) {
+                    EnsureUnityEventMethod(unityEventMethod);
+                }
+            };
+#endif
         }
         
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -190,6 +202,25 @@ namespace SingularityGroup.HotReload {
             };
         }
 
+        static HashSet<MethodBase> unityEventMethods = new HashSet<MethodBase>();
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        static void OnSceneLoad() {
+            SceneManager.sceneLoaded += (_, __) => {
+                foreach (var unityEventMethod in unityEventMethods) {
+                    EnsureUnityEventMethod(unityEventMethod);
+                }
+            };
+        }
+
+        static bool EnsureUnityEventMethod(MethodBase newMethod) {
+            try {
+                return UnityEventHelper.EnsureUnityEventMethod(newMethod);
+            } catch(Exception ex) {
+                Log.Warning(Localization.Translations.Logging.ExceptionEnsureUnityEventMethod, ex.GetType().Name, ex.Message);
+                return false;
+            }
+        }
+
         void HandleMethodPatchResponse(MethodPatchResponse response, RegisterPatchesResult result) {
             EnsureSymbolResolver();
 
@@ -197,11 +228,12 @@ namespace SingularityGroup.HotReload {
                 try {
                     foreach(var sMethod in patch.newMethods) {
                         var newMethod = SymbolResolver.Resolve(sMethod);
-                        try {
-                            UnityEventHelper.EnsureUnityEventMethod(newMethod);
-                        } catch(Exception ex) {
-                            Log.Warning(Localization.Translations.Logging.ExceptionEnsureUnityEventMethod, ex.GetType().Name, ex.Message);
-                        }
+
+                        var isUnityEvent = EnsureUnityEventMethod(newMethod);
+                        if (isUnityEvent) {
+                            unityEventMethods.Add(newMethod);
+                        } 
+                        
                         MethodUtils.DisableVisibilityChecks(newMethod);
                         if (!patch.patchMethods.Any(m => m.metadataToken == sMethod.metadataToken)) {
                             result.patchedMethods.Add(new MethodPatch(null, null, newMethod));
@@ -244,6 +276,7 @@ namespace SingularityGroup.HotReload {
                 try {
                     var oldMethod = SymbolResolver.Resolve(sMethod);
                     UnityEventHelper.RemoveUnityEventMethod(oldMethod);
+                    unityEventMethods.Remove(oldMethod);
                 } catch (SymbolResolvingFailedException) {
                     // ignore, not a unity event method if can't resolve
                 } catch(Exception ex) {

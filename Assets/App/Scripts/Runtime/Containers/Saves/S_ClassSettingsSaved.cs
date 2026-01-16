@@ -11,13 +11,19 @@ public class S_ClassSettingsSaved
     [Title("Target")]
     public bool holdLockTarget = false;
 
-    [Title("Target")]
+    [Title("Others")]
     public bool controllerRumble = true;
 
+    public bool activateTuto = true;
+
+    public bool devMode = false;
+
     [Title("Screen")]
+    public int resolutionIndex = -1;
+
     public bool fullScreen = true;
 
-    public int resolutionIndex = -1;
+    public int qualityIndex = 0;
 
     [Title("Audio")]
     public List<S_ClassVolume> listVolumes = new()

@@ -552,8 +552,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 1
-  m_Color: {r: 0.9716981, g: 0.5179334, b: 0.5179334, a: 1}
-  m_Intensity: 230000
+  m_Color: {r: 0.31176573, g: 0.48868138, b: 0.5849056, a: 1}
+  m_Intensity: 115000
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -665,11 +665,11 @@ MonoBehaviour:
   moonPhaseRotation: 0
   earthshine: 1
   flareSize: 0
-  flareTint: {r: 1, g: 0, b: 0, a: 1}
+  flareTint: {r: 0, g: 0.5592303, b: 1, a: 1}
   flareFalloff: 2
   flareMultiplier: 1
   surfaceTexture: {fileID: 0}
-  surfaceTint: {r: 1, g: 0.2216981, b: 0.2216981, a: 1}
+  surfaceTint: {r: 0.2235294, g: 0.8834529, b: 1, a: 1}
   m_Distance: 1.5e+11
   m_UseRayTracedShadows: 0
   m_NumRayTracingSamples: 4

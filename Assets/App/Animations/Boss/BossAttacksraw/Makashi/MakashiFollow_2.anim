@@ -85908,16 +85908,16 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.2
-    functionName: VFXStartTrail
-    data: 
+  - time: 0.23333333
+    functionName: PlayFmod
+    data: event:/Player/Combat/HitNear
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.23333333
-    functionName: PlayFmod
-    data: event:/Player/Combat/HitNear
+    functionName: VFXStartTrail
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -85936,7 +85936,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.53333336
+  - time: 0.36666667
     functionName: VFXStopTrail
     data: 
     objectReferenceParameter: {fileID: 0}

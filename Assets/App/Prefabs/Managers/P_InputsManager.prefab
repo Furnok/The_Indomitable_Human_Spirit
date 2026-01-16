@@ -76,29 +76,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInput: {fileID: 8374659684820923622}
-  rsoCurrentInputActionMap: {fileID: 11400000, guid: 3b4289fad93b77545a9c16fd6b2cdf4e, type: 2}
-  rsoLastInputActionMap: {fileID: 11400000, guid: 21116ed1af4e52843a7d9f464475823d, type: 2}
   _onPlayerDeathRse: {fileID: 11400000, guid: 05b30ffda8ad63c4d82da9ab419e36e1, type: 2}
   _onPlayerRespawnRse: {fileID: 11400000, guid: 3b09f2a06394f4642a88a2d57f0cec43, type: 2}
+  rseOnUiActionInputEnabled: {fileID: 11400000, guid: 24433aa59215e0d49a3c0da4426f2945, type: 2}
+  rseOnGameActionInputEnabled: {fileID: 11400000, guid: 0526673c0b0752b418ffdef1cdaaf184, type: 2}
+  rseOnCinematicInputEnabled: {fileID: 11400000, guid: 4a8e19feb57a19146b6b4bf5ad1cf371, type: 2}
+  _onRequestStartTutorialStep: {fileID: 11400000, guid: c7e748c38ce2f3242ad3ce2dedebbbaf, type: 2}
   rseOnPlayerMove: {fileID: 11400000, guid: 881d0608fef60064c9e33701b880054c, type: 2}
-  _onPlayerMoveInputCancel: {fileID: 11400000, guid: aefdd8190e1be8d44a7e72a7506b2ee0, type: 2}
   rseOnPlayerAttack: {fileID: 11400000, guid: 87ff9d1d837c0324eb87e1b22c96bdf5, type: 2}
   rseOnPlayerAttackInputCancel: {fileID: 11400000, guid: 3409a69fdaba2c54cbb587daee9258f3, type: 2}
   rseOnPlayerDodge: {fileID: 11400000, guid: 94854c435a1dfd64483953892ad488de, type: 2}
   rseOnPlayerInteract: {fileID: 11400000, guid: 7dddd8b752c27d34f9be002f7e6f2343, type: 2}
   rseOnPlayerPause: {fileID: 11400000, guid: f80136b766e3907448f7a7a39ac46b1d, type: 2}
-  rseOnPlayerMeditation: {fileID: 11400000, guid: aa87952d62bcbfe4aaf4fc954d681148, type: 2}
-  rseOnPlayerMeditationCancel: {fileID: 11400000, guid: 9f2bc997828386a48a309669dcf584e1, type: 2}
   rseOnPlayerParry: {fileID: 11400000, guid: a21049edad4c9954db34aebff59e9d2e, type: 2}
   rseOnPlayerTargeting: {fileID: 11400000, guid: b5715b3f29f85be4e87180aa0db11aab, type: 2}
   rseOnPlayerTargetingCancel: {fileID: 11400000, guid: e7c8e675e790c2a44a00f20297f51dc8, type: 2}
   rseOnPlayerSwapTarget: {fileID: 11400000, guid: 4529ddf1715466a49afc2e355d08802f, type: 2}
   rseOnPlayerHeal: {fileID: 11400000, guid: 4c1dd4b878a2bbe49bee7a0802da40cf, type: 2}
-  rseOnInputDisabled: {fileID: 11400000, guid: 472a813eba73dd241a9ab9bacf28aad2, type: 2}
-  rseOnCinematicInputEnabled: {fileID: 11400000, guid: 4a8e19feb57a19146b6b4bf5ad1cf371, type: 2}
-  rseOnGameActionInputEnabled: {fileID: 11400000, guid: 0526673c0b0752b418ffdef1cdaaf184, type: 2}
-  rseOnUiActionInputEnabled: {fileID: 11400000, guid: 24433aa59215e0d49a3c0da4426f2945, type: 2}
   rseOnPlayerDodgeInputCancel: {fileID: 11400000, guid: cc31d81a5ef30a547a280354e51162dd, type: 2}
   rseOnConsole: {fileID: 11400000, guid: 66520bc857c53884da0bf169db839d3b, type: 2}
   rseOnSkipInput: {fileID: 11400000, guid: 05e8c7ca072a92146962c150e93eb31c, type: 2}
   rseOnSkipCancelInput: {fileID: 11400000, guid: de9971957d02b954588dc0600794c05f, type: 2}
+  rsoCurrentInputActionMap: {fileID: 11400000, guid: 3b4289fad93b77545a9c16fd6b2cdf4e, type: 2}
+  _onTutorialStepCompleted: {fileID: 11400000, guid: 5fb3f5b36d183ea4ea68362155d328a6, type: 2}

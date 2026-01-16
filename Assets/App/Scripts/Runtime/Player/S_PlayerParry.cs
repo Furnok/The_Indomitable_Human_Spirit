@@ -7,6 +7,12 @@ public class S_PlayerParry : MonoBehaviour
     [Title("Animation")]
     [SerializeField, S_AnimationName] string _parryParam;
 
+    [TabGroup("References")]
+    [SerializeField] private GameObject _weaponHand;
+
+    [TabGroup("References")]
+    [SerializeField] private GameObject _weaponBack;
+
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnPlayerParryInput rseOnPlayerParry;
 
@@ -43,6 +49,7 @@ public class S_PlayerParry : MonoBehaviour
     private float _parryDuration => _playerStats.Value.parryDuration;
 
     private Coroutine _parryCoroutine = null;
+    private Coroutine _weaponParryCoroutine = null;
 
     private bool _parryUp = true;
 
@@ -79,6 +86,9 @@ public class S_PlayerParry : MonoBehaviour
 
         rseOnAnimationBoolValueChange.Call(_parryParam, true);
 
+        _weaponHand.SetActive(true);
+        _weaponBack.SetActive(false);
+
         _parryCoroutine = StartCoroutine(S_Utils.Delay(_animationTransitionDelays.Value.parryStartupDelay, () =>
         {
             _parryStartTime.Value = Time.time;
@@ -97,6 +107,14 @@ public class S_PlayerParry : MonoBehaviour
                     if (_parryCoroutine != null) StopCoroutine(_parryCoroutine);
 
                     _onPlayerAddState.Call(S_EnumPlayerState.None);
+
+                    if (_weaponParryCoroutine != null) StopCoroutine(_weaponParryCoroutine);
+
+                    _weaponParryCoroutine = StartCoroutine(S_Utils.Delay(0.6f, () =>
+                    {
+                        _weaponHand.SetActive(false);
+                        _weaponBack.SetActive(true);
+                    }));
                 }));
             }));
         }));
@@ -109,6 +127,11 @@ public class S_PlayerParry : MonoBehaviour
         StopCoroutine(_parryCoroutine);
 
         ResetValue();
+
+        if (_weaponParryCoroutine != null) StopCoroutine(_weaponParryCoroutine);
+
+        _weaponHand.SetActive(false);
+        _weaponBack.SetActive(true);
     }
 
     private void ResetValue()

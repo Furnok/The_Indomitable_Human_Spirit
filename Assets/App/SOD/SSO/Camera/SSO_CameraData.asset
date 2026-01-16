@@ -14,13 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _value:
     cameraDistanceMinPlayer: 1
-    rotationCameraPlayerDuration: 0.2
-    rotationCameraPlayerDodgeDuration: 0.1
     minVerticalCameraPlayer: -10
-    maxVerticalCameraPlayer: 10
-    targetShoulderOffsetPositive: {x: 1, y: -0.2, z: 0.2}
-    targetShoulderOffsetNegative: {x: -1, y: -0.2, z: 0.2}
-    switchDurationCamera: 1.5
+    maxVerticalCameraPlayer: 25
     holdSkipTime: 1
     StartDisplaySkipTime: 2
     fadeSpeedPlayer: 5

@@ -24,6 +24,15 @@ public class S_Settings : MonoBehaviour
     [SerializeField] private RSE_OnSaveData rseOnSaveData;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnConsole rseOnConsole;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnCancelTargeting rseOnCancelTargeting;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnRumbleStop rseOnRumbleStop;
+
+    [TabGroup("Outputs")]
     [SerializeField] private RSO_SettingsSaved rsoSettingsSaved;
 
     private bool isLoaded = false;
@@ -47,6 +56,11 @@ public class S_Settings : MonoBehaviour
     private float maxStep = 3f;
     private float accelerationTime = 3f;
 
+    private bool holdLockTarget = false;
+    private bool controllerRumble = true;
+    private bool activateTuto = true;
+    private bool devMode = false;
+
     private void Awake()
     {
         audioMaster = RuntimeManager.GetBus("bus:/");
@@ -62,6 +76,11 @@ public class S_Settings : MonoBehaviour
 
         isLoaded = false;
         isSave = false;
+
+        holdLockTarget = rsoSettingsSaved.Value.holdLockTarget;
+        controllerRumble = rsoSettingsSaved.Value.controllerRumble;
+        activateTuto = rsoSettingsSaved.Value.activateTuto;
+        devMode = rsoSettingsSaved.Value.devMode;
     }
 
     private void Update()
@@ -130,12 +149,22 @@ public class S_Settings : MonoBehaviour
 
     public void UpdateHoldLockTarget(bool value)
     {
-        if (isLoaded && rsoSettingsSaved.Value.holdLockTarget != value) rsoSettingsSaved.Value.holdLockTarget = value;
+        if (isLoaded && rsoSettingsSaved.Value.holdLockTarget != value) holdLockTarget = value;
     }
 
     public void UpdateControllerRumble(bool value)
     {
-        if (isLoaded && rsoSettingsSaved.Value.controllerRumble != value) rsoSettingsSaved.Value.controllerRumble = value;
+        if (isLoaded && rsoSettingsSaved.Value.controllerRumble != value) controllerRumble = value;
+    }
+
+    public void UpdateActivateTuto(bool value)
+    {
+        if (isLoaded && rsoSettingsSaved.Value.activateTuto != value) activateTuto = value;
+    }
+
+    public void UpdateDevMode(bool value)
+    {
+        if (isLoaded && rsoSettingsSaved.Value.devMode != value) devMode = value;
     }
 
     private Resolution GetResolutions(int index)
@@ -168,6 +197,11 @@ public class S_Settings : MonoBehaviour
     public void UpdateFullscreen(bool value)
     {
         if (isLoaded && rsoSettingsSaved.Value.fullScreen != value) rsoSettingsSaved.Value.fullScreen = value;
+    }
+
+    public void UpdateQuality(int index)
+    {
+        if (isLoaded && rsoSettingsSaved.Value.qualityIndex != index) rsoSettingsSaved.Value.qualityIndex = index;
     }
 
     public void UpdateMainVolume(float value)
@@ -276,6 +310,17 @@ public class S_Settings : MonoBehaviour
 
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[rsoSettingsSaved.Value.languageIndex];
 
+        rsoSettingsSaved.Value.holdLockTarget = holdLockTarget;
+        rsoSettingsSaved.Value.controllerRumble = controllerRumble;
+        rsoSettingsSaved.Value.activateTuto = activateTuto;
+        rsoSettingsSaved.Value.devMode = devMode;
+
+        if (holdLockTarget) rseOnCancelTargeting.Call();
+
+        if (!controllerRumble) rseOnRumbleStop.Call();
+
+        if (!devMode) rseOnConsole.Call();
+
         Resolution resolution = GetResolutions(rsoSettingsSaved.Value.resolutionIndex);
 
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreenMode, resolution.refreshRateRatio);
@@ -284,6 +329,8 @@ public class S_Settings : MonoBehaviour
         else Screen.fullScreenMode = FullScreenMode.Windowed;
 
         Screen.fullScreen = rsoSettingsSaved.Value.fullScreen;
+
+        QualitySettings.SetQualityLevel(rsoSettingsSaved.Value.qualityIndex, true);
 
         rseOnSaveData.Call(saveSettingsName, true);
     }

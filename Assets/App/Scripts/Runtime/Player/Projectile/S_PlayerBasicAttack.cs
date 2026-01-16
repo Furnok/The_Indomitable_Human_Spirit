@@ -19,6 +19,12 @@ public class S_PlayerBasicAttack : MonoBehaviour
     [TabGroup("References")]
     [SerializeField] private EventReference _attackPerformedSound;
 
+    [TabGroup("References")]
+    [SerializeField] private GameObject _weaponHand;
+
+    [TabGroup("References")]
+    [SerializeField] private GameObject _weaponBack;
+
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnPlayerAttackInput rseOnPlayerAttack;
 
@@ -104,6 +110,8 @@ public class S_PlayerBasicAttack : MonoBehaviour
 
     EventInstance _convictionAccumulationInstance;
 
+    private Coroutine _weaponAttackCoroutine = null;
+
     private void Awake()
     {
         _preconsumedConviction.Value = 0;
@@ -124,6 +132,9 @@ public class S_PlayerBasicAttack : MonoBehaviour
             _stepTimes.Add(s.timeHoldingInput);
             _stepConvThresholds.Add(s.ammountConvitionNeeded);
         }
+
+        _weaponHand.SetActive(false);
+        _weaponBack.SetActive(true);
     }
 
     private void OnEnable()
@@ -157,6 +168,9 @@ public class S_PlayerBasicAttack : MonoBehaviour
     private void OnPlayerAttackInput()
     {
         if (_playerStateTransitions.Value.CanTransition(_playerCurrentState.Value, S_EnumPlayerState.Attacking) == false ||_playerCurrentConviction.Value < 2) return;
+
+        _weaponHand.SetActive(true);
+        _weaponBack.SetActive(false);
 
         _onPlayerAddState.Call(S_EnumPlayerState.Attacking);
         _onAttackStartPerformed.Call();
@@ -194,6 +208,14 @@ public class S_PlayerBasicAttack : MonoBehaviour
         rseOnSendConsoleMessage.Call("Player Launch Attack!");
 
         _rseOnRumbleStopChannel.Call(S_EnumRumbleChannel.ChargeAttack);
+
+        if (_weaponAttackCoroutine != null) StopCoroutine(_weaponAttackCoroutine);
+
+        _weaponAttackCoroutine = StartCoroutine(S_Utils.Delay(0.3f, () =>
+        {
+            _weaponHand.SetActive(false);
+            _weaponBack.SetActive(true);
+        }));
     }
 
     /*

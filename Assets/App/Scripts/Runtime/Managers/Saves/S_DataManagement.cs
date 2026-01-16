@@ -51,6 +51,8 @@ public class S_DataManagement : MonoBehaviour
 
     private void Awake()
     {
+        Application.targetFrameRate = 120;
+
         audioMaster = RuntimeManager.GetBus("bus:/");
         audioMusic = RuntimeManager.GetBus("bus:/Music");
         audioSounds = RuntimeManager.GetBus("bus:/Sounds");
@@ -287,6 +289,8 @@ public class S_DataManagement : MonoBehaviour
         else Screen.fullScreenMode = FullScreenMode.Windowed;
 
         Screen.fullScreen = rsoSettingsSaved.Value.fullScreen;
+
+        QualitySettings.SetQualityLevel(rsoSettingsSaved.Value.qualityIndex, true);
 
         audioMaster.setVolume(rsoSettingsSaved.Value.listVolumes[0].volume / 100);
         audioMusic.setVolume(rsoSettingsSaved.Value.listVolumes[1].volume / 100);

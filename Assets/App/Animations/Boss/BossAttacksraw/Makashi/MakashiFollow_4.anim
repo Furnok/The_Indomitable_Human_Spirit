@@ -65065,6 +65065,13 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.1
+    functionName: VFXStartTrail
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.1
     functionName: PlayFmod
     data: event:/Player/Combat/HitNear
     objectReferenceParameter: {fileID: 0}
@@ -65078,8 +65085,8 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.23333333
-    functionName: VFXStartTrail
+  - time: 0.26666668
+    functionName: VFXStopTrail
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -65094,13 +65101,6 @@ AnimationClip:
     messageOptions: 0
   - time: 0.33333334
     functionName: DisableWeaponCollider
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.4
-    functionName: VFXStopTrail
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

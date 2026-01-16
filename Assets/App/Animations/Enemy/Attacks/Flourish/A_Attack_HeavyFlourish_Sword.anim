@@ -213393,13 +213393,6 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1
-    functionName: StopRotate
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
   - time: 1.0333333
     functionName: PlayFmod
     data: event:/Player/Combat/HitPrep
@@ -213417,6 +213410,13 @@ AnimationClip:
   - time: 1.3666667
     functionName: PlayFmod
     data: event:/Player/Combat/HitNear
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.4333333
+    functionName: StopRotate
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

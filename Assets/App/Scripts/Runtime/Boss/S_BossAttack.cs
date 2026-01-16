@@ -11,13 +11,13 @@ public class S_BossAttack : MonoBehaviour
 {
     [TabGroup("Settings")]
     [Title("Gethering Settings")]
-    [SerializeField] private float backDistance;
+    [SerializeField] private float backDistanceGathering;
 
     [TabGroup("Settings")]
-    [SerializeField] private float jumpPower;
+    [SerializeField] private float jumpPowerGathering;
 
     [TabGroup("Settings")]
-    [SerializeField] private float duration;
+    [SerializeField] private float durationGathering;
 
     [TabGroup("Settings")]
     [Title("PingPong Settings")]
@@ -51,11 +51,17 @@ public class S_BossAttack : MonoBehaviour
     [SerializeField] private GameObject projectileBallsSpawn;
 
     [TabGroup("References")]
+    [SerializeField] private GameObject fireProjectileSpawn;
+
+    [TabGroup("References")]
     [Title("Scripts")]
     [SerializeField] private S_BossRootMotionModifier rootMotionModifier;
 
     [TabGroup("References")]
     [SerializeField] private S_BossAttackData bossAttackData;
+
+    [TabGroup("References")]
+    [SerializeField] private S_FireProjectile fireProjectile;
 
     [TabGroup("References")]
     [Title("Center")]
@@ -165,7 +171,7 @@ public class S_BossAttack : MonoBehaviour
         }
         pingPongJumpCoroutine = StartCoroutine(PingPongJump(rbBody, aimPointPlayer.position, backDistancePingPong, jumpPowerPingPong, durationPingPong, 1));
     }
-    private IEnumerator PingPongJump(Rigidbody rb, Vector3 playerPos, float distance, float jumpPower, float duration, int numJumps, bool keepY = true)
+    private IEnumerator PingPongJump(Rigidbody rb, Vector3 playerPos, float distance, float jumpPower, float duration, int numJumps)
     {
         int animNumb = 0;
         bossNavMeshAgent.enabled = false;
@@ -174,8 +180,9 @@ public class S_BossAttack : MonoBehaviour
         if (dir.sqrMagnitude <= 1e-6f) dir = rb.transform.forward;
         dir.Normalize();
 
-        Vector3 target = rb.position + dir * distance;
-        if (keepY) target.y = rb.position.y;
+        Vector3 desiredTarget = rb.position + dir * distance;
+
+        Vector3 target = GetSafeJumpTarget(desiredTarget, rb.position, distance);
 
         string overrideKey = (animNumb % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
         overrideController[overrideKey] = currentAttack.listComboData[animNumb].animation;
@@ -435,7 +442,7 @@ public class S_BossAttack : MonoBehaviour
     {
 
         Debug.Log("Gathering Jump");
-        StartCoroutine(GatheringCoroutine(rbBody, aimPointPlayer.position, backDistance, jumpPower, duration, 1));
+        StartCoroutine(GatheringCoroutine(rbBody, aimPointPlayer.position, backDistanceGathering, jumpPowerGathering, durationGathering, 1));
 
     }
 
@@ -448,8 +455,9 @@ public class S_BossAttack : MonoBehaviour
         if (dir.sqrMagnitude <= 1e-6f) dir = rb.transform.forward;
         dir.Normalize();
 
-        Vector3 target = rb.position + dir * distance;
-        if (keepY) target.y = rb.position.y;
+        Vector3 desiredTarget = rb.position + dir * distance;
+
+        Vector3 target = GetSafeJumpTarget(desiredTarget, rb.position, distance);
 
         string overrideKey = (animNumb % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
         overrideController[overrideKey] = currentAttack.listComboData[animNumb].animation;
@@ -504,12 +512,16 @@ public class S_BossAttack : MonoBehaviour
         overrideKey = (animNumb % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
         overrideController[overrideKey] = currentAttack.listComboData[animNumb].animation;
 
-        bossAttackData.SetAttackMode(currentAttack.listComboData[animNumb].attackData);
+        Debug.Log("Play Particle + Animation + Set AttackMode");
+        animator.SetTrigger(animNumb == 0 ? attackParam : comboParam);
+
+        yield return new WaitForSeconds(currentAttack.listComboData[animNumb].animation.length);
 
         if (currentAttack.listComboData[animNumb].showVFXAttackType) bossAttackData.VFXAttackType();
 
-        Debug.Log("Play Particle + Animation + Set AttackMode");
-        animator.SetTrigger(animNumb == 0 ? attackParam : comboParam);
+        S_FireProjectile s_FireProjectile = Instantiate(fireProjectile, fireProjectileSpawn.transform.position, Quaternion.identity);
+        s_FireProjectile.Initialize(transform.rotation, currentAttack.listComboData[animNumb].attackData);
+
         rseOnPlayParticle.Call();
         bossNavMeshAgent.enabled = true;
         rseOnEndAttack.Call();
@@ -594,7 +606,29 @@ public class S_BossAttack : MonoBehaviour
             }
             yield return null;
         }
-    } 
+    }
     #endregion
+
+    private Vector3 GetSafeJumpTarget(Vector3 desired, Vector3 fallbackPosition, float maxSampleDistance)
+    {
+        NavMeshHit navHit;
+        if (NavMesh.SamplePosition(desired, out navHit, maxSampleDistance, NavMesh.AllAreas))
+        {
+            Debug.Log($"[S_BossAttack] GetSafeJumpTarget -> NavMesh hit at {navHit.position}");
+            return navHit.position;
+        }
+
+        // try raycast down from above the desired position to find ground
+        RaycastHit hit;
+        Vector3 rayStart = desired + Vector3.up * 5f;
+        if (Physics.Raycast(rayStart, Vector3.down, out hit, 10f))
+        {
+            Debug.Log($"[S_BossAttack] GetSafeJumpTarget -> Raycast ground at {hit.point}");
+            return hit.point;
+        }
+
+        Debug.LogWarning("[S_BossAttack] GetSafeJumpTarget -> No navmesh or ground found near desired target, using fallback");
+        return fallbackPosition;
+    }
     #endregion
 }

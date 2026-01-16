@@ -4,10 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class S_SceneManagement : MonoBehaviour
 {
-    [TabGroup("References")]
-    [Title("Levels")]
-    [SerializeField] private S_SceneReference[] levelsName;
-
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnLoadScene rseOnLoadScene;
 

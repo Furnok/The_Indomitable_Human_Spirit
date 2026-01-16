@@ -987,6 +987,7 @@ MonoBehaviour:
   rootMotionModifier: {fileID: 3231315390003761703}
   bossAttackData: {fileID: 461593203997373390}
   bossAttack: {fileID: 6465511601208726001}
+  bossPhase1UI: {fileID: 0}
   rseOnPlayerGettingHit: {fileID: 11400000, guid: 0bde5f6bad322664c9a88a5237c9d868, type: 2}
   rseOnPlayerDeath: {fileID: 11400000, guid: 05b30ffda8ad63c4d82da9ab419e36e1, type: 2}
   rseOnEndAttack: {fileID: 11400000, guid: df61dd20dc38205418f8426747ea5149, type: 2}
@@ -994,6 +995,8 @@ MonoBehaviour:
   onExecuteAttack: {fileID: 11400000, guid: 3da07f09686258c4f84c0ab1889d9bcd, type: 2}
   rseOnEnemyTargetDied: {fileID: 11400000, guid: a6d4a41f4054c224a832b2ce84286687, type: 2}
   rseOnPlayerRespawn: {fileID: 11400000, guid: 3b09f2a06394f4642a88a2d57f0cec43, type: 2}
+  rseOnDisplayBossHealth: {fileID: 11400000, guid: 052e4c694acd8a444bcd0135bc6f4cea, type: 2}
+  rseOnUpdateBossHealth: {fileID: 11400000, guid: 1203186c34fa193419cb1fea26546c78, type: 2}
 --- !u!114 &3231315390003761703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1057,8 +1060,10 @@ MonoBehaviour:
   enemyProjectile: {fileID: 7501301468289437560, guid: 2ed9513c34b0abb4facaadc6e39513ea, type: 3}
   projectilePingPongSpawn: {fileID: 3886568817711710598}
   projectileBallsSpawn: {fileID: 3886568817711710598}
+  fireProjectileSpawn: {fileID: 3886568817711710598}
   rootMotionModifier: {fileID: 3231315390003761703}
   bossAttackData: {fileID: 461593203997373390}
+  fireProjectile: {fileID: 1958341879068977330, guid: 58d6cd12a4369b04a9ee0d9a2ca04185, type: 3}
   aimPointBoss: {fileID: 1991927486943782219}
   boss: {fileID: 2728780361816490054}
   bossNavMeshAgent: {fileID: 338046699455560462}
@@ -1802,9 +1807,9 @@ GameObject:
   - component: {fileID: 9194433492713377969}
   - component: {fileID: 3961580513568290508}
   - component: {fileID: 7670651181594837628}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Reflect
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

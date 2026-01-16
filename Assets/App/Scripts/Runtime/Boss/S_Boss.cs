@@ -84,6 +84,10 @@ public class S_Boss : MonoBehaviour
     [TabGroup("References")]
     [SerializeField] private S_BossAttack bossAttack;
 
+    [TabGroup("References")]
+    [ShowIf("@ssoBossData != null && ssoBossData.Value.phaseState == S_EnumBossPhaseState.Phase1")]
+    [SerializeField] private S_BossPhase1UI bossPhase1UI;
+
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnPlayerGettingHit rseOnPlayerGettingHit;
 
@@ -104,6 +108,12 @@ public class S_Boss : MonoBehaviour
 
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnPlayerRespawn rseOnPlayerRespawn;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnDisplayBossHealth rseOnDisplayBossHealth;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnUpdateBossHealth rseOnUpdateBossHealth;
 
     private List<S_ClassAttackOwned> listAttackOwneds = new();
     private List<S_ClassAttackOwned> listAttackOwnedPossibilities = new();
@@ -144,7 +154,7 @@ public class S_Boss : MonoBehaviour
     private bool isAttacking = false;
     private bool isStrafe = false;
     private bool unlockRotate = false;
-    
+
     #endregion
 
     private void Awake()
@@ -181,7 +191,14 @@ public class S_Boss : MonoBehaviour
 
             listAttackOwneds.Add(attackData);
         }
-
+        if (currentPhaseState == S_EnumBossPhaseState.Phase1)
+        {
+            bossPhase1UI.Setup(ssoBossData);
+        }
+        else if(currentPhaseState == S_EnumBossPhaseState.Phase2)
+        {
+            rseOnUpdateBossHealth.Call(health);
+        }
         UpdateLastHealthValue();
     }
 
@@ -331,12 +348,26 @@ public class S_Boss : MonoBehaviour
             bossAttack.aimPointPlayer = aimPoint;
             UpdateState(S_EnumBossState.Chase);
             StartCoroutine(GainDifficultyLevel());
+
+            if(currentPhaseState == S_EnumBossPhaseState.Phase2)
+            {
+                rseOnUpdateBossHealth.Call(health);
+                rseOnDisplayBossHealth.Call(true);
+            }
         }
         else
         {
             if (health != maxHealth)
             {
                 health = maxHealth;
+                if (currentPhaseState == S_EnumBossPhaseState.Phase1)
+                {
+                    bossPhase1UI.UpdateHealthBar(health);
+                }
+                else if(currentPhaseState == S_EnumBossPhaseState.Phase2)
+                {
+                    rseOnUpdateBossHealth.Call(health);
+                }
             }
 
             aimPoint = null;
@@ -437,7 +468,16 @@ public class S_Boss : MonoBehaviour
     {
         health = Mathf.Max(health - damage, 0);
 
-        UpdateLastHealthValue();
+        if (currentPhaseState == S_EnumBossPhaseState.Phase1)
+        {
+            bossPhase1UI.UpdateHealthBar(health);
+        }
+        else if(currentPhaseState == S_EnumBossPhaseState.Phase2)
+        {
+            rseOnUpdateBossHealth.Call(health);
+        }
+
+            UpdateLastHealthValue();
 
         if (health <= 0) UpdateState(S_EnumBossState.Death);
     }
@@ -453,6 +493,11 @@ public class S_Boss : MonoBehaviour
     {
         isDead = true;
         animator.SetTrigger(deathParam);
+
+        if (currentPhaseState == S_EnumBossPhaseState.Phase2)
+        {
+            rseOnDisplayBossHealth.Call(false);
+        }
 
         StopAllCoroutines();
 
@@ -474,7 +519,14 @@ public class S_Boss : MonoBehaviour
         if (health != ssoBossData.Value.health)
         {
             health = ssoBossData.Value.health;
-            //enemyUI.UpdateHealthBar(health);
+            if (currentPhaseState == S_EnumBossPhaseState.Phase1)
+            {
+                bossPhase1UI.UpdateHealthBar(health);
+            }
+            else if (currentPhaseState == S_EnumBossPhaseState.Phase2)
+            {
+                rseOnUpdateBossHealth.Call(health);
+            }
         }
 
         aimPoint = null;

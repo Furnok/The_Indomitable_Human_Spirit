@@ -1,5 +1,4 @@
-﻿using DG.Tweening;
-using FMODUnity;
+﻿using FMODUnity;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,16 +20,7 @@ public class S_CameraManager : MonoBehaviour
     [SerializeField] private CinemachineCamera cinemachineCameraIntro;
 
     [TabGroup("References")]
-    [SerializeField] private CinemachineCamera cinemachineCameraRail;
-
-    [TabGroup("References")]
-    [SerializeField] private CinemachineCamera cinemachineCameraBridge;
-
-    [TabGroup("References")]
     [SerializeField] private CinemachineCamera cinemachineCameraPlayer;
-
-    [TabGroup("References")]
-    [SerializeField] private CinemachineThirdPersonFollow cinemachineThirdPersonFollow;
 
     [TabGroup("References")]
     [SerializeField] private List<CinemachineCamera> cinemachineCameraCinematic;
@@ -40,19 +30,10 @@ public class S_CameraManager : MonoBehaviour
     [SerializeField] private Transform playerPoint;
 
     [TabGroup("Inputs")]
-    [SerializeField] private RSE_OnPlayerMove rseOnPlayerMove;
-
-    [TabGroup("Inputs")]
-    [SerializeField] private RSE_OnStartTargeting rseOnStartTargeting;
-
-    [TabGroup("Inputs")]
     [SerializeField] private RSE_OnNewTargeting rseOnNewTargeting;
 
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnPlayerCancelTargeting rseOnPlayerCancelTargeting;
-
-    [TabGroup("Inputs")]
-    [SerializeField] private RSE_OnStopTargeting rseOnStopTargeting;
 
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnCameraIntro rseOnCameraIntro;
@@ -77,6 +58,9 @@ public class S_CameraManager : MonoBehaviour
 
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnSkipIntro rseOnSkipIntro;
+
+    [TabGroup("Inputs")]
+    [SerializeField] private RSE_OnResetCam rseOnResetCam;
 
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnCinematicInputEnabled rseOnCinematicInputEnabled;
@@ -103,28 +87,13 @@ public class S_CameraManager : MonoBehaviour
     [SerializeField] private RSE_OnUpdateVisibility rseUpdateVisibility;
 
     [TabGroup("Outputs")]
-    [SerializeField] private RSO_PlayerIsDodging rsoPlayerIsDodging;
-
-    [TabGroup("Outputs")]
     [SerializeField] private SSO_CameraData ssoCameraData;
 
-    private ModeCamera currentMode = ModeCamera.None;
-    private ModeCamera oldMode = ModeCamera.None;
-    private ModeCamera newMode = ModeCamera.None;
     private CinemachineCamera currentCam = null;
-    private CinemachineCamera oldCam = null;
-    private CinemachineCamera newCam = null;
-    private CinemachineCamera targetCam = null;
     private Transform playerPos = null;
     private Transform currentTarget = null;
 
-    private Sequence transitionSequence = null;
-    Tweener moveTween = null;
-    Tweener rotateTween = null;
-    private Tween shoulderTween = null;
-    private Tween rotationTween = null;
     private float currentAlpha = 1f;
-    private float lastDirection = 0f;
 
     private Coroutine shakeRoutine = null;
     private Coroutine skipRoutine = null;
@@ -138,45 +107,41 @@ public class S_CameraManager : MonoBehaviour
 
     private void Awake()
     {
-        currentCam = cinemachineCameraRail;
-        currentMode = ModeCamera.Rail;
-        cinemachineCameraBridge.Target.TrackingTarget = playerPoint;
+        cinemachineCameraPlayer.Target.TrackingTarget = playerPoint;
 
-        if (cinemachineThirdPersonFollow != null) cinemachineThirdPersonFollow.ShoulderOffset = ssoCameraData.Value.targetShoulderOffsetPositive;
+        currentCam = cinemachineCameraPlayer;
+
+        LookActivated(true);
     }
 
     private void OnEnable()
     {
         rseOnPlayerCenter.action += PlayerPos;
-        rseOnStartTargeting.action += SwitchCameraMode;
         rseOnNewTargeting.action += SetTarget;
         rseOnPlayerCancelTargeting.action += SetTarget;
-        rseOnStopTargeting.action += SwitchCameraMode;
         rseOnCameraIntro.action += CameraIntro;
         rseOnCameraCinematic.action += SwitchCinematicCamera;
         rseOnCameraShake.action += CameraShake;
-        rseOnPlayerMove.action += InputsMove;
         rseOnCinematicFinish.action += FinishCinematic;
         rseOnSkipInput.action += StartSkip;
         rseOnSkipCancelInput.action += StopSkip;
         rseOnSkipIntro.action += SkipIntro;
+        rseOnResetCam.action += ResetCam;
     }
 
     private void OnDisable()
     {
         rseOnPlayerCenter.action -= PlayerPos;
-        rseOnStartTargeting.action -= SwitchCameraMode;
         rseOnNewTargeting.action -= SetTarget;
         rseOnPlayerCancelTargeting.action -= SetTarget;
-        rseOnStopTargeting.action -= SwitchCameraMode;
         rseOnCameraIntro.action -= CameraIntro;
         rseOnCameraCinematic.action -= SwitchCinematicCamera;
         rseOnCameraShake.action -= CameraShake;
-        rseOnPlayerMove.action -= InputsMove;
         rseOnCinematicFinish.action -= FinishCinematic;
         rseOnSkipInput.action -= StartSkip;
         rseOnSkipCancelInput.action -= StopSkip;
         rseOnSkipIntro.action -= SkipIntro;
+        rseOnResetCam.action -= ResetCam;
     }
 
     private void Update()
@@ -184,7 +149,33 @@ public class S_CameraManager : MonoBehaviour
         if (playerPos == null) return;
 
         playerPoint.position = playerPos.position;
-        HandleCameraRotation();
+
+        if (currentTarget)
+        {
+            Vector3 dir = currentTarget.position - playerPos.position;
+
+            if (dir.sqrMagnitude < 0.001f) return;
+
+            float targetYaw = Quaternion.LookRotation(dir).eulerAngles.y;
+
+            cinemachineCameraPlayer.GetComponent<CinemachineOrbitalFollow>().HorizontalAxis.Value =
+            Mathf.LerpAngle(
+                cinemachineCameraPlayer.GetComponent<CinemachineOrbitalFollow>().HorizontalAxis.Value,
+                targetYaw,
+                Time.deltaTime * 5f
+            );
+
+            float targetPitch = Quaternion.LookRotation(dir).eulerAngles.x;
+            targetPitch = Mathf.Clamp(targetPitch, ssoCameraData.Value.minVerticalCameraPlayer, ssoCameraData.Value.maxVerticalCameraPlayer);
+
+            cinemachineCameraPlayer.GetComponent<CinemachineOrbitalFollow>().VerticalAxis.Value = 
+            Mathf.LerpAngle(
+                cinemachineCameraPlayer.GetComponent<CinemachineOrbitalFollow>().VerticalAxis.Value,
+                targetPitch,
+                Time.deltaTime * 5f
+            );
+        }
+
         HandlePlayerFade();
         HandleSkipHold();
     }
@@ -193,166 +184,41 @@ public class S_CameraManager : MonoBehaviour
     {
         if (target != null)
         {
-            if (currentTarget == target.transform) currentTarget = null;
-            else currentTarget = target.transform;
+            if (currentTarget == target.transform)
+            {
+                currentTarget = null;
+
+                LookActivated(true);
+            }
+            else
+            {
+                currentTarget = target.transform;
+
+                LookActivated(false);
+            }
         }
     }
 
     private void PlayerPos(Transform player)
     {
         playerPos = player;
-        cinemachineCameraRail.Target.TrackingTarget = player;
-    }
-
-    private void InputsMove(Vector2 move)
-    {
-        if (currentMode == ModeCamera.Player)
-        {
-            if (move.x > 0 && lastDirection <= 0)
-            {
-                ChangeShoulderOffset(ssoCameraData.Value.targetShoulderOffsetNegative);
-                lastDirection = move.x;
-            }
-            else if (move.x < 0 && lastDirection >= 0)
-            {
-                ChangeShoulderOffset(ssoCameraData.Value.targetShoulderOffsetPositive);
-                lastDirection = move.x;
-            }
-        }
-        else shoulderTween?.Kill();
+        cinemachineCameraPlayer.Target.TrackingTarget = player;
     }
 
     #region Camera System
-    private void SwitchCameraMode()
+    private void SwitchPlayerCamera()
     {
-        shoulderTween?.Kill();
-        transitionSequence?.Kill();
-        moveTween?.Kill();
-        rotateTween?.Kill();
+        cinemachineCameraPlayer.Priority = Focus;
+        currentCam.Priority = Unfocus;
+        currentCam = cinemachineCameraPlayer;
 
-        switch (currentMode)
-        {
-            case ModeCamera.Player:
-                rseOnSendConsoleMessage.Call("Player Stop Targeting!");
-                cinemachineCameraBridge.Target.TrackingTarget = currentTarget;
-                cinemachineThirdPersonFollow.ShoulderOffset = ssoCameraData.Value.targetShoulderOffsetPositive;
-                Transition(cinemachineCameraPlayer, cinemachineCameraRail, ModeCamera.Rail, playerPoint);
-                break;
-
-            case ModeCamera.Rail:
-                rseOnSendConsoleMessage.Call("Player is Targeting!");
-                cinemachineCameraBridge.Target.TrackingTarget = currentTarget;
-                cinemachineThirdPersonFollow.ShoulderOffset = ssoCameraData.Value.targetShoulderOffsetPositive;
-                lastDirection = 0f;
-
-                Vector3 dir = (currentTarget.position - playerPos.position).normalized;
-                dir.y = 0f;
-                playerPoint.rotation = Quaternion.LookRotation(dir, Vector3.up);
-
-                Transition(cinemachineCameraRail, cinemachineCameraPlayer, ModeCamera.Player, currentTarget);
-                break;
-
-            case ModeCamera.Bridge:
-                if (oldMode == ModeCamera.Player)
-                {
-                    rseOnSendConsoleMessage.Call("Player is Targeting!");
-                    oldMode = ModeCamera.Rail;
-                    newMode = ModeCamera.Player;
-                }
-                else
-                {
-                    rseOnSendConsoleMessage.Call("Player Stop Targeting!");
-                    oldMode = ModeCamera.Player;
-                    newMode = ModeCamera.Rail;
-                }
-
-                if (targetCam == oldCam) targetCam = newCam;
-                else targetCam = oldCam;
-
-                if (targetCam == null) return;
-
-                moveTween?.Kill();
-                rotateTween?.Kill();
-                rotationTween?.Kill();
-                transitionSequence?.Kill();
-
-                moveTween = cinemachineCameraBridge.transform.DOMove(targetCam.transform.position, 0.4f).SetEase(Ease.Linear);
-                rotateTween = cinemachineCameraBridge.transform.DORotateQuaternion(targetCam.transform.rotation, 0.4f).SetEase(Ease.Linear);
-
-                transitionSequence = DOTween.Sequence().Join(moveTween).Join(rotateTween).OnComplete(() =>
-                {
-                    cinemachineCameraBridge.Priority = Unfocus;
-                    targetCam.Priority = Focus;
-
-                    currentCam = targetCam;
-                    currentMode = newMode;
-                    targetCam = null;
-                });
-                break;
-        }
+        LookActivated(true);
     }
 
-    private void Transition(CinemachineCamera from, CinemachineCamera to, ModeCamera nextMode, Transform newTarget)
+    private void ResetCam()
     {
-        transitionSequence?.Kill();
-        moveTween?.Kill();
-        rotateTween?.Kill();
-
-        cinemachineCameraBridge.transform.SetPositionAndRotation(from.transform.position, from.transform.rotation);
-
-        from.Priority = Unfocus;
-        cinemachineCameraBridge.Priority = Focus;
-
-        oldCam = from;
-        newCam = to;
-        currentCam = cinemachineCameraBridge;
-        oldMode = currentMode;
-        newMode = nextMode;
-        currentMode = ModeCamera.Bridge;
-
-        bool moveDone = false;
-        bool rotateDone = false;
-
-        moveTween = DOVirtual.Float(0f, 1f, 0.4f, t =>
-        {
-            Vector3 start = from.transform.position;
-            Vector3 current = to.transform.position;
-            cinemachineCameraBridge.transform.position = Vector3.Lerp(start, current, t);
-
-            float distance = Vector3.Distance(cinemachineCameraBridge.transform.position, current);
-            if (!moveDone && distance <= 0.1f) 
-            { 
-                moveDone = true;
-                cinemachineCameraBridge.transform.position = current;
-
-                if (rotateDone) OnTransitionComplete(to); 
-            }
-        }).SetEase(Ease.Linear);
-
-        rotateTween = DOVirtual.Float(0f, 1f, 0.4f, t =>
-        {
-            Quaternion start = from.transform.rotation;
-            Quaternion current = to.transform.rotation;
-            cinemachineCameraBridge.transform.rotation = Quaternion.Slerp(start, current, t);
-
-            float angle = Quaternion.Angle(cinemachineCameraBridge.transform.rotation, current);
-            if (!rotateDone && angle <= 0.1f)
-            {
-                rotateDone = true;
-                cinemachineCameraBridge.transform.rotation = current;
-
-                if (moveDone) OnTransitionComplete(to);
-            }
-        }).SetEase(Ease.Linear);
-    }
-
-    private void OnTransitionComplete(CinemachineCamera to)
-    {
-        cinemachineCameraBridge.Priority = Unfocus;
-        to.Priority = Focus;
-
-        currentCam = to;
-        currentMode = newMode;
+        cinemachineCameraPlayer.GetComponent<CinemachineOrbitalFollow>().HorizontalAxis.Value = cinemachineCameraPlayer.GetComponent<CinemachineOrbitalFollow>().HorizontalAxis.Center;
+        cinemachineCameraPlayer.GetComponent<CinemachineOrbitalFollow>().VerticalAxis.Value = cinemachineCameraPlayer.GetComponent<CinemachineOrbitalFollow>().VerticalAxis.Center;
     }
     #endregion
 
@@ -363,11 +229,12 @@ public class S_CameraManager : MonoBehaviour
         {
             StartSkipTimer();
 
+            LookActivated(false);
+
             rseOnDisplayUIGame.Call(false);
             rseOnCinematicInputEnabled.Call();
 
             currentCam = cinemachineCameraIntro;
-            currentMode = ModeCamera.Cinematic;
 
             var anim = currentCam.GetComponent<Animator>();
             if (anim)
@@ -380,6 +247,10 @@ public class S_CameraManager : MonoBehaviour
         }
         else
         {
+            LookActivated(true);
+
+            currentCam = cinemachineCameraPlayer;
+
             rseOnDisplayUIGame.Call(true);
             rseOnGameInputEnabled.Call();
         }
@@ -390,33 +261,23 @@ public class S_CameraManager : MonoBehaviour
         var anim = cinemachineCameraIntro.GetComponent<Animator>();
         if (anim) anim.enabled = false;
 
-        cinemachineCameraIntro.Priority = Unfocus;
-        cinemachineCameraRail.Priority = Focus;
-        currentCam = cinemachineCameraRail;
-        currentMode = ModeCamera.Rail;
+        SwitchPlayerCamera();
     }
 
     private void SwitchCinematicCamera(int index)
     {
         if (index < 0 || index >= cinemachineCameraCinematic.Count) return;
 
-        shoulderTween?.Kill();
-        transitionSequence?.Kill();
-        moveTween?.Kill();
-        rotateTween?.Kill();
+        LookActivated(false);
 
         StartSkipTimer();
 
         rseOnDisplayUIGame.Call(false);
         rseOnCinematicInputEnabled.Call();
 
-        currentTarget = null;
-
-        cinemachineCameraRail.Priority = Unfocus;
         cinemachineCameraPlayer.Priority = Unfocus;
         cinemachineCameraCinematic[index].Priority = FocusCinematic;
         currentCam = cinemachineCameraCinematic[index];
-        currentMode = ModeCamera.Cinematic;
 
         rseOnCancelTargeting.Call();
 
@@ -439,15 +300,18 @@ public class S_CameraManager : MonoBehaviour
         var anim = currentCam.GetComponent<Animator>();
         if (anim) anim.enabled = false;
 
-        currentCam.Priority = Unfocus;
-        cinemachineCameraRail.Priority = Focus;
-        currentCam = cinemachineCameraRail;
-        currentMode = ModeCamera.Rail;
+        SwitchPlayerCamera();
 
         isSkipping = false;
 
         rseOnDisplayUIGame.Call(true);
         rseOnGameInputEnabled.Call();
+
+    }
+
+    private void LookActivated(bool value)
+    {
+        cinemachineCameraPlayer.GetComponent<CinemachineInputAxisController>().enabled = value;
     }
     #endregion
 
@@ -474,41 +338,6 @@ public class S_CameraManager : MonoBehaviour
     #endregion
 
     #region Handle Systems
-    private void HandleCameraRotation()
-    {
-        if (currentMode == ModeCamera.Rail) cinemachineCameraBridge.transform.position = cinemachineCameraRail.transform.position;
-
-        if (currentMode == ModeCamera.Rail)
-        {
-            playerPoint.rotation = playerPos.rotation;
-            return;
-        }
-
-        if (currentMode == ModeCamera.Player)
-        {
-            Vector3 dir = (currentTarget.position - playerPos.position).normalized;
-
-            Quaternion targetRot = Quaternion.LookRotation(dir, Vector3.up);
-
-            Vector3 euler = targetRot.eulerAngles;
-
-            if (euler.x > 180f) euler.x -= 360f;
-
-            euler.x = Mathf.Clamp(euler.x, ssoCameraData.Value.minVerticalCameraPlayer, ssoCameraData.Value.maxVerticalCameraPlayer);
-
-            targetRot = Quaternion.Euler(euler);
-
-            float angle = Quaternion.Angle(playerPoint.transform.rotation, targetRot);
-
-            if (angle > 0.1f)
-            {
-                float duration = rsoPlayerIsDodging.Value || currentMode == ModeCamera.Bridge ? ssoCameraData.Value.rotationCameraPlayerDodgeDuration : ssoCameraData.Value.rotationCameraPlayerDuration;
-                rotationTween?.Kill();
-                rotationTween = playerPoint.DORotateQuaternion(targetRot, duration).SetEase(Ease.Linear);
-            }
-        }
-    }
-
     private void HandlePlayerFade()
     {
         float distance = Vector3.Distance(cameraMain.transform.position, playerPos.position);
@@ -598,19 +427,6 @@ public class S_CameraManager : MonoBehaviour
         yield return null;
 
         brain.enabled = true;
-    }
-
-    private void ChangeShoulderOffset(Vector3 target)
-    {
-        if (cinemachineThirdPersonFollow == null) return;
-
-        shoulderTween?.Kill();
-        shoulderTween = DOTween.To(
-            () => cinemachineThirdPersonFollow.ShoulderOffset,
-            x => cinemachineThirdPersonFollow.ShoulderOffset = x,
-            target,
-            ssoCameraData.Value.switchDurationCamera
-        ).SetEase(Ease.Linear);
     }
     #endregion
 }

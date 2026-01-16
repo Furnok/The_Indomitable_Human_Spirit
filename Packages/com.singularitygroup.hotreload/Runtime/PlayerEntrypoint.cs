@@ -39,6 +39,7 @@ namespace SingularityGroup.HotReload {
         private static void InitOnAppLoad() {
             AppCallbackListener.Init(); // any platform might be using this
             UnityHelper.Init();
+            Translations.LoadDefaultLocalization();
             bool onlyPrefabMissing;
             if (!IsPlayerWithHotReload(out onlyPrefabMissing)) {
                 if (onlyPrefabMissing) {
@@ -46,7 +47,6 @@ namespace SingularityGroup.HotReload {
                 }
                 return;
             }
-            Translations.LoadDefaultLocalization();
 
             TryAutoConnect().Forget();
         }
