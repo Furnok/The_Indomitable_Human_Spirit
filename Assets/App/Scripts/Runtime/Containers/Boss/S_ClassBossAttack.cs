@@ -10,11 +10,14 @@ public class S_ClassBossAttack
 
     public bool isSpecialAttack = false;
 
+    public bool repeatableAttack = true;
+
     [SuffixLabel("s", Overlay = true)]
     public float timeAfterAttack = 0;
 
     public bool isAttackDistance = false;
 
+    [SuffixLabel("%", Overlay = true)]
     public float pvBossUnlock = 0;
 
     public float difficultyLevel = 0;
