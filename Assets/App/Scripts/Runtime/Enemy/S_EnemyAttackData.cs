@@ -111,4 +111,9 @@ public class S_EnemyAttackData : MonoBehaviour
     {
         enemy.enabled = false;
     }
+
+    public void SetFOVCam(float value)
+    {
+
+    }
 }
