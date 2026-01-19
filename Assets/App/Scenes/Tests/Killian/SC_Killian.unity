@@ -4456,6 +4456,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3187908799981269826, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
+      propertyPath: TargetOffset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3187908799981269826, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
+      propertyPath: TrackerSettings.BindingMode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3187908799981269826, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
+      propertyPath: TrackerSettings.PositionDamping.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3187908799981269826, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
+      propertyPath: TrackerSettings.PositionDamping.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3187908799981269826, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
+      propertyPath: TrackerSettings.PositionDamping.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3198186735433412354, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
       propertyPath: m_ControllerManager.Controllers.Array.data[0].Input.InputAction
       value: 
@@ -4490,15 +4510,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4678236891978517612, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.18494129
+      value: 0.18494125
       objectReference: {fileID: 0}
     - target: {fileID: 4678236891978517612, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000036610285
+      value: -0.000000018133354
       objectReference: {fileID: 0}
     - target: {fileID: 4678236891978517612, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000068896022
+      value: 0.0000000034124716
       objectReference: {fileID: 0}
     - target: {fileID: 4957929126819055299, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4562,15 +4582,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8703180912700670871, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.18494128
+      value: 0.18494125
       objectReference: {fileID: 0}
     - target: {fileID: 8703180912700670871, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000036610277
+      value: -0.000000017303913
       objectReference: {fileID: 0}
     - target: {fileID: 8703180912700670871, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000068895996
+      value: -9.950479e-10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
