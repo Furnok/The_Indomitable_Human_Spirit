@@ -16,6 +16,8 @@ public class S_TutoManager : MonoBehaviour
     [SerializeField] RSE_OnRequestStartTutorialStep _onRequestStartTutorialStep;
     [SerializeField] RSE_OnTutorialStepCompleted _onTutorialStepCompleted;
     [SerializeField] RSE_OnRequestAcceptedTutorialStep _onRequestAcceptedTutorialStep;
+    [SerializeField] RSO_SettingsSaved _rsoSettingsSaved;
+    [SerializeField] RSO_Device _rsoDevice;
 
     [Header("Outputs")]
     [SerializeField] private RSE_OnGamePause _onGamePause;
@@ -188,11 +190,10 @@ public class S_TutoManager : MonoBehaviour
 
         if (tuto != null && tutoStep == S_EnumTutorialStep.Attack)
         {
-            //StartCoroutine(S_Utils.Delay(1.0f, () =>
-            //{
-            //    Debug.Log("Starting Heal Tuto");
-            //    _onRequestStartTutorialStep.Call(S_EnumTutorialStep.Heal);
-            //}));
+            StartCoroutine(S_Utils.Delay(1.0f, () =>
+            {
+                _onRequestStartTutorialStep.Call(S_EnumTutorialStep.Heal);
+            }));
         }
     }
 }

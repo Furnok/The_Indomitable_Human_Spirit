@@ -481,7 +481,6 @@ public class S_TargetingManager : MonoBehaviour
     private void OnSwapTargetInput(float axis) // axis = -1 gauche, +1 droite
     {
         if (targetsPossible.Count == 0 || rsoPlayerIsTargeting.Value == false) return;
-        Debug.Log(axis);
 
         List<(GameObject go, float angle)> candidates = new List<(GameObject, float)>();
 

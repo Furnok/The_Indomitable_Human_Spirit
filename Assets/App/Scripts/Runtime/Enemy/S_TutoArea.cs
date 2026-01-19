@@ -14,7 +14,9 @@ public class S_TutoArea : MonoBehaviour
     [SerializeField] Collider _enemyDetectionRange;
     [SerializeField] Collider _enemyDetectionMaxRange;
 
-    //[Header("Inputs")]
+    [Header("Inputs")]
+    [SerializeField] RSO_SettingsSaved _rsoSettingsSaved;
+
 
     [Header("Outputs")]
     [SerializeField] RSE_OnRequestStartTutorialStep _onRequestStartTutorialStep;
@@ -26,7 +28,7 @@ public class S_TutoArea : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && _hasTriggered == false)
+        if (other.CompareTag("Player") && _hasTriggered == false && _rsoSettingsSaved.Value.activateTuto == true)
         {
             this._other = other;
             _hasTriggered = true;

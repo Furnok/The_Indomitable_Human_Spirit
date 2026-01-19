@@ -21,6 +21,10 @@ public class S_DodgeableAreaDetector : MonoBehaviour
     [TabGroup("Outputs")]
     [SerializeField] RSE_OnRequestStartTutorialStep _onRequestStartTutorialStep;
 
+    [TabGroup("Inputs")]
+    [SerializeField] RSO_SettingsSaved _rsoSettingsSaved;
+
+
 
     private Dictionary<I_AttackProvider, Collider> _tempAttackDataInDodgeableArea = new();
     bool _hasParryedProjectile = false;
@@ -49,7 +53,7 @@ public class S_DodgeableAreaDetector : MonoBehaviour
                 _tempAttackDataInDodgeableArea.Add(attack, other);
             }
 
-            if ( attackData.attackType == S_EnumEnemyAttackType.Projectile && _hasParryedProjectile == false)
+            if ( attackData.attackType == S_EnumEnemyAttackType.Projectile && _hasParryedProjectile == false && _rsoSettingsSaved.Value.activateTuto == true)
             {
                 var tutoStep = _tutoStepsFinished.Value.Find(x => x.Step == S_EnumTutorialStep.ParryProjectile && x.IsFinished == false);
                 if (tutoStep != null)

@@ -80,6 +80,10 @@ public class S_InputsManager : MonoBehaviour
     [TabGroup("Outputs")]
     [SerializeField] RSE_OnTutorialStepCompleted _onTutorialStepCompleted;
 
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnGamePause _rseOnGamePause;
+
+
     #endregion
 
     private IA_PlayerInput iaPlayerInput = null;
@@ -94,7 +98,7 @@ public class S_InputsManager : MonoBehaviour
     private System.Action<InputAction.CallbackContext> _currentNextInputCallback = null;
 
     private float tutorialAttackActionTimePressed = 0f;
-    private float tutorialAttackActionDelay = 2f;
+    private float tutorialAttackActionDelay = 1.0f;
     private bool tutorialAttackActionPressed = false;
 
     private void Awake()
@@ -418,41 +422,34 @@ public class S_InputsManager : MonoBehaviour
         if (tutorialAttackActionPressed == true)
             return;
 
-        Debug.Log("9");
-
+        _rseOnGamePause.Call(false);
+        //OnTutorialAttackFinish(ctx);
 
         tutorialAttackActionPressed = true;
         tutorialAttackActionTimePressed = Time.time;
-        //OnTutorialAttackFinish(ctx);
+
         //FinishActionStep(S_EnumTutorialStep.Attack);
 
-        //OnAttackInput(ctx);
-
+        OnAttackInput(ctx);
     }
 
     void AttackCancelTuto(InputAction.CallbackContext ctx)
     {
         if (tutorialAttackActionPressed == true && (Time.time - tutorialAttackActionTimePressed) >= tutorialAttackActionDelay)
         {
-            Debug.Log("10");
             tutorialAttackActionPressed = false;
             OnAttackInputCancel(ctx);
             OnTutorialAttackFinish(ctx);
         }
         else
         {
-            Debug.Log("11");
-
             tutorialAttackActionPressed = true;
 
             var timeSincePressed = Time.time - tutorialAttackActionTimePressed;
             var remainingDelay = tutorialAttackActionDelay - timeSincePressed;
-            Debug.Log("Remaining delay: " + remainingDelay);
 
             StartCoroutine(S_Utils.Delay(remainingDelay, () =>
             {
-                Debug.Log("12");
-
                 tutorialAttackActionPressed = false;
                 OnAttackInputCancel(ctx);
                 OnTutorialAttackFinish(ctx);
