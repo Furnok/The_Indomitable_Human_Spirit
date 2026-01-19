@@ -179,8 +179,8 @@ MonoBehaviour:
           knockbackHitDistance: 2
           knockbackOnParryDuration: 0.2
           knockbackOnParrryDistance: 0.1
-          parryToleranceBeforeHit: 0
-          parryToleranceAfterHit: 0
+          parryToleranceBeforeHit: 0.06
+          parryToleranceAfterHit: 0.06
           invicibilityDuration: 0.7
           convictionReduction: 20
           convictionParryGain: 1
@@ -202,8 +202,8 @@ MonoBehaviour:
           knockbackHitDistance: 2
           knockbackOnParryDuration: 0.2
           knockbackOnParrryDistance: 0.1
-          parryToleranceBeforeHit: 0
-          parryToleranceAfterHit: 0
+          parryToleranceBeforeHit: 0.06
+          parryToleranceAfterHit: 0.06
           invicibilityDuration: 0.7
           convictionReduction: 20
           convictionParryGain: 1
@@ -225,8 +225,8 @@ MonoBehaviour:
           knockbackHitDistance: 2
           knockbackOnParryDuration: 0.2
           knockbackOnParrryDistance: 0.1
-          parryToleranceBeforeHit: 0.08
-          parryToleranceAfterHit: 0.08
+          parryToleranceBeforeHit: 0.06
+          parryToleranceAfterHit: 0.06
           invicibilityDuration: 0.7
           convictionReduction: 20
           convictionParryGain: 1
