@@ -114,7 +114,6 @@ public class S_CameraManager : MonoBehaviour
 
     private Tween shoulderTween = null;
     private float lastDirection = 0f;
-    private bool offsetMove = false;
 
     private void Awake()
     {
