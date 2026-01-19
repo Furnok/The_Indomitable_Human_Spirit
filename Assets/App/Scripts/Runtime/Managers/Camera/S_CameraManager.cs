@@ -23,6 +23,9 @@ public class S_CameraManager : MonoBehaviour
     [SerializeField] private CinemachineCamera cinemachineCameraPlayer;
 
     [TabGroup("References")]
+    [SerializeField] private CinemachineOrbitalFollow cinemachineCameraOrbitalFollow;
+
+    [TabGroup("References")]
     [SerializeField] private List<CinemachineCamera> cinemachineCameraCinematic;
 
     [TabGroup("References")]
@@ -158,22 +161,17 @@ public class S_CameraManager : MonoBehaviour
 
             float targetYaw = Quaternion.LookRotation(dir).eulerAngles.y;
 
-            cinemachineCameraPlayer.GetComponent<CinemachineOrbitalFollow>().HorizontalAxis.Value =
-            Mathf.LerpAngle(
-                cinemachineCameraPlayer.GetComponent<CinemachineOrbitalFollow>().HorizontalAxis.Value,
-                targetYaw,
-                Time.deltaTime * 5f
-            );
+            cinemachineCameraOrbitalFollow.HorizontalAxis.Value = Mathf.LerpAngle(cinemachineCameraOrbitalFollow.HorizontalAxis.Value, targetYaw, Time.deltaTime * 5f);
 
             float targetPitch = Quaternion.LookRotation(dir).eulerAngles.x;
             targetPitch = Mathf.Clamp(targetPitch, ssoCameraData.Value.minVerticalCameraPlayer, ssoCameraData.Value.maxVerticalCameraPlayer);
 
-            cinemachineCameraPlayer.GetComponent<CinemachineOrbitalFollow>().VerticalAxis.Value = 
-            Mathf.LerpAngle(
-                cinemachineCameraPlayer.GetComponent<CinemachineOrbitalFollow>().VerticalAxis.Value,
-                targetPitch,
-                Time.deltaTime * 5f
-            );
+            cinemachineCameraOrbitalFollow.VerticalAxis.Value = Mathf.LerpAngle(cinemachineCameraOrbitalFollow.VerticalAxis.Value, targetPitch, Time.deltaTime * 5f);
+
+
+
+
+            //cinemachineCameraOrbitalFollow.TargetOffset = new Vector3(0f, 1f, 0);
         }
 
         HandlePlayerFade();

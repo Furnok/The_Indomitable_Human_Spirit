@@ -739,6 +739,7 @@ MonoBehaviour:
   cameraMain: {fileID: 3874155762252318603}
   cinemachineCameraIntro: {fileID: 3925711368591419889}
   cinemachineCameraPlayer: {fileID: 4498866734127298347}
+  cinemachineCameraOrbitalFollow: {fileID: 3187908799981269826}
   cinemachineCameraCinematic:
   - {fileID: 8040167007817381413}
   playerPoint: {fileID: 4679355963983762286}
