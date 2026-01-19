@@ -9,13 +9,22 @@ public class S_DodgeableAreaDetector : MonoBehaviour
     [Title("Filter")]
     [SerializeField, S_TagName] private string tagHit;
 
+    [Title("RSO")]
+    [SerializeField] RSO_ListTutoStepFinished _tutoStepsFinished;
+
     [TabGroup("Outputs")]
     [SerializeField] private RSO_AttackDataInDodgeableArea _attackDataInDodgeableArea;
 
     [TabGroup("Outputs")]
     [SerializeField] private RSO_AttackCanHitPlayer _attackCanHitPlayer;
 
+    [TabGroup("Outputs")]
+    [SerializeField] RSE_OnRequestStartTutorialStep _onRequestStartTutorialStep;
+
+
     private Dictionary<I_AttackProvider, Collider> _tempAttackDataInDodgeableArea = new();
+    bool _hasParryedProjectile = false;
+    GameObject _projectileGameObject;
 
     private void Awake()
     {
@@ -38,6 +47,15 @@ public class S_DodgeableAreaDetector : MonoBehaviour
             if (_tempAttackDataInDodgeableArea.ContainsKey(attack) == false)
             {
                 _tempAttackDataInDodgeableArea.Add(attack, other);
+            }
+
+            if ( attackData.attackType == S_EnumEnemyAttackType.Projectile && _hasParryedProjectile == false)
+            {
+                var tutoStep = _tutoStepsFinished.Value.Find(x => x.Step == S_EnumTutorialStep.ParryProjectile && x.IsFinished == false);
+                if (tutoStep != null)
+                {
+                    _projectileGameObject = other.gameObject;
+                }
             }
 
             if (_attackDataInDodgeableArea.Value == null || _attackDataInDodgeableArea.Value.ContainsKey(goId) || attackData.attackType != S_EnumEnemyAttackType.Dodgeable)
@@ -115,6 +133,29 @@ public class S_DodgeableAreaDetector : MonoBehaviour
         foreach (var key in toRemove)
         {
             _tempAttackDataInDodgeableArea.Remove(key);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if(_projectileGameObject != null && _hasParryedProjectile == false)
+        {
+            if(Vector3.Distance(_projectileGameObject.transform.position, this.transform.position) < 2f)
+            {
+                _onRequestStartTutorialStep.Call(S_EnumTutorialStep.ParryProjectile);
+                _projectileGameObject = null;
+                _hasParryedProjectile = true;
+
+                //StartCoroutine(S_Utils.Delay(1f, () =>
+                //{
+                //    _onRequestStartTutorialStep.Call(S_EnumTutorialStep.Conviction);
+                //}));
+
+                //StartCoroutine(S_Utils.Delay(1.5f, () =>
+                //{
+                //    _onRequestStartTutorialStep.Call(S_EnumTutorialStep.Attack);
+                //}));
+            }
         }
     }
 }

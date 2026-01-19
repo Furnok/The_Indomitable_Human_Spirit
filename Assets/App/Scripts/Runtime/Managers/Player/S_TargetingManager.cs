@@ -168,6 +168,8 @@ public class S_TargetingManager : MonoBehaviour
     {
         var selection = TargetSelectionExist();
 
+        Debug.Log("Targets: " + (targetsPossible.Count));
+
         if (targetsPossible.Count > 0 && selection != null || currentTarget != null)
         {
             if (currentTarget == null)
@@ -479,6 +481,7 @@ public class S_TargetingManager : MonoBehaviour
     private void OnSwapTargetInput(float axis) // axis = -1 gauche, +1 droite
     {
         if (targetsPossible.Count == 0 || rsoPlayerIsTargeting.Value == false) return;
+        Debug.Log(axis);
 
         List<(GameObject go, float angle)> candidates = new List<(GameObject, float)>();
 

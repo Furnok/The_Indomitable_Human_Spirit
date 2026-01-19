@@ -8,6 +8,9 @@ public class S_TutoManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] S_SerializableDictionary<S_EnumTutorialStep, GameObject> _tutoPrefabToEnumDictionary;
+    [SerializeField] RSO_ListTutoStepFinished _tutoStepsFinished;
+    [SerializeField] RectTransform _filterConvictionBar;
+
     //[SerializeField] List<GameObject> _tutoStepPrefabs;
     [Header("Inputs")]
     [SerializeField] RSE_OnRequestStartTutorialStep _onRequestStartTutorialStep;
@@ -16,6 +19,8 @@ public class S_TutoManager : MonoBehaviour
 
     [Header("Outputs")]
     [SerializeField] private RSE_OnGamePause _onGamePause;
+    [SerializeField] RSE_OnChangeHighlightTarget _onChangeHighlightTarget;
+    [SerializeField] RSE_OnChangeActiveStatePanelsFilters _onChangeActiveStatePanelsFilters;
 
     private Dictionary<S_EnumTutorialStep, TutoStepData> _tutorials = new Dictionary<S_EnumTutorialStep, TutoStepData>();
 
@@ -28,14 +33,28 @@ public class S_TutoManager : MonoBehaviour
     {
         _onRequestStartTutorialStep.action -= StartTutorialStep;
         _onTutorialStepCompleted.action -= EndTutorialStep;
+
+        if (_tutoStepsFinished.Value != null)
+            _tutoStepsFinished.Value.Clear();
     }
 
     private void Awake()
     {
+        _tutoStepsFinished.Value = new List<TutoStepFinish>();
+        _tutoStepsFinished.Value.Clear();
+
         foreach (var tuto in _tutoPrefabToEnumDictionary)
         {
             _tutorials.Add(tuto.Key, new TutoStepData { IsFinished = false });
+
+            _tutoStepsFinished.Value.Add(new TutoStepFinish
+            {
+                Step = tuto.Key,
+                IsFinished = false
+            });
         }
+
+        Debug.Log("Tuto steps count: " + _tutoStepsFinished.Value.Count);
     }
 
     void StartTutorialStep(S_EnumTutorialStep tutoStep)
@@ -78,6 +97,9 @@ public class S_TutoManager : MonoBehaviour
         {
             _tutorials.TryGetValue(tutoStep, out TutoStepData stepData);
             stepData.IsFinished = true;
+
+            _tutoStepsFinished.Value.Find(x => x.Step == tutoStep).IsFinished = true;
+            StepFinished(tutoStep);
         }
         else
         {
@@ -137,6 +159,40 @@ public class S_TutoManager : MonoBehaviour
         foreach (var tuto in _tutoPrefabToEnumDictionary)
         {
             tuto.Value.SetActive(false);
+        }
+    }
+
+    void StepFinished(S_EnumTutorialStep tutoStep)
+    {
+        var tuto = _tutoStepsFinished.Value.Find(x => x.Step == S_EnumTutorialStep.ParryProjectile && x.IsFinished == true);
+
+        if (tuto != null && tutoStep == S_EnumTutorialStep.ParryProjectile)
+        {
+            StartCoroutine(S_Utils.Delay(1.0f, () =>
+            {
+                _onChangeHighlightTarget.Call(_filterConvictionBar);
+                _onRequestStartTutorialStep.Call(S_EnumTutorialStep.Conviction);
+                _onChangeActiveStatePanelsFilters.Call();
+            }));
+
+            StartCoroutine(S_Utils.Delay(1.5f, () =>
+            {
+                _onRequestStartTutorialStep.Call(S_EnumTutorialStep.Attack);
+            }));
+        }
+
+        if (tuto != null && tutoStep == S_EnumTutorialStep.Conviction)
+        {
+            _onChangeActiveStatePanelsFilters.Call();
+        }
+
+        if (tuto != null && tutoStep == S_EnumTutorialStep.Attack)
+        {
+            //StartCoroutine(S_Utils.Delay(1.0f, () =>
+            //{
+            //    Debug.Log("Starting Heal Tuto");
+            //    _onRequestStartTutorialStep.Call(S_EnumTutorialStep.Heal);
+            //}));
         }
     }
 }

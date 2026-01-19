@@ -95,10 +95,20 @@ public class S_EnemyAttackData : MonoBehaviour
         if (_onRequestStartTutorialStep != null)
             _onRequestStartTutorialStep.Call(S_EnumTutorialStep.Parry);
     }
+    public void TriggerTutorialDodgeStep()
+    {
+        if (_onRequestStartTutorialStep != null)
+            _onRequestStartTutorialStep.Call(S_EnumTutorialStep.Dodge);
+    }
 
     public void TriggerTutorialAttackSignalStep()
     {
         if (_onRequestStartTutorialStep != null)
             _onRequestStartTutorialStep.Call(S_EnumTutorialStep.AttackSignaling);
+    }
+
+    public void DesactivateEnemy()
+    {
+        enemy.enabled = false;
     }
 }
