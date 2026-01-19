@@ -12,6 +12,8 @@ public class S_ClassCameraData
 
     public float shoulderOffsetAmountNegative = 0;
 
+    public float shoulderOffsetDistanceMulti = 0;
+
     [SuffixLabel("°", Overlay = true)]
     public float minVerticalCameraPlayer = 0;
 

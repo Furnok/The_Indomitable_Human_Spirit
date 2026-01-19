@@ -170,11 +170,11 @@ public class S_CameraManager : MonoBehaviour
 
         if (lastDirection > 0)
         {
-            ChangeShoulderOffsetWorld(ssoCameraData.Value.shoulderOffsetAmountNegative, 0);
+            ChangeShoulderOffsetWorld(ssoCameraData.Value.shoulderOffsetAmountNegative);
         }
         else if (lastDirection < 0)
         {
-            ChangeShoulderOffsetWorld(ssoCameraData.Value.shoulderOffsetAmountPositive, 0);
+            ChangeShoulderOffsetWorld(ssoCameraData.Value.shoulderOffsetAmountPositive);
         }
     }
 
@@ -396,15 +396,18 @@ public class S_CameraManager : MonoBehaviour
         else shoulderTween?.Kill();
     }
 
-    private void ChangeShoulderOffsetWorld(float sideAmount, float forwardAmount)
+    private void ChangeShoulderOffsetWorld(float sideAmount)
     {
-        Transform t = playerPos;
+        Vector3 toTarget = currentTarget.position - playerPos.position;
+        float distance = toTarget.magnitude;
+        Vector3 direction = toTarget.normalized;
 
-        Vector3 toTarget = (currentTarget.position - playerPos.position).normalized;
-        Vector3 cameraRight = Vector3.Cross(Vector3.up, toTarget);
-        Vector3 cameraForward = Vector3.Cross(toTarget, cameraRight);
+        Vector3 cameraRight = Vector3.Cross(Vector3.up, direction);
+        Vector3 cameraForward = Vector3.Cross(direction, cameraRight);
 
-        Vector3 worldOffset = cameraRight * sideAmount + cameraForward * forwardAmount;
+        float distanceMultiplier = (1f / Mathf.Max(distance, 0.1f)) * ssoCameraData.Value.shoulderOffsetDistanceMulti;
+
+        Vector3 worldOffset = cameraRight * (sideAmount * distanceMultiplier) + cameraForward;
         Vector3 targetOffset = new Vector3(worldOffset.x, cinemachineCameraOrbitalFollow.TargetOffset.y, worldOffset.z);
 
         ChangeShoulderOffset(targetOffset);
