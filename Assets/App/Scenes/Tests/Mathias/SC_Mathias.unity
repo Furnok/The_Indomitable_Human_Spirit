@@ -729,6 +729,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyParryTest_02
       objectReference: {fileID: 0}
+    - target: {fileID: 6775232759041604376, guid: 41b33705377ccbe4eab4a204cdeda7c0, type: 3}
+      propertyPath: followCam
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6775232759041604376, guid: 41b33705377ccbe4eab4a204cdeda7c0, type: 3}
+      propertyPath: maxDistance
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13157,6 +13165,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyParryTest_03
       objectReference: {fileID: 0}
+    - target: {fileID: 6775232759041604376, guid: 41b33705377ccbe4eab4a204cdeda7c0, type: 3}
+      propertyPath: followCam
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6775232759041604376, guid: 41b33705377ccbe4eab4a204cdeda7c0, type: 3}
+      propertyPath: maxDistance
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20003,6 +20019,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyDodgeTest_02
       objectReference: {fileID: 0}
+    - target: {fileID: 6067497928927017152, guid: bcf2f15e0b0798d498028957e3f553ca, type: 3}
+      propertyPath: followCam
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067497928927017152, guid: bcf2f15e0b0798d498028957e3f553ca, type: 3}
+      propertyPath: maxDistance
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20119,6 +20143,14 @@ PrefabInstance:
     - target: {fileID: 4538059805259296584, guid: 41b33705377ccbe4eab4a204cdeda7c0, type: 3}
       propertyPath: m_Name
       value: EnemyParryTest_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6775232759041604376, guid: 41b33705377ccbe4eab4a204cdeda7c0, type: 3}
+      propertyPath: followCam
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6775232759041604376, guid: 41b33705377ccbe4eab4a204cdeda7c0, type: 3}
+      propertyPath: maxDistance
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20507,6 +20539,14 @@ PrefabInstance:
     - target: {fileID: 3043518538802197024, guid: bcf2f15e0b0798d498028957e3f553ca, type: 3}
       propertyPath: m_Name
       value: EnemyDodgeTest_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067497928927017152, guid: bcf2f15e0b0798d498028957e3f553ca, type: 3}
+      propertyPath: followCam
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067497928927017152, guid: bcf2f15e0b0798d498028957e3f553ca, type: 3}
+      propertyPath: maxDistance
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
