@@ -4488,6 +4488,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 3874155762252318603, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
+      propertyPath: field of view
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 4498866734127298347, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
       propertyPath: Target.TrackingTarget
       value: 
