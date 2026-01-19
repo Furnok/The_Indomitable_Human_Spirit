@@ -15,7 +15,7 @@ MonoBehaviour:
   _value:
     cameraDistanceMinPlayer: 1
     minVerticalCameraPlayer: -10
-    maxVerticalCameraPlayer: 25
+    maxVerticalCameraPlayer: 10
     holdSkipTime: 1
     StartDisplaySkipTime: 2
     fadeSpeedPlayer: 5
