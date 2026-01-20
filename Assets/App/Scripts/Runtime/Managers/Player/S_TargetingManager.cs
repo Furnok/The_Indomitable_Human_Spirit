@@ -172,7 +172,7 @@ public class S_TargetingManager : MonoBehaviour
     {
         var selection = TargetSelectionExist();
 
-        Debug.Log("Targets: " + (targetsPossible.Count));
+        //Debug.Log("Targets: " + (targetsPossible.Count));
 
         if (targetsPossible.Count > 0 && selection != null || currentTarget != null)
         {
