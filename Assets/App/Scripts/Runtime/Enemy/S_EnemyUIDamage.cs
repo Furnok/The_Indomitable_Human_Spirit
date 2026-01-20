@@ -4,14 +4,8 @@ using UnityEngine;
 
 public class S_EnemyUIDamage : MonoBehaviour
 {
-    //[Header("Settings")]
-
     [Header("References")]
     [SerializeField] private TextMeshPro text;
-
-    //[Header("Inputs")]
-
-    //[Header("Outputs")]
 
     public void Initialize(float damage)
     {
