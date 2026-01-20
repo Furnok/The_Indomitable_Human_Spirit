@@ -25,8 +25,22 @@ public class S_TextTutos : MonoBehaviour
 
     private void Update()
     {
-        //UpdateText(S_EnumDevice.KeyboardMouse); // For testing
+        UpdateText(_rsoDevice.Value); // For testing
+    }
 
+    private void OnEnable()
+    {
+        _rsoDevice.onValueChanged += UpdateText;
+    }
+
+    private void OnDisable()
+    {
+        _rsoDevice.onValueChanged -= UpdateText;
+    }
+
+    private void Start()
+    {
+        UpdateText(_rsoDevice.Value);
     }
 
     void UpdateText(S_EnumDevice newDevice)
@@ -35,20 +49,65 @@ public class S_TextTutos : MonoBehaviour
         {
             case S_EnumDevice.None:
             case S_EnumDevice.KeyboardMouse:
-                Sprite sprite = _spritesByDevice[S_EnumTutorialStep.Targeting]
-                                      [S_EnumDevice.KeyboardMouse];
-
-                _textTutoTargeting.text = _textTutoTargeting.text.Replace(
-                    "{PARRY}",
-                    $"<sprite name=\"{sprite.name}\">"
-                );
-                
+                UpdateDeviceText(S_EnumDevice.KeyboardMouse);
                 break;
             case S_EnumDevice.PlaystationController:
-                
+                UpdateDeviceText(S_EnumDevice.PlaystationController);
                 break;
             case S_EnumDevice.XboxController:
+                UpdateDeviceText(S_EnumDevice.XboxController);
                 break;
         }
     }
+
+    private Sprite GetSpriteOrNull(S_EnumTutorialStep step, S_EnumDevice device)
+    {
+        if (_spritesByDevice == null) return null;
+        if (!_spritesByDevice.TryGetValue(step, out var inner) || inner == null) return null;
+        if (!inner.TryGetValue(device, out var sprite)) return null;
+        return sprite;
+    }
+
+    void UpdateDeviceText(S_EnumDevice device)
+    {
+        Sprite sprite;
+
+        sprite = GetSpriteOrNull(S_EnumTutorialStep.Targeting, device);
+        if (sprite != null)
+            _textTutoTargeting.text = _textTutoTargeting.text.Replace("{TARGETING}", $"<sprite name=\"{sprite.name}\">");
+
+        sprite = GetSpriteOrNull(S_EnumTutorialStep.Parry, device);
+        if (sprite != null)
+            _textTutoParry.text = _textTutoParry.text.Replace("{PARRY}", $"<sprite name=\"{sprite.name}\">");
+
+        sprite = GetSpriteOrNull(S_EnumTutorialStep.Attack, device);
+        if (sprite != null)
+            _textTutoAttack.text = _textTutoAttack.text.Replace("{ATTACK}", $"<sprite name=\"{sprite.name}\">");
+
+        sprite = GetSpriteOrNull(S_EnumTutorialStep.Dodge, device);
+        if (sprite != null)
+            _textTutoDodge.text = _textTutoDodge.text.Replace("{DODGE}", $"<sprite name=\"{sprite.name}\">");
+
+        sprite = GetSpriteOrNull(S_EnumTutorialStep.Movement, device);
+        if (sprite != null)
+            _textTutoMovement.text = _textTutoMovement.text.Replace("{MOVE}", $"<sprite name=\"{sprite.name}\">");
+
+        sprite = GetSpriteOrNull(S_EnumTutorialStep.SwapTarget, device);
+        if (sprite != null)
+            _textTutoSwapTarget.text = _textTutoSwapTarget.text.Replace("{SWAP_TARGET}", $"<sprite name=\"{sprite.name}\">");
+
+        sprite = GetSpriteOrNull(S_EnumTutorialStep.ParryProjectile, device);
+        if (sprite != null)
+            _textTutoParryProjectile.text = _textTutoParryProjectile.text.Replace("{PARRY_PROJECTILE}", $"<sprite name=\"{sprite.name}\">");
+
+        sprite = GetSpriteOrNull(S_EnumTutorialStep.Interact, device);
+        if (sprite != null)
+            _textTutoInteract.text = _textTutoInteract.text.Replace("{INTERACT}", $"<sprite name=\"{sprite.name}\">");
+
+        sprite = GetSpriteOrNull(S_EnumTutorialStep.Heal, device);
+        if (sprite != null)
+            _textTutoHeal.text = _textTutoHeal.text.Replace("{HEAL}", $"<sprite name=\"{sprite.name}\">");
+    }
+
+
 }
