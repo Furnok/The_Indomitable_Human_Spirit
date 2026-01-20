@@ -139,6 +139,8 @@ public class S_PlayerDodge : MonoBehaviour
     private bool _canRunAfterDodge = false;
     private bool _dodgeUp = true;
 
+    private bool haveDodgePerfect = false;
+
     private void Awake()
     {
         _linearDamping = _rb.linearDamping;
@@ -202,7 +204,9 @@ public class S_PlayerDodge : MonoBehaviour
         // Test TriggerDodgePerfect
         var isDodgePrefect = _attackDataInDodgeableArea.Value.Count > 0;
         if (isDodgePrefect)
-        { 
+        {
+            haveDodgePerfect = true;
+
             Debug.Log("Dodge perfect");
             RuntimeManager.PlayOneShot(_dodgeSound);
 
@@ -327,11 +331,16 @@ public class S_PlayerDodge : MonoBehaviour
         _playerIsDodging.Value = false;
         rseOnAnimationBoolValueChange.Call(_dodgeParam, false);
 
-        S_ClassCameraFOV fov = new S_ClassCameraFOV();
-        fov.value = -ssoCameraData.Value.fovDodge;
-        fov.time = -ssoCameraData.Value.fovDodgeSwitchTime;
+        if (haveDodgePerfect)
+        {
+            haveDodgePerfect = false;
 
-        rseOnCameraFOV.Call(fov);
+            S_ClassCameraFOV fov = new S_ClassCameraFOV();
+            fov.value = -ssoCameraData.Value.fovDodge;
+            fov.time = -ssoCameraData.Value.fovDodgeSwitchTime;
+
+            rseOnCameraFOV.Call(fov);
+        }
 
         float rec = _animationTransitionDelays.Value.dodgeRecoveryDelay;
         if (rec > 0f) yield return new WaitForSeconds(rec);
