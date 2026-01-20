@@ -84,7 +84,7 @@ public class S_CursorManager : MonoBehaviour
 
         if (layout.Contains("dualshock") || layout.Contains("dualSense") || displayName.Contains("playstation") || description.Contains("dualshock") || description.Contains("dualsense"))
         {
-            rsoDevice.Value = S_EnumDevice.PlastationController;
+            rsoDevice.Value = S_EnumDevice.PlaystationController;
         }
         else if (layout.Contains("xinput") || displayName.Contains("xbox") || description.Contains("xbox"))
         {

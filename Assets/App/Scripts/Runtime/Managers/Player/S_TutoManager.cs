@@ -4,7 +4,8 @@ using UnityEngine.Video;
 
 public class S_TutoManager : MonoBehaviour
 {
-    //[Header("Settings")]
+    [Header("Settings")]
+    [SerializeField] float _looseHealthStartTuto = 30f;
 
     [Header("References")]
     [SerializeField] S_SerializableDictionary<S_EnumTutorialStep, GameObject> _tutoPrefabToEnumDictionary;
@@ -23,6 +24,7 @@ public class S_TutoManager : MonoBehaviour
     [SerializeField] private RSE_OnGamePause _onGamePause;
     [SerializeField] RSE_OnChangeHighlightTarget _onChangeHighlightTarget;
     [SerializeField] RSE_OnChangeActiveStatePanelsFilters _onChangeActiveStatePanelsFilters;
+    [SerializeField] RSE_OnPlayerHealthReduced _onPlayerHealthReduced;
 
     private Dictionary<S_EnumTutorialStep, TutoStepData> _tutorials = new Dictionary<S_EnumTutorialStep, TutoStepData>();
 
@@ -55,8 +57,14 @@ public class S_TutoManager : MonoBehaviour
                 IsFinished = false
             });
         }
+    }
 
-        Debug.Log("Tuto steps count: " + _tutoStepsFinished.Value.Count);
+    private void Start()
+    {
+        if (_rsoSettingsSaved.Value.activateTuto == true)
+        {
+            _onPlayerHealthReduced.Call(_looseHealthStartTuto);
+        }
     }
 
     void StartTutorialStep(S_EnumTutorialStep tutoStep)
