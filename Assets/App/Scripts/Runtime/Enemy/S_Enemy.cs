@@ -841,7 +841,7 @@ public class S_Enemy : MonoBehaviour
         unlockRotate = false;
 
         S_ClassCameraFOV fov2 = new S_ClassCameraFOV();
-        fov2.value = -ssoCameraData.Value.fovFight;
+        fov2.value = 60;
         fov2.time = ssoCameraData.Value.fovFightSwitchTime;
         fov2.reset = true;
 
