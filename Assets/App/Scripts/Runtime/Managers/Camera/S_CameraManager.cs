@@ -449,7 +449,7 @@ public class S_CameraManager : MonoBehaviour
         Vector3 desiredOffset = cameraRight * (sideAmount * distanceMultiplier) + cameraForward;
         desiredOffset.y = cinemachineCameraOrbitalFollow.TargetOffset.y;
 
-        cinemachineCameraOrbitalFollow.TargetOffset = Vector3.SmoothDamp(cinemachineCameraOrbitalFollow.TargetOffset, desiredOffset, ref targetOffsetVelocity, 0.15f);
+        cinemachineCameraOrbitalFollow.TargetOffset = Vector3.SmoothDamp(cinemachineCameraOrbitalFollow.TargetOffset, desiredOffset, ref targetOffsetVelocity, ssoCameraData.Value.offsetTransitionUpdateTime);
     }
 
     private void ChangeShoulderOffset(Vector3 target)

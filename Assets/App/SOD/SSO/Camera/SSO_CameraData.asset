@@ -19,6 +19,7 @@ MonoBehaviour:
     shoulderOffsetDistanceMulti: 3
     minVerticalCameraPlayer: -5
     maxVerticalCameraPlayer: 5
+    offsetTransitionUpdateTime: 0.4
     offsetTransitionTime: 5
     fovDodge: 10
     fovDodgeSwitchTime: 0.2

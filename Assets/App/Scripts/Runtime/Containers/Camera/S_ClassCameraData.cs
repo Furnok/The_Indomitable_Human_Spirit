@@ -21,6 +21,9 @@ public class S_ClassCameraData
     public float maxVerticalCameraPlayer = 0;
 
     [SuffixLabel("s", Overlay = true)]
+    public float offsetTransitionUpdateTime = 0;
+
+    [SuffixLabel("s", Overlay = true)]
     public float offsetTransitionTime = 0;
 
     [Title("Camera FOV")]
