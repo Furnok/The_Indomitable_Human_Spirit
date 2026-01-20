@@ -10,8 +10,6 @@ public class S_ClassBossAttack
 
     public bool isSpecialAttack = false;
 
-    public bool repeatableAttack = true;
-
     [SuffixLabel("s", Overlay = true)]
     public float timeAfterAttack = 0;
 

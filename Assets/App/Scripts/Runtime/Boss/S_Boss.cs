@@ -115,6 +115,9 @@ public class S_Boss : MonoBehaviour
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnUpdateBossHealth rseOnUpdateBossHealth;
 
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnBossDeath rseOnBossDeath;
+
     private List<S_ClassAttackOwned> listAttackOwneds = new();
     private List<S_ClassAttackOwned> listAttackOwnedPossibilities = new();
     private S_EnumBossState currentState = S_EnumBossState.Idle;
@@ -126,22 +129,19 @@ public class S_Boss : MonoBehaviour
 
     private S_ClassAttackOwned lastAttack = null;
     private S_ClassAttackOwned currentAttack = null;
-    private S_ClassAttackOwned nextAttack = null;
+    private S_ClassAttackOwned ultimateAttack = null;
 
     private Coroutine comboCoroutine = null;
     private Coroutine stunCoroutine = null;
     private Coroutine resetAttack = null;
     private Coroutine timeChooseAttackCoroutine = null;
-    private Coroutine strafeCoroutine = null;
 
     private float health = 0;
     private float maxHealth = 0;
     private float lastValueHealth = 0;
     private float bossDifficultyLevel = 0;
     private float initDistance = 0;
-    private int strafeDirection = 1;
 
-    private bool haveUltimate = false;
 
     private bool isPerformingCombo = false;
     private S_EnumBossState? pendingState = null;
@@ -155,7 +155,6 @@ public class S_Boss : MonoBehaviour
     private bool canAttack = false;
     private bool isPlayerDeath = false;
     private bool isAttacking = false;
-    private bool isStrafe = false;
     private bool unlockRotate = false;
 
     #endregion
@@ -310,17 +309,10 @@ public class S_Boss : MonoBehaviour
             timeChooseAttackCoroutine = null;
         }
 
-        /*if (strafeCoroutine != null)
-        {
-            StopCoroutine(strafeCoroutine);
-            strafeCoroutine = null;
-        }*/
-
         isPerformingCombo = false;
         isChasing = false;
         isFighting = false;
         isStunned = false;
-        isStrafe = false;
         isAttacking = false;
         unlockRotate = false;
 
@@ -509,7 +501,7 @@ public class S_Boss : MonoBehaviour
         {
             rseOnDisplayBossHealth.Call(false);
         }
-
+        rseOnBossDeath.Call();
         StopAllCoroutines();
 
         ResetBoss();
@@ -601,26 +593,21 @@ public class S_Boss : MonoBehaviour
         {
             if (attack.bossAttack.pvBossUnlock >= minValue && attack.bossAttack.pvBossUnlock < maxValue)
             {
-                AddListAttackPossible(attack);
-
-                if (attack.bossAttack.attackName == "Gathering")
+                if(attack.bossAttack.attackName == "Gathering")
                 {
-                    nextAttack = attack;
-                    haveUltimate = true;
+                    Debug.Log("Unlocking Ultimate Gathering");
+                    ultimateAttack = attack;
                 }
-                else if (attack.bossAttack.attackName == "Wings of Hell")
+                if (attack.bossAttack.attackName == "Wings Of Hell")
                 {
-                    nextAttack = attack;
-                    haveUltimate = true;
+                    Debug.Log("Unlocking Ultimate Wings Of Hell");
+                    ultimateAttack = attack;
                 }
                 else
                 {
-                    continue;
+                    AddListAttackPossible(attack);
                 }
-                Debug.Log("Attack Added (Next): " + nextAttack.bossAttack.attackName);
             }
-
-            
         }
     }
 
@@ -631,39 +618,40 @@ public class S_Boss : MonoBehaviour
         var minAttackFrequency = listAttackOwnedPossibilities.Min(a => a.frequency);
         int roundDifficulty = Mathf.RoundToInt(bossDifficultyLevel);
 
-        foreach (var attack in listAttackOwnedPossibilities)
+        if(ultimateAttack == null)
         {
-            if(attack.bossAttack.repeatableAttack) continue;
+            foreach (var attack in listAttackOwnedPossibilities)
+            {
+                if (attack.bossAttack.difficultyLevel == roundDifficulty) attack.score += ssoBossData.Value.difficultyScore;
 
-            if (attack.bossAttack.difficultyLevel == roundDifficulty) attack.score += ssoBossData.Value.difficultyScore;
+                if (attack.frequency == minAttackFrequency) attack.score += ssoBossData.Value.frequencyScore;
 
-            if (attack.frequency == minAttackFrequency) attack.score += ssoBossData.Value.frequencyScore;
+                if (lastAttack == null) continue;
 
-            if (lastAttack == null) continue;
+                if (attack.bossAttack.listComboData[0].attackData.attackType != lastAttack.bossAttack.listComboData[^1].attackData.attackType) attack.score += ssoBossData.Value.synergieScore;
+            }
 
-            Debug.Log("Comparing Attacks: " + attack.bossAttack.listComboData[0].attackData.attackType + " with " + lastAttack.bossAttack.listComboData[^1].attackData.attackType);
-            if (attack.bossAttack.listComboData[0].attackData.attackType != lastAttack.bossAttack.listComboData[^1].attackData.attackType) attack.score += ssoBossData.Value.synergieScore;
+            var maxScore = listAttackOwnedPossibilities.Max(a => a.score);
+
+            var bestAttacks = listAttackOwnedPossibilities
+                .Where(a => a.score == maxScore)
+                .ToList();
+
+            var chosenAttack = bestAttacks[Random.Range(0, bestAttacks.Count)];
+
+            currentAttack = chosenAttack;
+            Debug.Log("Chosen Attack: " + currentAttack.bossAttack.attackName + canAttack);
+
+            foreach (var attack in listAttackOwnedPossibilities) attack.score = 0;
         }
-
-        var maxScore = listAttackOwnedPossibilities.Max(a => a.score);
-
-        var bestAttacks = listAttackOwnedPossibilities
-            .Where(a => a.score == maxScore)
-            .ToList();
-
-        var chosenAttack = bestAttacks[Random.Range(0, bestAttacks.Count)];
-
-        if(haveUltimate && nextAttack != null)
+        else
         {
-            chosenAttack = nextAttack;
-            nextAttack = null;
-            haveUltimate = false;
-            Debug.Log("Ultimate Attack Chosen!");
+            currentAttack = ultimateAttack;
+            ultimateAttack = null;
+            Debug.Log("Chosen Ultimate Attack: " + currentAttack.bossAttack.attackName + canAttack);
+            foreach (var attack in listAttackOwnedPossibilities) attack.score = 0;
         }
-        currentAttack = chosenAttack;
-        Debug.Log("Chosen Attack: " + currentAttack.bossAttack.attackName + canAttack);
-
-        foreach (var attack in listAttackOwnedPossibilities) attack.score = 0;
+        
     }
 
     private void Fighting()

@@ -11,8 +11,15 @@ public class S_BossAttackData : MonoBehaviour
     [SerializeField] private float timeDisplay;
 
     [TabGroup("References")]
+    [Title("GameObject")]
+    [SerializeField] private GameObject afterImageWeaponPrefabs;
+
+    [TabGroup("References")]
     [Title("Colliders")]
     [SerializeField] private Collider weaponCollider;
+
+    [TabGroup("References")]
+    [SerializeField] private Collider afterImageWeaponCollider;
 
     [TabGroup("References")]
     [Title("VFX")]
@@ -31,6 +38,9 @@ public class S_BossAttackData : MonoBehaviour
     [TabGroup("References")]
     [SerializeField] private S_BossWeapon bossWeapon;
 
+    [TabGroup("References")]
+    [SerializeField] private S_BossWeapon bossAfterImageWeapon;
+
     private S_StructEnemyAttackData attackData;
 
     public void SetAttackMode(S_StructEnemyAttackData bossAttackData)
@@ -38,6 +48,8 @@ public class S_BossAttackData : MonoBehaviour
         attackData = bossAttackData;
 
         if (bossWeapon != null) bossWeapon.ChangeAttackData(attackData);
+
+        if (bossAfterImageWeapon != null) bossAfterImageWeapon.ChangeAttackData(attackData);
     }
 
     public void EnableWeaponCollider()
@@ -48,6 +60,24 @@ public class S_BossAttackData : MonoBehaviour
     public void DisableWeaponCollider()
     {
         if (weaponCollider != null) weaponCollider.enabled = false;
+    }
+
+    public void EnableAfterImageWeaponCollider()
+    {
+        if (afterImageWeaponCollider != null) afterImageWeaponCollider.enabled = true;
+    }
+    public void DisableAfterImageWeaponCollider()
+    {
+        if (afterImageWeaponCollider != null) afterImageWeaponCollider.enabled = false;
+    }
+
+    public void EnableAfterImageWeapon()
+    {
+        if (afterImageWeaponPrefabs != null) afterImageWeaponPrefabs.SetActive(true);
+    }
+    public void DisableAfterImageWeapon()
+    {
+        if (afterImageWeaponPrefabs != null) afterImageWeaponPrefabs.SetActive(false);
     }
 
     public void Rotate()
