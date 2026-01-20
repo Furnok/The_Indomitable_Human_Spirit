@@ -379,7 +379,7 @@ public class S_CameraManager : MonoBehaviour
     {
         if (currentTarget)
         {
-            Vector3 dir = currentTarget.position - playerPos.position;
+            Vector3 dir = currentTarget.GetComponent<S_AimPointProvider>().GetAimPoint().position - playerPos.position;
 
             if (dir.sqrMagnitude < 0.001f) return;
 
@@ -424,11 +424,11 @@ public class S_CameraManager : MonoBehaviour
     {
         if (currentTarget != null)
         {
-            if (move.x > 0 && lastDirection <= 0)
+            if (move.x > 0.25f && lastDirection <= 0)
             {
                 lastDirection = move.x;
             }
-            else if (move.x < 0 && lastDirection >= 0)
+            else if (move.x < -0.25f && lastDirection >= 0)
             {
                 lastDirection = move.x;
             }
@@ -437,7 +437,7 @@ public class S_CameraManager : MonoBehaviour
 
     private void ChangeShoulderOffsetWorld(float sideAmount)
     {
-        Vector3 toTarget = currentTarget.position - playerPos.position;
+        Vector3 toTarget = currentTarget.GetComponent<S_AimPointProvider>().GetAimPoint().position - playerPos.position;
         float distance = toTarget.magnitude;
         Vector3 direction = toTarget.normalized;
 
