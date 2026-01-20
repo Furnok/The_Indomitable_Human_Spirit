@@ -39,7 +39,7 @@ public class S_UISkip : MonoBehaviour
             text.text = "ESC";
             text2.text = "";
         }
-        else if (rsoDevice.Value == S_EnumDevice.PlastationController)
+        else if (rsoDevice.Value == S_EnumDevice.PlaystationController)
         {
             image.sprite = imagePlayStation;
             text.text = "";

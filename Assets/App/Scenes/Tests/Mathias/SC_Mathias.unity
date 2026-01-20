@@ -740,10 +740,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7802813562094525882, guid: 41b33705377ccbe4eab4a204cdeda7c0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41b33705377ccbe4eab4a204cdeda7c0, type: 3}
 --- !u!1 &106727697
 GameObject:
@@ -5933,7 +5930,7 @@ GameObject:
   - component: {fileID: 209819922}
   - component: {fileID: 209819921}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text_SwapTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7463,6 +7460,7 @@ GameObject:
   - component: {fileID: 366825695}
   - component: {fileID: 366825696}
   - component: {fileID: 366825697}
+  - component: {fileID: 366825698}
   m_Layer: 5
   m_Name: TutoElements
   m_TagString: Untagged
@@ -7524,6 +7522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a7a646329b344941986f2a691d774a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _looseHealthStartTuto: 20
   _tutoPrefabToEnumDictionary:
     keys: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b000000
     values:
@@ -7548,6 +7547,35 @@ MonoBehaviour:
   _onGamePause: {fileID: 11400000, guid: ae0312c6248bf454a8f047511417352d, type: 2}
   _onChangeHighlightTarget: {fileID: 11400000, guid: 53059718dbc01864b96bc5107c7ff935, type: 2}
   _onChangeActiveStatePanelsFilters: {fileID: 11400000, guid: c2bf9a0cf32e2b140bfaf00bf3c6f8cf, type: 2}
+  _onPlayerHealthReduced: {fileID: 11400000, guid: d9db70b8d640c8d47b38c443abcec2ff, type: 2}
+--- !u!114 &366825698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366825694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a41b158285ca464ba414b07cefd74d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spritesByDevice:
+    keys: 07000000
+    values:
+    - keys: 01000000
+      values:
+      - {fileID: 21300000, guid: 9ed37c95b97d7864d88252ca6b03aa30, type: 3}
+  _textTutoMovement: {fileID: 421236112}
+  _textTutoDodge: {fileID: 1441276266}
+  _textTutoAttack: {fileID: 1164426524}
+  _textTutoHeal: {fileID: 706941121}
+  _textTutoParry: {fileID: 1697531793}
+  _textTutoTargeting: {fileID: 1558077559}
+  _textTutoSwapTarget: {fileID: 209819922}
+  _textTutoParryProjectile: {fileID: 1020952046}
+  _textTutoInteract: {fileID: 1765871032}
+  _rsoDevice: {fileID: 11400000, guid: 2d03f278b7224484daa610d79749492f, type: 2}
 --- !u!1 &371220208
 GameObject:
   m_ObjectHideFlags: 0
@@ -7767,7 +7795,7 @@ GameObject:
   - component: {fileID: 421236112}
   - component: {fileID: 421236111}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text_Movement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13176,10 +13204,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7802813562094525882, guid: 41b33705377ccbe4eab4a204cdeda7c0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41b33705377ccbe4eab4a204cdeda7c0, type: 3}
 --- !u!1 &533475316
 GameObject:
@@ -13239,7 +13264,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &540190289
 Transform:
   m_ObjectHideFlags: 0
@@ -13426,6 +13451,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2410018728474609294, guid: 82f3fb39438fe544388f4b8083dcfd72, type: 3}
+      propertyPath: rseOnRequestStartTutorialStep
+      value: 
+      objectReference: {fileID: 11400000, guid: c7e748c38ce2f3242ad3ce2dedebbbaf, type: 2}
     - target: {fileID: 3049515181843178969, guid: 82f3fb39438fe544388f4b8083dcfd72, type: 3}
       propertyPath: m_LocalPosition.y
       value: -3
@@ -13859,7 +13888,7 @@ GameObject:
   - component: {fileID: 706941121}
   - component: {fileID: 706941120}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text_Heal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14882,7 +14911,7 @@ GameObject:
   - component: {fileID: 970081409}
   - component: {fileID: 970081408}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text_AttackSignaling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15055,7 +15084,7 @@ GameObject:
   - component: {fileID: 1020952046}
   - component: {fileID: 1020952045}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text_ParryProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15536,7 +15565,7 @@ GameObject:
   - component: {fileID: 1164426524}
   - component: {fileID: 1164426523}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text_Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16308,7 +16337,7 @@ GameObject:
   - component: {fileID: 1441276266}
   - component: {fileID: 1441276265}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text_Dodge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17260,7 +17289,7 @@ GameObject:
   - component: {fileID: 1558077559}
   - component: {fileID: 1558077558}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text_Targeting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17341,7 +17370,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: '{PARRY}'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -17922,7 +17951,7 @@ GameObject:
   - component: {fileID: 1697531793}
   - component: {fileID: 1697531792}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text_Parry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18289,7 +18318,7 @@ GameObject:
   - component: {fileID: 1765871032}
   - component: {fileID: 1765871031}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text_Interact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19402,7 +19431,7 @@ GameObject:
   - component: {fileID: 2010211754}
   - component: {fileID: 2010211753}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text_Conviction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20030,10 +20059,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6542656442307272017, guid: bcf2f15e0b0798d498028957e3f553ca, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcf2f15e0b0798d498028957e3f553ca, type: 3}
 --- !u!1001 &338578530008135715
 PrefabInstance:
@@ -20155,10 +20181,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7802813562094525882, guid: 41b33705377ccbe4eab4a204cdeda7c0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41b33705377ccbe4eab4a204cdeda7c0, type: 3}
 --- !u!1001 &3367698178474440842
 PrefabInstance:
@@ -20359,6 +20382,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2410018728474609294, guid: 82f3fb39438fe544388f4b8083dcfd72, type: 3}
+      propertyPath: rseOnRequestStartTutorialStep
+      value: 
+      objectReference: {fileID: 11400000, guid: c7e748c38ce2f3242ad3ce2dedebbbaf, type: 2}
     - target: {fileID: 3049515181843178969, guid: 82f3fb39438fe544388f4b8083dcfd72, type: 3}
       propertyPath: m_LocalPosition.y
       value: -3
@@ -20551,10 +20578,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6542656442307272017, guid: bcf2f15e0b0798d498028957e3f553ca, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcf2f15e0b0798d498028957e3f553ca, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

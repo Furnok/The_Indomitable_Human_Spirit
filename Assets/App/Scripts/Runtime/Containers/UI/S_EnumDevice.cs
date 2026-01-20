@@ -2,6 +2,6 @@ public enum S_EnumDevice
 {
     None,
     KeyboardMouse,
-    PlastationController,
+    PlaystationController,
     XboxController,
 }
