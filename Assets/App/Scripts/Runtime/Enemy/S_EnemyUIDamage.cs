@@ -9,7 +9,16 @@ public class S_EnemyUIDamage : MonoBehaviour
 
     public void Initialize(float damage)
     {
-        text.text = damage.ToString();
+        float currentValue = 0f;
+
+        DOTween.To(() => currentValue, x =>
+        {
+            currentValue = x;
+            text.text = Mathf.RoundToInt(x).ToString();
+        },
+        damage,
+        0.5f
+        ).SetEase(Ease.Linear);
 
         text.transform.DOMoveY(transform.position.y + 1, 1).SetEase(Ease.Linear);
 
