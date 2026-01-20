@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _value:
     cameraDistanceMinPlayer: 1
-    shoulderOffsetAmountPositive: -5
-    shoulderOffsetAmountNegative: 5
+    shoulderOffsetAmountPositive: 2
+    shoulderOffsetAmountNegative: -2
     shoulderOffsetDistanceMulti: 3
     minVerticalCameraPlayer: -5
     maxVerticalCameraPlayer: 5
