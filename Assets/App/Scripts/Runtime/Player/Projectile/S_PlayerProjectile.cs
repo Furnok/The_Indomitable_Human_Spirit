@@ -221,8 +221,8 @@ public class S_PlayerProjectile : MonoBehaviour
                 if (!_projectileImpactSound.IsNull)
                 {
                     EventInstance impactSound = RuntimeManager.CreateInstance(_projectileImpactSound);
-                    impactSound.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject));
                     impactSound.setParameterByName("ConvictionAccumulated", _convictionUsed / _PlayerConvictionData.Value.maxConviction);
+                    impactSound.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject));
                     impactSound.start();
                 }
 
