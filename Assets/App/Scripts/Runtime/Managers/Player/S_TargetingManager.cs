@@ -550,7 +550,12 @@ public class S_TargetingManager : MonoBehaviour
             currentTarget = bestTarget;
             rseOnNewTargeting.Call(bestTarget);
 
-            rseOnCameraFOV.Call(60);
+            S_ClassCameraFOV fov = new S_ClassCameraFOV();
+            fov.value = 60;
+            fov.time = 0.5f;
+            fov.reset = true;
+
+            rseOnCameraFOV.Call(fov);
 
             RuntimeManager.PlayOneShot(_targetLockOnSound);
         }

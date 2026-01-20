@@ -118,6 +118,9 @@ public class S_PlayerDodge : MonoBehaviour
 
     [TabGroup("Outputs")]
     [SerializeField] private SSO_PlayerStats _playerStats;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private SSO_CameraData ssoCameraData;
     #endregion
 
     private float maxSlopeAngle => _playerStats.Value.maxSlopeAngle;
@@ -203,7 +206,11 @@ public class S_PlayerDodge : MonoBehaviour
             Debug.Log("Dodge perfect");
             RuntimeManager.PlayOneShot(_dodgeSound);
 
-            rseOnCameraFOV.Call(70);
+            S_ClassCameraFOV fov = new S_ClassCameraFOV();
+            fov.value = ssoCameraData.Value.fovDodge;
+            fov.time = ssoCameraData.Value.fovDodgeSwitchTime;
+
+            rseOnCameraFOV.Call(fov);
 
             //_onPlayerGainConviction.Call(_playerConvictionData.Value.dodgeSuccessGain);
             _rseOnDodgePerfect.Call();
@@ -319,6 +326,12 @@ public class S_PlayerDodge : MonoBehaviour
         _rb.linearDamping = _linearDamping;
         _playerIsDodging.Value = false;
         rseOnAnimationBoolValueChange.Call(_dodgeParam, false);
+
+        S_ClassCameraFOV fov = new S_ClassCameraFOV();
+        fov.value = -ssoCameraData.Value.fovDodge;
+        fov.time = -ssoCameraData.Value.fovDodgeSwitchTime;
+
+        rseOnCameraFOV.Call(fov);
 
         float rec = _animationTransitionDelays.Value.dodgeRecoveryDelay;
         if (rec > 0f) yield return new WaitForSeconds(rec);

@@ -29,9 +29,6 @@ public class S_EnemyAttackData : MonoBehaviour
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnRequestStartTutorialStep rseOnRequestStartTutorialStep;
 
-    [TabGroup("Outputs")]
-    [SerializeField] private RSE_OnCameraFOV rseOnCameraFOV;
-
     private S_StructEnemyAttackData attackData;
 
     public void SetAttackMode(S_StructEnemyAttackData enemyAttackData)
@@ -109,10 +106,5 @@ public class S_EnemyAttackData : MonoBehaviour
     public void DesactivateEnemy()
     {
         enemy.enabled = false;
-    }
-
-    public void SetFOVCam(float value)
-    {
-        rseOnCameraFOV.Call(value);
     }
 }

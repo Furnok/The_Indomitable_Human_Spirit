@@ -384,12 +384,17 @@ public class S_CameraManager : MonoBehaviour
         }
     }
 
-    private void HandleFOV(float value)
+    private void HandleFOV(S_ClassCameraFOV classCameraFOV)
     {
-        if (cinemachineCameraPlayer.Lens.FieldOfView != value)
+        fovTween?.Kill();
+
+        if (!classCameraFOV.reset)
         {
-            fovTween?.Kill();
-            fovTween = DOTween.To(() => cinemachineCameraPlayer.Lens.FieldOfView, x => cinemachineCameraPlayer.Lens.FieldOfView = x, value, 0.5f).SetEase(Ease.Linear);
+            fovTween = DOTween.To(() => cinemachineCameraPlayer.Lens.FieldOfView, x => cinemachineCameraPlayer.Lens.FieldOfView = x, cinemachineCameraPlayer.Lens.FieldOfView + classCameraFOV.value, classCameraFOV.time).SetEase(Ease.Linear);
+        }
+        else
+        {
+            fovTween = DOTween.To(() => cinemachineCameraPlayer.Lens.FieldOfView, x => cinemachineCameraPlayer.Lens.FieldOfView = x, classCameraFOV.value, classCameraFOV.time).SetEase(Ease.Linear);
         }
     }
 
