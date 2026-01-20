@@ -195,7 +195,6 @@ public class S_PlayerDodge : MonoBehaviour
         }));
 
         RuntimeManager.PlayOneShot(_dodgeSimpleSound);
-        rseOnCameraFOV.Call(70);
 
         // Test TriggerDodgePerfect
         var isDodgePrefect = _attackDataInDodgeableArea.Value.Count > 0;
@@ -203,6 +202,8 @@ public class S_PlayerDodge : MonoBehaviour
         { 
             Debug.Log("Dodge perfect");
             RuntimeManager.PlayOneShot(_dodgeSound);
+
+            rseOnCameraFOV.Call(70);
 
             //_onPlayerGainConviction.Call(_playerConvictionData.Value.dodgeSuccessGain);
             _rseOnDodgePerfect.Call();
