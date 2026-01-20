@@ -366,6 +366,7 @@ public class S_PlayerDodge : MonoBehaviour
     {
         _canRunAfterDodge = false;
         _playerIsDodging.Value = false;
+        haveDodgePerfect = false;
 
         if (_dodgeCoroutine != null) StopCoroutine(_dodgeCoroutine);
 
@@ -380,6 +381,7 @@ public class S_PlayerDodge : MonoBehaviour
     private void CancelInputdodge()
     {
         _canRunAfterDodge = false;
+        haveDodgePerfect = false;
 
         /*
         if (_playerCurrentState.Value != PlayerState.Running && _prepareRunCoroutine != null && _dodgeCoroutine == null)
@@ -388,14 +390,15 @@ public class S_PlayerDodge : MonoBehaviour
             _onPlayerAddState.Call(PlayerState.None);
         }
         */
-        
-        if(_playerCurrentState.Value == S_EnumPlayerState.Running /*&& _dodgeCoroutine != null*/) _onPlayerAddState.Call(S_EnumPlayerState.None);
+
+        if (_playerCurrentState.Value == S_EnumPlayerState.Running /*&& _dodgeCoroutine != null*/) _onPlayerAddState.Call(S_EnumPlayerState.None);
     }
 
     private void ResetValue()
     {
         _playerIsDodging.Value = false;
         _canRunAfterDodge = false;
+        haveDodgePerfect = false;
         rseOnAnimationBoolValueChange.Call(_dodgeParam, false);
         _attackDataInDodgeableArea.Value.Clear();
     }
