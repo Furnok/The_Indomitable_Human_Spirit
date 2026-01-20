@@ -805,8 +805,11 @@ public class S_Enemy : MonoBehaviour
             {
                 yield return new WaitForSeconds(combo.listAnimationsCombos[i].attackData.timeCast);
 
-                S_EnemyProjectile projectileInstance = Instantiate(enemyProjectile, spawnProjectilePoint.transform.position, Quaternion.identity);
-                projectileInstance.Initialize(bodyCollider.transform, aimPoint, combo.listAnimationsCombos[i].attackData);
+                if (target != null)
+                {
+                    S_EnemyProjectile projectileInstance = Instantiate(enemyProjectile, spawnProjectilePoint.transform.position, Quaternion.identity);
+                    projectileInstance.Initialize(bodyCollider.transform, aimPoint, combo.listAnimationsCombos[i].attackData);
+                }
             }
 
             isAttacking = false;

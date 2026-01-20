@@ -16,7 +16,7 @@ MonoBehaviour:
     cameraDistanceMinPlayer: 1
     shoulderOffsetAmountPositive: -5
     shoulderOffsetAmountNegative: 5
-    shoulderOffsetDistanceMulti: 10
+    shoulderOffsetDistanceMulti: 3
     minVerticalCameraPlayer: -5
     maxVerticalCameraPlayer: 5
     offsetTransitionTime: 5

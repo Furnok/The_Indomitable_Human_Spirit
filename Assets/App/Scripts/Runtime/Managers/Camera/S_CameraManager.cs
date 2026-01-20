@@ -121,6 +121,7 @@ public class S_CameraManager : MonoBehaviour
     private Tween resetVerticalTween = null;
     private float lastDirection = 0f;
     float currentTargetFOV = 0f;
+    private Vector3 targetOffsetVelocity = Vector3.zero;
 
     private void Awake()
     {
@@ -440,15 +441,15 @@ public class S_CameraManager : MonoBehaviour
         float distance = toTarget.magnitude;
         Vector3 direction = toTarget.normalized;
 
-        Vector3 cameraRight = Vector3.Cross(Vector3.up, direction);
-        Vector3 cameraForward = Vector3.Cross(direction, cameraRight);
+        Vector3 cameraRight = Vector3.Cross(Vector3.up, direction).normalized;
+        Vector3 cameraForward = Vector3.Cross(direction, cameraRight).normalized;
 
         float distanceMultiplier = (1f / Mathf.Max(distance, 0.1f)) * ssoCameraData.Value.shoulderOffsetDistanceMulti;
 
-        Vector3 worldOffset = cameraRight * (sideAmount * distanceMultiplier) + cameraForward;
-        Vector3 targetOffset = new Vector3(worldOffset.x, cinemachineCameraOrbitalFollow.TargetOffset.y, worldOffset.z);
+        Vector3 desiredOffset = cameraRight * (sideAmount * distanceMultiplier) + cameraForward;
+        desiredOffset.y = cinemachineCameraOrbitalFollow.TargetOffset.y;
 
-        ChangeShoulderOffset(targetOffset);
+        cinemachineCameraOrbitalFollow.TargetOffset = Vector3.SmoothDamp(cinemachineCameraOrbitalFollow.TargetOffset, desiredOffset, ref targetOffsetVelocity, 0.15f);
     }
 
     private void ChangeShoulderOffset(Vector3 target)
