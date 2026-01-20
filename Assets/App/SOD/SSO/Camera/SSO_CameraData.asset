@@ -19,7 +19,7 @@ MonoBehaviour:
     shoulderOffsetDistanceMulti: 10
     minVerticalCameraPlayer: -10
     maxVerticalCameraPlayer: 10
-    offsetTransitionTime: 0.5
+    offsetTransitionTime: 3
     holdSkipTime: 1
     StartDisplaySkipTime: 2
     fadeSpeedPlayer: 5
