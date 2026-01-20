@@ -53,6 +53,9 @@ public class S_PlayerHitResolver : MonoBehaviour
     [SerializeField] private RSE_OnRumbleStopChannel _rseOnRumbleStopChannel;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnCameraFOV rseOnCameraFOV;
+
+    [TabGroup("Outputs")]
     [SerializeField] private RSO_CanParry _canParry;
 
     [TabGroup("Outputs")]
@@ -121,6 +124,8 @@ public class S_PlayerHitResolver : MonoBehaviour
                             _parryEventInstanceSFX = RuntimeManager.CreateInstance(_parrySoundEffect);
                             _parryEventInstanceSFX.setParameterByName("AttackParried", _currentPitchParrySFX);
                             _parryEventInstanceSFX.start();
+
+                            rseOnCameraFOV.Call(40);
                         }
                         else
                         {
@@ -185,6 +190,8 @@ public class S_PlayerHitResolver : MonoBehaviour
                     _parryEventInstanceSFX = RuntimeManager.CreateInstance(_parrySoundEffect);
                     _parryEventInstanceSFX.setParameterByName("AttackParried", _currentPitchParrySFX);
                     _parryEventInstanceSFX.start();
+
+                    rseOnCameraFOV.Call(40);
 
                     if (coroutineParry != null)
                     {

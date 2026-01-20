@@ -87,6 +87,9 @@ public class S_PlayerDodge : MonoBehaviour
     [SerializeField] private RSE_OnSendConsoleMessage rseOnSendConsoleMessage;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnCameraFOV rseOnCameraFOV;
+
+    [TabGroup("Outputs")]
     [SerializeField] private RSO_PlayerIsDodging _playerIsDodging;
 
     [TabGroup("Outputs")]
@@ -185,7 +188,6 @@ public class S_PlayerDodge : MonoBehaviour
 
         rseOnSendConsoleMessage.Call("Player Dodge!");
 
-
         _dodgeUp = false;
         StartCoroutine(S_Utils.Delay(_playerStats.Value.dodgeCooldown, () =>
         {
@@ -193,6 +195,7 @@ public class S_PlayerDodge : MonoBehaviour
         }));
 
         RuntimeManager.PlayOneShot(_dodgeSimpleSound);
+        rseOnCameraFOV.Call(70);
 
         // Test TriggerDodgePerfect
         var isDodgePrefect = _attackDataInDodgeableArea.Value.Count > 0;
