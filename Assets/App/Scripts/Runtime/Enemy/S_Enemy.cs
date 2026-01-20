@@ -779,6 +779,7 @@ public class S_Enemy : MonoBehaviour
         S_ClassCameraFOV fov = new S_ClassCameraFOV();
         fov.value = ssoCameraData.Value.fovFight;
         fov.time = ssoCameraData.Value.fovFightSwitchTime;
+        fov.reset = true;
 
         rseOnCameraFOV.Call(fov);
 
@@ -842,6 +843,7 @@ public class S_Enemy : MonoBehaviour
         S_ClassCameraFOV fov2 = new S_ClassCameraFOV();
         fov2.value = -ssoCameraData.Value.fovFight;
         fov2.time = ssoCameraData.Value.fovFightSwitchTime;
+        fov2.reset = true;
 
         rseOnCameraFOV.Call(fov2);
 
