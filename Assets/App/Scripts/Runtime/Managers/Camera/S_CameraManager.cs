@@ -117,6 +117,8 @@ public class S_CameraManager : MonoBehaviour
 
     private Tween shoulderTween = null;
     private Tween fovTween = null;
+    private Tween resetHorizontalTween = null;
+    private Tween resetVerticalTween = null;
     private float lastDirection = 0f;
     float currentTargetFOV = 0f;
 
@@ -223,8 +225,14 @@ public class S_CameraManager : MonoBehaviour
 
     private void ResetCam()
     {
-        cinemachineCameraPlayer.GetComponent<CinemachineOrbitalFollow>().HorizontalAxis.Value = cinemachineCameraPlayer.GetComponent<CinemachineOrbitalFollow>().HorizontalAxis.Center;
-        cinemachineCameraPlayer.GetComponent<CinemachineOrbitalFollow>().VerticalAxis.Value = cinemachineCameraPlayer.GetComponent<CinemachineOrbitalFollow>().VerticalAxis.Center;
+        resetHorizontalTween?.Kill();
+        resetVerticalTween?.Kill();
+
+        float yaw = playerPos.eulerAngles.y;
+        yaw = (yaw > 180f) ? yaw - 360f : yaw;
+
+        resetHorizontalTween = DOVirtual.Float(cinemachineCameraOrbitalFollow.HorizontalAxis.Value, yaw, 0.5f, value => cinemachineCameraOrbitalFollow.HorizontalAxis.Value = value).SetTarget(cinemachineCameraOrbitalFollow).SetEase(Ease.Linear);
+        resetVerticalTween = DOVirtual.Float(cinemachineCameraOrbitalFollow.VerticalAxis.Value, cinemachineCameraOrbitalFollow.VerticalAxis.Center, 0.5f, value => cinemachineCameraOrbitalFollow.VerticalAxis.Value = value).SetTarget(cinemachineCameraOrbitalFollow).SetEase(Ease.Linear); ;
     }
     #endregion
 
