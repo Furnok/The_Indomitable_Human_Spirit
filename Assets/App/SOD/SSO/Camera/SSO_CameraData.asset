@@ -21,9 +21,9 @@ MonoBehaviour:
     maxVerticalCameraPlayer: 15
     offsetTransitionTime: 1
     fovDodge: 10
-    fovDodgeSwitchTime: 0.5
+    fovDodgeSwitchTime: 0.2
     fovParry: -10
-    fovParrySwitchTime: 0.5
+    fovParrySwitchTime: 0.2
     fovFight: -10
     fovFightSwitchTime: 0.5
     holdSkipTime: 1

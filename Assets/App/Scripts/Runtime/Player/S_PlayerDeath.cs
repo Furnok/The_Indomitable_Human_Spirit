@@ -40,6 +40,9 @@ public class S_PlayerDeath : MonoBehaviour
     [TabGroup("Outputs")]
     [SerializeField] private RSO_PlayerDead _PlayerDead;
 
+    [TabGroup("Outputs")]
+    [SerializeField] private RSO_PlayerRespawnPosition rsoPlayerRespawnPosition;
+
     private void OnEnable()
     {
         _onPlayerDeathRse.action += HandlePlayerDeath;
@@ -48,6 +51,15 @@ public class S_PlayerDeath : MonoBehaviour
     private void OnDisable()
     {
         _onPlayerDeathRse.action -= HandlePlayerDeath;
+    }
+
+    private void Start()
+    {
+        StartCoroutine(S_Utils.DelayRealTime(0.1f, () =>
+        {
+            rsoPlayerRespawnPosition.Value.position = _player.transform.position;
+            rsoPlayerRespawnPosition.Value.rotation = _player.transform.rotation;
+        }));
     }
 
     private void HandlePlayerDeath()

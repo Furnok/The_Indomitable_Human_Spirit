@@ -3303,6 +3303,7 @@ MonoBehaviour:
   _onPlayerRespawnRse: {fileID: 11400000, guid: 3b09f2a06394f4642a88a2d57f0cec43, type: 2}
   _rseOnAnimationBoolValueChange: {fileID: 11400000, guid: f3b68030aacb033438a094c87c0e44ca, type: 2}
   _PlayerDead: {fileID: 11400000, guid: cf127e03f9807c942bc07a954b99d6fd, type: 2}
+  rsoPlayerRespawnPosition: {fileID: 11400000, guid: a277ad2b8f148a94caba870bf683ea0f, type: 2}
 --- !u!114 &4137787093588038521
 MonoBehaviour:
   m_ObjectHideFlags: 0

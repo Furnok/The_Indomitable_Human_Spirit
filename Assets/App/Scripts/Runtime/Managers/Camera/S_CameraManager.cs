@@ -424,7 +424,6 @@ public class S_CameraManager : MonoBehaviour
                 lastDirection = move.x;
             }
         }
-        else shoulderTween?.Kill();
     }
 
     private void ChangeShoulderOffsetWorld(float sideAmount)
