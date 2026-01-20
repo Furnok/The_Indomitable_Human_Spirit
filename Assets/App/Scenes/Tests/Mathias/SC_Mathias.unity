@@ -371,10 +371,10 @@ RectTransform:
   - {fileID: 791873595}
   m_Father: {fileID: 62940927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &48924166
 GameObject:
@@ -411,8 +411,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 910.4175, y: 0}
-  m_SizeDelta: {x: 500, y: 979.53064}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 500, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &48924168
 MonoBehaviour:
@@ -5912,10 +5912,10 @@ RectTransform:
   - {fileID: 48924167}
   m_Father: {fileID: 62940927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &209819919
 GameObject:
@@ -5950,10 +5950,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2050964983}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 262}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &209819921
 MonoBehaviour:
@@ -5987,10 +5987,18 @@ MonoBehaviour:
         m_VariantData:
         - localeIdentifier:
             m_Code: en
-          value: 
+          value: '<style="TitleTuto">SWAP TARGET</style>
+
+
+            To swap target
+            beetwen enemies in range use the {SWAP_TARGET} in the direction left
+            and right of the current target you want to swap with'
         - localeIdentifier:
             m_Code: fr
-          value: 
+          value: "<style=\"TitleTuto\">ECHANGER DE CIBLE</style>\n\nPour changer
+            de cible entre les ennemis \xE0 port\xE9e, utilisez le {SWAP_TARGET}
+            dans la direction gauche ou droite de la cible actuelle avec laquelle
+            vous souhaitez \xE9changer."
 --- !u!114 &209819922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6013,8 +6021,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
+  m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6045,8 +6053,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -7117,10 +7125,10 @@ RectTransform:
   - {fileID: 365011304}
   m_Father: {fileID: 62940927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &281726971 stripped
 Transform:
@@ -7411,8 +7419,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 910.4175, y: 0}
-  m_SizeDelta: {x: 500, y: 979.53064}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 500, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &365011305
 MonoBehaviour:
@@ -7561,11 +7569,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spritesByDevice:
-    keys: 07000000
+    keys: 0200000003000000040000000600000007000000090000000a0000000b00000001000000
     values:
-    - keys: 01000000
+    - keys: 0200000003000000
       values:
-      - {fileID: 21300000, guid: 9ed37c95b97d7864d88252ca6b03aa30, type: 3}
+      - {fileID: 21300000, guid: 3d91209dc6a76434aa15433a04689683, type: 3}
+      - {fileID: 21300000, guid: c1a0eae6fc88f0a48b388efc8f056989, type: 3}
+    - keys: 0200000003000000
+      values:
+      - {fileID: 21300000, guid: 12d4b7991d4c07e4b99ca2bc97bdedfd, type: 3}
+      - {fileID: 21300000, guid: c4ca2143141973a4f90ea263d1db64ac, type: 3}
+    - keys: 0200000003000000
+      values:
+      - {fileID: 21300000, guid: fa92fee8fd84b42418504ca3e94e13a5, type: 3}
+      - {fileID: 21300000, guid: d114730f00e13224a9204af8e0ae9197, type: 3}
+    - keys: 0200000003000000
+      values:
+      - {fileID: 21300000, guid: c5b399045d31ad24cae3177185e16129, type: 3}
+      - {fileID: 21300000, guid: 47342a0c5ac0b7843b146ea94377f3e2, type: 3}
+    - keys: 0200000003000000
+      values:
+      - {fileID: 21300000, guid: 7baf98a9b65c5f94fb02eedccbac3321, type: 3}
+      - {fileID: 21300000, guid: fc5c8b0126c5ab045be6f8a382c0dbe1, type: 3}
+    - keys: 0200000003000000
+      values:
+      - {fileID: 21300000, guid: 538bfc778db139f46aa84c4b006e0d55, type: 3}
+      - {fileID: 21300000, guid: cf5ba8af4c7c14541be730c9d6d103cf, type: 3}
+    - keys: 0200000003000000
+      values:
+      - {fileID: 21300000, guid: 905d3d917cf07214aad6abc5331c453e, type: 3}
+      - {fileID: 21300000, guid: 905d3d917cf07214aad6abc5331c453e, type: 3}
+    - keys: 0200000003000000
+      values:
+      - {fileID: 21300000, guid: c5b399045d31ad24cae3177185e16129, type: 3}
+      - {fileID: 21300000, guid: 47342a0c5ac0b7843b146ea94377f3e2, type: 3}
+    - keys: 
+      values: []
   _textTutoMovement: {fileID: 421236112}
   _textTutoDodge: {fileID: 1441276266}
   _textTutoAttack: {fileID: 1164426524}
@@ -7611,8 +7650,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 910.4175, y: 0}
-  m_SizeDelta: {x: 500, y: 979.53064}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 500, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &371220210
 MonoBehaviour:
@@ -7815,10 +7854,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2018903999}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 262}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &421236111
 MonoBehaviour:
@@ -7878,8 +7917,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
+  m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7910,8 +7949,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -13604,8 +13643,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 910.4175, y: 0}
-  m_SizeDelta: {x: 500, y: 979.53064}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 500, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &620482571
 MonoBehaviour:
@@ -13687,10 +13726,10 @@ RectTransform:
   - {fileID: 1871812499}
   m_Father: {fileID: 62940927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &658428105 stripped
 Transform:
@@ -13908,10 +13947,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1871812499}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 262}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &706941120
 MonoBehaviour:
@@ -13945,10 +13984,19 @@ MonoBehaviour:
         m_VariantData:
         - localeIdentifier:
             m_Code: en
-          value: 
+          value: '<style="TitleTuto">HEAL</style>
+
+
+            Press the {HEAL}
+            button to heal yourself if you have enough conviction.'
         - localeIdentifier:
             m_Code: fr
-          value: 
+          value: '<style="TitleTuto">GUERIR</style>
+
+            
+
+            Appuyez
+            sur le bouton {HEAL} pour vous soigner si vous avez assez de la conviction.'
 --- !u!114 &706941121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13971,8 +14019,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
+  m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -14003,8 +14051,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -14313,8 +14361,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 910.4175, y: 0}
-  m_SizeDelta: {x: 500, y: 979.53064}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 500, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &791873596
 MonoBehaviour:
@@ -14780,10 +14828,10 @@ RectTransform:
   - {fileID: 1463426422}
   m_Father: {fileID: 62940927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &923109046 stripped
 Transform:
@@ -14931,10 +14979,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 371220209}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 262}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &970081408
 MonoBehaviour:
@@ -14950,6 +14998,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TrackedObjects:
   - rid: 1159296779615993856
+  - rid: 1159296937788964948
   references:
     version: 2
     RefIds:
@@ -14960,6 +15009,8 @@ MonoBehaviour:
         m_TrackedProperties:
           items:
           - rid: 1159296779615993857
+          - rid: 1159296937788964950
+          - rid: 1159296937788964951
         m_UpdateType: 0
     - rid: 1159296779615993857
       type: {class: StringTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
@@ -14968,10 +15019,53 @@ MonoBehaviour:
         m_VariantData:
         - localeIdentifier:
             m_Code: en
-          value: 
+          value: '<style="TitleTuto">ATTACK SIGNALING</style>
+
+
+            What
+            action you need to make to prevent to be hit is reported by an attack
+            indicator, the <color="yellow">yellow one indicated that you must parry
+            the attack</color>, and the <color="red">red need to be dodged</color>.'
         - localeIdentifier:
             m_Code: fr
-          value: 
+          value: "<style=\"TitleTuto\">SIGNALISATION D'ATTAQUE</style>\n\nL'action
+            \xE0 entreprendre pour \xE9viter d'\xEAtre touch\xE9 est indiqu\xE9e
+            par un indicateur d'attaque : le <color=\"yellow\">jaune indique qu'il
+            faut parer l'attaque</color>, et le <color=\"red\">rouge qu'il faut l'esquiver</color>."
+    - rid: 1159296937788964948
+      type: {class: TrackedRectTransform, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 970081407}
+        m_TrackedProperties:
+          items:
+          - rid: 1159296937788964949
+    - rid: 1159296937788964949
+      type: {class: FloatTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_AnchorMin.x
+        m_VariantData: []
+    - rid: 1159296937788964950
+      type: {class: EnumTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_HorizontalAlignment
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: en
+          value: 2
+        - localeIdentifier:
+            m_Code: fr
+          value: 2
+    - rid: 1159296937788964951
+      type: {class: EnumTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_VerticalAlignment
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: en
+          value: 512
+        - localeIdentifier:
+            m_Code: fr
+          value: 512
 --- !u!114 &970081409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14992,10 +15086,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: <style="TitleTuto">Ciblage</style>
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
+  m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -15026,8 +15120,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -15104,10 +15198,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 620482570}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 262}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1020952045
 MonoBehaviour:
@@ -15141,10 +15235,17 @@ MonoBehaviour:
         m_VariantData:
         - localeIdentifier:
             m_Code: en
-          value: 
+          value: '<style="TitleTuto">PARRY PROJECTILE</style>
+
+
+            You can
+            also parry projectile using {PARRY} at the right timing and that''s will
+            <color="Yellow">reflect</color> the projectile to the enemy.'
         - localeIdentifier:
             m_Code: fr
-          value: 
+          value: "<style=\"TitleTuto\">PARER UN PROJECTILE</style>\r\n\r\nVous pouvez
+            \xE9galement parer un projectile en utilisant {PARRY} au bon moment,
+            ce qui <color=\"Yellow\">renvoiera</color> le projectile vers l'ennemi."
 --- !u!114 &1020952046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15167,8 +15268,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
+  m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -15199,8 +15300,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -15420,10 +15521,10 @@ RectTransform:
   - {fileID: 371220209}
   m_Father: {fileID: 62940927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1121936351
 GameObject:
@@ -15585,10 +15686,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2044264045}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 262}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1164426523
 MonoBehaviour:
@@ -15622,10 +15723,21 @@ MonoBehaviour:
         m_VariantData:
         - localeIdentifier:
             m_Code: en
-          value: 
+          value: '<style="TitleTuto">ATTACK</style>
+
+
+            To attack you need
+            to hold the {ATTACK} button that''s consume progressively your <color="Yellow">conviction
+            bar </color>on the bottom of the screen, each step are marked by a black
+            bar that''s make you <color="Red">multiply your damage </color>of the
+            attack.'
         - localeIdentifier:
             m_Code: fr
-          value: 
+          value: "<style=\"TitleTuto\">ATTAQUE</style>\n\nPour attaquer, vous devez
+            tenir le {ATTACK} bouton qui consomme progressivement votre <color=\"Yellow\">barre
+            de conviction </color>en bas de l'\xE9cran, chaque \xE9tape est marqu\xE9e
+            par une barre noire qui vous permet de  <color=\"Red\">multiplier les
+            d\xE9g\xE2ts de l'attaque</color> de l'attaque."
 --- !u!114 &1164426524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15648,8 +15760,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
+  m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -15680,8 +15792,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -15813,10 +15925,10 @@ RectTransform:
   - {fileID: 1552629400}
   m_Father: {fileID: 62940927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &1225070377 stripped
 Transform:
@@ -16357,10 +16469,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 791873595}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 262}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1441276265
 MonoBehaviour:
@@ -16394,10 +16506,17 @@ MonoBehaviour:
         m_VariantData:
         - localeIdentifier:
             m_Code: en
-          value: 
+          value: '<style="TitleTuto">DODGE</style>
+
+
+            You can dodge attack
+            with the <color="Red">red indicator </color>using {DODGE} at the right
+            timing which will give you <color="Yellow">conviction</color>.'
         - localeIdentifier:
             m_Code: fr
-          value: 
+          value: "<style=\"TitleTuto\">Esquiver</style>\r\n\r\nVous pouvez esquiver
+            une attaque qui \xE0 <color=\"Red\">l'indicateur rouge</color> en utilisant
+            {DODGE} au bon moment, ce qui vous donnera de la <color=\"Yellow\">conviction</color>."
 --- !u!114 &1441276266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16420,8 +16539,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
+  m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -16452,8 +16571,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -16532,8 +16651,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 910.4175, y: 0}
-  m_SizeDelta: {x: 500, y: 979.53064}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 500, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1463426423
 MonoBehaviour:
@@ -17238,8 +17357,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 910.4175, y: 0}
-  m_SizeDelta: {x: 500, y: 979.53064}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 500, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1552629401
 MonoBehaviour:
@@ -17309,10 +17428,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 48924167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 262}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1558077558
 MonoBehaviour:
@@ -17338,6 +17457,8 @@ MonoBehaviour:
         m_TrackedProperties:
           items:
           - rid: 1159296779615993857
+          - rid: 1159296937788964952
+          - rid: 1159296937788964953
         m_UpdateType: 0
     - rid: 1159296779615993857
       type: {class: StringTrackedProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
@@ -17346,10 +17467,43 @@ MonoBehaviour:
         m_VariantData:
         - localeIdentifier:
             m_Code: en
-          value: 
+          value: '<style="TitleTuto">Targeting</style>
+
+
+            Press {TARGETING}
+            to target the enemy in range indicated by the indication on the top of
+            the enemy.'
         - localeIdentifier:
             m_Code: fr
-          value: 
+          value: "<style=\"TitleTuto\">Ciblage</style>\n\nAppuyez {TARGETING} pour
+            cibler l'ennemi \xE0 port\xE9e indiqu\xE9 par l'indication au sommet
+            de l'ennemi."
+    - rid: 1159296937788964952
+      type: {class: UnityObjectProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_fontAsset
+        m_TypeString: TMPro.TMP_FontAsset, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: en
+          value: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+        - localeIdentifier:
+            m_Code: fr
+          value: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - rid: 1159296937788964953
+      type: {class: UnityObjectProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_PropertyPath: m_sharedMaterial
+        m_TypeString: UnityEngine.Material, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        m_VariantData:
+        - localeIdentifier:
+            m_Code: en
+          value: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+        - localeIdentifier:
+            m_Code: fr
+          value: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
 --- !u!114 &1558077559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17370,10 +17524,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '{PARRY}'
+  m_text: '{PARRY}  <sprite name=SP_Input_PlayStation_Button_L2>'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
+  m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -17389,7 +17543,7 @@ MonoBehaviour:
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
+  m_spriteAsset: {fileID: 11400000, guid: 783cdc0a689a4854ea5707fb378631bd, type: 2}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
   m_TextStyleHashCode: -1183493901
@@ -17404,8 +17558,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -17799,10 +17953,10 @@ RectTransform:
   - {fileID: 2018903999}
   m_Father: {fileID: 62940927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1622436622
 GameObject:
@@ -17835,10 +17989,10 @@ RectTransform:
   - {fileID: 2044264045}
   m_Father: {fileID: 62940927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1635891466
 GameObject:
@@ -17871,10 +18025,10 @@ RectTransform:
   - {fileID: 2050964983}
   m_Father: {fileID: 62940927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &1647033013 stripped
 Transform:
@@ -17971,10 +18125,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1463426422}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 262}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1697531792
 MonoBehaviour:
@@ -18008,10 +18162,17 @@ MonoBehaviour:
         m_VariantData:
         - localeIdentifier:
             m_Code: en
-          value: 
+          value: '<style="TitleTuto">PARRY</style>
+
+
+            You can parry attack
+            with the <color="Yellow">yellow indicator </color>using {PARRY} at the
+            right timing which will give you <color="Yellow">conviction</color>.'
         - localeIdentifier:
             m_Code: fr
-          value: 
+          value: "<style=\"TitleTuto\">PARADE</style>\r\n\r\nVous pouvez parer une
+            attaque qui \xE0 <color=\"Yellow\">l'indicateur yellow</color> en utilisant
+            {PARRY} au bon moment, ce qui vous donnera de la <color=\"Yellow\">conviction</color>."
 --- !u!114 &1697531793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18034,8 +18195,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
+  m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -18066,8 +18227,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -18338,10 +18499,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 365011304}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 262}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1765871031
 MonoBehaviour:
@@ -18375,10 +18536,15 @@ MonoBehaviour:
         m_VariantData:
         - localeIdentifier:
             m_Code: en
-          value: 
+          value: '<style="TitleTuto">Interact</style>
+
+
+            Press {INTERACT}
+            to interact with object near to you.'
         - localeIdentifier:
             m_Code: fr
-          value: 
+          value: "<style=\"TitleTuto\">Interaction</style>\n\nAppuyez sur {INTERACT}
+            pour interagir avec l'objet \xE0 proximit\xE9.\r\n"
 --- !u!114 &1765871032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18401,8 +18567,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
+  m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -18433,8 +18599,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -18836,10 +19002,10 @@ RectTransform:
   - {fileID: 620482570}
   m_Father: {fileID: 62940927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1868323047
 GameObject:
@@ -18984,8 +19150,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 910.4175, y: 0}
-  m_SizeDelta: {x: 500, y: 979.53064}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 500, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1871812500
 MonoBehaviour:
@@ -19451,10 +19617,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1552629400}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 262}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2010211753
 MonoBehaviour:
@@ -19488,10 +19654,23 @@ MonoBehaviour:
         m_VariantData:
         - localeIdentifier:
             m_Code: en
-          value: 
+          value: '<style="TitleTuto">CONVICTION</style>
+
+
+            You have a
+            resource bar on the bottom of your screen who is your <color="Yellow">conviction</color>
+            that''s can be <color="Yellow">gain</color> with <color="Yellow">parry
+            </color>and <color="Red">dodge</color> perfectly attacks, and you will
+            use it to perform <color="Red">charging attack</color> and to <color="Green">heal
+            </color>yourself if you have enough <color="Yellow">conviction</color>.'
         - localeIdentifier:
             m_Code: fr
-          value: 
+          value: "<style=\"TitleTuto\">CONVICTION</style>\n\nVous disposez d'une
+            barre de ressources en bas de votre \xE9cran, repr\xE9sentant votre <color=\"Yellow\">conviction</color>.
+            Celle-ci se gagne en <color=\"Yellow\">parant</color> et en <color=\"Red\">esquivant</color>
+            parfaitement les attaques. Vous l'utiliserez pour effectuer une <color=\"Red\">attaque
+            charg\xE9e</color> et pour vous <color=\"Green\">soigner</color> si vous
+            en avez suffisamment."
 --- !u!114 &2010211754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19514,8 +19693,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
+  m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -19546,8 +19725,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -19631,8 +19810,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 910.4175, y: 0}
-  m_SizeDelta: {x: 500, y: 979.53064}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 500, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &2018904000
 MonoBehaviour:
@@ -19787,8 +19966,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 910.4175, y: 0}
-  m_SizeDelta: {x: 500, y: 979.53064}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 500, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &2044264046
 MonoBehaviour:
@@ -19860,8 +20039,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 910.4175, y: 0}
-  m_SizeDelta: {x: 500, y: 979.53064}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 500, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &2050964984
 MonoBehaviour:
