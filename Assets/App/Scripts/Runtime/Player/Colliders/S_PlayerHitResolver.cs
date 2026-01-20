@@ -238,7 +238,7 @@ public class S_PlayerHitResolver : MonoBehaviour
 
         S_ClassCameraFOV fov = new S_ClassCameraFOV();
         fov.value = -ssoCameraData.Value.fovParry;
-        fov.time = -ssoCameraData.Value.fovParrySwitchTime;
+        fov.time = ssoCameraData.Value.fovParrySwitchTime;
 
         rseOnCameraFOV.Call(fov);
 

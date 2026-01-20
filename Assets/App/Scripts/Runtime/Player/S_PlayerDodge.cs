@@ -337,7 +337,7 @@ public class S_PlayerDodge : MonoBehaviour
 
             S_ClassCameraFOV fov = new S_ClassCameraFOV();
             fov.value = -ssoCameraData.Value.fovDodge;
-            fov.time = -ssoCameraData.Value.fovDodgeSwitchTime;
+            fov.time = ssoCameraData.Value.fovDodgeSwitchTime;
 
             rseOnCameraFOV.Call(fov);
         }

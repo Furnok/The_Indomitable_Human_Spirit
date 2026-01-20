@@ -118,6 +118,7 @@ public class S_CameraManager : MonoBehaviour
     private Tween shoulderTween = null;
     private Tween fovTween = null;
     private float lastDirection = 0f;
+    float currentTargetFOV = 0f;
 
     private void Awake()
     {
@@ -386,15 +387,27 @@ public class S_CameraManager : MonoBehaviour
 
     private void HandleFOV(S_ClassCameraFOV classCameraFOV)
     {
-        fovTween?.Kill();
+        float currentFOV = cinemachineCameraPlayer.Lens.FieldOfView;
+        float addValue = 0;
+
+        if (fovTween != null && fovTween.IsActive())
+        {
+            float remaining = (currentTargetFOV - currentFOV);
+
+            fovTween.Kill();
+
+            addValue += remaining;
+        }
 
         if (!classCameraFOV.reset)
         {
-            fovTween = DOTween.To(() => cinemachineCameraPlayer.Lens.FieldOfView, x => cinemachineCameraPlayer.Lens.FieldOfView = x, cinemachineCameraPlayer.Lens.FieldOfView + classCameraFOV.value, classCameraFOV.time).SetEase(Ease.Linear);
+            currentTargetFOV = Mathf.Clamp(cinemachineCameraPlayer.Lens.FieldOfView + classCameraFOV.value + addValue, 40, 70);
+            fovTween = DOTween.To(() => cinemachineCameraPlayer.Lens.FieldOfView, x => cinemachineCameraPlayer.Lens.FieldOfView = x, currentTargetFOV, classCameraFOV.time).SetEase(Ease.Linear);
         }
         else
         {
-            fovTween = DOTween.To(() => cinemachineCameraPlayer.Lens.FieldOfView, x => cinemachineCameraPlayer.Lens.FieldOfView = x, classCameraFOV.value, classCameraFOV.time).SetEase(Ease.Linear);
+            currentTargetFOV = Mathf.Clamp(cinemachineCameraPlayer.Lens.FieldOfView + addValue, 40, 70);
+            fovTween = DOTween.To(() => cinemachineCameraPlayer.Lens.FieldOfView, x => cinemachineCameraPlayer.Lens.FieldOfView = x, currentTargetFOV, classCameraFOV.time).SetEase(Ease.Linear);
         }
     }
 
