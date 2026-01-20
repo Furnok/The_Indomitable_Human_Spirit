@@ -588,7 +588,7 @@ MonoBehaviour:
       Owner: {fileID: 3187908799981269826}
       Enabled: 1
       Input:
-        InputAction: {fileID: 0}
+        InputAction: {fileID: 2741696198913961054, guid: 2993d1cf4eb94a74c9e90e7bae7148a2, type: 3}
         Gain: 1
         LegacyInput: 
         LegacyGain: 1
@@ -601,7 +601,7 @@ MonoBehaviour:
       Owner: {fileID: 3187908799981269826}
       Enabled: 1
       Input:
-        InputAction: {fileID: 0}
+        InputAction: {fileID: 2741696198913961054, guid: 2993d1cf4eb94a74c9e90e7bae7148a2, type: 3}
         Gain: -1
         LegacyInput: 
         LegacyGain: 1
