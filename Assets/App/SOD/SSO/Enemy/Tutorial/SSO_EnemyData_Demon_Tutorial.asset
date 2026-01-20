@@ -55,7 +55,7 @@ MonoBehaviour:
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
           convictionReduction: 1
-          convictionParryGain: 30
+          convictionParryGain: 50
           lastAttack: 1
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}

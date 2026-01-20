@@ -7556,6 +7556,7 @@ MonoBehaviour:
   _onChangeHighlightTarget: {fileID: 11400000, guid: 53059718dbc01864b96bc5107c7ff935, type: 2}
   _onChangeActiveStatePanelsFilters: {fileID: 11400000, guid: c2bf9a0cf32e2b140bfaf00bf3c6f8cf, type: 2}
   _onPlayerHealthReduced: {fileID: 11400000, guid: d9db70b8d640c8d47b38c443abcec2ff, type: 2}
+  _onPlayerGainConviction: {fileID: 11400000, guid: c3ba1e97cce4a3d4e929f7197f47a3c1, type: 2}
 --- !u!114 &366825698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7605,6 +7606,18 @@ MonoBehaviour:
       - {fileID: 21300000, guid: 47342a0c5ac0b7843b146ea94377f3e2, type: 3}
     - keys: 
       values: []
+  _tutorialsTextObjects:
+  - {fileID: 41326164}
+  - {fileID: 888421639}
+  - {fileID: 1863543512}
+  - {fileID: 657589801}
+  - {fileID: 1619286858}
+  - {fileID: 280713934}
+  - {fileID: 1212693544}
+  - {fileID: 1085026436}
+  - {fileID: 188194721}
+  - {fileID: 1635891466}
+  - {fileID: 1622436622}
   _textTutoMovement: {fileID: 421236112}
   _textTutoDodge: {fileID: 1441276266}
   _textTutoAttack: {fileID: 1164426524}
@@ -13993,10 +14006,10 @@ MonoBehaviour:
             m_Code: fr
           value: '<style="TitleTuto">GUERIR</style>
 
-            
 
-            Appuyez
-            sur le bouton {HEAL} pour vous soigner si vous avez assez de la conviction.'
+
+            Appuyez sur le
+            bouton {HEAL} pour vous soigner si vous avez assez de la conviction.'
 --- !u!114 &706941121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17543,7 +17556,7 @@ MonoBehaviour:
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 11400000, guid: 783cdc0a689a4854ea5707fb378631bd, type: 2}
+  m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
   m_TextStyleHashCode: -1183493901

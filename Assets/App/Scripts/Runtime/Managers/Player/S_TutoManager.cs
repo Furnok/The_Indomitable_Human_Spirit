@@ -25,6 +25,8 @@ public class S_TutoManager : MonoBehaviour
     [SerializeField] RSE_OnChangeHighlightTarget _onChangeHighlightTarget;
     [SerializeField] RSE_OnChangeActiveStatePanelsFilters _onChangeActiveStatePanelsFilters;
     [SerializeField] RSE_OnPlayerHealthReduced _onPlayerHealthReduced;
+    [SerializeField] private RSE_OnPlayerGainConviction _onPlayerGainConviction;
+
 
     private Dictionary<S_EnumTutorialStep, TutoStepData> _tutorials = new Dictionary<S_EnumTutorialStep, TutoStepData>();
 
@@ -198,6 +200,8 @@ public class S_TutoManager : MonoBehaviour
 
         if (tuto != null && tutoStep == S_EnumTutorialStep.Attack)
         {
+            _onPlayerGainConviction.Call(40f);
+
             StartCoroutine(S_Utils.Delay(1.0f, () =>
             {
                 _onRequestStartTutorialStep.Call(S_EnumTutorialStep.Heal);
