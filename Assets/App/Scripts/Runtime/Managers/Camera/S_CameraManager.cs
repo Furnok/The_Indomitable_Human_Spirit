@@ -414,7 +414,7 @@ public class S_CameraManager : MonoBehaviour
         }
         else
         {
-            currentTargetFOV = Mathf.Clamp(cinemachineCameraPlayer.Lens.FieldOfView + classCameraFOV.value, 40, 70);
+            currentTargetFOV = Mathf.Clamp(classCameraFOV.value, 40, 70);
             fovTween = DOTween.To(() => cinemachineCameraPlayer.Lens.FieldOfView, x => cinemachineCameraPlayer.Lens.FieldOfView = x, currentTargetFOV, classCameraFOV.time).SetEase(Ease.Linear);
         }
     }
