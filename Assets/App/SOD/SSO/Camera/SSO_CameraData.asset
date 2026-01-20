@@ -16,16 +16,16 @@ MonoBehaviour:
     cameraDistanceMinPlayer: 1
     shoulderOffsetAmountPositive: -2
     shoulderOffsetAmountNegative: 2
-    shoulderOffsetDistanceMulti: 10
-    minVerticalCameraPlayer: -15
-    maxVerticalCameraPlayer: 15
-    offsetTransitionTime: 1
+    shoulderOffsetDistanceMulti: 4
+    minVerticalCameraPlayer: -10
+    maxVerticalCameraPlayer: 10
+    offsetTransitionTime: 5
     fovDodge: 10
     fovDodgeSwitchTime: 0.2
-    fovParry: -10
-    fovParrySwitchTime: 0.2
-    fovFight: -10
-    fovFightSwitchTime: 0.5
+    fovParry: 3
+    fovParrySwitchTime: 0.07
+    fovFight: -6
+    fovFightSwitchTime: 0.7
     holdSkipTime: 1
     StartDisplaySkipTime: 2
     fadeSpeedPlayer: 5
