@@ -221408,6 +221408,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 1.6666666
+    functionName: TriggerTutorialDodgeStep
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 1.7
     functionName: StopRotate
     data: 
@@ -221424,6 +221431,13 @@ AnimationClip:
     messageOptions: 0
   - time: 2.0666666
     functionName: VFXStopTrail
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.8333333
+    functionName: DesactivateEnemy
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

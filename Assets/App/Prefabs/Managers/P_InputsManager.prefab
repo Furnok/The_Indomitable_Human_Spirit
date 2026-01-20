@@ -99,3 +99,4 @@ MonoBehaviour:
   rseOnSkipCancelInput: {fileID: 11400000, guid: de9971957d02b954588dc0600794c05f, type: 2}
   rsoCurrentInputActionMap: {fileID: 11400000, guid: 3b4289fad93b77545a9c16fd6b2cdf4e, type: 2}
   _onTutorialStepCompleted: {fileID: 11400000, guid: 5fb3f5b36d183ea4ea68362155d328a6, type: 2}
+  _rseOnGamePause: {fileID: 11400000, guid: ae0312c6248bf454a8f047511417352d, type: 2}

@@ -1,4 +1,5 @@
-﻿using FMODUnity;
+﻿using DG.Tweening;
+using FMODUnity;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
@@ -92,6 +93,9 @@ public class S_CameraManager : MonoBehaviour
     [TabGroup("Outputs")]
     [SerializeField] private SSO_CameraData ssoCameraData;
 
+    [TabGroup("Inputs")]
+    [SerializeField] private RSE_OnPlayerMove rseOnPlayerMove;
+
     private CinemachineCamera currentCam = null;
     private Transform playerPos = null;
     private Transform currentTarget = null;
@@ -107,6 +111,9 @@ public class S_CameraManager : MonoBehaviour
     private const int Focus = 2;
     private const int FocusCinematic = 100;
     private const int Unfocus = 1;
+
+    private Tween shoulderTween = null;
+    private float lastDirection = 0f;
 
     private void Awake()
     {
@@ -130,6 +137,8 @@ public class S_CameraManager : MonoBehaviour
         rseOnSkipCancelInput.action += StopSkip;
         rseOnSkipIntro.action += SkipIntro;
         rseOnResetCam.action += ResetCam;
+
+        rseOnPlayerMove.action += InputsMove;
     }
 
     private void OnDisable()
@@ -145,6 +154,8 @@ public class S_CameraManager : MonoBehaviour
         rseOnSkipCancelInput.action -= StopSkip;
         rseOnSkipIntro.action -= SkipIntro;
         rseOnResetCam.action -= ResetCam;
+
+        rseOnPlayerMove.action -= InputsMove;
     }
 
     private void Update()
@@ -153,29 +164,18 @@ public class S_CameraManager : MonoBehaviour
 
         playerPoint.position = playerPos.position;
 
-        if (currentTarget)
-        {
-            Vector3 dir = currentTarget.position - playerPos.position;
-
-            if (dir.sqrMagnitude < 0.001f) return;
-
-            float targetYaw = Quaternion.LookRotation(dir).eulerAngles.y;
-
-            cinemachineCameraOrbitalFollow.HorizontalAxis.Value = Mathf.LerpAngle(cinemachineCameraOrbitalFollow.HorizontalAxis.Value, targetYaw, Time.deltaTime * 5f);
-
-            float targetPitch = Quaternion.LookRotation(dir).eulerAngles.x;
-            targetPitch = Mathf.Clamp(targetPitch, ssoCameraData.Value.minVerticalCameraPlayer, ssoCameraData.Value.maxVerticalCameraPlayer);
-
-            cinemachineCameraOrbitalFollow.VerticalAxis.Value = Mathf.LerpAngle(cinemachineCameraOrbitalFollow.VerticalAxis.Value, targetPitch, Time.deltaTime * 5f);
-
-
-
-
-            //cinemachineCameraOrbitalFollow.TargetOffset = new Vector3(0f, 1f, 0);
-        }
-
         HandlePlayerFade();
         HandleSkipHold();
+        HandleTargeting();
+
+        if (lastDirection > 0)
+        {
+            ChangeShoulderOffsetWorld(ssoCameraData.Value.shoulderOffsetAmountNegative);
+        }
+        else if (lastDirection < 0)
+        {
+            ChangeShoulderOffsetWorld(ssoCameraData.Value.shoulderOffsetAmountPositive);
+        }
     }
 
     private void SetTarget(GameObject target)
@@ -187,6 +187,9 @@ public class S_CameraManager : MonoBehaviour
                 currentTarget = null;
 
                 LookActivated(true);
+
+                ChangeShoulderOffset(new Vector3(0, 1, 0));
+                lastDirection = 0;
             }
             else
             {
@@ -356,6 +359,64 @@ public class S_CameraManager : MonoBehaviour
         rseOnSkipHold.Call(skipHold);
 
         if (skipHold >= ssoCameraData.Value.holdSkipTime + 0.35f) SkipCinematic();
+    }
+
+    private void HandleTargeting()
+    {
+        if (currentTarget)
+        {
+            Vector3 dir = currentTarget.position - playerPos.position;
+
+            if (dir.sqrMagnitude < 0.001f) return;
+
+            float targetYaw = Quaternion.LookRotation(dir).eulerAngles.y;
+
+            cinemachineCameraOrbitalFollow.HorizontalAxis.Value = Mathf.LerpAngle(cinemachineCameraOrbitalFollow.HorizontalAxis.Value, targetYaw, Time.deltaTime * 5f);
+
+            float targetPitch = Quaternion.LookRotation(dir).eulerAngles.x;
+            targetPitch = Mathf.Clamp(targetPitch, ssoCameraData.Value.minVerticalCameraPlayer, ssoCameraData.Value.maxVerticalCameraPlayer);
+
+            cinemachineCameraOrbitalFollow.VerticalAxis.Value = Mathf.LerpAngle(cinemachineCameraOrbitalFollow.VerticalAxis.Value, targetPitch, Time.deltaTime * 5f);
+        }
+    }
+
+    private void InputsMove(Vector2 move)
+    {
+        if (currentTarget != null)
+        {
+            if (move.x > 0 && lastDirection <= 0)
+            {
+                lastDirection = move.x;
+            }
+            else if (move.x < 0 && lastDirection >= 0)
+            {
+                lastDirection = move.x;
+            }
+        }
+        else shoulderTween?.Kill();
+    }
+
+    private void ChangeShoulderOffsetWorld(float sideAmount)
+    {
+        Vector3 toTarget = currentTarget.position - playerPos.position;
+        float distance = toTarget.magnitude;
+        Vector3 direction = toTarget.normalized;
+
+        Vector3 cameraRight = Vector3.Cross(Vector3.up, direction);
+        Vector3 cameraForward = Vector3.Cross(direction, cameraRight);
+
+        float distanceMultiplier = (1f / Mathf.Max(distance, 0.1f)) * ssoCameraData.Value.shoulderOffsetDistanceMulti;
+
+        Vector3 worldOffset = cameraRight * (sideAmount * distanceMultiplier) + cameraForward;
+        Vector3 targetOffset = new Vector3(worldOffset.x, cinemachineCameraOrbitalFollow.TargetOffset.y, worldOffset.z);
+
+        ChangeShoulderOffset(targetOffset);
+    }
+
+    private void ChangeShoulderOffset(Vector3 target)
+    {
+        shoulderTween?.Kill();
+        shoulderTween = DOTween.To(() => cinemachineCameraOrbitalFollow.TargetOffset, x => cinemachineCameraOrbitalFollow.TargetOffset = x, target, ssoCameraData.Value.offsetTransitionTime).SetEase(Ease.Linear);
     }
 
     private void StartSkipTimer()

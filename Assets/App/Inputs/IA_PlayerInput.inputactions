@@ -764,7 +764,7 @@
                     "id": "a5acde16-c344-4da3-9e97-3d0837ad3bf4",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Hold(duration=0.7,pressPoint=0.5)",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],

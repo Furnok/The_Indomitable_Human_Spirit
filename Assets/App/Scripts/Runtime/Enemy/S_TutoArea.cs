@@ -8,26 +8,35 @@ public class S_TutoArea : MonoBehaviour
 
     [Header("References")]
     [SerializeField] S_Enemy _enemyTuto;
+    [SerializeField] S_Enemy _enemyDemonTuto;
     [SerializeField] GameObject _enemyVisuals;
+    [SerializeField] GameObject _enemyDemonVisuals;
     [SerializeField] Collider _enemyDetectionRange;
     [SerializeField] Collider _enemyDetectionMaxRange;
 
-    //[Header("Inputs")]
+    [Header("Inputs")]
+    [SerializeField] RSO_SettingsSaved _rsoSettingsSaved;
+
 
     [Header("Outputs")]
     [SerializeField] RSE_OnRequestStartTutorialStep _onRequestStartTutorialStep;
+    [SerializeField] RSE_OnTutorialStepCompleted _onTutorialStepCompleted;
+
 
     bool _hasTriggered = false;
+    Collider _other;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && _hasTriggered == false)
+        if (other.CompareTag("Player") && _hasTriggered == false && _rsoSettingsSaved.Value.activateTuto == true)
         {
+            this._other = other;
             _hasTriggered = true;
+            _enemyTuto.gameObject.SetActive(true);
+
             _onRequestStartTutorialStep.Call(S_EnumTutorialStep.None);
 
             _enemyVisuals.transform.DOLocalMoveY(_ennemyFinalPosY, 2).OnComplete(() => SpawnEnemyTuto(other));
-
         }
     }
 
@@ -38,8 +47,11 @@ public class S_TutoArea : MonoBehaviour
             //_enemyTuto.enabled = false;
             //_enemyTuto.SetTarget(null);
             //_enemyTuto.SetTargetInMaxTravelZone(null);
+
+            _enemyTuto.gameObject.SetActive(false);
         }
 
+        _enemyDemonTuto.gameObject.SetActive(false);
     }
 
     void SpawnEnemyTuto(Collider player)
@@ -59,7 +71,37 @@ public class S_TutoArea : MonoBehaviour
             _enemyTuto.SetTarget(player.gameObject);
 
             _onRequestStartTutorialStep.Call(S_EnumTutorialStep.Targeting);
+        }
+    }
 
+    private void OnEnable()
+    {
+        _onTutorialStepCompleted.action += OnTutorialStepCompleted;
+    }
+
+    private void OnDisable()
+    {
+        _onTutorialStepCompleted.action -= OnTutorialStepCompleted;
+    }
+
+    void OnTutorialStepCompleted(S_EnumTutorialStep tutoStep)
+    {
+        if (tutoStep == S_EnumTutorialStep.Dodge)
+        {
+            _enemyDemonTuto.gameObject.SetActive(true);
+
+            _enemyDemonVisuals.transform.DOLocalMoveY(_ennemyFinalPosY, 2).OnComplete(() => SpawnEnemyDemonTuto());
+        }
+    }
+
+    void SpawnEnemyDemonTuto()
+    {
+        if (_enemyDemonTuto != null)
+        {
+            _enemyDemonTuto.SetTargetInMaxTravelZone(_other.gameObject);
+            _enemyDemonTuto.SetTarget(_other.gameObject);
+
+            _onRequestStartTutorialStep.Call(S_EnumTutorialStep.SwapTarget);
         }
     }
 }

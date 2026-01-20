@@ -525,7 +525,6 @@ public class S_BossAttack : MonoBehaviour
         rseOnPlayParticle.Call();
         bossNavMeshAgent.enabled = true;
         rseOnEndAttack.Call();
-
     }
     #endregion
 
