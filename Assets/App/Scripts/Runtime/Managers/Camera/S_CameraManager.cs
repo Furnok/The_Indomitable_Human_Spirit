@@ -66,6 +66,12 @@ public class S_CameraManager : MonoBehaviour
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnResetCam rseOnResetCam;
 
+    [TabGroup("Inputs")]
+    [SerializeField] private RSE_OnPlayerMove rseOnPlayerMove;
+
+    [TabGroup("Inputs")]
+    [SerializeField] private RSE_OnCameraFOV rseOnCameraFOV;
+
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnCinematicInputEnabled rseOnCinematicInputEnabled;
 
@@ -93,9 +99,6 @@ public class S_CameraManager : MonoBehaviour
     [TabGroup("Outputs")]
     [SerializeField] private SSO_CameraData ssoCameraData;
 
-    [TabGroup("Inputs")]
-    [SerializeField] private RSE_OnPlayerMove rseOnPlayerMove;
-
     private CinemachineCamera currentCam = null;
     private Transform playerPos = null;
     private Transform currentTarget = null;
@@ -113,6 +116,7 @@ public class S_CameraManager : MonoBehaviour
     private const int Unfocus = 1;
 
     private Tween shoulderTween = null;
+    private Tween fovTween = null;
     private float lastDirection = 0f;
 
     private void Awake()
@@ -137,8 +141,8 @@ public class S_CameraManager : MonoBehaviour
         rseOnSkipCancelInput.action += StopSkip;
         rseOnSkipIntro.action += SkipIntro;
         rseOnResetCam.action += ResetCam;
-
         rseOnPlayerMove.action += InputsMove;
+        rseOnCameraFOV.action += HandleFOV;
     }
 
     private void OnDisable()
@@ -154,8 +158,8 @@ public class S_CameraManager : MonoBehaviour
         rseOnSkipCancelInput.action -= StopSkip;
         rseOnSkipIntro.action -= SkipIntro;
         rseOnResetCam.action -= ResetCam;
-
         rseOnPlayerMove.action -= InputsMove;
+        rseOnCameraFOV.action -= HandleFOV;
     }
 
     private void Update()
@@ -377,6 +381,15 @@ public class S_CameraManager : MonoBehaviour
             targetPitch = Mathf.Clamp(targetPitch, ssoCameraData.Value.minVerticalCameraPlayer, ssoCameraData.Value.maxVerticalCameraPlayer);
 
             cinemachineCameraOrbitalFollow.VerticalAxis.Value = Mathf.LerpAngle(cinemachineCameraOrbitalFollow.VerticalAxis.Value, targetPitch, Time.deltaTime * 5f);
+        }
+    }
+
+    private void HandleFOV(float value)
+    {
+        if (cinemachineCameraPlayer.Lens.FieldOfView != value)
+        {
+            fovTween?.Kill();
+            fovTween = DOTween.To(() => cinemachineCameraPlayer.Lens.FieldOfView, x => cinemachineCameraPlayer.Lens.FieldOfView = x, value, 0.5f).SetEase(Ease.Linear);
         }
     }
 

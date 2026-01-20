@@ -3159,6 +3159,13 @@ MonoBehaviour:
       Data3: 1452940701
       Data4: -435756702
     Path: event:/Player/Combat/Dodge/Dodge
+  _dodgeSimpleSound:
+    Guid:
+      Data1: 2026496135
+      Data2: 1141156596
+      Data3: 521051542
+      Data4: -1240582153
+    Path: event:/Player/Combat/Dodge/DodgeSimple
   _rseOnPlayerMove: {fileID: 11400000, guid: 881d0608fef60064c9e33701b880054c, type: 2}
   _rseOnNewTargeting: {fileID: 11400000, guid: c5f673ce9067f6241b1df96e6d83520f, type: 2}
   _rseOnPlayerCancelTargeting: {fileID: 11400000, guid: d8d0a24f7352ea84ba1f5614f16bb752, type: 2}
@@ -3204,11 +3211,11 @@ MonoBehaviour:
     Path: event:/Player/Combat/Attack/ConvictionAccumulation
   _attackPerformedSound:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -283499349
+      Data2: 1096922731
+      Data3: 1682173861
+      Data4: 635480189
+    Path: event:/Player/Combat/Attack/AttackCast
   _weaponHand: {fileID: 546673962529436723}
   _weaponBack: {fileID: 5836320029152079228}
   rseOnPlayerAttack: {fileID: 11400000, guid: 87ff9d1d837c0324eb87e1b22c96bdf5, type: 2}

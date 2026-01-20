@@ -2,9 +2,9 @@
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
 
 public class S_Enemy : MonoBehaviour
 {
@@ -113,6 +113,13 @@ public class S_Enemy : MonoBehaviour
     [Title("Patrol Points Parent")]
     [SerializeField] private Transform patrolPoints;
 
+    [TabGroup("References")]
+    [Title("UI Damage")]
+    [SerializeField] private S_EnemyUIDamage enemyUIDamage;
+
+    [TabGroup("References")]
+    [SerializeField] private GameObject textParent;
+
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnEnemyTargetDied rseOnEnemyTargetDied;
 
@@ -130,6 +137,9 @@ public class S_Enemy : MonoBehaviour
 
     [TabGroup("Outputs")]
     [SerializeField] private RSO_DataSaved rsoDataSaved;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnCameraFOV rseOnCameraFOV;
 
     private float health = 0;
 
@@ -470,12 +480,20 @@ public class S_Enemy : MonoBehaviour
     {
         rseOnSendConsoleMessage.Call(gameObject.transform.parent.name + " Take " + damage + " Damage!");
 
+        TextDamageDisplay(damage);
+
         health = Mathf.Max(health - damage, 0);
 
         enemyUI.UpdateHealthBar(health);
 
         if (health <= 0) UpdateState(S_EnumEnemyState.Death);
         else if (damage >= (ssoEnemyData.Value.health / 2)) UpdateState(S_EnumEnemyState.HeavyHit);
+    }
+
+    private void TextDamageDisplay(float damage)
+    {
+        S_EnemyUIDamage textDamage = Instantiate(enemyUIDamage, textParent.transform.position, Quaternion.identity);
+        textDamage.Initialize(damage);
     }
     #endregion
 
@@ -755,6 +773,8 @@ public class S_Enemy : MonoBehaviour
         animator.SetBool(idleAttack, false);
         isAttacking = false;
 
+        rseOnCameraFOV.Call(50);
+
         for (int i = 0; i < combo.listAnimationsCombos.Count; i++)
         {
             isAttacking = true;
@@ -811,6 +831,8 @@ public class S_Enemy : MonoBehaviour
         isPerformingCombo = false;
         isAttacking = false;
         unlockRotate = false;
+
+        rseOnCameraFOV.Call(60);
 
         if (isPlayerDeath)
         {
@@ -877,6 +899,8 @@ public class S_Enemy : MonoBehaviour
 
         rootMotionModifier.Setup(1, 0);
 
+        rseOnCameraFOV.Call(60);
+
         rseOnSendConsoleMessage.Call(gameObject.transform.parent.name + " is Stun!");
 
         stunCoroutine = StartCoroutine(S_Utils.Delay(ssoEnemyData.Value.waitStun, () =>
@@ -937,6 +961,8 @@ public class S_Enemy : MonoBehaviour
         canAttack = false;
         target = null;
         targetInZone = null;
+
+        rseOnCameraFOV.Call(60);
 
         bodyCollider.enabled = false;
         detectionCollider.enabled = false;

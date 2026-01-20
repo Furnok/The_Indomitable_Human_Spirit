@@ -4,6 +4,7 @@ using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class S_TargetingManager : MonoBehaviour
 {
@@ -69,6 +70,9 @@ public class S_TargetingManager : MonoBehaviour
 
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnResetCam rseOnResetCam;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnCameraFOV rseOnCameraFOV;
 
     [TabGroup("Outputs")]
     [SerializeField] private RSO_PlayerIsTargeting rsoPlayerIsTargeting;
@@ -545,6 +549,8 @@ public class S_TargetingManager : MonoBehaviour
             rseOnPlayerCancelTargeting.Call(currentTarget);
             currentTarget = bestTarget;
             rseOnNewTargeting.Call(bestTarget);
+
+            rseOnCameraFOV.Call(60);
 
             RuntimeManager.PlayOneShot(_targetLockOnSound);
         }

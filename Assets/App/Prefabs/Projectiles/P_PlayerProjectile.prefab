@@ -4959,6 +4959,7 @@ MonoBehaviour:
   rseOnDespawnProjectile: {fileID: 11400000, guid: 0860b649b049fd047bee6936d640a06d, type: 2}
   _playerAttackSteps: {fileID: 11400000, guid: ffc4fd5ee4fc81442b745bb06394e7be, type: 2}
   _playerStats: {fileID: 11400000, guid: 672a77f2978d3824b90e0f910ab84268, type: 2}
+  _PlayerConvictionData: {fileID: 11400000, guid: 69f9f2a36a1381440a990e3461550cb3, type: 2}
 --- !u!1 &7077784668367723756
 GameObject:
   m_ObjectHideFlags: 0

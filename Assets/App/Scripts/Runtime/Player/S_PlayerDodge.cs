@@ -44,6 +44,9 @@ public class S_PlayerDodge : MonoBehaviour
     [Title("Audio")]
     [SerializeField] private EventReference _dodgeSound;
 
+    [TabGroup("References")]
+    [SerializeField] private EventReference _dodgeSimpleSound;
+
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnPlayerMove _rseOnPlayerMove;
 
@@ -188,6 +191,8 @@ public class S_PlayerDodge : MonoBehaviour
         {
             _dodgeUp = true;
         }));
+
+        RuntimeManager.PlayOneShot(_dodgeSimpleSound);
 
         // Test TriggerDodgePerfect
         var isDodgePrefect = _attackDataInDodgeableArea.Value.Count > 0;
