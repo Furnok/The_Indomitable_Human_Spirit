@@ -661,6 +661,7 @@ MonoBehaviour:
   _playerConvictionData: {fileID: 11400000, guid: 69f9f2a36a1381440a990e3461550cb3, type: 2}
   _playerStats: {fileID: 11400000, guid: 672a77f2978d3824b90e0f910ab84268, type: 2}
   _parryRumbleData: {fileID: 11400000, guid: 03a453e245ab334428bb18eeec6739bb, type: 2}
+  ssoCameraData: {fileID: 11400000, guid: 8a8b9ed3ac9bcab418920e1de02ba0e2, type: 2}
 --- !u!1 &3087244059546289160
 GameObject:
   m_ObjectHideFlags: 0
@@ -3191,6 +3192,7 @@ MonoBehaviour:
   _animationTransitionDelays: {fileID: 11400000, guid: f7ba83029ebbbef4385f8e29045a542a, type: 2}
   _ssoPlayerStateTransitions: {fileID: 11400000, guid: d6e9b95c877c8a84291c447bbbc229af, type: 2}
   _playerStats: {fileID: 11400000, guid: 672a77f2978d3824b90e0f910ab84268, type: 2}
+  ssoCameraData: {fileID: 11400000, guid: 8a8b9ed3ac9bcab418920e1de02ba0e2, type: 2}
 --- !u!114 &3585106378241585558
 MonoBehaviour:
   m_ObjectHideFlags: 0
