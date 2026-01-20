@@ -55,10 +55,13 @@ public class S_DodgeableAreaDetector : MonoBehaviour
 
             if ( attackData.attackType == S_EnumEnemyAttackType.Projectile && _hasParryedProjectile == false && _rsoSettingsSaved.Value.activateTuto == true)
             {
-                var tutoStep = _tutoStepsFinished.Value.Find(x => x.Step == S_EnumTutorialStep.ParryProjectile && x.IsFinished == false);
-                if (tutoStep != null)
+                if (_tutoStepsFinished.Value != null && _tutoStepsFinished.Value.Count > 0)
                 {
-                    _projectileGameObject = other.gameObject;
+                    var tutoStep = _tutoStepsFinished.Value.Find(x => x.Step == S_EnumTutorialStep.ParryProjectile && x.IsFinished == false);
+                    if (tutoStep != null)
+                    {
+                        _projectileGameObject = other.gameObject;
+                    }
                 }
             }
 
