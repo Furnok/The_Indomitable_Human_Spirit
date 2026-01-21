@@ -365,7 +365,6 @@ public class S_Boss : MonoBehaviour
                 }
             }
 
-            aimPoint = null;
             detectionCollider.enabled = false;
 
             UpdateState(S_EnumBossState.Idle);
@@ -534,6 +533,10 @@ public class S_Boss : MonoBehaviour
 
         aimPoint = null;
         detectionCollider.enabled = false;
+        listAttackOwnedPossibilities.Clear();
+        lastValueHealth = 101f;
+        ultimateAttack = null;
+        currentAttack = null;
         isPlayerDeath = true;
 
         if (isPerformingCombo) pendingState = S_EnumBossState.Idle;
@@ -550,6 +553,7 @@ public class S_Boss : MonoBehaviour
         if (isPlayerDeath)
         {
             isPlayerDeath = false;
+            detectionCollider.enabled = true;
 
             target = null;
 
@@ -560,6 +564,7 @@ public class S_Boss : MonoBehaviour
 
                 UpdateState(S_EnumBossState.Idle);
             }
+            UpdateLastHealthValue();
         }
     } 
     #endregion
@@ -670,7 +675,6 @@ public class S_Boss : MonoBehaviour
         isPerformingCombo = false;
         isAttacking = false;
         unlockRotate = false;
-
         ChooseAttack();
         if (resetAttack != null)
         {
@@ -687,8 +691,17 @@ public class S_Boss : MonoBehaviour
         {
             canAttack = false;
 
-            lastAttack = currentAttack;
-            currentAttack.frequency++;
+            if(currentAttack.bossAttack.attackName == "Gathering" || currentAttack.bossAttack.attackName == "Wings Of Hell")
+            {
+                listAttackOwnedPossibilities.RemoveAt(listAttackOwnedPossibilities.IndexOf(currentAttack));
+                Debug.Log(listAttackOwnedPossibilities.Count);
+            }
+            else
+            {
+                lastAttack = currentAttack;
+                currentAttack.frequency++;
+            }
+                
 
             if(currentAttack.bossAttack.isSpecialAttack)
             {

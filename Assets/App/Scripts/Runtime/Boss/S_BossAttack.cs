@@ -93,6 +93,9 @@ public class S_BossAttack : MonoBehaviour
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnBossDeath rseOnBossDeath;
 
+    [TabGroup("Inputs")]
+    [SerializeField] private RSE_OnPlayerDeath rseOnPlayerDeath;
+
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnPlayParticle rseOnPlayParticle;
 
@@ -130,6 +133,7 @@ public class S_BossAttack : MonoBehaviour
         onExecuteAttack.action += DoAttackChoose;
         onEndFly.action += PingPongDescend;
         rseOnBossDeath.action += StopAllAttack;
+        rseOnPlayerDeath.action += StopAllAttack;
     }
 
     private void OnDisable()
@@ -137,6 +141,7 @@ public class S_BossAttack : MonoBehaviour
         onExecuteAttack.action -= DoAttackChoose;
         onEndFly.action -= PingPongDescend;
         rseOnBossDeath.action -= StopAllAttack;
+        rseOnPlayerDeath.action -= StopAllAttack;
     }
 
     private void DoAttackChoose(S_ClassBossAttack attack)

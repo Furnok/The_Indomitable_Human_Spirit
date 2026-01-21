@@ -37,7 +37,6 @@ MonoBehaviour:
     listAttack:
     - attackName: Balls
       isSpecialAttack: 1
-      repeatableAttack: 1
       timeAfterAttack: 4
       isAttackDistance: 1
       pvBossUnlock: 100
@@ -160,7 +159,6 @@ MonoBehaviour:
           contactPoint: {x: 0, y: 0, z: 0}
     - attackName: Dualliste
       isSpecialAttack: 0
-      repeatableAttack: 1
       timeAfterAttack: 4
       isAttackDistance: 0
       pvBossUnlock: 75
@@ -490,9 +488,8 @@ MonoBehaviour:
           contactPoint: {x: 0, y: 0, z: 0}
     - attackName: Gathering
       isSpecialAttack: 1
-      repeatableAttack: 0
-      timeAfterAttack: 2
-      isAttackDistance: 0
+      timeAfterAttack: 3
+      isAttackDistance: 1
       pvBossUnlock: 50
       difficultyLevel: 8
       listComboData:

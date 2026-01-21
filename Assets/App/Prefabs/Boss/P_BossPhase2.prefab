@@ -139,6 +139,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 36ebc4169508682489e0a76e586210c0, type: 2}
     - target: {fileID: 6465511601208726001, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+      propertyPath: rseOnPlayerDeath
+      value: 
+      objectReference: {fileID: 11400000, guid: 05b30ffda8ad63c4d82da9ab419e36e1, type: 2}
+    - target: {fileID: 6465511601208726001, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
       propertyPath: durationGathering
       value: 1
       objectReference: {fileID: 0}
