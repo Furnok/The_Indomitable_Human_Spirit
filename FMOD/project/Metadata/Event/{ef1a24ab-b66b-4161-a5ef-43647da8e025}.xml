@@ -103,6 +103,12 @@
 		<property name="startOffset">
 			<value>21.5</value>
 		</property>
+		<property name="volume">
+			<value>-13</value>
+		</property>
+		<property name="pitch">
+			<value>10.5</value>
+		</property>
 		<relationship name="audioFile">
 			<destination>{a515d777-ed23-4fad-a506-16f44b74dd6a}</destination>
 		</relationship>

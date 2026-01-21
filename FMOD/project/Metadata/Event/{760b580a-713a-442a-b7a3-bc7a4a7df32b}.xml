@@ -63,6 +63,9 @@
 		<property name="dopplerEnabled">
 			<value>true</value>
 		</property>
+		<property name="maximumDistance">
+			<value>10</value>
+		</property>
 	</object>
 	<object class="MarkerTrack" id="{42d87346-616f-4751-8227-2509691a6dbd}" />
 	<object class="GroupTrack" id="{b05f19a4-f324-4e07-a75f-8d1c34280e39}">
@@ -135,9 +138,6 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{27739de0-4391-417b-9ac7-33f25b71dc7b}">
-		<property name="volume">
-			<value>2.5</value>
-		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
