@@ -5990,13 +5990,13 @@ MonoBehaviour:
           value: '<style="TitleTuto">SWAP TARGET</style>
 
 
-            To swap target
-            beetwen enemies in range use the {SWAP_TARGET} in the direction left
-            and right of the current target you want to swap with'
+            To <style="W1">swap
+            target </style>beetwen enemies in range use the {SWAP_TARGET} in the
+            direction left and right of the current target you want to swap with'
         - localeIdentifier:
             m_Code: fr
-          value: "<style=\"TitleTuto\">ECHANGER DE CIBLE</style>\n\nPour changer
-            de cible entre les ennemis \xE0 port\xE9e, utilisez le {SWAP_TARGET}
+          value: "<style=\"TitleTuto\">ECHANGER DE CIBLE</style>\n\nPour <style=\"W1\">changer
+            de cible </style>entre les ennemis \xE0 port\xE9e, utilisez le {SWAP_TARGET}
             dans la direction gauche ou droite de la cible actuelle avec laquelle
             vous souhaitez \xE9changer."
 --- !u!114 &209819922
@@ -7557,6 +7557,7 @@ MonoBehaviour:
   _onChangeActiveStatePanelsFilters: {fileID: 11400000, guid: c2bf9a0cf32e2b140bfaf00bf3c6f8cf, type: 2}
   _onPlayerHealthReduced: {fileID: 11400000, guid: d9db70b8d640c8d47b38c443abcec2ff, type: 2}
   _onPlayerGainConviction: {fileID: 11400000, guid: c3ba1e97cce4a3d4e929f7197f47a3c1, type: 2}
+  rseOnGameActionInputEnabled: {fileID: 11400000, guid: 0526673c0b0752b418ffdef1cdaaf184, type: 2}
 --- !u!114 &366825698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14011,7 +14012,7 @@ MonoBehaviour:
 
 
             Press the {HEAL}
-            button to heal yourself if you have enough conviction.'
+            button to <style="W1">heal</style> yourself if you have enough conviction.'
         - localeIdentifier:
             m_Code: fr
           value: '<style="TitleTuto">GUERIR</style>
@@ -14019,7 +14020,8 @@ MonoBehaviour:
 
 
             Appuyez sur le
-            bouton {HEAL} pour vous soigner si vous avez assez de la conviction.'
+            bouton {HEAL} pour vous <style="W1">soigner</style> si vous avez assez
+            de conviction.'
 --- !u!114 &706941121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15267,13 +15269,15 @@ MonoBehaviour:
 
 
             You can
-            also parry projectile using {PARRY} at the right timing and that''s will
-            <color="Yellow">reflect</color> the projectile to the enemy.'
+            also <color="Yellow">parry projectile</color> using {PARRY} at the right
+            timing and that''s will <color="Yellow">reflect</color> the projectile
+            to the enemy.'
         - localeIdentifier:
             m_Code: fr
           value: "<style=\"TitleTuto\">PARER UN PROJECTILE</style>\r\n\r\nVous pouvez
-            \xE9galement parer un projectile en utilisant {PARRY} au bon moment,
-            ce qui <color=\"Yellow\">renvoiera</color> le projectile vers l'ennemi."
+            \xE9galement <color=\"Yellow\">parer un projectile</color> en utilisant
+            {PARRY} au bon moment, ce qui <color=\"Yellow\">renvoiera</color> le
+            projectile vers l'ennemi."
 --- !u!114 &1020952046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15755,17 +15759,19 @@ MonoBehaviour:
 
 
             To attack you need
-            to hold the {ATTACK} button that''s consume progressively your <color="Yellow">conviction
-            bar </color>on the bottom of the screen, each step are marked by a black
-            bar that''s make you <color="Red">multiply your damage </color>of the
-            attack.'
+            to <style="W1">hold</style> the {ATTACK} button that''s consume progressively
+            your <style="Conviction">conviction bar </style>on the bottom of the
+            screen, each step are <style="W1">marked </style>by a <style="W1">black
+            bar</style> that''s make you <style="W1">multiply your damage </style>of
+            the attack.'
         - localeIdentifier:
             m_Code: fr
           value: "<style=\"TitleTuto\">ATTAQUE</style>\n\nPour attaquer, vous devez
-            tenir le {ATTACK} bouton qui consomme progressivement votre <color=\"Yellow\">barre
-            de conviction </color>en bas de l'\xE9cran, chaque \xE9tape est marqu\xE9e
-            par une barre noire qui vous permet de  <color=\"Red\">multiplier les
-            d\xE9g\xE2ts de l'attaque</color> de l'attaque."
+            <style=\"W1\">maintenir</style> le {ATTACK} bouton qui consomme progressivement
+            votre <style=\"Conviction\">barre de conviction </style>en bas de l'\xE9cran,
+            chaque \xE9tape est marqu\xE9e par une <style=\"W1\">barre noire</style>
+            qui vous permet de  <style=\"W1\">multiplier les d\xE9g\xE2ts de l'attaque</style>
+            de l'attaque."
 --- !u!114 &1164426524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16537,14 +16543,14 @@ MonoBehaviour:
           value: '<style="TitleTuto">DODGE</style>
 
 
-            You can dodge attack
-            with the <color="Red">red indicator </color>using {DODGE} at the right
-            timing which will give you <color="Yellow">conviction</color>.'
+            You can <color="Red">dodge</color>
+            attack with the <color="Red">red indicator </color>using {DODGE} at the
+            right timing which will give you <style="Conviction">conviction</style>.'
         - localeIdentifier:
             m_Code: fr
-          value: "<style=\"TitleTuto\">Esquiver</style>\r\n\r\nVous pouvez esquiver
-            une attaque qui \xE0 <color=\"Red\">l'indicateur rouge</color> en utilisant
-            {DODGE} au bon moment, ce qui vous donnera de la <color=\"Yellow\">conviction</color>."
+          value: "<style=\"TitleTuto\">Esquiver</style>\r\n\r\nVous pouvez <color=\"Red\">esquiver
+            </color>une attaque qui \xE0 <color=\"Red\">l'indicateur rouge</color>
+            en utilisant {DODGE} au bon moment, ce qui vous donnera de la <style=\"Conviction\">conviction</style>."
 --- !u!114 &1441276266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18193,14 +18199,14 @@ MonoBehaviour:
           value: '<style="TitleTuto">PARRY</style>
 
 
-            You can parry attack
-            with the <color="Yellow">yellow indicator </color>using {PARRY} at the
-            right timing which will give you <color="Yellow">conviction</color>.'
+            You can <color="Yellow">parry</color>
+            attack with the <color="Yellow">yellow indicator </color>using {PARRY}
+            at the right timing which will give you <style="Conviction">conviction</style>.'
         - localeIdentifier:
             m_Code: fr
-          value: "<style=\"TitleTuto\">PARADE</style>\r\n\r\nVous pouvez parer une
-            attaque qui \xE0 <color=\"Yellow\">l'indicateur yellow</color> en utilisant
-            {PARRY} au bon moment, ce qui vous donnera de la <color=\"Yellow\">conviction</color>."
+          value: "<style=\"TitleTuto\">PARADE</style>\r\n\r\nVous pouvez <color=\"Yellow\">parer</color>
+            une attaque qui \xE0 <color=\"Yellow\">l'indicateur yellow</color> en
+            utilisant {PARRY} au bon moment, ce qui vous donnera de la <style=\"Conviction\">conviction</style>."
 --- !u!114 &1697531793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18852,20 +18858,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_CanvasGame
       objectReference: {fileID: 0}
-    - target: {fileID: 8056213273916310995, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
-      propertyPath: defaultWindow
-      value: 
-      objectReference: {fileID: 1844114351}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
---- !u!1 &1844114351 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6324976944753795977, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
-  m_PrefabInstance: {fileID: 1844114350}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1844373242
 GameObject:
   m_ObjectHideFlags: 0
@@ -19686,11 +19683,11 @@ MonoBehaviour:
 
 
             You have a
-            resource bar on the bottom of your screen who is your <color="Yellow">conviction</color>
-            that''s can be <color="Yellow">gain</color> with <color="Yellow">parry
-            </color>and <color="Red">dodge</color> perfectly attacks, and you will
-            use it to perform <color="Red">charging attack</color> and to <color="Green">heal
-            </color>yourself if you have enough <color="Yellow">conviction</color>.
+            resource bar on the bottom of your screen who is your <style="Conviction">conviction</style>
+            that''s can be <style="W1">gain</style> with <color="Yellow">parry </color>and
+            <style="W1">dodge</style> perfectly attacks, and you will use it to perform
+            <style="W1">charging attack</style> and to <color="Green">heal </color>yourself
+            if you have enough <style="Conviction">conviction</style>.
 
 
             Press
@@ -19698,10 +19695,10 @@ MonoBehaviour:
         - localeIdentifier:
             m_Code: fr
           value: "<style=\"TitleTuto\">CONVICTION</style>\n\nVous disposez d'une
-            barre de ressources en bas de votre \xE9cran, repr\xE9sentant votre <color=\"Yellow\">conviction</color>.
+            barre de ressources en bas de votre \xE9cran, repr\xE9sentant votre <style=\"Conviction\">conviction</style>.
             Celle-ci se gagne en <color=\"Yellow\">parant</color> et en <color=\"Red\">esquivant</color>
-            parfaitement les attaques. Vous l'utiliserez pour effectuer une <color=\"Red\">attaque
-            charg\xE9e</color> et pour vous <color=\"Green\">soigner</color> si vous
+            parfaitement les attaques. Vous l'utiliserez pour effectuer une <style=\"W1\">attaque
+            charg\xE9e</style> et pour vous <color=\"Green\">soigner</color> si vous
             en avez suffisamment.\n\nAppuies sur {NEXT} pour continuer"
 --- !u!114 &2010211754
 MonoBehaviour:
@@ -20600,6 +20597,18 @@ PrefabInstance:
     - target: {fileID: 3049515181843178969, guid: 82f3fb39438fe544388f4b8083dcfd72, type: 3}
       propertyPath: m_LocalPosition.y
       value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3483536036724617684, guid: 82f3fb39438fe544388f4b8083dcfd72, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3483536036724617684, guid: 82f3fb39438fe544388f4b8083dcfd72, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3483536036724617684, guid: 82f3fb39438fe544388f4b8083dcfd72, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3504549537015305885, guid: 82f3fb39438fe544388f4b8083dcfd72, type: 3}
       propertyPath: m_LocalPosition.x
