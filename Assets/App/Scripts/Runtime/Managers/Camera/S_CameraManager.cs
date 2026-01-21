@@ -381,13 +381,22 @@ public class S_CameraManager : MonoBehaviour
         {
             Vector3 dir = currentTarget.GetComponent<S_AimPointProvider>().GetAimPoint().position - playerPos.position;
 
-            if (dir.sqrMagnitude < 0.001f) return;
+            float sqrDist = dir.sqrMagnitude;
+            if (sqrDist < 0.001f) return;
 
             float targetYaw = Quaternion.LookRotation(dir).eulerAngles.y;
 
             cinemachineCameraOrbitalFollow.HorizontalAxis.Value = Mathf.LerpAngle(cinemachineCameraOrbitalFollow.HorizontalAxis.Value, targetYaw, Time.deltaTime * 5f);
 
-            float targetPitch = Quaternion.LookRotation(dir).eulerAngles.x;
+            Vector3 dirNormalized = dir.normalized;
+            float lookAtPitch = Mathf.Asin(dirNormalized.y) * Mathf.Rad2Deg;
+
+            float distance = dir.magnitude;
+            float distanceT = 1f - Mathf.Exp(-distance * 0.08f);
+            float distanceUpBias = distanceT * 15f;
+
+            float targetPitch = -lookAtPitch + distanceUpBias;
+
             targetPitch = Mathf.Clamp(targetPitch, ssoCameraData.Value.minVerticalCameraPlayer, ssoCameraData.Value.maxVerticalCameraPlayer);
 
             cinemachineCameraOrbitalFollow.VerticalAxis.Value = Mathf.LerpAngle(cinemachineCameraOrbitalFollow.VerticalAxis.Value, targetPitch, Time.deltaTime * 5f);
@@ -426,11 +435,11 @@ public class S_CameraManager : MonoBehaviour
         {
             if (move.x > 0.25f && lastDirection <= 0)
             {
-                lastDirection = move.x;
+                //lastDirection = move.x;
             }
             else if (move.x < -0.25f && lastDirection >= 0)
             {
-                lastDirection = move.x;
+                //lastDirection = move.x;
             }
         }
     }

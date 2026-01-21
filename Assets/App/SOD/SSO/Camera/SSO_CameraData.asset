@@ -18,9 +18,9 @@ MonoBehaviour:
     shoulderOffsetAmountNegative: -3
     shoulderOffsetDistanceMulti: 1
     minVerticalCameraPlayer: -10
-    maxVerticalCameraPlayer: 10
+    maxVerticalCameraPlayer: 15
     offsetTransitionUpdateTime: 0.4
-    offsetTransitionTime: 5
+    offsetTransitionTime: 0.4
     fovDodge: 10
     fovDodgeSwitchTime: 0.2
     fovParry: 3
