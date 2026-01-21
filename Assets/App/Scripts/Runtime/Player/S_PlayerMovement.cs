@@ -199,7 +199,7 @@ public class S_PlayerMovement : MonoBehaviour
         //return;
         UpdateGround();
 
-        if (_playerStateTransitions.Value.CanTransition(_playerCurrentState.Value, S_EnumPlayerState.Moving) == false)
+        if (_playerStateTransitions.Value.CanTransition(_playerCurrentState.Value, S_EnumPlayerState.Moving) == false || rsoCurrentInputActionMap.Value != S_EnumPlayerInputActionMap.Game)
         {
             rseOnAnimationFloatValueChange.Call(speedParam, 0);
             rseOnAnimationFloatValueChange.Call(_strafXParam, 0f);
