@@ -7570,7 +7570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spritesByDevice:
-    keys: 0200000003000000040000000600000007000000090000000a0000000b00000001000000
+    keys: 0200000003000000040000000600000007000000090000000a0000000b000000010000000500000008000000
     values:
     - keys: 0200000003000000
       values:
@@ -7606,6 +7606,14 @@ MonoBehaviour:
       - {fileID: 21300000, guid: 47342a0c5ac0b7843b146ea94377f3e2, type: 3}
     - keys: 
       values: []
+    - keys: 0200000003000000
+      values:
+      - {fileID: 21300000, guid: 5be9112b673455548ba57ad413cff80c, type: 3}
+      - {fileID: 21300000, guid: dd351d34d062d0245931455186b26bc6, type: 3}
+    - keys: 0200000003000000
+      values:
+      - {fileID: 21300000, guid: 5be9112b673455548ba57ad413cff80c, type: 3}
+      - {fileID: 21300000, guid: dd351d34d062d0245931455186b26bc6, type: 3}
   _tutorialsTextObjects:
   - {fileID: 41326164}
   - {fileID: 888421639}
@@ -7627,6 +7635,8 @@ MonoBehaviour:
   _textTutoSwapTarget: {fileID: 209819922}
   _textTutoParryProjectile: {fileID: 1020952046}
   _textTutoInteract: {fileID: 1765871032}
+  _textTutoConviction: {fileID: 2010211754}
+  _textTutoAttackSignaling: {fileID: 970081409}
   _rsoDevice: {fileID: 11400000, guid: 2d03f278b7224484daa610d79749492f, type: 2}
 --- !u!1 &371220208
 GameObject:
@@ -15038,13 +15048,18 @@ MonoBehaviour:
             What
             action you need to make to prevent to be hit is reported by an attack
             indicator, the <color="yellow">yellow one indicated that you must parry
-            the attack</color>, and the <color="red">red need to be dodged</color>.'
+            the attack</color>, and the <color="red">red need to be dodged</color>.
+
+
+            Press
+            {NEXT} to continue'
         - localeIdentifier:
             m_Code: fr
           value: "<style=\"TitleTuto\">SIGNALISATION D'ATTAQUE</style>\n\nL'action
             \xE0 entreprendre pour \xE9viter d'\xEAtre touch\xE9 est indiqu\xE9e
             par un indicateur d'attaque : le <color=\"yellow\">jaune indique qu'il
-            faut parer l'attaque</color>, et le <color=\"red\">rouge qu'il faut l'esquiver</color>."
+            faut parer l'attaque</color>, et le <color=\"red\">rouge qu'il faut l'esquiver</color>.\n\nAppuies
+            sur {NEXT} pour continuer"
     - rid: 1159296937788964948
       type: {class: TrackedRectTransform, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
       data:
@@ -19675,7 +19690,11 @@ MonoBehaviour:
             that''s can be <color="Yellow">gain</color> with <color="Yellow">parry
             </color>and <color="Red">dodge</color> perfectly attacks, and you will
             use it to perform <color="Red">charging attack</color> and to <color="Green">heal
-            </color>yourself if you have enough <color="Yellow">conviction</color>.'
+            </color>yourself if you have enough <color="Yellow">conviction</color>.
+
+
+            Press
+            {NEXT} to continue'
         - localeIdentifier:
             m_Code: fr
           value: "<style=\"TitleTuto\">CONVICTION</style>\n\nVous disposez d'une
@@ -19683,7 +19702,7 @@ MonoBehaviour:
             Celle-ci se gagne en <color=\"Yellow\">parant</color> et en <color=\"Red\">esquivant</color>
             parfaitement les attaques. Vous l'utiliserez pour effectuer une <color=\"Red\">attaque
             charg\xE9e</color> et pour vous <color=\"Green\">soigner</color> si vous
-            en avez suffisamment."
+            en avez suffisamment.\n\nAppuies sur {NEXT} pour continuer"
 --- !u!114 &2010211754
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -24,6 +24,9 @@ public class S_TextTutos : MonoBehaviour
     [SerializeField] TextMeshProUGUI _textTutoParryProjectile;
     [SerializeField] TextMeshProUGUI _textTutoInteract;
 
+    [SerializeField] TextMeshProUGUI _textTutoConviction;
+    [SerializeField] TextMeshProUGUI _textTutoAttackSignaling;
+
     [Header("Inputs")]
     [SerializeField] RSO_Device _rsoDevice;
 
@@ -38,6 +41,9 @@ public class S_TextTutos : MonoBehaviour
     private string _tplAttack;
     private string _tplMovement;
     private string _tplSwapTarget;
+
+    private string _tplConviction;
+    private string _tplAttackSignaling;
 
     private Coroutine _refreshRoutine = null;
 
@@ -133,6 +139,8 @@ public class S_TextTutos : MonoBehaviour
         _tplMovement = _textTutoMovement.text;
         _tplSwapTarget = _textTutoSwapTarget.text;
 
+        _tplConviction = _textTutoConviction.text;
+        _tplAttackSignaling = _textTutoAttackSignaling.text;
     }
 
     private Sprite GetSpriteOrNull(S_EnumTutorialStep step, S_EnumDevice device)
@@ -182,6 +190,14 @@ public class S_TextTutos : MonoBehaviour
         sprite = GetSpriteOrNull(S_EnumTutorialStep.Heal, device);
         if (sprite != null)
             _textTutoHeal.text = _tplHeal.Replace("{HEAL}", $"<sprite name=\"{sprite.name}\">");
+
+        sprite = GetSpriteOrNull(S_EnumTutorialStep.Conviction, device);
+        if (sprite != null)
+            _textTutoConviction.text = _tplConviction.Replace("{NEXT}", $"<sprite name=\"{sprite.name}\">");
+
+        sprite = GetSpriteOrNull(S_EnumTutorialStep.AttackSignaling, device);
+        if (sprite != null)
+            _textTutoAttackSignaling.text = _tplAttackSignaling.Replace("{NEXT}", $"<sprite name=\"{sprite.name}\">");
     }
 
 
