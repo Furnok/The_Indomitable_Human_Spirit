@@ -5,6 +5,8 @@ public class S_TutoArea : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] float _ennemyFinalPosY = 0f;
+    [SerializeField] float _looseHealthStartTuto = 30f;
+
 
     [Header("References")]
     [SerializeField] S_Enemy _enemyTuto;
@@ -21,6 +23,7 @@ public class S_TutoArea : MonoBehaviour
     [Header("Outputs")]
     [SerializeField] RSE_OnRequestStartTutorialStep _onRequestStartTutorialStep;
     [SerializeField] RSE_OnTutorialStepCompleted _onTutorialStepCompleted;
+    [SerializeField] RSE_OnPlayerHealthReduced _onPlayerHealthReduced;
 
 
     bool _hasTriggered = false;
@@ -33,6 +36,11 @@ public class S_TutoArea : MonoBehaviour
             this._other = other;
             _hasTriggered = true;
             _enemyTuto.gameObject.SetActive(true);
+
+            if (_rsoSettingsSaved.Value.activateTuto == true)
+            {
+                _onPlayerHealthReduced.Call(_looseHealthStartTuto);
+            }
 
             _onRequestStartTutorialStep.Call(S_EnumTutorialStep.None);
 

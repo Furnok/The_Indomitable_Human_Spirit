@@ -32,8 +32,77 @@ Transform:
   - {fileID: 2083444363902777294}
   - {fileID: 8305889900110104034}
   - {fileID: 8283429134556215056}
+  - {fileID: 1608381728998646239}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5422082701086405057
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1608381728998646239}
+  - component: {fileID: 2880522886694909002}
+  - component: {fileID: 2761648101624681476}
+  m_Layer: 0
+  m_Name: Lose_ConvictionWall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1608381728998646239
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5422082701086405057}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 7.09}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 843112423176979930}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2880522886694909002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5422082701086405057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf20481b23616d49b7a0033a93b0172, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rsoSettingsSaved: {fileID: 11400000, guid: 782057adb6fb88f4db3ac2e35a786bc0, type: 2}
+  _onPlayerLooseConviction: {fileID: 11400000, guid: e9858ad128a751142a2e9d692e86e57f, type: 2}
+--- !u!65 &2761648101624681476
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5422082701086405057}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 25, y: 10, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6952108580513900397
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ennemyFinalPosY: 0
+  _looseHealthStartTuto: 30
   _enemyTuto: {fileID: 2002544376248727942}
   _enemyDemonTuto: {fileID: 1908017379486174068}
   _enemyVisuals: {fileID: 1496023323847881989}
@@ -110,6 +180,7 @@ MonoBehaviour:
   _rsoSettingsSaved: {fileID: 11400000, guid: 782057adb6fb88f4db3ac2e35a786bc0, type: 2}
   _onRequestStartTutorialStep: {fileID: 11400000, guid: c7e748c38ce2f3242ad3ce2dedebbbaf, type: 2}
   _onTutorialStepCompleted: {fileID: 11400000, guid: 5fb3f5b36d183ea4ea68362155d328a6, type: 2}
+  _onPlayerHealthReduced: {fileID: 11400000, guid: d9db70b8d640c8d47b38c443abcec2ff, type: 2}
 --- !u!1001 &4780025463694598541
 PrefabInstance:
   m_ObjectHideFlags: 0

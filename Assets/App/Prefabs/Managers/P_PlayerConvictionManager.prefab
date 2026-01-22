@@ -60,6 +60,7 @@ MonoBehaviour:
   _onAttackStartPerformed: {fileID: 11400000, guid: 995ec1e0339518542872ee761d2b0eb8, type: 2}
   _rseOnPlayerHit: {fileID: 11400000, guid: 577377e3b86e97b4eb3c9400800347ce, type: 2}
   _rseOnDisplayUIGame: {fileID: 11400000, guid: 0bf0c368d4c90d841af1c0dbb89f0901, type: 2}
+  _rseOnPlayerLooseConviction: {fileID: 11400000, guid: e9858ad128a751142a2e9d692e86e57f, type: 2}
   rseOnPlayerConvictionUpdate: {fileID: 11400000, guid: 0e8aa31157b1a9041a3864e8c4d5c728, type: 2}
   _playerAttackSteps: {fileID: 11400000, guid: ffc4fd5ee4fc81442b745bb06394e7be, type: 2}
   _playerConvictionData: {fileID: 11400000, guid: 69f9f2a36a1381440a990e3461550cb3, type: 2}

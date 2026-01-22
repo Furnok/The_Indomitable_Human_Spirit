@@ -36,6 +36,9 @@ public class S_PlayerConvictionManager : MonoBehaviour
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnDisplayUIGame _rseOnDisplayUIGame;
 
+    [TabGroup("Inputs")]
+    [SerializeField] RSE_OnPlayerLooseConviction _rseOnPlayerLooseConviction;
+
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnPlayerConvictionUpdate rseOnPlayerConvictionUpdate;
 
@@ -80,6 +83,8 @@ public class S_PlayerConvictionManager : MonoBehaviour
         rseOnDataLoad.action += SetValueFromData;
 
         _rseOnPlayerHit.action += ReductionConviction;
+
+        _rseOnPlayerLooseConviction.action += ReductionConviction;
     }
 
     private void OnDisable()
@@ -94,6 +99,8 @@ public class S_PlayerConvictionManager : MonoBehaviour
         rseOnDataLoad.action -= SetValueFromData;
 
         _rseOnPlayerHit.action -= ReductionConviction;
+
+        _rseOnPlayerLooseConviction.action -= ReductionConviction;
     }
 
     private void Start()

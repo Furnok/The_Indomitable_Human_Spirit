@@ -65,10 +65,10 @@ public class S_TutoManager : MonoBehaviour
 
     private void Start()
     {
-        if (_rsoSettingsSaved.Value.activateTuto == true)
-        {
-            _onPlayerHealthReduced.Call(_looseHealthStartTuto);
-        }
+        //if (_rsoSettingsSaved.Value.activateTuto == true)
+        //{
+        //    _onPlayerHealthReduced.Call(_looseHealthStartTuto);
+        //}
     }
 
     void StartTutorialStep(S_EnumTutorialStep tutoStep)
@@ -202,10 +202,11 @@ public class S_TutoManager : MonoBehaviour
 
         if (tuto != null && tutoStep == S_EnumTutorialStep.Attack)
         {
-            _onPlayerGainConviction.Call(40f);
 
             StartCoroutine(S_Utils.Delay(1.0f, () =>
             {
+                _onPlayerGainConviction.Call(40f);
+
                 _onRequestStartTutorialStep.Call(S_EnumTutorialStep.Heal);
             }));
         }
