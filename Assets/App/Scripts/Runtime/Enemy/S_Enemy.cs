@@ -398,6 +398,8 @@ public class S_Enemy : MonoBehaviour
             newTarget.TryGetComponent<I_AimPointProvider>(out I_AimPointProvider aimPointProvider);
             aimPoint = aimPointProvider != null ? aimPointProvider.GetAimPoint() : newTarget.transform;
 
+            if (posBeforeChase == Vector3.zero) posBeforeChase = transform.position;
+
             UpdateState(S_EnumEnemyState.Chasing);
         }
         else
@@ -606,8 +608,6 @@ public class S_Enemy : MonoBehaviour
     private void Chasing()
     {
         isChasing = true;
-
-        if (posBeforeChase == Vector3.zero) posBeforeChase = transform.position;
 
         SetCombo();
 

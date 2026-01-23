@@ -4,8 +4,8 @@ using UnityEngine.Video;
 
 public class S_TutoManager : MonoBehaviour
 {
-    [Header("Settings")]
-    [SerializeField] float _looseHealthStartTuto = 30f;
+    //[Header("Settings")]
+    //[SerializeField] float _looseHealthStartTuto = 30f;
 
     [Header("References")]
     [SerializeField] S_SerializableDictionary<S_EnumTutorialStep, GameObject> _tutoPrefabToEnumDictionary;
