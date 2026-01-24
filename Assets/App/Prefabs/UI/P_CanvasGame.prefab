@@ -18286,6 +18286,7 @@ MonoBehaviour:
   rseOnGameInputEnabled: {fileID: 11400000, guid: 0526673c0b0752b418ffdef1cdaaf184, type: 2}
   rseOnResetFocus: {fileID: 11400000, guid: 49e933a059aabdf4ab8547deb65c6764, type: 2}
   rseOnPlayerRespawn: {fileID: 11400000, guid: 3b09f2a06394f4642a88a2d57f0cec43, type: 2}
+  rseOnTPCam: {fileID: 11400000, guid: e9ff4dc3fe9055d43a1068c65738e620, type: 2}
   rsoNavigation: {fileID: 11400000, guid: 4bb6c77cda6f76648a50b1b9c79d421b, type: 2}
   ssoFadeTime: {fileID: 11400000, guid: 611e366585d4976458e7989ec5477367, type: 2}
 --- !u!1 &3895815418710322960
@@ -29585,6 +29586,7 @@ MonoBehaviour:
   rseOnLoadData: {fileID: 11400000, guid: ac17d71addb17344ebe2b57c468f33a5, type: 2}
   rseOnLoadScene: {fileID: 11400000, guid: 3e9462016f0203448bead1ff197b69f0, type: 2}
   rseOnSkipIntro: {fileID: 11400000, guid: 4556bd85d01d6c945b521ee4cb86752e, type: 2}
+  rseOnTPCam: {fileID: 11400000, guid: e9ff4dc3fe9055d43a1068c65738e620, type: 2}
   rsoNavigation: {fileID: 11400000, guid: 4bb6c77cda6f76648a50b1b9c79d421b, type: 2}
   rsoInGame: {fileID: 11400000, guid: 943dbfd29f5e329458fb1745ff11f0ba, type: 2}
   rsoDataTempSaved: {fileID: 11400000, guid: c86295f8a712dd04cabb231d43590851, type: 2}

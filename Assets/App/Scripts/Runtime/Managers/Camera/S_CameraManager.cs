@@ -75,6 +75,9 @@ public class S_CameraManager : MonoBehaviour
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnLookActivated rseOnLookActivated;
 
+    [TabGroup("Inputs")]
+    [SerializeField] private RSE_OnTPCam rseOnTPCam;
+
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnCinematicInputEnabled rseOnCinematicInputEnabled;
 
@@ -149,6 +152,7 @@ public class S_CameraManager : MonoBehaviour
         rseOnPlayerMove.action += InputsMove;
         rseOnCameraFOV.action += HandleFOV;
         rseOnLookActivated.action += LookActivated;
+        rseOnTPCam.action += CamTP;
     }
 
     private void OnDisable()
@@ -167,6 +171,7 @@ public class S_CameraManager : MonoBehaviour
         rseOnPlayerMove.action -= InputsMove;
         rseOnCameraFOV.action -= HandleFOV;
         rseOnLookActivated.action -= LookActivated;
+        rseOnTPCam.action -= CamTP;
     }
 
     private void Update()
@@ -237,6 +242,26 @@ public class S_CameraManager : MonoBehaviour
 
         resetHorizontalTween = DOVirtual.Float(cinemachineCameraOrbitalFollow.HorizontalAxis.Value, yaw, 0.5f, value => cinemachineCameraOrbitalFollow.HorizontalAxis.Value = value).SetTarget(cinemachineCameraOrbitalFollow).SetEase(Ease.Linear);
         resetVerticalTween = DOVirtual.Float(cinemachineCameraOrbitalFollow.VerticalAxis.Value, cinemachineCameraOrbitalFollow.VerticalAxis.Center, 0.5f, value => cinemachineCameraOrbitalFollow.VerticalAxis.Value = value).SetTarget(cinemachineCameraOrbitalFollow).SetEase(Ease.Linear); ;
+    }
+
+    private void CamTP()
+    {
+        StartCoroutine(Tp());
+
+        float yaw = playerPos.eulerAngles.y;
+        yaw = (yaw > 180f) ? yaw - 360f : yaw;
+
+        cinemachineCameraOrbitalFollow.HorizontalAxis.Value = yaw;
+        cinemachineCameraOrbitalFollow.VerticalAxis.Value = cinemachineCameraOrbitalFollow.VerticalAxis.Center;
+    }
+
+    private IEnumerator Tp()
+    {
+        cinemachineCameraOrbitalFollow.TrackerSettings.PositionDamping = Vector3.zero;
+
+        yield return null;
+
+        cinemachineCameraOrbitalFollow.TrackerSettings.PositionDamping = new Vector3(0.5f, 0.5f, 0.5f);
     }
     #endregion
 
@@ -537,7 +562,7 @@ public class S_CameraManager : MonoBehaviour
     {
         var brain = cameraMain.GetComponent<CinemachineBrain>();
 
-        if (brain == null) yield break;
+        if (!brain) yield break;
 
         brain.enabled = false;
 
