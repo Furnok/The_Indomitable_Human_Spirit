@@ -576,6 +576,10 @@ PrefabInstance:
       propertyPath: bossPhase1UI
       value: 
       objectReference: {fileID: 163667893386684716}
+    - target: {fileID: 6465511601208726001, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+      propertyPath: rseOnPlayerDeath
+      value: 
+      objectReference: {fileID: 11400000, guid: 05b30ffda8ad63c4d82da9ab419e36e1, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

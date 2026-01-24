@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SSO_EnemyData_Skeleton_Tutorial
   m_EditorClassIdentifier: 
   _value:
-    health: 100
+    health: 5
     speedPatrol: 2.5
     speedChase: 10
     speedStrafe: 1.5
@@ -36,7 +36,7 @@ MonoBehaviour:
     controllerOverride: {fileID: 22100000, guid: cae966d33f19b4242ab9041cca2e1f84, type: 2}
     listCombos:
     - listAnimationsCombos:
-      - animation: {fileID: 7400000, guid: d9d2521efd2346d4c84d8e38bf765865, type: 2}
+      - animation: {fileID: 7400000, guid: 2a903ffc4251afe42aaf1d96cd875b99, type: 2}
         rootMotionMultiplier: 1
         showVFXAttackType: 1
         attackData:
@@ -50,16 +50,16 @@ MonoBehaviour:
           knockbackHitDuration: 0.1
           knockbackHitDistance: 2
           knockbackOnParryDuration: 0.2
-          knockbackOnParrryDistance: 1
+          knockbackOnParrryDistance: 0
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
           convictionReduction: 1
-          convictionParryGain: 5
+          convictionParryGain: 50
           lastAttack: 1
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
-      - animation: {fileID: 7400000, guid: ebe3ceceda982024d9acaa3062a07c5d, type: 2}
+      - animation: {fileID: 7400000, guid: 8c811ac0a70379a44a5bf45a39cddc73, type: 2}
         rootMotionMultiplier: 1
         showVFXAttackType: 1
         attackData:
@@ -69,29 +69,6 @@ MonoBehaviour:
           timeCast: 0
           timeInterval: 0
           numberOfProjectiles: 0
-          damage: 5
-          knockbackHitDuration: 0.1
-          knockbackHitDistance: 2
-          knockbackOnParryDuration: 0.2
-          knockbackOnParrryDistance: 1
-          parryToleranceBeforeHit: 0.05
-          parryToleranceAfterHit: 0.1
-          invicibilityDuration: 0.7
-          convictionReduction: 1
-          convictionParryGain: 5
-          lastAttack: 1
-          attackDirection: {x: 0, y: 0, z: 0}
-          contactPoint: {x: 0, y: 0, z: 0}
-      - animation: {fileID: 7400000, guid: 348c9aeec081fb74f86aba7e2f2e2409, type: 2}
-        rootMotionMultiplier: 1
-        showVFXAttackType: 1
-        attackData:
-          attackId: 0
-          goSourceId: 0
-          attackType: 3
-          timeCast: 0.5
-          timeInterval: 1
-          numberOfProjectiles: 1
           damage: 5
           knockbackHitDuration: 0.1
           knockbackHitDistance: 2

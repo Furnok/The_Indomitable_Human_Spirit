@@ -1308,7 +1308,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 1}
+        key0: {r: 1, g: 0.68882424, b: 0, a: 1}
         key1: {r: 1, g: 1, b: 1, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -4941,10 +4941,25 @@ MonoBehaviour:
   _meshRendererProjectile: {fileID: 7941410518295011975}
   _trailParticle: {fileID: 3991253332724076579}
   tagHurt: Hurtbox
+  _projectileTravelSound:
+    Guid:
+      Data1: 1980454922
+      Data2: 1143632186
+      Data3: 2059183031
+      Data4: 737377610
+    Path: event:/Player/Combat/Attack/AttackLoop
+  _projectileImpactSound:
+    Guid:
+      Data1: 1876626910
+      Data2: 1292437571
+      Data3: 1989355963
+      Data4: -1079773820
+    Path: event:/Player/Combat/Attack/AttackHit
   _onEnemyTargetDied: {fileID: 11400000, guid: a6d4a41f4054c224a832b2ce84286687, type: 2}
   rseOnDespawnProjectile: {fileID: 11400000, guid: 0860b649b049fd047bee6936d640a06d, type: 2}
   _playerAttackSteps: {fileID: 11400000, guid: ffc4fd5ee4fc81442b745bb06394e7be, type: 2}
   _playerStats: {fileID: 11400000, guid: 672a77f2978d3824b90e0f910ab84268, type: 2}
+  _PlayerConvictionData: {fileID: 11400000, guid: 69f9f2a36a1381440a990e3461550cb3, type: 2}
 --- !u!1 &7077784668367723756
 GameObject:
   m_ObjectHideFlags: 0

@@ -262,6 +262,7 @@ public class S_PlayerBasicAttack : MonoBehaviour
         if (!_convictionAccumulationSound.IsNull)
         {
             _convictionAccumulationInstance = RuntimeManager.CreateInstance(_convictionAccumulationSound);
+            _convictionAccumulationInstance.setParameterByName("ConvictionAccumulated", _reservedConviction / _playerConvictionData.Value.maxConviction);
             _convictionAccumulationInstance.start();
         }
 

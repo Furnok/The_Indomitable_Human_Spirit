@@ -15,6 +15,7 @@ public class S_ClassBossAttack
 
     public bool isAttackDistance = false;
 
+    [SuffixLabel("%", Overlay = true)]
     public float pvBossUnlock = 0;
 
     public float difficultyLevel = 0;

@@ -570,6 +570,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 741e09a2dac7b7c47863f6be32bc4ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  followCam: 1
+  maxDistance: 30
 --- !u!114 &1133239554340709332
 MonoBehaviour:
   m_ObjectHideFlags: 0

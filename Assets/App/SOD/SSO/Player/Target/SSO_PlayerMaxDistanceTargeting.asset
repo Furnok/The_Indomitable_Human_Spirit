@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21db093322bbbd449bd23452b6adb155, type: 3}
   m_Name: SSO_PlayerMaxDistanceTargeting
   m_EditorClassIdentifier: 
-  _value: 20
+  _value: 24

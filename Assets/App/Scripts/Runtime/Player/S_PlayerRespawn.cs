@@ -49,6 +49,9 @@ public class S_PlayerRespawn : MonoBehaviour
     [SerializeField] private RSE_OnPlayerConvictionUpdate _onPlayerConvictionUpdate;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnTPCam _onTPCam;
+
+    [TabGroup("Outputs")]
     [SerializeField] private RSO_PlayerRespawnPosition _playerRespawnPosition;
 
     [TabGroup("Outputs")]
@@ -85,6 +88,8 @@ public class S_PlayerRespawn : MonoBehaviour
         _player.transform.rotation = _playerRespawnPosition.Value.rotation;
 
         Physics.SyncTransforms();
+
+        _onTPCam.Call();
 
         _playerRigidbody.useGravity = true;
 

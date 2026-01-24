@@ -26,9 +26,8 @@ public class S_EnemyAttackData : MonoBehaviour
     [TabGroup("References")]
     [SerializeField] private S_EnemyWeapon enemyWeapon;
 
-    [TabGroup("Output")]
-    [SerializeField] RSE_OnRequestStartTutorialStep _onRequestStartTutorialStep;
-
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnRequestStartTutorialStep rseOnRequestStartTutorialStep;
 
     private S_StructEnemyAttackData attackData;
 
@@ -92,7 +91,20 @@ public class S_EnemyAttackData : MonoBehaviour
 
     public void TriggerTutorialParryStep()
     {
-        if (_onRequestStartTutorialStep != null)
-            _onRequestStartTutorialStep.Call(S_EnumTutorialStep.Parry);
+        if (rseOnRequestStartTutorialStep != null) rseOnRequestStartTutorialStep.Call(S_EnumTutorialStep.Parry);
+    }
+    public void TriggerTutorialDodgeStep()
+    {
+        if (rseOnRequestStartTutorialStep != null) rseOnRequestStartTutorialStep.Call(S_EnumTutorialStep.Dodge);
+    }
+
+    public void TriggerTutorialAttackSignalStep()
+    {
+        if (rseOnRequestStartTutorialStep != null) rseOnRequestStartTutorialStep.Call(S_EnumTutorialStep.AttackSignaling);
+    }
+
+    public void DesactivateEnemy()
+    {
+        enemy.enabled = false;
     }
 }

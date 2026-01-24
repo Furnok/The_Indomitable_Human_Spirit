@@ -38,6 +38,9 @@ public class S_PlayerProjectile : MonoBehaviour
     [TabGroup("Outputs")]
     [SerializeField] private SSO_PlayerStats _playerStats;
 
+    [TabGroup("Outputs")]
+    [SerializeField] private SSO_PlayerConvictionData _PlayerConvictionData;
+
     private float _lifeTime => _playerStats.Value.projectileLifeTime;
 
     private float _arcHeightMultiplier => _projectileData.arcHeightMultiplier;
@@ -51,6 +54,7 @@ public class S_PlayerProjectile : MonoBehaviour
     private float _speed = 0;
     
     private float _damage = 0;
+    private float _convictionUsed = 0;
     private Vector3 _direction = Vector3.zero;
     private bool _isInitialized = false;
     private Vector3 _startPos = Vector3.zero;
@@ -70,13 +74,14 @@ public class S_PlayerProjectile : MonoBehaviour
         _projectileMat = _meshRendererProjectile.material;
     }
 
-    public void Initialize(float damage, S_StructDataProjectileVisuals visualsData, Transform target = null, int attackStep = 0)
+    public void Initialize(float damage, S_StructDataProjectileVisuals visualsData, Transform target = null, int attackStep = 0, float convictionUsed = 0)
     {
         this._target = target;
         this._direction = transform.forward;
         //_attackStep = attackStep;
         _speed = _playerAttackSteps.Value.Find(x => x.step == attackStep).speed;
         _damage = damage;
+        _convictionUsed = convictionUsed;
         _projectileData = _playerAttackSteps.Value.Find(x => x.step == attackStep).projectileData;
         _arcRandomDirectionMin = _projectileData.arcRandomDirectionMin;
         _arcRandomDirectionMax = _projectileData.arcRandomDirectionMax;
@@ -216,6 +221,7 @@ public class S_PlayerProjectile : MonoBehaviour
                 if (!_projectileImpactSound.IsNull)
                 {
                     EventInstance impactSound = RuntimeManager.CreateInstance(_projectileImpactSound);
+                    impactSound.setParameterByName("ConvictionAccumulated", _convictionUsed / _PlayerConvictionData.Value.maxConviction);
                     impactSound.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject));
                     impactSound.start();
                 }

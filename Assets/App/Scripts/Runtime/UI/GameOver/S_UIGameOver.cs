@@ -44,6 +44,9 @@ public class S_UIGameOver : MonoBehaviour
     [SerializeField] private RSE_OnPlayerRespawn rseOnPlayerRespawn;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnTPCam rseOnTPCam;
+
+    [TabGroup("Outputs")]
     [SerializeField] private RSO_Navigation rsoNavigation;
 
     [TabGroup("Outputs")]
@@ -83,7 +86,9 @@ public class S_UIGameOver : MonoBehaviour
 
                 rseOnGamePause.Call(false);
 
-                StartCoroutine(S_Utils.DelayRealTime(1.2f, () =>
+                rseOnTPCam.Call();
+
+                StartCoroutine(S_Utils.DelayRealTime(0.8f, () =>
                 {
                     gameObject.SetActive(false);
                     rsoNavigation.Value.selectableDefault = null;

@@ -439,7 +439,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 60.000004
+    FieldOfView: 60
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -473,7 +473,7 @@ MonoBehaviour:
   TargetOffset: {x: 0, y: 1, z: 0}
   TrackerSettings:
     BindingMode: 4
-    PositionDamping: {x: 1, y: 1, z: 1}
+    PositionDamping: {x: 0.5, y: 0.5, z: 0.5}
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
@@ -588,7 +588,7 @@ MonoBehaviour:
       Owner: {fileID: 3187908799981269826}
       Enabled: 1
       Input:
-        InputAction: {fileID: 0}
+        InputAction: {fileID: 2741696198913961054, guid: 2993d1cf4eb94a74c9e90e7bae7148a2, type: 3}
         Gain: 1
         LegacyInput: 
         LegacyGain: 1
@@ -601,7 +601,7 @@ MonoBehaviour:
       Owner: {fileID: 3187908799981269826}
       Enabled: 1
       Input:
-        InputAction: {fileID: 0}
+        InputAction: {fileID: 2741696198913961054, guid: 2993d1cf4eb94a74c9e90e7bae7148a2, type: 3}
         Gain: -1
         LegacyInput: 
         LegacyGain: 1
@@ -739,6 +739,7 @@ MonoBehaviour:
   cameraMain: {fileID: 3874155762252318603}
   cinemachineCameraIntro: {fileID: 3925711368591419889}
   cinemachineCameraPlayer: {fileID: 4498866734127298347}
+  cinemachineCameraOrbitalFollow: {fileID: 3187908799981269826}
   cinemachineCameraCinematic:
   - {fileID: 8040167007817381413}
   playerPoint: {fileID: 4679355963983762286}
@@ -753,6 +754,10 @@ MonoBehaviour:
   rseOnSkipCancelInput: {fileID: 11400000, guid: de9971957d02b954588dc0600794c05f, type: 2}
   rseOnSkipIntro: {fileID: 11400000, guid: 4556bd85d01d6c945b521ee4cb86752e, type: 2}
   rseOnResetCam: {fileID: 11400000, guid: 70986f4a312d85b4bb428dfa81d3c259, type: 2}
+  rseOnPlayerMove: {fileID: 11400000, guid: 881d0608fef60064c9e33701b880054c, type: 2}
+  rseOnCameraFOV: {fileID: 11400000, guid: be074528f87be5f469eb9a1c75eeb202, type: 2}
+  rseOnLookActivated: {fileID: 11400000, guid: ae1843c9e0dc35f4f9d4213dbed65142, type: 2}
+  rseOnTPCam: {fileID: 11400000, guid: e9ff4dc3fe9055d43a1068c65738e620, type: 2}
   rseOnCinematicInputEnabled: {fileID: 11400000, guid: 4a8e19feb57a19146b6b4bf5ad1cf371, type: 2}
   rseOnGameInputEnabled: {fileID: 11400000, guid: 0526673c0b0752b418ffdef1cdaaf184, type: 2}
   rseOnDisplayUIGame: {fileID: 11400000, guid: 0bf0c368d4c90d841af1c0dbb89f0901, type: 2}

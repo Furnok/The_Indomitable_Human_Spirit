@@ -53,6 +53,9 @@ public class S_PlayerHitResolver : MonoBehaviour
     [SerializeField] private RSE_OnRumbleStopChannel _rseOnRumbleStopChannel;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnCameraFOV rseOnCameraFOV;
+
+    [TabGroup("Outputs")]
     [SerializeField] private RSO_CanParry _canParry;
 
     [TabGroup("Outputs")]
@@ -72,6 +75,9 @@ public class S_PlayerHitResolver : MonoBehaviour
 
     [TabGroup("Outputs")]
     [SerializeField] private SSO_RumbleData _parryRumbleData;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private SSO_CameraData ssoCameraData;
 
     private float _currentPitchParrySFX = 0f;
 
@@ -121,6 +127,12 @@ public class S_PlayerHitResolver : MonoBehaviour
                             _parryEventInstanceSFX = RuntimeManager.CreateInstance(_parrySoundEffect);
                             _parryEventInstanceSFX.setParameterByName("AttackParried", _currentPitchParrySFX);
                             _parryEventInstanceSFX.start();
+
+                            S_ClassCameraFOV fov = new S_ClassCameraFOV();
+                            fov.value = ssoCameraData.Value.fovParry;
+                            fov.time = ssoCameraData.Value.fovParrySwitchTime;
+
+                            rseOnCameraFOV.Call(fov);
                         }
                         else
                         {
@@ -186,6 +198,12 @@ public class S_PlayerHitResolver : MonoBehaviour
                     _parryEventInstanceSFX.setParameterByName("AttackParried", _currentPitchParrySFX);
                     _parryEventInstanceSFX.start();
 
+                    S_ClassCameraFOV fov = new S_ClassCameraFOV();
+                    fov.value = ssoCameraData.Value.fovParry;
+                    fov.time = ssoCameraData.Value.fovParrySwitchTime;
+
+                    rseOnCameraFOV.Call(fov);
+
                     if (coroutineParry != null)
                     {
                         StopCoroutine(coroutineParry);
@@ -217,6 +235,12 @@ public class S_PlayerHitResolver : MonoBehaviour
     private IEnumerator ResetParryAudio()
     {
         yield return new WaitForSeconds(0.8f);
+
+        S_ClassCameraFOV fov = new S_ClassCameraFOV();
+        fov.value = -ssoCameraData.Value.fovParry;
+        fov.time = ssoCameraData.Value.fovParrySwitchTime;
+
+        rseOnCameraFOV.Call(fov);
 
         _currentPitchParrySFX = _pitchParryMinSFX;
     }

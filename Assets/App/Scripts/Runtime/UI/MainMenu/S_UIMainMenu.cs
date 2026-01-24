@@ -79,6 +79,9 @@ public class S_UIMainMenu : MonoBehaviour
     [SerializeField] private RSE_OnSkipIntro rseOnSkipIntro;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnTPCam rseOnTPCam;
+
+    [TabGroup("Outputs")]
     [SerializeField] private RSO_Navigation rsoNavigation;
 
     [TabGroup("Outputs")]
@@ -182,8 +185,9 @@ public class S_UIMainMenu : MonoBehaviour
                 rseOnGameInputEnabled.Call();
                 rseOnSkipIntro.Call();
                 rsoInGame.Value = true;
+                rseOnTPCam.Call();
 
-                StartCoroutine(S_Utils.DelayRealTime(1.2f, () => 
+                StartCoroutine(S_Utils.DelayRealTime(0.8f, () => 
                 {
                     gameObject.SetActive(false);
                     rsoNavigation.Value.selectableFocus = null;

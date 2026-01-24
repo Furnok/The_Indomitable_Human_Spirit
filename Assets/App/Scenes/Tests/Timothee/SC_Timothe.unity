@@ -1271,7 +1271,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3874155762252318603, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
       propertyPath: field of view
-      value: 60.000004
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4498866734127298347, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
       propertyPath: Target.TrackingTarget
@@ -3762,6 +3762,10 @@ PrefabInstance:
     - target: {fileID: 3172068207793189745, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
       propertyPath: m_Name
       value: P_CanvasGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 4531223415954674657, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8056213273916310995, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
       propertyPath: defaultWindow

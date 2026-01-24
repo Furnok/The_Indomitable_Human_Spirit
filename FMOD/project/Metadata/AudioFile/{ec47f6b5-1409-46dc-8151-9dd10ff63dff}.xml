@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{ec47f6b5-1409-46dc-8151-9dd10ff63dff}">
+		<property name="assetPath">
+			<value>SoundEffect/Combat/Attack/AttackLoop.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>3.2334166666666668</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{001bd8e4-d067-4258-ab4a-b097b925ed35}</destination>
+		</relationship>
+	</object>
+</objects>

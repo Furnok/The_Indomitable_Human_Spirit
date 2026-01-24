@@ -97,7 +97,7 @@ public class S_PlayerProjectileManager : MonoBehaviour
             aimPoint = aimPointProvider != null ? aimPointProvider.GetAimPoint() : target;
         }
 
-        projectile.Initialize(attackconviction * currentStepAttack.multipliers, _playerCurrentVisualProjectile.Value, aimPoint, currentStepAttack.step);
+        projectile.Initialize(attackconviction * currentStepAttack.multipliers, _playerCurrentVisualProjectile.Value, aimPoint, currentStepAttack.step, attackconviction);
     }
 
     private void ReturnProjectileToPool(S_PlayerProjectile projectile)

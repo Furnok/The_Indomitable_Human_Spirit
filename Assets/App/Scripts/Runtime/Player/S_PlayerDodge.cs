@@ -44,6 +44,9 @@ public class S_PlayerDodge : MonoBehaviour
     [Title("Audio")]
     [SerializeField] private EventReference _dodgeSound;
 
+    [TabGroup("References")]
+    [SerializeField] private EventReference _dodgeSimpleSound;
+
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnPlayerMove _rseOnPlayerMove;
 
@@ -84,6 +87,9 @@ public class S_PlayerDodge : MonoBehaviour
     [SerializeField] private RSE_OnSendConsoleMessage rseOnSendConsoleMessage;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnCameraFOV rseOnCameraFOV;
+
+    [TabGroup("Outputs")]
     [SerializeField] private RSO_PlayerIsDodging _playerIsDodging;
 
     [TabGroup("Outputs")]
@@ -112,6 +118,9 @@ public class S_PlayerDodge : MonoBehaviour
 
     [TabGroup("Outputs")]
     [SerializeField] private SSO_PlayerStats _playerStats;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private SSO_CameraData ssoCameraData;
     #endregion
 
     private float maxSlopeAngle => _playerStats.Value.maxSlopeAngle;
@@ -129,6 +138,8 @@ public class S_PlayerDodge : MonoBehaviour
 
     private bool _canRunAfterDodge = false;
     private bool _dodgeUp = true;
+
+    private bool haveDodgePerfect = false;
 
     private void Awake()
     {
@@ -182,19 +193,28 @@ public class S_PlayerDodge : MonoBehaviour
 
         rseOnSendConsoleMessage.Call("Player Dodge!");
 
-
         _dodgeUp = false;
         StartCoroutine(S_Utils.Delay(_playerStats.Value.dodgeCooldown, () =>
         {
             _dodgeUp = true;
         }));
 
+        RuntimeManager.PlayOneShot(_dodgeSimpleSound);
+
         // Test TriggerDodgePerfect
         var isDodgePrefect = _attackDataInDodgeableArea.Value.Count > 0;
         if (isDodgePrefect)
-        { 
+        {
+            haveDodgePerfect = true;
+
             Debug.Log("Dodge perfect");
             RuntimeManager.PlayOneShot(_dodgeSound);
+
+            S_ClassCameraFOV fov = new S_ClassCameraFOV();
+            fov.value = ssoCameraData.Value.fovDodge;
+            fov.time = ssoCameraData.Value.fovDodgeSwitchTime;
+
+            rseOnCameraFOV.Call(fov);
 
             //_onPlayerGainConviction.Call(_playerConvictionData.Value.dodgeSuccessGain);
             _rseOnDodgePerfect.Call();
@@ -311,6 +331,17 @@ public class S_PlayerDodge : MonoBehaviour
         _playerIsDodging.Value = false;
         rseOnAnimationBoolValueChange.Call(_dodgeParam, false);
 
+        if (haveDodgePerfect)
+        {
+            haveDodgePerfect = false;
+
+            S_ClassCameraFOV fov = new S_ClassCameraFOV();
+            fov.value = -ssoCameraData.Value.fovDodge;
+            fov.time = ssoCameraData.Value.fovDodgeSwitchTime;
+
+            rseOnCameraFOV.Call(fov);
+        }
+
         float rec = _animationTransitionDelays.Value.dodgeRecoveryDelay;
         if (rec > 0f) yield return new WaitForSeconds(rec);
 
@@ -335,6 +366,7 @@ public class S_PlayerDodge : MonoBehaviour
     {
         _canRunAfterDodge = false;
         _playerIsDodging.Value = false;
+        haveDodgePerfect = false;
 
         if (_dodgeCoroutine != null) StopCoroutine(_dodgeCoroutine);
 
@@ -349,6 +381,7 @@ public class S_PlayerDodge : MonoBehaviour
     private void CancelInputdodge()
     {
         _canRunAfterDodge = false;
+        haveDodgePerfect = false;
 
         /*
         if (_playerCurrentState.Value != PlayerState.Running && _prepareRunCoroutine != null && _dodgeCoroutine == null)
@@ -357,14 +390,15 @@ public class S_PlayerDodge : MonoBehaviour
             _onPlayerAddState.Call(PlayerState.None);
         }
         */
-        
-        if(_playerCurrentState.Value == S_EnumPlayerState.Running /*&& _dodgeCoroutine != null*/) _onPlayerAddState.Call(S_EnumPlayerState.None);
+
+        if (_playerCurrentState.Value == S_EnumPlayerState.Running /*&& _dodgeCoroutine != null*/) _onPlayerAddState.Call(S_EnumPlayerState.None);
     }
 
     private void ResetValue()
     {
         _playerIsDodging.Value = false;
         _canRunAfterDodge = false;
+        haveDodgePerfect = false;
         rseOnAnimationBoolValueChange.Call(_dodgeParam, false);
         _attackDataInDodgeableArea.Value.Clear();
     }

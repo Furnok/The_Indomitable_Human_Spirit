@@ -1017,6 +1017,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyDodgeTest_01 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 6067497928927017152, guid: bcf2f15e0b0798d498028957e3f553ca, type: 3}
+      propertyPath: followCam
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6067497928927017152, guid: bcf2f15e0b0798d498028957e3f553ca, type: 3}
+      propertyPath: maxDistance
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1526,6 +1534,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 741e09a2dac7b7c47863f6be32bc4ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  followCam: 1
+  maxDistance: 30
 --- !u!114 &1285449951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2909,6 +2919,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyParryTest_01 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 6775232759041604376, guid: 41b33705377ccbe4eab4a204cdeda7c0, type: 3}
+      propertyPath: followCam
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6775232759041604376, guid: 41b33705377ccbe4eab4a204cdeda7c0, type: 3}
+      propertyPath: maxDistance
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3170,6 +3188,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 3874155762252318603, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
+      propertyPath: field of view
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 4498866734127298347, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
       propertyPath: Target.TrackingTarget
       value: 
@@ -3423,6 +3445,10 @@ PrefabInstance:
     - target: {fileID: 4159629814828498666, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
       propertyPath: levelName.scenePath
       value: Assets/App/Scenes/SC_MainV1.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 4531223415954674657, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6197051584241607373, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
       propertyPath: haveGameOver

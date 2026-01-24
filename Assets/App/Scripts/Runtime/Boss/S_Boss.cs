@@ -115,6 +115,9 @@ public class S_Boss : MonoBehaviour
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnUpdateBossHealth rseOnUpdateBossHealth;
 
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnBossDeath rseOnBossDeath;
+
     private List<S_ClassAttackOwned> listAttackOwneds = new();
     private List<S_ClassAttackOwned> listAttackOwnedPossibilities = new();
     private S_EnumBossState currentState = S_EnumBossState.Idle;
@@ -126,19 +129,19 @@ public class S_Boss : MonoBehaviour
 
     private S_ClassAttackOwned lastAttack = null;
     private S_ClassAttackOwned currentAttack = null;
+    private S_ClassAttackOwned ultimateAttack = null;
 
     private Coroutine comboCoroutine = null;
     private Coroutine stunCoroutine = null;
     private Coroutine resetAttack = null;
     private Coroutine timeChooseAttackCoroutine = null;
-    private Coroutine strafeCoroutine = null;
 
     private float health = 0;
     private float maxHealth = 0;
     private float lastValueHealth = 0;
     private float bossDifficultyLevel = 0;
     private float initDistance = 0;
-    private int strafeDirection = 1;
+
 
     private bool isPerformingCombo = false;
     private S_EnumBossState? pendingState = null;
@@ -152,7 +155,6 @@ public class S_Boss : MonoBehaviour
     private bool canAttack = false;
     private bool isPlayerDeath = false;
     private bool isAttacking = false;
-    private bool isStrafe = false;
     private bool unlockRotate = false;
 
     #endregion
@@ -307,17 +309,10 @@ public class S_Boss : MonoBehaviour
             timeChooseAttackCoroutine = null;
         }
 
-        if (strafeCoroutine != null)
-        {
-            StopCoroutine(strafeCoroutine);
-            strafeCoroutine = null;
-        }
-
         isPerformingCombo = false;
         isChasing = false;
         isFighting = false;
         isStunned = false;
-        isStrafe = false;
         isAttacking = false;
         unlockRotate = false;
 
@@ -370,7 +365,6 @@ public class S_Boss : MonoBehaviour
                 }
             }
 
-            aimPoint = null;
             detectionCollider.enabled = false;
 
             UpdateState(S_EnumBossState.Idle);
@@ -436,6 +430,7 @@ public class S_Boss : MonoBehaviour
         }
 
         stunCoroutine = StartCoroutine(StunDuration(ssoBossData.Value.stunDuration));
+
     }
 
     private IEnumerator StunDuration(float duration)
@@ -447,6 +442,13 @@ public class S_Boss : MonoBehaviour
         if (target != null)
         {
             UpdateState(S_EnumBossState.Chase);
+            if (resetAttack != null)
+            {
+                StopCoroutine(resetAttack);
+                resetAttack = null;
+            }
+
+            resetAttack = StartCoroutine(S_Utils.Delay(lastAttack.bossAttack.timeAfterAttack, () => canAttack = true));
         }
         else
         {
@@ -498,7 +500,7 @@ public class S_Boss : MonoBehaviour
         {
             rseOnDisplayBossHealth.Call(false);
         }
-
+        rseOnBossDeath.Call();
         StopAllCoroutines();
 
         ResetBoss();
@@ -531,6 +533,10 @@ public class S_Boss : MonoBehaviour
 
         aimPoint = null;
         detectionCollider.enabled = false;
+        listAttackOwnedPossibilities.Clear();
+        lastValueHealth = 101f;
+        ultimateAttack = null;
+        currentAttack = null;
         isPlayerDeath = true;
 
         if (isPerformingCombo) pendingState = S_EnumBossState.Idle;
@@ -547,6 +553,7 @@ public class S_Boss : MonoBehaviour
         if (isPlayerDeath)
         {
             isPlayerDeath = false;
+            detectionCollider.enabled = true;
 
             target = null;
 
@@ -557,6 +564,7 @@ public class S_Boss : MonoBehaviour
 
                 UpdateState(S_EnumBossState.Idle);
             }
+            UpdateLastHealthValue();
         }
     } 
     #endregion
@@ -584,12 +592,27 @@ public class S_Boss : MonoBehaviour
     {
         listAttackOwnedPossibilities.Add(bossAttack);
     }
-
     private void SetListAttackPossible(float minValue, float maxValue)
     {
         foreach (var attack in listAttackOwneds)
         {
-            if (attack.bossAttack.pvBossUnlock >= minValue && attack.bossAttack.pvBossUnlock < maxValue) AddListAttackPossible(attack);
+            if (attack.bossAttack.pvBossUnlock >= minValue && attack.bossAttack.pvBossUnlock < maxValue)
+            {
+                if(attack.bossAttack.attackName == "Gathering")
+                {
+                    Debug.Log("Unlocking Ultimate Gathering");
+                    ultimateAttack = attack;
+                }
+                if (attack.bossAttack.attackName == "Wings Of Hell")
+                {
+                    Debug.Log("Unlocking Ultimate Wings Of Hell");
+                    ultimateAttack = attack;
+                }
+                else
+                {
+                    AddListAttackPossible(attack);
+                }
+            }
         }
     }
 
@@ -600,29 +623,40 @@ public class S_Boss : MonoBehaviour
         var minAttackFrequency = listAttackOwnedPossibilities.Min(a => a.frequency);
         int roundDifficulty = Mathf.RoundToInt(bossDifficultyLevel);
 
-        foreach (var attack in listAttackOwnedPossibilities)
+        if(ultimateAttack == null)
         {
-            if (attack.bossAttack.difficultyLevel == roundDifficulty) attack.score += ssoBossData.Value.difficultyScore;
+            foreach (var attack in listAttackOwnedPossibilities)
+            {
+                if (attack.bossAttack.difficultyLevel == roundDifficulty) attack.score += ssoBossData.Value.difficultyScore;
 
-            if (attack.frequency == minAttackFrequency) attack.score += ssoBossData.Value.frequencyScore;
+                if (attack.frequency == minAttackFrequency) attack.score += ssoBossData.Value.frequencyScore;
 
-            if (lastAttack == null) continue;
+                if (lastAttack == null) continue;
 
-            if (attack.bossAttack.listComboData[0].attackData.attackType != lastAttack.bossAttack.listComboData[^1].attackData.attackType) attack.score += ssoBossData.Value.synergieScore;
+                if (attack.bossAttack.listComboData[0].attackData.attackType != lastAttack.bossAttack.listComboData[^1].attackData.attackType) attack.score += ssoBossData.Value.synergieScore;
+            }
+
+            var maxScore = listAttackOwnedPossibilities.Max(a => a.score);
+
+            var bestAttacks = listAttackOwnedPossibilities
+                .Where(a => a.score == maxScore)
+                .ToList();
+
+            var chosenAttack = bestAttacks[Random.Range(0, bestAttacks.Count)];
+
+            currentAttack = chosenAttack;
+            Debug.Log("Chosen Attack: " + currentAttack.bossAttack.attackName + canAttack);
+
+            foreach (var attack in listAttackOwnedPossibilities) attack.score = 0;
         }
-
-        var maxScore = listAttackOwnedPossibilities.Max(a => a.score);
-
-        var bestAttacks = listAttackOwnedPossibilities
-            .Where(a => a.score == maxScore)
-            .ToList();
-
-        var chosenAttack = bestAttacks[Random.Range(0, bestAttacks.Count)];
-
-        currentAttack = chosenAttack;
-        Debug.Log("Chosen Attack: " + currentAttack.bossAttack.attackName);
-
-        foreach (var attack in listAttackOwnedPossibilities) attack.score = 0;
+        else
+        {
+            currentAttack = ultimateAttack;
+            ultimateAttack = null;
+            Debug.Log("Chosen Ultimate Attack: " + currentAttack.bossAttack.attackName + canAttack);
+            foreach (var attack in listAttackOwnedPossibilities) attack.score = 0;
+        }
+        
     }
 
     private void Fighting()
@@ -641,7 +675,6 @@ public class S_Boss : MonoBehaviour
         isPerformingCombo = false;
         isAttacking = false;
         unlockRotate = false;
-
         ChooseAttack();
         if (resetAttack != null)
         {
@@ -654,12 +687,21 @@ public class S_Boss : MonoBehaviour
     private void Fight()
     {
         Debug.Log("Fighting...");
-        if (canAttack && !isStrafe)
+        if (canAttack)
         {
             canAttack = false;
 
-            lastAttack = currentAttack;
-            currentAttack.frequency++;
+            if(currentAttack.bossAttack.attackName == "Gathering" || currentAttack.bossAttack.attackName == "Wings Of Hell")
+            {
+                listAttackOwnedPossibilities.RemoveAt(listAttackOwnedPossibilities.IndexOf(currentAttack));
+                Debug.Log(listAttackOwnedPossibilities.Count);
+            }
+            else
+            {
+                lastAttack = currentAttack;
+                currentAttack.frequency++;
+            }
+                
 
             if(currentAttack.bossAttack.isSpecialAttack)
             {
@@ -678,18 +720,6 @@ public class S_Boss : MonoBehaviour
             }
 
             return;
-        }
-        else if (!isPerformingCombo && !isStrafe)
-        {
-            isStrafe = true;
-
-            if (strafeCoroutine != null)
-            {
-                StopCoroutine(strafeCoroutine);
-                strafeCoroutine = null;
-            }
-
-            StartCoroutine(Strafing());
         }
     }
     private IEnumerator PlayComboSequence()
@@ -764,33 +794,6 @@ public class S_Boss : MonoBehaviour
 
         resetAttack = StartCoroutine(S_Utils.Delay(lastAttack.bossAttack.timeAfterAttack, () => canAttack = true));
 
-    }
-
-    private IEnumerator Strafing()
-    {
-        Debug.Log("Strafing...");
-        strafeDirection = Random.value > 0.5f ? 1 : -1;
-
-        Vector3 offsetPlayer = transform.position - target.transform.position;
-        offsetPlayer.y = 0;
-
-        Vector3 offsetAtRadius = offsetPlayer.normalized * (ssoBossData.Value.distanceToChase);
-
-        float angle = Random.Range(ssoBossData.Value.strafeRotationMin, ssoBossData.Value.strafeRotationMax) * strafeDirection;
-
-        Quaternion rot = Quaternion.Euler(0f, angle, 0f);
-        Vector3 rotatedOffset = rot * offsetAtRadius;
-
-        Vector3 finalPos = target.transform.position + rotatedOffset;
-        navMeshAgent.SetDestination(finalPos);
-
-        animator.SetFloat("MoveSpeed", ssoBossData.Value.walkSpeed);
-
-        yield return new WaitUntil(() => !navMeshAgent.pathPending && navMeshAgent.remainingDistance <= 0.01f);
-
-        yield return new WaitForSeconds(1);
-
-        isStrafe = false;
     }
     #endregion
 }

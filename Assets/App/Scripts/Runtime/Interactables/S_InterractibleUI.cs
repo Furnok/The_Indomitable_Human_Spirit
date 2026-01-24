@@ -41,7 +41,7 @@ public class S_InterractibleUI : MonoBehaviour
                 image.sprite = imageKeyboardMouse;
                 text.text = "E";
             }
-            else if (rsoDevice.Value == S_EnumDevice.PlastationController)
+            else if (rsoDevice.Value == S_EnumDevice.PlaystationController)
             {
                 image.sprite = imagePlayStation;
                 text.text = "";

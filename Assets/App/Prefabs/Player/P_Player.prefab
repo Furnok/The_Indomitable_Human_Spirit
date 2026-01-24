@@ -653,6 +653,7 @@ MonoBehaviour:
   _onCameraShake: {fileID: 11400000, guid: beaf63a232cb7b8488844f87f5bc900b, type: 2}
   _rseOnRumbleRequested: {fileID: 11400000, guid: 398d5ea3b7e14d0458a5cba996361021, type: 2}
   _rseOnRumbleStopChannel: {fileID: 11400000, guid: 6f1b7913ca16dc74599e3025edacefd3, type: 2}
+  rseOnCameraFOV: {fileID: 11400000, guid: be074528f87be5f469eb9a1c75eeb202, type: 2}
   _canParry: {fileID: 11400000, guid: 7ae3103e78e3f8444a77fdea4b6192cc, type: 2}
   _parryStartTime: {fileID: 11400000, guid: 9da05f4356989674baabec68e1a341fa, type: 2}
   _attackDataInDodgeableArea: {fileID: 11400000, guid: 79f9804437f056944b65f9228ccc9a50, type: 2}
@@ -660,6 +661,7 @@ MonoBehaviour:
   _playerConvictionData: {fileID: 11400000, guid: 69f9f2a36a1381440a990e3461550cb3, type: 2}
   _playerStats: {fileID: 11400000, guid: 672a77f2978d3824b90e0f910ab84268, type: 2}
   _parryRumbleData: {fileID: 11400000, guid: 03a453e245ab334428bb18eeec6739bb, type: 2}
+  ssoCameraData: {fileID: 11400000, guid: 8a8b9ed3ac9bcab418920e1de02ba0e2, type: 2}
 --- !u!1 &3087244059546289160
 GameObject:
   m_ObjectHideFlags: 0
@@ -1569,7 +1571,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1578,7 +1580,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 3
   m_Height: 5
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
@@ -1595,8 +1597,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagHit: Hitbox
+  _tutoStepsFinished: {fileID: 11400000, guid: d0022d51548eff74a843a82dbabd111d, type: 2}
   _attackDataInDodgeableArea: {fileID: 11400000, guid: 79f9804437f056944b65f9228ccc9a50, type: 2}
   _attackCanHitPlayer: {fileID: 11400000, guid: a2911e0025cdad94891abd994425effc, type: 2}
+  _onRequestStartTutorialStep: {fileID: 11400000, guid: c7e748c38ce2f3242ad3ce2dedebbbaf, type: 2}
+  _rsoSettingsSaved: {fileID: 11400000, guid: 782057adb6fb88f4db3ac2e35a786bc0, type: 2}
 --- !u!1 &4967492091689077309
 GameObject:
   m_ObjectHideFlags: 0
@@ -3156,6 +3161,13 @@ MonoBehaviour:
       Data3: 1452940701
       Data4: -435756702
     Path: event:/Player/Combat/Dodge/Dodge
+  _dodgeSimpleSound:
+    Guid:
+      Data1: 2026496135
+      Data2: 1141156596
+      Data3: 521051542
+      Data4: -1240582153
+    Path: event:/Player/Combat/Dodge/DodgeSimple
   _rseOnPlayerMove: {fileID: 11400000, guid: 881d0608fef60064c9e33701b880054c, type: 2}
   _rseOnNewTargeting: {fileID: 11400000, guid: c5f673ce9067f6241b1df96e6d83520f, type: 2}
   _rseOnPlayerCancelTargeting: {fileID: 11400000, guid: d8d0a24f7352ea84ba1f5614f16bb752, type: 2}
@@ -3169,6 +3181,7 @@ MonoBehaviour:
   _onPlayerGainConviction: {fileID: 11400000, guid: c3ba1e97cce4a3d4e929f7197f47a3c1, type: 2}
   _rseOnDodgePerfect: {fileID: 11400000, guid: 1c5a008ba8b4091499ebda621df96bc9, type: 2}
   rseOnSendConsoleMessage: {fileID: 11400000, guid: e2e3ecd3153d9a14d9d9e380efc21861, type: 2}
+  rseOnCameraFOV: {fileID: 11400000, guid: be074528f87be5f469eb9a1c75eeb202, type: 2}
   _playerIsDodging: {fileID: 11400000, guid: f932dda1749effc4aac91cb2aeeff6d5, type: 2}
   _playerIsTargeting: {fileID: 11400000, guid: 53017e014e6ba384988975c6a7762355, type: 2}
   _playerCurrentState: {fileID: 11400000, guid: 16388ffed06f1314f8caba9f9a324afe, type: 2}
@@ -3179,6 +3192,7 @@ MonoBehaviour:
   _animationTransitionDelays: {fileID: 11400000, guid: f7ba83029ebbbef4385f8e29045a542a, type: 2}
   _ssoPlayerStateTransitions: {fileID: 11400000, guid: d6e9b95c877c8a84291c447bbbc229af, type: 2}
   _playerStats: {fileID: 11400000, guid: 672a77f2978d3824b90e0f910ab84268, type: 2}
+  ssoCameraData: {fileID: 11400000, guid: 8a8b9ed3ac9bcab418920e1de02ba0e2, type: 2}
 --- !u!114 &3585106378241585558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3201,11 +3215,11 @@ MonoBehaviour:
     Path: event:/Player/Combat/Attack/ConvictionAccumulation
   _attackPerformedSound:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -283499349
+      Data2: 1096922731
+      Data3: 1682173861
+      Data4: 635480189
+    Path: event:/Player/Combat/Attack/AttackCast
   _weaponHand: {fileID: 546673962529436723}
   _weaponBack: {fileID: 5836320029152079228}
   rseOnPlayerAttack: {fileID: 11400000, guid: 87ff9d1d837c0324eb87e1b22c96bdf5, type: 2}
@@ -3289,6 +3303,7 @@ MonoBehaviour:
   _onPlayerRespawnRse: {fileID: 11400000, guid: 3b09f2a06394f4642a88a2d57f0cec43, type: 2}
   _rseOnAnimationBoolValueChange: {fileID: 11400000, guid: f3b68030aacb033438a094c87c0e44ca, type: 2}
   _PlayerDead: {fileID: 11400000, guid: cf127e03f9807c942bc07a954b99d6fd, type: 2}
+  rsoPlayerRespawnPosition: {fileID: 11400000, guid: a277ad2b8f148a94caba870bf683ea0f, type: 2}
 --- !u!114 &4137787093588038521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3314,6 +3329,7 @@ MonoBehaviour:
   _onAnimationBoolValueChange: {fileID: 11400000, guid: f3b68030aacb033438a094c87c0e44ca, type: 2}
   _onPlayerHealthUpdate: {fileID: 11400000, guid: fc90d1a9f1ffb214ebdffdb1dfd83fa0, type: 2}
   _onPlayerConvictionUpdate: {fileID: 11400000, guid: 0e8aa31157b1a9041a3864e8c4d5c728, type: 2}
+  _onTPCam: {fileID: 11400000, guid: e9ff4dc3fe9055d43a1068c65738e620, type: 2}
   _playerRespawnPosition: {fileID: 11400000, guid: a277ad2b8f148a94caba870bf683ea0f, type: 2}
   _playerCurrentHealth: {fileID: 11400000, guid: deb512c1ca8eaec4286f764395e6d686, type: 2}
   _playerCurrentConviction: {fileID: 11400000, guid: e9e6e673e8d688d4b96f8309938dbfdc, type: 2}

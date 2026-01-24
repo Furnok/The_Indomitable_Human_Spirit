@@ -2,9 +2,9 @@
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
 
 public class S_Enemy : MonoBehaviour
 {
@@ -113,6 +113,13 @@ public class S_Enemy : MonoBehaviour
     [Title("Patrol Points Parent")]
     [SerializeField] private Transform patrolPoints;
 
+    [TabGroup("References")]
+    [Title("UI Damage")]
+    [SerializeField] private S_EnemyUIDamage enemyUIDamage;
+
+    [TabGroup("References")]
+    [SerializeField] private GameObject textParent;
+
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnEnemyTargetDied rseOnEnemyTargetDied;
 
@@ -130,6 +137,12 @@ public class S_Enemy : MonoBehaviour
 
     [TabGroup("Outputs")]
     [SerializeField] private RSO_DataSaved rsoDataSaved;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnCameraFOV rseOnCameraFOV;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private SSO_CameraData ssoCameraData;
 
     private float health = 0;
 
@@ -385,6 +398,8 @@ public class S_Enemy : MonoBehaviour
             newTarget.TryGetComponent<I_AimPointProvider>(out I_AimPointProvider aimPointProvider);
             aimPoint = aimPointProvider != null ? aimPointProvider.GetAimPoint() : newTarget.transform;
 
+            if (posBeforeChase == Vector3.zero) posBeforeChase = transform.position;
+
             UpdateState(S_EnumEnemyState.Chasing);
         }
         else
@@ -470,12 +485,20 @@ public class S_Enemy : MonoBehaviour
     {
         rseOnSendConsoleMessage.Call(gameObject.transform.parent.name + " Take " + damage + " Damage!");
 
+        TextDamageDisplay(damage);
+
         health = Mathf.Max(health - damage, 0);
 
         enemyUI.UpdateHealthBar(health);
 
         if (health <= 0) UpdateState(S_EnumEnemyState.Death);
         else if (damage >= (ssoEnemyData.Value.health / 2)) UpdateState(S_EnumEnemyState.HeavyHit);
+    }
+
+    private void TextDamageDisplay(float damage)
+    {
+        S_EnemyUIDamage textDamage = Instantiate(enemyUIDamage, textParent.transform.position, Quaternion.identity);
+        textDamage.Initialize(damage);
     }
     #endregion
 
@@ -585,8 +608,6 @@ public class S_Enemy : MonoBehaviour
     private void Chasing()
     {
         isChasing = true;
-
-        if (posBeforeChase == Vector3.zero) posBeforeChase = transform.position;
 
         SetCombo();
 
@@ -755,6 +776,13 @@ public class S_Enemy : MonoBehaviour
         animator.SetBool(idleAttack, false);
         isAttacking = false;
 
+        S_ClassCameraFOV fov = new S_ClassCameraFOV();
+        fov.value = ssoCameraData.Value.fovFight;
+        fov.time = ssoCameraData.Value.fovFightSwitchTime;
+        fov.reset = true;
+
+        rseOnCameraFOV.Call(fov);
+
         for (int i = 0; i < combo.listAnimationsCombos.Count; i++)
         {
             isAttacking = true;
@@ -777,8 +805,11 @@ public class S_Enemy : MonoBehaviour
             {
                 yield return new WaitForSeconds(combo.listAnimationsCombos[i].attackData.timeCast);
 
-                S_EnemyProjectile projectileInstance = Instantiate(enemyProjectile, spawnProjectilePoint.transform.position, Quaternion.identity);
-                projectileInstance.Initialize(bodyCollider.transform, aimPoint, combo.listAnimationsCombos[i].attackData);
+                if (target != null)
+                {
+                    S_EnemyProjectile projectileInstance = Instantiate(enemyProjectile, spawnProjectilePoint.transform.position, Quaternion.identity);
+                    projectileInstance.Initialize(bodyCollider.transform, aimPoint, combo.listAnimationsCombos[i].attackData);
+                }
             }
 
             isAttacking = false;
@@ -811,6 +842,13 @@ public class S_Enemy : MonoBehaviour
         isPerformingCombo = false;
         isAttacking = false;
         unlockRotate = false;
+
+        S_ClassCameraFOV fov2 = new S_ClassCameraFOV();
+        fov2.value = 60;
+        fov2.time = ssoCameraData.Value.fovFightSwitchTime;
+        fov2.reset = true;
+
+        rseOnCameraFOV.Call(fov2);
 
         if (isPlayerDeath)
         {
@@ -877,6 +915,13 @@ public class S_Enemy : MonoBehaviour
 
         rootMotionModifier.Setup(1, 0);
 
+        S_ClassCameraFOV fov = new S_ClassCameraFOV();
+        fov.value = 60;
+        fov.time = 0.5f;
+        fov.reset = true;
+
+        rseOnCameraFOV.Call(fov);
+
         rseOnSendConsoleMessage.Call(gameObject.transform.parent.name + " is Stun!");
 
         stunCoroutine = StartCoroutine(S_Utils.Delay(ssoEnemyData.Value.waitStun, () =>
@@ -937,6 +982,13 @@ public class S_Enemy : MonoBehaviour
         canAttack = false;
         target = null;
         targetInZone = null;
+
+        S_ClassCameraFOV fov = new S_ClassCameraFOV();
+        fov.value = 60;
+        fov.time = 0.5f;
+        fov.reset = true;
+
+        rseOnCameraFOV.Call(fov);
 
         bodyCollider.enabled = false;
         detectionCollider.enabled = false;

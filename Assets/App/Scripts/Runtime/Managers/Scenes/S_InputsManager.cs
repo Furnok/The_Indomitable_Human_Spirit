@@ -1,4 +1,5 @@
 ﻿using Sirenix.OdinInspector;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -26,7 +27,7 @@ public class S_InputsManager : MonoBehaviour
     [SerializeField] private RSE_OnCinematicInputEnabled rseOnCinematicInputEnabled;
 
     [TabGroup("Inputs")]
-    [SerializeField] RSE_OnRequestStartTutorialStep _onRequestStartTutorialStep;
+    [SerializeField] RSE_OnRequestAcceptedTutorialStep _onRequestAcceptedTutorialStep;
 
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnPlayerMove rseOnPlayerMove;
@@ -79,6 +80,10 @@ public class S_InputsManager : MonoBehaviour
     [TabGroup("Outputs")]
     [SerializeField] RSE_OnTutorialStepCompleted _onTutorialStepCompleted;
 
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnGamePause _rseOnGamePause;
+
+
     #endregion
 
     private IA_PlayerInput iaPlayerInput = null;
@@ -89,6 +94,12 @@ public class S_InputsManager : MonoBehaviour
     private string uiMapName = "";
     private string cinematicMapName = "";
     private string tutorialMapName = "";
+
+    private System.Action<InputAction.CallbackContext> _currentNextInputCallback = null;
+
+    private float tutorialAttackActionTimePressed = 0f;
+    private float tutorialAttackActionDelay = 1.0f;
+    private bool tutorialAttackActionPressed = false;
 
     private void Awake()
     {
@@ -124,7 +135,7 @@ public class S_InputsManager : MonoBehaviour
         _onPlayerDeathRse.action += DeactivateInput;
         _onPlayerRespawnRse.action += ActivateGameActionInput;
 
-        _onRequestStartTutorialStep.action += ActivateInputTutoStep;
+        _onRequestAcceptedTutorialStep.action += ActivateInputTutoStep;
     }
 
     private void OnDisable()
@@ -138,7 +149,7 @@ public class S_InputsManager : MonoBehaviour
         _onPlayerDeathRse.action -= DeactivateInput;
         _onPlayerRespawnRse.action -= ActivateGameActionInput;
 
-        _onRequestStartTutorialStep.action -= ActivateInputTutoStep;
+        _onRequestAcceptedTutorialStep.action -= ActivateInputTutoStep;
 
         playerInput.actions.Disable();
         DisableGameInputs();
@@ -375,66 +386,146 @@ public class S_InputsManager : MonoBehaviour
     {
         DisableTutorialInputs();
         iaPlayerInput.Tutorial.Parry.performed += OnParryInput;
-        iaPlayerInput.Tutorial.Parry.performed += _ => FinishActionStep(S_EnumTutorialStep.Parry);
+        iaPlayerInput.Tutorial.Parry.performed += OnTutorialParryFinish;
+    }
+
+    private void EnableTutorialParryProjectileInput()
+    {
+        DisableTutorialInputs();
+        iaPlayerInput.Tutorial.Parry.performed += OnParryInput;
+        iaPlayerInput.Tutorial.Parry.performed += OnTutorialParryProjectileFinish;
     }
 
     void EnableTutoriaSwapTargetInput()
     {
         DisableTutorialInputs();
         iaPlayerInput.Tutorial.SwapTarget.performed += OnSwapTargetInput;
+        iaPlayerInput.Tutorial.SwapTarget.performed += OnTutorialSwapTargetFinish;
     }
 
     void EnableTutorialDodgeInput()
     {
         DisableTutorialInputs();
         iaPlayerInput.Tutorial.Dodge.performed += OnDodgeInput;
+        iaPlayerInput.Tutorial.Dodge.performed += OnTutorialDodgeFinish;
     }
     void EnableTutorialAttackInput()
     {
         DisableTutorialInputs();
-        iaPlayerInput.Tutorial.Attack.performed += OnAttackInput;
-        iaPlayerInput.Tutorial.Attack.canceled += OnAttackInputCancel;
+        iaPlayerInput.Tutorial.Attack.performed += AttackPressedTuto;
+        iaPlayerInput.Tutorial.Attack.canceled += AttackCancelTuto;
+        //iaPlayerInput.Tutorial.Attack.canceled += OnTutorialAttackFinish;
     }
+
+    void AttackPressedTuto(InputAction.CallbackContext ctx)
+    {
+        if (tutorialAttackActionPressed == true)
+            return;
+
+        _rseOnGamePause.Call(false);
+        //OnTutorialAttackFinish(ctx);
+
+        tutorialAttackActionPressed = true;
+        tutorialAttackActionTimePressed = Time.time;
+
+        //FinishActionStep(S_EnumTutorialStep.Attack);
+
+        OnAttackInput(ctx);
+    }
+
+    void AttackCancelTuto(InputAction.CallbackContext ctx)
+    {
+        if (tutorialAttackActionPressed == true && (Time.time - tutorialAttackActionTimePressed) >= tutorialAttackActionDelay)
+        {
+            tutorialAttackActionPressed = false;
+            OnAttackInputCancel(ctx);
+            OnTutorialAttackFinish(ctx);
+        }
+        else
+        {
+            tutorialAttackActionPressed = true;
+
+            var timeSincePressed = Time.time - tutorialAttackActionTimePressed;
+            var remainingDelay = tutorialAttackActionDelay - timeSincePressed;
+
+            StartCoroutine(S_Utils.Delay(remainingDelay, () =>
+            {
+                tutorialAttackActionPressed = false;
+                OnAttackInputCancel(ctx);
+                OnTutorialAttackFinish(ctx);
+            }));
+        }
+    }
+
     void EnableTutorialInteractInput()
     {
         DisableTutorialInputs();
         iaPlayerInput.Tutorial.Interact.performed += OnInteractInput;
+        iaPlayerInput.Tutorial.Interact.performed += OnTutorialInteractFinish;
     }
     void EnableTutorialTargetingInput()
     {
         DisableTutorialInputs();
         iaPlayerInput.Tutorial.Targeting.performed += OnTargetingInput;
+        iaPlayerInput.Tutorial.Targeting.performed += OnTutorialTargetingFinish;
     }
     void EnableTutorialHealInput()
     {
         DisableTutorialInputs();
         iaPlayerInput.Tutorial.Heal.performed += OnHealInput;
+        iaPlayerInput.Tutorial.Heal.performed += OnTutorialHealFinish;
     }
 
-    void EnableTutorialNextInput()
+    void EnableTutorialNextInput(S_EnumTutorialStep step)
     {
         DisableTutorialInputs();
-        //iaPlayerInput.Tutorial.Next.performed += ;
+
+        _currentNextInputCallback = _ => FinishActionStep(step);
+        iaPlayerInput.Tutorial.Next.performed += _currentNextInputCallback;
     }
 
     void FinishActionStep(S_EnumTutorialStep step)
     {
+        DisableTutorialInputs();
+
         _onTutorialStepCompleted.Call(step);
-        ActivateGameActionInput();
+
+        if (_currentNextInputCallback != null)
+        {
+            iaPlayerInput.Tutorial.Next.performed -= _currentNextInputCallback;
+            _currentNextInputCallback = null;
+        }
+
+        //ActivateGameActionInput();
     }
 
     private void DisableTutorialInputs()
     {
         var tutorial = iaPlayerInput.Tutorial;
         tutorial.Parry.performed -= OnParryInput;
-        //tutorial.Next.performed -= ; //Need to add action to this event
+        if (_currentNextInputCallback != null)
+        {
+            tutorial.Next.performed -= _currentNextInputCallback;
+            _currentNextInputCallback = null;
+        }
         tutorial.SwapTarget.performed -= OnSwapTargetInput;
         tutorial.Dodge.performed -= OnDodgeInput;
-        tutorial.Attack.performed -= OnAttackInput;
-        tutorial.Attack.canceled -= OnAttackInputCancel;
+
+        tutorial.Attack.performed -= AttackPressedTuto;
+        tutorial.Attack.canceled -= AttackCancelTuto;
+
         tutorial.Interact.performed -= OnInteractInput;
         tutorial.Targeting.performed -= OnTargetingInput;
         tutorial.Heal.performed -= OnHealInput;
+
+        tutorial.Parry.performed -= OnTutorialParryFinish;
+        tutorial.Parry.performed -= OnTutorialParryProjectileFinish;
+        tutorial.SwapTarget.performed -= OnTutorialSwapTargetFinish;
+        tutorial.Dodge.performed -= OnTutorialDodgeFinish;
+        tutorial.Attack.canceled -= OnTutorialAttackFinish;
+        tutorial.Interact.performed -= OnTutorialInteractFinish;
+        tutorial.Targeting.performed -= OnTutorialTargetingFinish;
+        tutorial.Heal.performed -= OnTutorialHealFinish;
     }
 
     private void ActivateTutorialActionInput()
@@ -459,27 +550,52 @@ public class S_InputsManager : MonoBehaviour
         switch (tutoStep)
         {
             case S_EnumTutorialStep.Movement:
+                EnableTutorialNextInput(S_EnumTutorialStep.Movement);
                 break;
             case S_EnumTutorialStep.Dodge:
+                EnableTutorialDodgeInput();
                 break;
             case S_EnumTutorialStep.Attack:
+                EnableTutorialAttackInput();
                 break;
-            case S_EnumTutorialStep.Health:
+            case S_EnumTutorialStep.Heal:
+                EnableTutorialHealInput();
                 break;
             case S_EnumTutorialStep.Conviction:
+                EnableTutorialNextInput(S_EnumTutorialStep.Conviction);
                 break;
             case S_EnumTutorialStep.Parry:
                 EnableTutorialParryInput();
                 break;
             case S_EnumTutorialStep.Targeting:
+                EnableTutorialTargetingInput();
                 break;
             case S_EnumTutorialStep.AttackSignaling:
+                EnableTutorialNextInput(S_EnumTutorialStep.AttackSignaling);
                 break;
             case S_EnumTutorialStep.Interact:
+                EnableTutorialInteractInput();
+                break;
+            case S_EnumTutorialStep.SwapTarget:
+                EnableTutoriaSwapTargetInput();
+                break;
+            case S_EnumTutorialStep.None:
+                break;
+            case S_EnumTutorialStep.ParryProjectile:
+                EnableTutorialParryProjectileInput();
                 break;
             default:
                 break;
         }
     }
+    private void OnTutorialParryFinish(InputAction.CallbackContext ctx) => FinishActionStep(S_EnumTutorialStep.Parry);
+    private void OnTutorialParryProjectileFinish(InputAction.CallbackContext ctx) => FinishActionStep(S_EnumTutorialStep.ParryProjectile);
+    private void OnTutorialSwapTargetFinish(InputAction.CallbackContext ctx) => FinishActionStep(S_EnumTutorialStep.SwapTarget);
+    private void OnTutorialDodgeFinish(InputAction.CallbackContext ctx) => FinishActionStep(S_EnumTutorialStep.Dodge);
+    private void OnTutorialAttackFinish(InputAction.CallbackContext ctx) => FinishActionStep(S_EnumTutorialStep.Attack);
+    private void OnTutorialInteractFinish(InputAction.CallbackContext ctx) => FinishActionStep(S_EnumTutorialStep.Interact);
+    private void OnTutorialTargetingFinish(InputAction.CallbackContext ctx) => FinishActionStep(S_EnumTutorialStep.Targeting);
+    private void OnTutorialHealFinish(InputAction.CallbackContext ctx) => FinishActionStep(S_EnumTutorialStep.Heal);
+
 
 }

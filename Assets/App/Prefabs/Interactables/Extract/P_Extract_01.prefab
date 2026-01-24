@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: rseOnSendConsoleMessage
       value: 
       objectReference: {fileID: 11400000, guid: e2e3ecd3153d9a14d9d9e380efc21861, type: 2}
+    - target: {fileID: 7756285431313829311, guid: 5e9cc9e5f850bef4a91c41277ebf951b, type: 3}
+      propertyPath: maxDistance
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 7893335476958702515, guid: 5e9cc9e5f850bef4a91c41277ebf951b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

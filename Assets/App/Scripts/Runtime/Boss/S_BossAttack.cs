@@ -90,6 +90,12 @@ public class S_BossAttack : MonoBehaviour
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnEndFly onEndFly;
 
+    [TabGroup("Inputs")]
+    [SerializeField] private RSE_OnBossDeath rseOnBossDeath;
+
+    [TabGroup("Inputs")]
+    [SerializeField] private RSE_OnPlayerDeath rseOnPlayerDeath;
+
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnPlayParticle rseOnPlayParticle;
 
@@ -106,23 +112,36 @@ public class S_BossAttack : MonoBehaviour
 
     private S_ClassBossAttack currentAttack = null;
     [HideInInspector] public AnimatorOverrideController overrideController = null;
-    private Coroutine pingPongJumpCoroutine = null;
     private Vector3 pingPongStartPos;
     private Vector3 pingPongPeakPos;
     private int pingPongAnimNumb = 0;
     private bool pingPongInAir = false;
 
+    private Coroutine pingPongJumpCoroutine = null;
+    private Coroutine pingPongFlyCoroutine = null;
+    private Coroutine pingPongDescendCoroutine = null;
+    private Coroutine pingPongCoroutine = null;
+
+    private Coroutine ballsFlyCoroutine = null;
+    private Coroutine ballsCoroutine = null;
+
+    private Coroutine gatheringJumpCoroutine = null;
+    private Coroutine gatheringCoroutine = null;
 
     private void OnEnable()
     {
         onExecuteAttack.action += DoAttackChoose;
         onEndFly.action += PingPongDescend;
+        rseOnBossDeath.action += StopAllAttack;
+        rseOnPlayerDeath.action += StopAllAttack;
     }
 
     private void OnDisable()
     {
         onExecuteAttack.action -= DoAttackChoose;
         onEndFly.action -= PingPongDescend;
+        rseOnBossDeath.action -= StopAllAttack;
+        rseOnPlayerDeath.action -= StopAllAttack;
     }
 
     private void DoAttackChoose(S_ClassBossAttack attack)
@@ -131,12 +150,6 @@ public class S_BossAttack : MonoBehaviour
 
         switch (currentAttack.attackName)
         {
-            case "Simon":
-                Simon();
-                break;
-            case "Dualliste":
-                Dualliste();
-                break;
             case "PingPong":
                 PingPong();
                 break;
@@ -153,14 +166,54 @@ public class S_BossAttack : MonoBehaviour
     }
 
     #region Attack Phase 2
-    private void Simon()
+    private void StopAllAttack()
     {
-    }
+        StopAllCoroutines();
 
-    private void Dualliste()
-    {
-    }
+        if (pingPongJumpCoroutine != null)
+        {
+            StopCoroutine(pingPongJumpCoroutine);
+            pingPongJumpCoroutine = null;
+        }
+        if (pingPongFlyCoroutine != null)
+        {
+            StopCoroutine(pingPongFlyCoroutine);
+            pingPongFlyCoroutine = null;
+        }
+        if (pingPongCoroutine != null)
+        {
+            StopCoroutine(pingPongCoroutine);
+            pingPongCoroutine = null;
+        }
+        if (pingPongDescendCoroutine != null)
+        {
+            StopCoroutine(pingPongDescendCoroutine);
+            pingPongDescendCoroutine = null;
+        }
 
+        if (ballsFlyCoroutine != null)
+        {
+            StopCoroutine(ballsFlyCoroutine);
+            ballsCoroutine = null;
+        }
+        if (ballsCoroutine != null)
+        {
+            StopCoroutine(ballsFlyCoroutine);
+            ballsCoroutine = null;
+        }
+
+        if (gatheringJumpCoroutine != null)
+        {
+            StopCoroutine(gatheringJumpCoroutine);
+            gatheringJumpCoroutine = null;
+        }
+        if (gatheringCoroutine != null)
+        {
+            StopCoroutine(gatheringCoroutine);
+            gatheringCoroutine = null;
+        }
+    }
+    
     #region PingPong
     private void PingPong()
     {
@@ -205,7 +258,12 @@ public class S_BossAttack : MonoBehaviour
             })
             .OnComplete(() =>
             {
-                StartCoroutine(PingPongFly(animNumb));
+                if (pingPongFlyCoroutine != null)
+                {
+                    StopCoroutine(pingPongFlyCoroutine);
+                    pingPongFlyCoroutine = null;
+                }
+                pingPongFlyCoroutine = StartCoroutine(PingPongFly(animNumb));
             });
         yield return null;
     }
@@ -255,7 +313,13 @@ public class S_BossAttack : MonoBehaviour
                 rbBody.isKinematic = true;
                 pingPongAnimNumb = animNumb;
                 pingPongInAir = true;
-                StartCoroutine(PingPongCoroutine(animNumb));
+
+                if (pingPongCoroutine != null)
+                {
+                    StopCoroutine(pingPongCoroutine);
+                    pingPongCoroutine = null;
+                }
+                pingPongCoroutine = StartCoroutine(PingPongCoroutine(animNumb));
             });
 
     }
@@ -263,7 +327,12 @@ public class S_BossAttack : MonoBehaviour
     {
         if (pingPongInAir)
         {
-            StartCoroutine(PingPongDescendCoroutine());
+            if (pingPongDescendCoroutine != null)
+            {
+                StopCoroutine(pingPongDescendCoroutine);
+                pingPongDescendCoroutine = null;
+            }
+            pingPongDescendCoroutine = StartCoroutine(PingPongDescendCoroutine());
         }
     }
     private IEnumerator PingPongDescendCoroutine()
@@ -341,7 +410,12 @@ public class S_BossAttack : MonoBehaviour
     #region Balls
     private void Balls()
     {
-        StartCoroutine(BallsFly(true));
+        if (ballsFlyCoroutine != null)
+        {
+            StopCoroutine(ballsFlyCoroutine);
+            ballsFlyCoroutine = null;
+        }
+        ballsFlyCoroutine = StartCoroutine(BallsFly(true));
     }
 
     private IEnumerator BallsFly(bool stun)
@@ -390,7 +464,13 @@ public class S_BossAttack : MonoBehaviour
                 rbBody.isKinematic = true;
                 pingPongAnimNumb = animNumb;
                 pingPongInAir = true;
-                StartCoroutine(BallsCoroutine(animNumb, stun));
+
+                if (ballsCoroutine != null)
+                {
+                    StopCoroutine(ballsCoroutine);
+                    ballsCoroutine = null;
+                }
+                ballsCoroutine = StartCoroutine(BallsCoroutine(animNumb, stun));
             });
     }
 
@@ -442,11 +522,16 @@ public class S_BossAttack : MonoBehaviour
     {
 
         Debug.Log("Gathering Jump");
-        StartCoroutine(GatheringCoroutine(rbBody, aimPointPlayer.position, backDistanceGathering, jumpPowerGathering, durationGathering, 1));
+        if (gatheringJumpCoroutine != null)
+        {
+            StopCoroutine(gatheringJumpCoroutine);
+            gatheringJumpCoroutine = null;
+        }
+        gatheringJumpCoroutine = StartCoroutine(GatheringJumpCoroutine(rbBody, aimPointPlayer.position, backDistanceGathering, jumpPowerGathering, durationGathering, 1));
 
     }
 
-    private IEnumerator GatheringCoroutine(Rigidbody rb, Vector3 playerPos, float distance, float jumpPower, float duration, int numJumps, bool keepY = true)
+    private IEnumerator GatheringJumpCoroutine(Rigidbody rb, Vector3 playerPos, float distance, float jumpPower, float duration, int numJumps, bool keepY = true)
     {
         int animNumb = 0;
         bossNavMeshAgent.enabled = false;
@@ -480,12 +565,17 @@ public class S_BossAttack : MonoBehaviour
             })
             .OnComplete(() =>
             {
-                StartCoroutine(GatheringAttack(animNumb));
+                if (gatheringCoroutine != null)
+                {
+                    StopCoroutine(gatheringCoroutine);
+                    gatheringCoroutine = null;
+                }
+                gatheringCoroutine = StartCoroutine(GatheringCoroutine(animNumb));
             });
         yield return null;
 
     }
-    private IEnumerator GatheringAttack(int value)
+    private IEnumerator GatheringCoroutine(int value)
     {
         int animNumb = value;
 
@@ -525,7 +615,6 @@ public class S_BossAttack : MonoBehaviour
         rseOnPlayParticle.Call();
         bossNavMeshAgent.enabled = true;
         rseOnEndAttack.Call();
-
     }
     #endregion
 

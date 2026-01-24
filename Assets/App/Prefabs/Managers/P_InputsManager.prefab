@@ -81,7 +81,7 @@ MonoBehaviour:
   rseOnUiActionInputEnabled: {fileID: 11400000, guid: 24433aa59215e0d49a3c0da4426f2945, type: 2}
   rseOnGameActionInputEnabled: {fileID: 11400000, guid: 0526673c0b0752b418ffdef1cdaaf184, type: 2}
   rseOnCinematicInputEnabled: {fileID: 11400000, guid: 4a8e19feb57a19146b6b4bf5ad1cf371, type: 2}
-  _onRequestStartTutorialStep: {fileID: 11400000, guid: c7e748c38ce2f3242ad3ce2dedebbbaf, type: 2}
+  _onRequestAcceptedTutorialStep: {fileID: 11400000, guid: b9a2b0d431eef6a4fb87f1922b03ab57, type: 2}
   rseOnPlayerMove: {fileID: 11400000, guid: 881d0608fef60064c9e33701b880054c, type: 2}
   rseOnPlayerAttack: {fileID: 11400000, guid: 87ff9d1d837c0324eb87e1b22c96bdf5, type: 2}
   rseOnPlayerAttackInputCancel: {fileID: 11400000, guid: 3409a69fdaba2c54cbb587daee9258f3, type: 2}
@@ -99,3 +99,4 @@ MonoBehaviour:
   rseOnSkipCancelInput: {fileID: 11400000, guid: de9971957d02b954588dc0600794c05f, type: 2}
   rsoCurrentInputActionMap: {fileID: 11400000, guid: 3b4289fad93b77545a9c16fd6b2cdf4e, type: 2}
   _onTutorialStepCompleted: {fileID: 11400000, guid: 5fb3f5b36d183ea4ea68362155d328a6, type: 2}
+  _rseOnGamePause: {fileID: 11400000, guid: ae0312c6248bf454a8f047511417352d, type: 2}
