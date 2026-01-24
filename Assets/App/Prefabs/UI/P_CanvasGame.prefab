@@ -14660,6 +14660,7 @@ MonoBehaviour:
   rseOnHideMouseCursor: {fileID: 11400000, guid: cbddb45ab2313e443bf895053f04fe1e, type: 2}
   rseOnResetFocus: {fileID: 11400000, guid: 49e933a059aabdf4ab8547deb65c6764, type: 2}
   rseOnGameActionInputEnabled: {fileID: 11400000, guid: 0526673c0b0752b418ffdef1cdaaf184, type: 2}
+  rseOnLookActivated: {fileID: 11400000, guid: ae1843c9e0dc35f4f9d4213dbed65142, type: 2}
   rsoGameInPause: {fileID: 11400000, guid: bdeb21dbb174a4d40baf0b4969e7a47a, type: 2}
   rsoInGame: {fileID: 11400000, guid: 943dbfd29f5e329458fb1745ff11f0ba, type: 2}
   rsoCurrentWindows: {fileID: 11400000, guid: 4f6db46974f57594082b5f18f257f781, type: 2}

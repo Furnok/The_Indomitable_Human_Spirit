@@ -72,6 +72,9 @@ public class S_CameraManager : MonoBehaviour
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnCameraFOV rseOnCameraFOV;
 
+    [TabGroup("Inputs")]
+    [SerializeField] private RSE_OnLookActivated rseOnLookActivated;
+
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnCinematicInputEnabled rseOnCinematicInputEnabled;
 
@@ -128,8 +131,6 @@ public class S_CameraManager : MonoBehaviour
         cinemachineCameraPlayer.Target.TrackingTarget = playerPoint;
 
         currentCam = cinemachineCameraPlayer;
-
-        LookActivated(true);
     }
 
     private void OnEnable()
@@ -147,6 +148,7 @@ public class S_CameraManager : MonoBehaviour
         rseOnResetCam.action += ResetCam;
         rseOnPlayerMove.action += InputsMove;
         rseOnCameraFOV.action += HandleFOV;
+        rseOnLookActivated.action += LookActivated;
     }
 
     private void OnDisable()
@@ -164,6 +166,7 @@ public class S_CameraManager : MonoBehaviour
         rseOnResetCam.action -= ResetCam;
         rseOnPlayerMove.action -= InputsMove;
         rseOnCameraFOV.action -= HandleFOV;
+        rseOnLookActivated.action -= LookActivated;
     }
 
     private void Update()
