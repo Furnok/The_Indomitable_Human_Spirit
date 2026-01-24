@@ -128,7 +128,6 @@ public class S_UIMenu : MonoBehaviour
 
                 if (!string.IsNullOrEmpty(levelName.Name))
                 {
-                    Scene currentScene = SceneManager.GetActiveScene();
                     rseOnLoadScene.Call(levelName.Name);
                 }
                 else
