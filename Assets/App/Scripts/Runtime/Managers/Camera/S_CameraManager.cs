@@ -253,6 +253,7 @@ public class S_CameraManager : MonoBehaviour
 
         cinemachineCameraOrbitalFollow.HorizontalAxis.Value = yaw;
         cinemachineCameraOrbitalFollow.VerticalAxis.Value = cinemachineCameraOrbitalFollow.VerticalAxis.Center;
+        cinemachineCameraPlayer.Lens.FieldOfView = 60;
     }
 
     private IEnumerator Tp()
