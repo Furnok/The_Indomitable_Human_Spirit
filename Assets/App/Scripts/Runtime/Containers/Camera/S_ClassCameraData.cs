@@ -12,7 +12,13 @@ public class S_ClassCameraData
 
     public float shoulderOffsetAmountNegative = 0;
 
-    public float shoulderOffsetDistanceMulti = 0;
+    public float maxShoulderOffset = 0;
+
+    public float maxFrontOffset = 0;
+
+    public float maxBackOffset = 0;
+
+    public float maxShoulderDistance = 0;
 
     [SuffixLabel("°", Overlay = true)]
     public float minVerticalCameraPlayer = 0;
@@ -47,7 +53,7 @@ public class S_ClassCameraData
     public float holdSkipTime = 0;
 
     [SuffixLabel("s", Overlay = true)]
-    public float StartDisplaySkipTime = 0;
+    public float startDisplaySkipTime = 0;
 
     [Title("Player")]
     public float fadeSpeedPlayer = 0;

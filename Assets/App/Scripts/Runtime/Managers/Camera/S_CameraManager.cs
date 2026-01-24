@@ -435,11 +435,11 @@ public class S_CameraManager : MonoBehaviour
         {
             if (move.x > 0.25f && lastDirection <= 0)
             {
-                //lastDirection = move.x;
+                lastDirection = move.x;
             }
             else if (move.x < -0.25f && lastDirection >= 0)
             {
-                //lastDirection = move.x;
+                lastDirection = move.x;
             }
         }
     }
@@ -447,15 +447,22 @@ public class S_CameraManager : MonoBehaviour
     private void ChangeShoulderOffsetWorld(float sideAmount)
     {
         Vector3 toTarget = currentTarget.GetComponent<S_AimPointProvider>().GetAimPoint().position - playerPos.position;
+
         float distance = toTarget.magnitude;
         Vector3 direction = toTarget.normalized;
 
         Vector3 cameraRight = Vector3.Cross(Vector3.up, direction).normalized;
-        Vector3 cameraForward = Vector3.Cross(direction, cameraRight).normalized;
 
-        float distanceMultiplier = (1f / Mathf.Max(distance, 0.1f)) * ssoCameraData.Value.shoulderOffsetDistanceMulti;
+        float closeFactor = Mathf.Clamp01(1f - (distance / ssoCameraData.Value.maxShoulderDistance));
 
-        Vector3 desiredOffset = cameraRight * (sideAmount * distanceMultiplier) + cameraForward;
+        float sideOffsetAmount = sideAmount * ssoCameraData.Value.maxShoulderOffset * closeFactor;
+
+        float forwardAmount = ssoCameraData.Value.maxFrontOffset * closeFactor;
+        float backwardAmount = ssoCameraData.Value.maxBackOffset * (1f - closeFactor);
+
+        float forwardOffsetAmount = forwardAmount - backwardAmount;
+
+        Vector3 desiredOffset = cameraRight * sideOffsetAmount + direction * forwardOffsetAmount;
         desiredOffset.y = cinemachineCameraOrbitalFollow.TargetOffset.y;
 
         cinemachineCameraOrbitalFollow.TargetOffset = Vector3.SmoothDamp(cinemachineCameraOrbitalFollow.TargetOffset, desiredOffset, ref targetOffsetVelocity, ssoCameraData.Value.offsetTransitionUpdateTime);
@@ -469,7 +476,7 @@ public class S_CameraManager : MonoBehaviour
 
     private void StartSkipTimer()
     {
-        skipRoutine = StartCoroutine(S_Utils.Delay(ssoCameraData.Value.StartDisplaySkipTime, () =>
+        skipRoutine = StartCoroutine(S_Utils.Delay(ssoCameraData.Value.startDisplaySkipTime, () =>
         {
             skipHold = 0f;
 
