@@ -1023,7 +1023,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6067497928927017152, guid: bcf2f15e0b0798d498028957e3f553ca, type: 3}
       propertyPath: maxDistance
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1535,7 +1535,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followCam: 1
-  maxDistance: 20
+  maxDistance: 30
 --- !u!114 &1285449951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2925,7 +2925,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6775232759041604376, guid: 41b33705377ccbe4eab4a204cdeda7c0, type: 3}
       propertyPath: maxDistance
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3445,6 +3445,10 @@ PrefabInstance:
     - target: {fileID: 4159629814828498666, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
       propertyPath: levelName.scenePath
       value: Assets/App/Scenes/SC_MainV1.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 4531223415954674657, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6197051584241607373, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
       propertyPath: haveGameOver

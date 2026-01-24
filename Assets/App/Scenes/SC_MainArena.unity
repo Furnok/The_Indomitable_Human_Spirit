@@ -34792,6 +34792,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_CanvasGame
       objectReference: {fileID: 0}
+    - target: {fileID: 4531223415954674657, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6197051584241607373, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
       propertyPath: haveGameOver
       value: 1
