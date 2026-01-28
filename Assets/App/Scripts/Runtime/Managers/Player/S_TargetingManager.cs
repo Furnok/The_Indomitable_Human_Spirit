@@ -87,6 +87,9 @@ public class S_TargetingManager : MonoBehaviour
     [SerializeField] private RSO_TargetPosition rsoTargetPosition;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSO_CurrentTarget rsoCurrentTarget;
+
+    [TabGroup("Outputs")]
     [SerializeField] private SSO_PlayerMaxDistanceTargeting ssoPlayerMaxDistanceTargeting;
 
     [TabGroup("Outputs")]
@@ -100,6 +103,9 @@ public class S_TargetingManager : MonoBehaviour
 
     [TabGroup("Outputs")]
     [SerializeField] private SSO_Display ssoDisplay;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private SSO_CameraData ssoCameraData;
 
     private GameObject currentTarget = null;
     private HashSet<GameObject> targetsPossible = new();
@@ -402,6 +408,7 @@ public class S_TargetingManager : MonoBehaviour
         }
 
         currentTarget = TargetSelection();
+        rsoCurrentTarget.Value = currentTarget;
 
         if (currentTarget != null)
         {
@@ -439,9 +446,17 @@ public class S_TargetingManager : MonoBehaviour
             rseOnStopTargeting.Call();
         }
 
+        S_ClassCameraFOV fov = new S_ClassCameraFOV();
+        fov.value = 60;
+        fov.time = ssoCameraData.Value.fovFightSwitchTime;
+        fov.reset = true;
+
+        rseOnCameraFOV.Call(fov);
+
         RuntimeManager.PlayOneShot(_targetLockOffSound);
 
         currentTarget = null;
+        rsoCurrentTarget.Value = currentTarget;
         obstacleTimer = 0f;
     }
 
@@ -457,6 +472,7 @@ public class S_TargetingManager : MonoBehaviour
                 rseOnPlayerCancelTargeting.Call(currentTarget);
 
                 currentTarget = TargetSelection();
+                rsoCurrentTarget.Value = currentTarget;
 
                 if (currentTarget != null)
                 {
@@ -548,6 +564,7 @@ public class S_TargetingManager : MonoBehaviour
         {
             rseOnPlayerCancelTargeting.Call(currentTarget);
             currentTarget = bestTarget;
+            rsoCurrentTarget.Value = currentTarget;
             rseOnNewTargeting.Call(bestTarget);
 
             S_ClassCameraFOV fov = new S_ClassCameraFOV();
