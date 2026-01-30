@@ -20,6 +20,12 @@ public class S_ClassBossAttack
 
     public float difficultyLevel = 0;
 
+    public float distanceMin = 0;
+
+    public float distanceToChase = 0;
+
+    public float distanceToLoseAttack = 0;
+
     [Title("Combo Settings")]
     public List<S_ClassAnimation> listComboData = new();
 }

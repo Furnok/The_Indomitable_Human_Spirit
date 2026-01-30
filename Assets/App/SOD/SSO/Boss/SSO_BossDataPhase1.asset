@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SSO_BossDataPhase1
   m_EditorClassIdentifier: 
   _value:
-    health: 100
-    walkSpeed: 3
-    runSpeed: 5
+    health: 200
+    walkSpeed: 2.5
+    runSpeed: 4
     phaseState: 0
     timeDisplay: 3
     stunDuration: 3
@@ -37,10 +37,13 @@ MonoBehaviour:
     listAttack:
     - attackName: Makashi
       isSpecialAttack: 0
-      timeAfterAttack: 0
+      timeAfterAttack: 2
       isAttackDistance: 0
       pvBossUnlock: 100
       difficultyLevel: 5
+      distanceMin: 1
+      distanceToChase: 2
+      distanceToLoseAttack: 5
       listComboData:
       - animation: {fileID: 7400000, guid: 522cadce2a766b9488f3d7df802d82cc, type: 2}
         rootMotionMultiplier: 2
@@ -108,6 +111,6 @@ MonoBehaviour:
           invicibilityDuration: 0
           convictionReduction: 0
           convictionParryGain: 0
-          lastAttack: 0
+          lastAttack: 1
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
