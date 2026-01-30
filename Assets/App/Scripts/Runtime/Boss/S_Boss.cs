@@ -554,6 +554,8 @@ public class S_Boss : MonoBehaviour
         {
             isPlayerDeath = false;
             detectionCollider.enabled = true;
+            rb.isKinematic = false;
+            canAttack = true;
 
             target = null;
 
@@ -672,6 +674,7 @@ public class S_Boss : MonoBehaviour
         animator.SetTrigger(stopAttackParam);
         animator.SetBool(idleAttack, true);
 
+        rb.isKinematic = false;
         isPerformingCombo = false;
         isAttacking = false;
         unlockRotate = false;
