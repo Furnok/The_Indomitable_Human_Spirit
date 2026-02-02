@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d80674f408b915d4daca8362d3ea4b06, type: 3}
-  m_Name: SSO_BossTes_1
+  m_Name: SSO_Ichimanji
   m_EditorClassIdentifier: 
   _value:
     health: 100
