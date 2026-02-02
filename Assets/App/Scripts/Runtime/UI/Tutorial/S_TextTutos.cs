@@ -61,8 +61,6 @@ public class S_TextTutos : MonoBehaviour
 
     private void OnEnable()
     {
-        _rsoDevice.onValueChanged += UpdateText;
-
         LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
     }
 
@@ -75,6 +73,8 @@ public class S_TextTutos : MonoBehaviour
 
     private void Start()
     {
+        _rsoDevice.onValueChanged += UpdateText;
+
         RequestRefreshTemplatesThenApply();
     }
 
