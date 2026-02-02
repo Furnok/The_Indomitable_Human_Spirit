@@ -692,67 +692,37 @@ public class S_Boss : MonoBehaviour
         Debug.Log("Fighting...");
         if (canAttack)
         {
-            float distance = Vector3.Distance(center.transform.position, target.transform.position);
+            canAttack = false;
 
-            if (distance > currentAttack.bossAttack.distanceToLoseAttack)
+            if (currentAttack.bossAttack.attackName == "Gathering" || currentAttack.bossAttack.attackName == "Wings Of Hell")
             {
-                navMeshAgent.speed = ssoBossData.Value.walkSpeed;
-
-                animator.SetBool(idleAttack, false);
-
-                UpdateState(S_EnumBossState.Chase);
-
-                return;
+                listAttackOwnedPossibilities.RemoveAt(listAttackOwnedPossibilities.IndexOf(currentAttack));
+                Debug.Log(listAttackOwnedPossibilities.Count);
             }
             else
             {
-                canAttack = false;
-
-                if (currentAttack.bossAttack.attackName == "Gathering" || currentAttack.bossAttack.attackName == "Wings Of Hell")
-                {
-                    listAttackOwnedPossibilities.RemoveAt(listAttackOwnedPossibilities.IndexOf(currentAttack));
-                    Debug.Log(listAttackOwnedPossibilities.Count);
-                }
-                else
-                {
-                    lastAttack = currentAttack;
-                    currentAttack.frequency++;
-                }
-
-
-                if (currentAttack.bossAttack.isSpecialAttack)
-                {
-                    onExecuteAttack.Call(currentAttack.bossAttack);
-                    isPerformingCombo = true;
-                }
-                else
-                {
-                    if (comboCoroutine != null)
-                    {
-                        StopCoroutine(comboCoroutine);
-                        comboCoroutine = null;
-                    }
-
-                    comboCoroutine = StartCoroutine(PlayComboSequence());
-                }
-
-                return;
+                lastAttack = currentAttack;
+                currentAttack.frequency++;
             }
-        }
-        else if (!isPerformingCombo)
-        {
-            float distance = Vector3.Distance(center.transform.position, target.transform.position);
 
-            if (distance > currentAttack.bossAttack.distanceToLoseAttack)
+
+            if (currentAttack.bossAttack.isSpecialAttack)
             {
-                navMeshAgent.speed = ssoBossData.Value.walkSpeed;
-
-                animator.SetBool(idleAttack, false);
-
-                UpdateState(S_EnumBossState.Chase);
-
-                return;
+                onExecuteAttack.Call(currentAttack.bossAttack);
+                isPerformingCombo = true;
             }
+            else
+            {
+                if (comboCoroutine != null)
+                {
+                    StopCoroutine(comboCoroutine);
+                    comboCoroutine = null;
+                }
+
+                comboCoroutine = StartCoroutine(PlayComboSequence());
+            }
+
+            return;
         }
     }
     private IEnumerator PlayComboSequence()

@@ -528,6 +528,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6240607319024186, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 480381989175066121, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -40
@@ -571,6 +575,10 @@ PrefabInstance:
     - target: {fileID: 1950166472548720307, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
       propertyPath: m_Name
       value: P_BossPhase1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771462203054800011, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 6352494224581732303, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
       propertyPath: bossPhase1UI

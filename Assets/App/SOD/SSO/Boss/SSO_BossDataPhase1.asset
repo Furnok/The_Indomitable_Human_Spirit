@@ -30,7 +30,7 @@ MonoBehaviour:
     difficultyScore: 1
     frequencyScore: 1
     synergieScore: 1
-    minTimeChooseAttack: 1
+    minTimeChooseAttack: 2
     maxTimeChooseAttack: 5
     rotationTime: 0.6
     controllerOverride: {fileID: 22100000, guid: aba806f790b329a418f1c420ffacdb92, type: 2}
