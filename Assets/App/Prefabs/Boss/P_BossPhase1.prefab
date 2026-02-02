@@ -572,6 +572,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_BossPhase1
       objectReference: {fileID: 0}
+    - target: {fileID: 5771462203054800011, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 6352494224581732303, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
       propertyPath: bossPhase1UI
       value: 

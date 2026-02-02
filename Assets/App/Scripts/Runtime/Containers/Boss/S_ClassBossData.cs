@@ -17,9 +17,11 @@ public class S_ClassBossData
 
     [Title("UI")]
     [ShowIf("isPhase1")]
+    [SuffixLabel("s", Overlay = true)]
     public float timeDisplay;
 
     [Title("Stun")]
+    [SuffixLabel("s", Overlay = true)]
     public float stunDuration = 0;
 
     [Title("Chase")]
@@ -29,8 +31,10 @@ public class S_ClassBossData
     public float distanceToRun = 0;
 
     [Title("Strafe")]
+    [SuffixLabel("°", Overlay = true)]
     public float strafeRotationMin = 0;
 
+    [SuffixLabel("°", Overlay = true)]
     public float strafeRotationMax = 0;
 
     [Title("Combat")]
@@ -38,6 +42,7 @@ public class S_ClassBossData
 
     public float maxDifficultyLevel;
 
+    [SuffixLabel("s", Overlay = true)]
     public float difficultyGainPerSecond;
 
     public float difficultyLoseWhenPlayerHit;
