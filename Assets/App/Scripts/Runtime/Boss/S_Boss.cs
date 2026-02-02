@@ -397,6 +397,7 @@ public class S_Boss : MonoBehaviour
                 if (currentAttack.bossAttack.isAttackDistance)
                 {
                     UpdateState(S_EnumBossState.Combat);
+                    isChasing = false;
                 }
                 else
                 {
@@ -408,6 +409,7 @@ public class S_Boss : MonoBehaviour
         else if (destinationReached)
         {
             UpdateState(S_EnumBossState.Combat);
+            isChasing = false;
         }
     }
     #endregion
@@ -676,9 +678,10 @@ public class S_Boss : MonoBehaviour
 
         rb.isKinematic = false;
         isPerformingCombo = false;
+        isFighting = false;
         isAttacking = false;
         unlockRotate = false;
-        ChooseAttack();
+        UpdateState(S_EnumBossState.Chase);
         if (resetAttack != null)
         {
             StopCoroutine(resetAttack);
@@ -788,7 +791,7 @@ public class S_Boss : MonoBehaviour
             target = null;
         }
 
-        ChooseAttack();
+        UpdateState(S_EnumBossState.Chase);
         if (resetAttack != null)
         {
             StopCoroutine(resetAttack);
