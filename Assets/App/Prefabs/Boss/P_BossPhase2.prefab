@@ -138,6 +138,10 @@ PrefabInstance:
       propertyPath: ssoBossData
       value: 
       objectReference: {fileID: 11400000, guid: 36ebc4169508682489e0a76e586210c0, type: 2}
+    - target: {fileID: 6352494224581732303, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+      propertyPath: rseOnBossHealthSetup
+      value: 
+      objectReference: {fileID: 11400000, guid: fa5e674b008435f468e167ec38d17337, type: 2}
     - target: {fileID: 6465511601208726001, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
       propertyPath: rseOnPlayerDeath
       value: 
