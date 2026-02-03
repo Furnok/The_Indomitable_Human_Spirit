@@ -17,11 +17,11 @@ MonoBehaviour:
     shoulderOffsetAmountPositive: 3
     shoulderOffsetAmountNegative: -3
     maxShoulderOffset: 1.5
-    maxFrontOffset: 1.5
+    maxFrontOffset: 3
     maxBackOffset: 1.5
     maxShoulderDistance: 8
-    minVerticalCameraPlayer: -10
-    maxVerticalCameraPlayer: 15
+    minVerticalCameraPlayer: -25
+    maxVerticalCameraPlayer: 10
     offsetTransitionUpdateTime: 0.4
     offsetTransitionTime: 0.4
     fovDodge: 10
