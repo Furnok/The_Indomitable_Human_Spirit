@@ -6,10 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/App/Scenes/SC_MainV1.unity
+    path: Assets/App/Scenes/SC_Game.unity
     guid: b2539c53cd8755042bb5c5fcf7ab0cbd
   - enabled: 1
-    path: Assets/App/Scenes/SC_MainArena.unity
+    path: Assets/App/Scenes/SC_Boss.unity
     guid: b61801952843e2942a42a0b5c2e5ac5b
   - enabled: 1
     path: Assets/App/Scenes/SC_Gym.unity
