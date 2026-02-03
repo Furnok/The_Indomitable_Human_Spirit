@@ -202,7 +202,7 @@ public class S_UISettings : MonoBehaviour
     {
         if (rsoInConsole.Value) return;
 
-        if (rsoInConsole.Value && dropDownLanguages?.GetComponent<TMP_Dropdown>()?.IsExpanded == true || dropDownResolutions?.GetComponent<TMP_Dropdown>()?.IsExpanded == true || dropDownQuality?.GetComponent<TMP_Dropdown>()?.IsExpanded == true)
+        if (dropDownLanguages?.GetComponent<TMP_Dropdown>()?.IsExpanded == true || dropDownResolutions?.GetComponent<TMP_Dropdown>()?.IsExpanded == true || dropDownQuality?.GetComponent<TMP_Dropdown>()?.IsExpanded == true)
         {
             return;
         }
