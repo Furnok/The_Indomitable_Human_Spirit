@@ -189,7 +189,7 @@ public class S_CameraManager : MonoBehaviour
 
         HandleTargeting();
 
-        if (lastDirection > 0)
+        if (lastDirection > 0)   
         {
             ChangeShoulderOffsetWorld(ssoCameraData.Value.shoulderOffsetAmountNegative);
         }
