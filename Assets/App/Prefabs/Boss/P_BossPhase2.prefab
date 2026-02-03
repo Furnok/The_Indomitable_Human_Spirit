@@ -139,6 +139,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 36ebc4169508682489e0a76e586210c0, type: 2}
     - target: {fileID: 6352494224581732303, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+      propertyPath: rseOnEndBossP1
+      value: 
+      objectReference: {fileID: 11400000, guid: a21c06250d221c244954874cebe8452f, type: 2}
+    - target: {fileID: 6352494224581732303, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+      propertyPath: rseOnEndBossP2
+      value: 
+      objectReference: {fileID: 11400000, guid: bad8e97ad43c8c44985e6df7981e0470, type: 2}
+    - target: {fileID: 6352494224581732303, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+      propertyPath: rseOnStartBossP1
+      value: 
+      objectReference: {fileID: 11400000, guid: 62b1da89936f5104d8255d8c58eacecf, type: 2}
+    - target: {fileID: 6352494224581732303, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+      propertyPath: rseOnStartBossP2
+      value: 
+      objectReference: {fileID: 11400000, guid: cb17ca66c2d0ac543b2ac2048eac14a3, type: 2}
+    - target: {fileID: 6352494224581732303, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
       propertyPath: rseOnBossHealthSetup
       value: 
       objectReference: {fileID: 11400000, guid: fa5e674b008435f468e167ec38d17337, type: 2}

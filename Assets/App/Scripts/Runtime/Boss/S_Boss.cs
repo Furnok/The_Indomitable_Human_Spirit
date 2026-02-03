@@ -121,6 +121,18 @@ public class S_Boss : MonoBehaviour
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnBossDeath rseOnBossDeath;
 
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnStartBossP1 rseOnStartBossP1;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnStartBossP2 rseOnStartBossP2;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnEndBossP1 rseOnEndBossP1;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnEndBossP2 rseOnEndBossP2;
+
     private List<S_ClassAttackOwned> listAttackOwneds = new();
     private List<S_ClassAttackOwned> listAttackOwnedPossibilities = new();
     private S_EnumBossState currentState = S_EnumBossState.Idle;
@@ -358,6 +370,15 @@ public class S_Boss : MonoBehaviour
                 rseOnDisplayBossHealth.Call(true);
                 rseOnBossHealthSetup.Call(maxHealth);
             }
+
+            if (currentPhaseState == S_EnumBossPhaseState.Phase1)
+            {
+                rseOnStartBossP1.Call();
+            }
+            else if (currentPhaseState == S_EnumBossPhaseState.Phase2)
+            {
+                rseOnStartBossP2.Call();
+            }
         }
         else
         {
@@ -520,6 +541,15 @@ public class S_Boss : MonoBehaviour
         bodyCollider.enabled = false;
         detectionCollider.enabled = false;
         hurtCollider.enabled = false;
+
+        if (currentPhaseState == S_EnumBossPhaseState.Phase1)
+        {
+            rseOnEndBossP1.Call();
+        }
+        else if (currentPhaseState == S_EnumBossPhaseState.Phase2)
+        {
+            rseOnEndBossP2.Call();
+        }
     }
     #endregion
 
