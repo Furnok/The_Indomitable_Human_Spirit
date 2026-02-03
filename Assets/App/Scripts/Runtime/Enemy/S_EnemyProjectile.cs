@@ -56,7 +56,7 @@ public class S_EnemyProjectile : MonoBehaviour, I_AttackProvider, I_ReflectableP
 
     public void Initialize(Transform owner, Transform target = null, S_StructEnemyAttackData attackData = new())
     {
-        if (target == null) return;
+        if (target == null) Destroy(gameObject);
 
         this.target = target;
         this.direction = transform.forward;
