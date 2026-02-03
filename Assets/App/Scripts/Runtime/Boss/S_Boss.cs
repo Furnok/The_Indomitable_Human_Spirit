@@ -160,6 +160,9 @@ public class S_Boss : MonoBehaviour
     private bool isAttacking = false;
     private bool unlockRotate = false;
 
+    private Vector3 posSpawn = Vector3.zero;
+    private Quaternion rotSpawn = Quaternion.identity;
+
     #endregion
 
     private void Awake()
@@ -227,6 +230,9 @@ public class S_Boss : MonoBehaviour
     }
     private void Start()
     {
+        posSpawn = transform.position;
+        rotSpawn = transform.rotation;
+
         UpdateLastHealthValue();
         UpdateState(S_EnumBossState.Idle);
         bossDifficultyLevel = ssoBossData.Value.initialBossDifficultyLevel;
@@ -540,14 +546,6 @@ public class S_Boss : MonoBehaviour
         listAttackOwnedPossibilities.Clear();
         lastValueHealth = 101f;
         isPlayerDeath = true;
-
-        if (isPerformingCombo) pendingState = S_EnumBossState.Idle;
-        else
-        {
-            target = null;
-
-            UpdateState(S_EnumBossState.Idle);
-        }
     }
 
     private void PlayerRespawn()
@@ -561,14 +559,17 @@ public class S_Boss : MonoBehaviour
 
             target = null;
 
-            if (currentState != S_EnumBossState.Idle)
-            {
-                animator.SetTrigger(stopAttackParam);
-                animator.SetBool(idleAttack, false);
+            animator.SetTrigger(stopAttackParam);
+            animator.SetBool(idleAttack, false);
 
-                UpdateState(S_EnumBossState.Idle);
-            }
+            UpdateState(S_EnumBossState.Idle);
+
             UpdateLastHealthValue();
+
+            ResetBoss();
+
+            transform.position = posSpawn;
+            transform.rotation = rotSpawn;
         }
     } 
     #endregion
@@ -750,6 +751,13 @@ public class S_Boss : MonoBehaviour
 
             isAttacking = false;
             RotateEnemy();
+
+            if (target == null)
+            {
+                bossAttackData.DisableWeaponCollider();
+                bossAttackData.VFXStopTrail();
+                break;
+            }
 
             yield return null;
         }
