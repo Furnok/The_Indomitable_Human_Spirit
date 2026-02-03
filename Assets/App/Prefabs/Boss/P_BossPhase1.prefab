@@ -529,8 +529,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6240607319024186, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+      propertyPath: m_Size.y
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6240607319024186, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 768
+      objectReference: {fileID: 0}
+    - target: {fileID: 338046699455560462, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+      propertyPath: m_BaseOffset
+      value: -0.08
       objectReference: {fileID: 0}
     - target: {fileID: 480381989175066121, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
       propertyPath: m_LocalPosition.x
