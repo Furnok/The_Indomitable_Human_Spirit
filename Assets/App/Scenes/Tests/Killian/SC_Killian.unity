@@ -787,6 +787,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1544788075133630885, guid: 26b32e26939d3614f9dc5380b22f3191, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2795595827533505534, guid: 26b32e26939d3614f9dc5380b22f3191, type: 3}
       propertyPath: m_Name
       value: P_BossPhase1
