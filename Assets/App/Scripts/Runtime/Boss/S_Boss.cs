@@ -539,8 +539,6 @@ public class S_Boss : MonoBehaviour
         detectionCollider.enabled = false;
         listAttackOwnedPossibilities.Clear();
         lastValueHealth = 101f;
-        ultimateAttack = null;
-        currentAttack = null;
         isPlayerDeath = true;
 
         if (isPerformingCombo) pendingState = S_EnumBossState.Idle;
