@@ -53,11 +53,11 @@ public class S_ClassBossData
 
     public float synergieScore;
 
-    [SuffixLabel("s", Overlay = true)]
-    public float minTimeChooseAttack;
+    //[SuffixLabel("s", Overlay = true)]
+    //public float minTimeChooseAttack;
 
-    [SuffixLabel("s", Overlay = true)]
-    public float maxTimeChooseAttack;
+    //[SuffixLabel("s", Overlay = true)]
+    //public float maxTimeChooseAttack;
 
     [SuffixLabel("s", Overlay = true)]
     public float rotationTime = 0;

@@ -227,7 +227,6 @@ public class S_Boss : MonoBehaviour
         UpdateLastHealthValue();
         UpdateState(S_EnumBossState.Idle);
         bossDifficultyLevel = ssoBossData.Value.initialBossDifficultyLevel;
-        Debug.Log(listAttackOwnedPossibilities.Count);
     }
     
     private void Update()
@@ -237,6 +236,8 @@ public class S_Boss : MonoBehaviour
         if (isChasing) Chase();
 
         if (isFighting) Fight();
+
+        Debug.Log(health);
     }
     private void FixedUpdate()
     {
@@ -292,7 +293,6 @@ public class S_Boss : MonoBehaviour
 
     private void ResetBoss()
     {
-        Debug.Log("Resetting Boss State...");
         bossAttackData.DisableWeaponCollider();
         bossAttackData.VFXStopTrail();
         navMeshAgent.enabled = true;
@@ -375,7 +375,6 @@ public class S_Boss : MonoBehaviour
     #region Chase
     private void Chasing()
     {
-        Debug.Log("Boss Chasing");
         isChasing = true;
 
         ChooseAttack();
@@ -417,14 +416,12 @@ public class S_Boss : MonoBehaviour
     #region Idle
     private void Idle()
     {
-        Debug.Log("Boss Idle");
     }
     #endregion
 
     #region Stun
     private void Stun()
     {
-        Debug.Log("Boss Stun!");
         if (stunCoroutine != null)
         {
             StopCoroutine(stunCoroutine);
@@ -465,6 +462,8 @@ public class S_Boss : MonoBehaviour
         if (isDead) return;
 
         if (target != null) UpdateHealth(damage);
+
+        Debug.Log("Boss Took Damage: " + damage);
 
     }
 
@@ -604,7 +603,6 @@ public class S_Boss : MonoBehaviour
             {
                 if(attack.bossAttack.attackName == "Gathering")
                 {
-                    Debug.Log("Unlocking Ultimate Gathering");
                     ultimateAttack = attack;
                 }
                 if (attack.bossAttack.attackName == "Wings Of Hell")
@@ -622,7 +620,6 @@ public class S_Boss : MonoBehaviour
 
     private void ChooseAttack()
     {
-        Debug.Log("Choosing Attack...");
 
         var minAttackFrequency = listAttackOwnedPossibilities.Min(a => a.frequency);
         int roundDifficulty = Mathf.RoundToInt(bossDifficultyLevel);
@@ -649,7 +646,6 @@ public class S_Boss : MonoBehaviour
             var chosenAttack = bestAttacks[Random.Range(0, bestAttacks.Count)];
 
             currentAttack = chosenAttack;
-            Debug.Log("Chosen Attack: " + currentAttack.bossAttack.attackName + canAttack);
 
             foreach (var attack in listAttackOwnedPossibilities) attack.score = 0;
         }
@@ -657,7 +653,6 @@ public class S_Boss : MonoBehaviour
         {
             currentAttack = ultimateAttack;
             ultimateAttack = null;
-            Debug.Log("Chosen Ultimate Attack: " + currentAttack.bossAttack.attackName + canAttack);
             foreach (var attack in listAttackOwnedPossibilities) attack.score = 0;
         }
         
@@ -665,13 +660,11 @@ public class S_Boss : MonoBehaviour
 
     private void Fighting()
     {
-        Debug.Log("Boss Fighting");
         isFighting = true;
         animator.SetBool(idleAttack, true);
     }
     private void SpecialAttackEnd()
     {
-        Debug.Log("Special Attack End");
         rootMotionModifier.Setup(1);
         animator.SetTrigger(stopAttackParam);
         animator.SetBool(idleAttack, true);
@@ -692,7 +685,6 @@ public class S_Boss : MonoBehaviour
     }
     private void Fight()
     {
-        Debug.Log("Fighting...");
         if (canAttack)
         {
             canAttack = false;
@@ -730,7 +722,6 @@ public class S_Boss : MonoBehaviour
     }
     private IEnumerator PlayComboSequence()
     {
-        Debug.Log("Performing Combo: " + currentAttack.bossAttack.attackName);
         isPerformingCombo = true;
 
         yield return null;
@@ -740,7 +731,6 @@ public class S_Boss : MonoBehaviour
 
         for (int i = 0; i < currentAttack.bossAttack.listComboData.Count; i++)
         {
-            Debug.Log("Executing Attack " + (i + 1) + " of " + currentAttack.bossAttack.listComboData.Count);
             isAttacking = true;
             RotateEnemy();
 
