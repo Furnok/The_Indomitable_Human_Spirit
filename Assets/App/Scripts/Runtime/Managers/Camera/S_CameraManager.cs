@@ -180,8 +180,13 @@ public class S_CameraManager : MonoBehaviour
 
         playerPoint.position = playerPos.position;
 
-        HandlePlayerFade();
         HandleSkipHold();
+    }
+
+    private void LateUpdate()
+    {
+        HandlePlayerFade();
+
         HandleTargeting();
 
         if (lastDirection > 0)
