@@ -14708,6 +14708,7 @@ MonoBehaviour:
   textDialogue: {fileID: 1793951959353027247}
   saveWindow: {fileID: 1175000883588103106}
   rseOnDisplayBossHealth: {fileID: 11400000, guid: 052e4c694acd8a444bcd0135bc6f4cea, type: 2}
+  rseOnBossHealthSetup: {fileID: 11400000, guid: fa5e674b008435f468e167ec38d17337, type: 2}
   rseOnUpdateBossHealth: {fileID: 11400000, guid: 1203186c34fa193419cb1fea26546c78, type: 2}
   rseOnPlayerHealthUpdate: {fileID: 11400000, guid: fc90d1a9f1ffb214ebdffdb1dfd83fa0, type: 2}
   rseOnPlayerConvictionUpdate: {fileID: 11400000, guid: 0e8aa31157b1a9041a3864e8c4d5c728, type: 2}

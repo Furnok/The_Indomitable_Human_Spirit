@@ -113,6 +113,9 @@ public class S_Boss : MonoBehaviour
     [SerializeField] private RSE_OnDisplayBossHealth rseOnDisplayBossHealth;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnBossHealthSetup rseOnBossHealthSetup;
+
+    [TabGroup("Outputs")]
     [SerializeField] private RSE_OnUpdateBossHealth rseOnUpdateBossHealth;
 
     [TabGroup("Outputs")]
@@ -346,8 +349,8 @@ public class S_Boss : MonoBehaviour
 
             if(currentPhaseState == S_EnumBossPhaseState.Phase2)
             {
-                rseOnUpdateBossHealth.Call(health);
                 rseOnDisplayBossHealth.Call(true);
+                rseOnBossHealthSetup.Call(maxHealth);
             }
         }
         else

@@ -84,6 +84,9 @@ public class S_UIGameManager : MonoBehaviour
     [SerializeField] private RSE_OnDisplayBossHealth rseOnDisplayBossHealth;
 
     [TabGroup("Inputs")]
+    [SerializeField] private RSE_OnBossHealthSetup rseOnBossHealthSetup;
+
+    [TabGroup("Inputs")]
     [SerializeField] private RSE_OnUpdateBossHealth rseOnUpdateBossHealth;
 
     [TabGroup("Inputs")]
@@ -212,6 +215,7 @@ public class S_UIGameManager : MonoBehaviour
 
     private void OnEnable()
     {
+        rseOnBossHealthSetup.action += SetBossHealthSetup;
         rseOnDisplayBossHealth.action += DisplayBossHealth;
         rseOnUpdateBossHealth.action += SetBossHealthSliderValue;
         rseOnPlayerHealthUpdate.action += SetHealthSliderValue;
@@ -228,6 +232,7 @@ public class S_UIGameManager : MonoBehaviour
 
     private void OnDisable()
     {
+        rseOnBossHealthSetup.action -= SetBossHealthSetup;
         rseOnDisplayBossHealth.action -= DisplayBossHealth;
         rseOnUpdateBossHealth.action -= SetBossHealthSliderValue;
         rseOnPlayerHealthUpdate.action -= SetHealthSliderValue;
@@ -267,12 +272,20 @@ public class S_UIGameManager : MonoBehaviour
             });
         }
     }
+
+    private void SetBossHealthSetup(float health)
+    {
+        sliderBossHealth.maxValue = health;
+        sliderBossHealth.value = health;
+    }
+
     private void SetBossHealthSliderValue(float health)
     {
         bossHealthTween?.Kill();
 
         bossHealthTween = sliderBossHealth.DOValue(health, ssoAnimationSlider.Value).SetEase(Ease.OutCubic);
     }
+
     private void SetHealthSliderValue(float health)
     {
         healthTween?.Kill();
