@@ -113,9 +113,13 @@ public class S_CameraManager : MonoBehaviour
 
     private Coroutine shakeRoutine = null;
     private Coroutine skipRoutine = null;
+    private Coroutine moveRoutine = null;
 
     private bool isSkipping = false;
     private float skipHold = 0;
+
+    private bool isMove = false;
+    private float moveHold = 0;
 
     private const int Focus = 2;
     private const int FocusCinematic = 100;
@@ -181,6 +185,7 @@ public class S_CameraManager : MonoBehaviour
         playerPoint.position = playerPos.position;
 
         HandleSkipHold();
+        HandleMoveHold();
     }
 
     private void LateUpdate()
@@ -396,6 +401,15 @@ public class S_CameraManager : MonoBehaviour
         currentAlpha = Mathf.MoveTowards(currentAlpha, targetAlpha, ssoCameraData.Value.fadeSpeedPlayer * Time.deltaTime);
 
         rseUpdateVisibility.Call(currentAlpha);
+    }
+
+    private void HandleMoveHold()
+    {
+        if (!isMove) return;
+
+        moveHold += Time.deltaTime;
+
+
     }
 
     private void HandleSkipHold()
