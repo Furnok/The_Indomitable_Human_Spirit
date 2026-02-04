@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _value:
     Channel: 0
-    LowFrequency: 0.5
-    HighFrequency: 0.8
-    Duration: 0.5
+    LowFrequency: 0
+    HighFrequency: 1
+    Duration: 0.2
     CurveIntensityInTime:
       serializedVersion: 2
       m_Curve:
@@ -41,4 +41,4 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    UseUnscaledTime: 1
+    UseUnscaledTime: 0

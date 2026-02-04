@@ -104,6 +104,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "AttackUpgrade",
+                    "type": "Button",
+                    "id": "5dcd2407-45eb-4414-9bbc-922e89df6a09",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -121,7 +130,7 @@
                 {
                     "name": "",
                     "id": "204ca329-b895-40eb-9199-297e17e4a58a",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard and mouse",
@@ -502,6 +511,28 @@
                     "action": "Console",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "553f6d8b-51c5-4de6-944f-b44f3370bae4",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AttackUpgrade",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "978e3d31-6a61-4689-b330-7168877b6dfa",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AttackUpgrade",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
