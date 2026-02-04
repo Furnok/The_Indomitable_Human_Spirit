@@ -19,6 +19,7 @@ public class S_TutoManager : MonoBehaviour
     [SerializeField] RSE_OnRequestAcceptedTutorialStep _onRequestAcceptedTutorialStep;
     [SerializeField] RSO_SettingsSaved _rsoSettingsSaved;
     [SerializeField] RSO_Device _rsoDevice;
+    [SerializeField] RSO_HasEnterAreaTuto _rsoHasEnterAreaTuto;
 
     [Header("Outputs")]
     [SerializeField] private RSE_OnGamePause _onGamePause;
@@ -36,6 +37,8 @@ public class S_TutoManager : MonoBehaviour
     {
         _onRequestStartTutorialStep.action += StartTutorialStep;
         _onTutorialStepCompleted.action += EndTutorialStep;
+
+        _rsoHasEnterAreaTuto.Value = false;
     }
     private void OnDisable()
     {
@@ -73,6 +76,8 @@ public class S_TutoManager : MonoBehaviour
 
     void StartTutorialStep(S_EnumTutorialStep tutoStep)
     {
+        if (_rsoHasEnterAreaTuto.Value == false) return;
+
         //switch (tutoStep)
         //{
         //    case S_EnumTutorialStep.Movement:
