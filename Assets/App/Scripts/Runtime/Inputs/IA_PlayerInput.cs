@@ -190,6 +190,15 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AttackUpgrade"",
+                    ""type"": ""Button"",
+                    ""id"": ""5dcd2407-45eb-4414-9bbc-922e89df6a09"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -207,7 +216,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""204ca329-b895-40eb-9199-297e17e4a58a"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard and mouse"",
@@ -588,6 +597,28 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Console"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""553f6d8b-51c5-4de6-944f-b44f3370bae4"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AttackUpgrade"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""978e3d31-6a61-4689-b330-7168877b6dfa"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AttackUpgrade"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1143,6 +1174,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
         m_Game_SwapTarget = m_Game.FindAction("Swap Target", throwIfNotFound: true);
         m_Game_Heal = m_Game.FindAction("Heal", throwIfNotFound: true);
         m_Game_Console = m_Game.FindAction("Console", throwIfNotFound: true);
+        m_Game_AttackUpgrade = m_Game.FindAction("AttackUpgrade", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
@@ -1254,6 +1286,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Game_SwapTarget;
     private readonly InputAction m_Game_Heal;
     private readonly InputAction m_Game_Console;
+    private readonly InputAction m_Game_AttackUpgrade;
     /// <summary>
     /// Provides access to input actions defined in input action map "Game".
     /// </summary>
@@ -1309,6 +1342,10 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Game/Console".
         /// </summary>
         public InputAction @Console => m_Wrapper.m_Game_Console;
+        /// <summary>
+        /// Provides access to the underlying input action "Game/AttackUpgrade".
+        /// </summary>
+        public InputAction @AttackUpgrade => m_Wrapper.m_Game_AttackUpgrade;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1368,6 +1405,9 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
             @Console.started += instance.OnConsole;
             @Console.performed += instance.OnConsole;
             @Console.canceled += instance.OnConsole;
+            @AttackUpgrade.started += instance.OnAttackUpgrade;
+            @AttackUpgrade.performed += instance.OnAttackUpgrade;
+            @AttackUpgrade.canceled += instance.OnAttackUpgrade;
         }
 
         /// <summary>
@@ -1412,6 +1452,9 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
             @Console.started -= instance.OnConsole;
             @Console.performed -= instance.OnConsole;
             @Console.canceled -= instance.OnConsole;
+            @AttackUpgrade.started -= instance.OnAttackUpgrade;
+            @AttackUpgrade.performed -= instance.OnAttackUpgrade;
+            @AttackUpgrade.canceled -= instance.OnAttackUpgrade;
         }
 
         /// <summary>
@@ -1931,6 +1974,13 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnConsole(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "AttackUpgrade" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAttackUpgrade(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

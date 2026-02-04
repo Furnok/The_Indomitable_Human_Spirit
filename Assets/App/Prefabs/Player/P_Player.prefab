@@ -3226,6 +3226,7 @@ MonoBehaviour:
   _rseOnPlayerGettingHit: {fileID: 11400000, guid: 0bde5f6bad322664c9a88a5237c9d868, type: 2}
   _onPlayerAttackInputCancel: {fileID: 11400000, guid: 3409a69fdaba2c54cbb587daee9258f3, type: 2}
   _rsoGameInPause: {fileID: 11400000, guid: bdeb21dbb174a4d40baf0b4969e7a47a, type: 2}
+  _rseOnPlayerAttackUpgradeInput: {fileID: 11400000, guid: 391210f4e22d83649879b05fb59f9c9f, type: 2}
   rseOnSpawnProjectile: {fileID: 11400000, guid: 908a575ef5f3d5145b1903cb17a80456, type: 2}
   _onPlayerAddState: {fileID: 11400000, guid: 38569afc7ffff0c4eb66c76bc8a6146e, type: 2}
   rseOnAnimationBoolValueChange: {fileID: 11400000, guid: f3b68030aacb033438a094c87c0e44ca, type: 2}

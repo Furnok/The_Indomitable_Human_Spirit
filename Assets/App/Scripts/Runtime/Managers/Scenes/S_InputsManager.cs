@@ -81,6 +81,9 @@ public class S_InputsManager : MonoBehaviour
     [SerializeField] RSE_OnTutorialStepCompleted _onTutorialStepCompleted;
 
     [TabGroup("Outputs")]
+    [SerializeField] RSE_OnPlayerAttackUpgradeInput _onPlayerAttackUpgradeInput;
+
+    [TabGroup("Outputs")]
     [SerializeField] private RSE_OnGamePause _rseOnGamePause;
 
 
@@ -230,6 +233,11 @@ public class S_InputsManager : MonoBehaviour
     {
         rseOnConsole.Call();
     }
+
+    private void OnAttackUpgradeInput(InputAction.CallbackContext ctx)
+    {
+        _onPlayerAttackUpgradeInput.Call();
+    }
     #endregion
 
     #region UI Input Callback Methods
@@ -275,6 +283,7 @@ public class S_InputsManager : MonoBehaviour
         game.SwapTarget.performed += OnSwapTargetInput;
         game.Heal.performed += OnHealInput;
         game.Console.performed += OnConsoleInput;
+        game.AttackUpgrade.performed += OnAttackUpgradeInput;
     }
 
     private void DisableGameInputs()
@@ -295,6 +304,7 @@ public class S_InputsManager : MonoBehaviour
         game.SwapTarget.performed -= OnSwapTargetInput;
         game.Heal.performed -= OnHealInput;
         game.Console.performed -= OnConsoleInput;
+        game.AttackUpgrade.performed -= OnAttackUpgradeInput;
     }
 
     private void ActivateGameActionInput()
