@@ -1371,10 +1371,11 @@ MonoBehaviour:
 
 
     To attack you need to <style="W1">hold</style>
-    the {ATTACK} button that''s consume progressively your <style="Conviction">conviction
-    bar </style>on the bottom of the screen, each step are <style="W1">marked </style>by
-    a <style="W1">black bar</style> that''s make you <style="W1">multiply your damage
-    </style>of the attack.'
+    the {ATTACK} button and press consecutively {ATTACK_UPGRADE} to reach a step
+    bar <style="W1">marked </style> on the conviction bar with a <style="W1">black
+    bar</style> and on release  {ATTACK} will consume your entire  <style="Conviction">conviction
+    bar </style> highlighted on the bottom of the screen, each reached step will
+    <style="W1">multiply the damage </style>of your attack.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
@@ -1481,19 +1482,22 @@ MonoBehaviour:
 
 
             To attack you need
-            to <style="W1">hold</style> the {ATTACK} button that''s consume progressively
-            your <style="Conviction">conviction bar </style>on the bottom of the
-            screen, each step are <style="W1">marked </style>by a <style="W1">black
-            bar</style> that''s make you <style="W1">multiply your damage </style>of
-            the attack.'
+            to <style="W1">hold</style> the {ATTACK} button and press consecutively
+            {ATTACK_UPGRADE} to reach a step bar <style="W1">marked </style> on the
+            conviction bar with a <style="W1">black bar</style> and on release  {ATTACK}
+            will consume your entire  <style="Conviction">conviction bar </style>
+            highlighted on the bottom of the screen, each reached step will <style="W1">multiply
+            the damage </style>of your attack.'
         - localeIdentifier:
             m_Code: fr
-          value: "<style=\"TitleTuto\">ATTAQUE</style>\n\nPour attaquer, vous devez
-            <style=\"W1\">maintenir</style> le {ATTACK} bouton qui consomme progressivement
-            votre <style=\"Conviction\">barre de conviction </style>en bas de l'\xE9cran,
-            chaque \xE9tape est marqu\xE9e par une <style=\"W1\">barre noire</style>
-            qui vous permet de  <style=\"W1\">multiplier les d\xE9g\xE2ts de l'attaque</style>
-            de l'attaque."
+          value: "<style=\"TitleTuto\">ATTAQUE</style>\r\n\r\nPour attaquer, vous
+            devez <style=\"W1\">maintenir</style> le bouton {ATTACK} et <style=\"W1\">appuyer
+            successivement</style> sur {ATTACK_UPGRADE} pour atteindre une barre
+            de progression <style=\"W1\">indiqu\xE9e</style> sur la barre de conviction
+            par <style=\"W1\">une barre noire</style>. Rel\xE2chez ensuite {ATTACK}
+            pour consommer toute votre <style=\"Conviction\"> barre de conviction</style>
+            surlign\xE9 en bas de l'\xE9cran. Chaque \xE9tape de progression atteinte
+            <style=\"W1\">multiplie les d\xE9g\xE2ts</style> de votre attaque."
 --- !u!1 &3950543609988186895
 GameObject:
   m_ObjectHideFlags: 0
@@ -3684,7 +3688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spritesByDevice:
-    keys: 0200000003000000040000000600000007000000090000000a0000000b000000010000000500000008000000
+    keys: 0200000003000000040000000600000007000000090000000a0000000b0000000100000005000000080000000c000000
     values:
     - keys: 020000000300000001000000
       values:
@@ -3738,6 +3742,10 @@ MonoBehaviour:
       - {fileID: 21300000, guid: 5be9112b673455548ba57ad413cff80c, type: 3}
       - {fileID: 21300000, guid: dd351d34d062d0245931455186b26bc6, type: 3}
       - {fileID: 21300000, guid: 4ca49a59d5912da47b106e2c9a3bad5b, type: 3}
+    - keys: 0200000003000000
+      values:
+      - {fileID: 21300000, guid: 5be9112b673455548ba57ad413cff80c, type: 3}
+      - {fileID: 21300000, guid: dd351d34d062d0245931455186b26bc6, type: 3}
   _tutorialsTextObjects:
   - {fileID: 4386589186397496702}
   - {fileID: 8869209142903574716}
