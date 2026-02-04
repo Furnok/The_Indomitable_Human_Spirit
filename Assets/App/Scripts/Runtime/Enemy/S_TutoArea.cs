@@ -18,7 +18,7 @@ public class S_TutoArea : MonoBehaviour
 
     [Header("Inputs")]
     [SerializeField] RSO_SettingsSaved _rsoSettingsSaved;
-
+    [SerializeField] RSO_HasEnterAreaTuto _rsoHasEnterAreaTuto;
 
     [Header("Outputs")]
     [SerializeField] RSE_OnRequestStartTutorialStep _onRequestStartTutorialStep;
@@ -36,6 +36,7 @@ public class S_TutoArea : MonoBehaviour
             this._other = other;
             _hasTriggered = true;
             _enemyTuto.gameObject.SetActive(true);
+            _rsoHasEnterAreaTuto.Value = true;
 
             if (_rsoSettingsSaved.Value.activateTuto == true)
             {
@@ -58,7 +59,7 @@ public class S_TutoArea : MonoBehaviour
 
             _enemyTuto.gameObject.SetActive(false);
         }
-
+        _rsoHasEnterAreaTuto.Value = false;
         _enemyDemonTuto.gameObject.SetActive(false);
     }
 
