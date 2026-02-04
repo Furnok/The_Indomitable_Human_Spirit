@@ -195,7 +195,9 @@ public class S_PlayerBasicAttack : MonoBehaviour
 
     private void OnPlayerAttackInput()
     {
-        if (_playerStateTransitions.Value.CanTransition(_playerCurrentState.Value, S_EnumPlayerState.Attacking) == false ||_playerCurrentConviction.Value < 1) return;
+        S_StructPlayerAttackStep stepConvition = _playerAttackSteps.Value.Where(x => x.step == 1).FirstOrDefault();
+
+        if (_playerStateTransitions.Value.CanTransition(_playerCurrentState.Value, S_EnumPlayerState.Attacking) == false || !stepConvition.Equals(default(S_StructPlayerAttackStep)) && _playerCurrentConviction.Value < stepConvition.ammountConvitionNeeded) return;
 
         _weaponHand.SetActive(true);
         _weaponBack.SetActive(false);
