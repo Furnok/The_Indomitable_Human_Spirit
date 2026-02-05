@@ -657,6 +657,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5854570353217502181}
     - target: {fileID: 6352494224581732303, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+      propertyPath: enemyHeadLookAtIK
+      value: 
+      objectReference: {fileID: 8826770240781700580}
+    - target: {fileID: 6352494224581732303, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
       propertyPath: rseOnFinishBossP1
       value: 
       objectReference: {fileID: 11400000, guid: 1cc4dea73a1f48a4eaec2f0d611b0d63, type: 2}
@@ -719,3 +723,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6565682890114688657, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
   m_PrefabInstance: {fileID: 4457316256136461645}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8826770240781700580 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5162652671263256745, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+  m_PrefabInstance: {fileID: 4457316256136461645}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce09c97a1fa629b469373ae096563d0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -852,6 +852,7 @@ GameObject:
   - component: {fileID: 3048319605574608049}
   - component: {fileID: 6290640343244561212}
   - component: {fileID: 6352494224581732303}
+  - component: {fileID: 5162652671263256745}
   - component: {fileID: 3231315390003761703}
   - component: {fileID: 461593203997373390}
   - component: {fileID: 6465511601208726001}
@@ -996,8 +997,29 @@ MonoBehaviour:
   rseOnEnemyTargetDied: {fileID: 11400000, guid: a6d4a41f4054c224a832b2ce84286687, type: 2}
   rseOnPlayerRespawn: {fileID: 11400000, guid: 3b09f2a06394f4642a88a2d57f0cec43, type: 2}
   rseOnDisplayBossHealth: {fileID: 11400000, guid: 052e4c694acd8a444bcd0135bc6f4cea, type: 2}
+  rseOnBossHealthSetup: {fileID: 0}
   rseOnUpdateBossHealth: {fileID: 11400000, guid: 1203186c34fa193419cb1fea26546c78, type: 2}
   rseOnBossDeath: {fileID: 11400000, guid: a8782c22c581a2b44ace556be4c59d62, type: 2}
+  rseOnStartBossP1: {fileID: 0}
+  rseOnStartBossP2: {fileID: 0}
+  rseOnEndBossP1: {fileID: 0}
+  rseOnEndBossP2: {fileID: 0}
+  rseOnFinishBossP1: {fileID: 0}
+  rseOnFinishBossP2: {fileID: 0}
+--- !u!114 &5162652671263256745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2728780361816490054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce09c97a1fa629b469373ae096563d0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 3048319605574608049}
+  ssoEnemyHead: {fileID: 11400000, guid: e9937c2ede5a94048bf95b7bb105728e, type: 2}
 --- !u!114 &3231315390003761703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1029,7 +1051,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeDisplay: 1
+  afterImageWeaponPrefabs: {fileID: 0}
   weaponCollider: {fileID: 2991559556732496640}
+  afterImageWeaponCollider: {fileID: 0}
   particleDodgeType: {fileID: 7021754511613328081}
   particleParryType: {fileID: 4221976318858310996}
   particlesTrail:
@@ -1037,6 +1061,7 @@ MonoBehaviour:
   - {fileID: 5146039392397482617}
   boss: {fileID: 6352494224581732303}
   bossWeapon: {fileID: 2292371159662668924}
+  bossAfterImageWeapon: {fileID: 0}
 --- !u!114 &6465511601208726001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1074,6 +1099,7 @@ MonoBehaviour:
   onExecuteAttack: {fileID: 11400000, guid: 3da07f09686258c4f84c0ab1889d9bcd, type: 2}
   onEndFly: {fileID: 11400000, guid: 4250bf271bad23e42ab1b18f912469ba, type: 2}
   rseOnBossDeath: {fileID: 11400000, guid: a8782c22c581a2b44ace556be4c59d62, type: 2}
+  rseOnPlayerDeath: {fileID: 0}
   rseOnPlayParticle: {fileID: 11400000, guid: 96e637a3924deff4685a645b52dfc7c2, type: 2}
   rseOnStopParticle: {fileID: 11400000, guid: 4188360d207886043ab568bf24778487, type: 2}
   rseOnEndAttack: {fileID: 11400000, guid: df61dd20dc38205418f8426747ea5149, type: 2}

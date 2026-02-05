@@ -46,6 +46,9 @@ public class S_Boss : MonoBehaviour
     [SerializeField] private S_BossDetectionRange bossDetectionRange;
 
     [TabGroup("References")]
+    [SerializeField] private S_EnemyHeadLookAtIK enemyHeadLookAtIK;
+
+    [TabGroup("References")]
     [Title("Animator")]
     [SerializeField] private Animator animator;
 
@@ -258,6 +261,8 @@ public class S_Boss : MonoBehaviour
     
     private void Update()
     {
+        enemyHeadLookAtIK.SetTarget(target);
+
         if (target != null && (unlockRotate || !isAttacking) && !isDead) RotateEnemy();
 
         if (isChasing) Chase();
@@ -525,12 +530,15 @@ public class S_Boss : MonoBehaviour
     private void Death()
     {
         isDead = true;
+        animator.SetBool(idleAttack, false);
+
         animator.SetTrigger(deathParam);
 
         if (currentPhaseState == S_EnumBossPhaseState.Phase2)
         {
             rseOnDisplayBossHealth.Call(false);
         }
+
         rseOnBossDeath.Call();
         StopAllCoroutines();
 
@@ -541,6 +549,10 @@ public class S_Boss : MonoBehaviour
         bodyCollider.enabled = false;
         detectionCollider.enabled = false;
         hurtCollider.enabled = false;
+
+        enemyHeadLookAtIK.IsDead(true);
+
+        rseOnEnemyTargetDied.Call(body);
 
         if (currentPhaseState == S_EnumBossPhaseState.Phase1)
         {

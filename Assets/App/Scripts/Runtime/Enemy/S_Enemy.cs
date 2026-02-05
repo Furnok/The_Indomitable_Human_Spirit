@@ -970,8 +970,8 @@ public class S_Enemy : MonoBehaviour
     private void Death()
     {
         isDead = true;
-
         animator.SetBool(idleAttack, false);
+
         animator.SetTrigger(deathParam);
 
         var list = rsoDataSaved.Value.enemy;
