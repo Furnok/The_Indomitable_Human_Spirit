@@ -130,6 +130,8 @@ public class S_CameraManager : MonoBehaviour
     private float offset = 0f;
     private float targetOffset = 0f;
     private float offsetVelocity = 0f;
+    private float radiusVelocity = 0f;
+    private Tween radiusTween = null;
 
     private void Awake()
     {
@@ -203,6 +205,10 @@ public class S_CameraManager : MonoBehaviour
                 offset = 0f;
                 offsetVelocity = 0f;
                 lastDirection = -1;
+
+                radiusTween?.Kill();
+
+                radiusTween = DOTween.To(() => cinemachineCameraOrbitalFollow.Radius, x => cinemachineCameraOrbitalFollow.Radius = x, 6, 0.4f).SetEase(Ease.Linear);
             }
             else
             {
@@ -428,6 +434,9 @@ public class S_CameraManager : MonoBehaviour
 
             float distanceFactor = GetDistanceFactor();
             float scaledOffset = offset * distanceFactor;
+
+            float targetRadius = Mathf.Lerp(7, 5, distanceFactor);
+            cinemachineCameraOrbitalFollow.Radius = Mathf.SmoothDamp(cinemachineCameraOrbitalFollow.Radius, targetRadius, ref radiusVelocity, 0.4f);
 
             cinemachineCameraOrbitalFollow.HorizontalAxis.Value = Mathf.LerpAngle(cinemachineCameraOrbitalFollow.HorizontalAxis.Value, targetYaw + scaledOffset, Time.deltaTime * 5f);
 
