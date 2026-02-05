@@ -411,6 +411,7 @@ public class S_Boss : MonoBehaviour
     private void Chasing()
     {
         isChasing = true;
+        animator.SetBool(idleAttack, false);
 
         ChooseAttack();
 
