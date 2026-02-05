@@ -8,29 +8,18 @@ public class S_ClassCameraData
     public float cameraDistanceMinPlayer = 0;
 
     [Title("Camera Targeting")]
-    public float shoulderOffsetAmountPositive = 0;
-
-    public float shoulderOffsetAmountNegative = 0;
-
-    public float maxShoulderOffset = 0;
-
-    public float maxFrontOffset = 0;
-
-    public float maxBackOffset = 0;
-
-    public float maxShoulderDistance = 0;
-
     [SuffixLabel("°", Overlay = true)]
     public float minVerticalCameraPlayer = 0;
 
     [SuffixLabel("°", Overlay = true)]
     public float maxVerticalCameraPlayer = 0;
 
-    [SuffixLabel("s", Overlay = true)]
-    public float offsetTransitionUpdateTime = 0;
+    public float minOffset = 0;
+
+    public float maxOffset = 0;
 
     [SuffixLabel("s", Overlay = true)]
-    public float offsetTransitionTime = 0;
+    public float offsetTime = 0;
 
     [Title("Camera FOV")]
     public float fovDodge = 0;
