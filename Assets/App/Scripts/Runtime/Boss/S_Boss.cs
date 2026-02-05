@@ -133,6 +133,12 @@ public class S_Boss : MonoBehaviour
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnEndBossP2 rseOnEndBossP2;
 
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnFinishBossP1 rseOnFinishBossP1;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnFinishBossP2 rseOnFinishBossP2;
+
     private List<S_ClassAttackOwned> listAttackOwneds = new();
     private List<S_ClassAttackOwned> listAttackOwnedPossibilities = new();
     private S_EnumBossState currentState = S_EnumBossState.Idle;
@@ -371,14 +377,8 @@ public class S_Boss : MonoBehaviour
                 rseOnBossHealthSetup.Call(maxHealth);
             }
 
-            if (currentPhaseState == S_EnumBossPhaseState.Phase1)
-            {
-                rseOnStartBossP1.Call();
-            }
-            else if (currentPhaseState == S_EnumBossPhaseState.Phase2)
-            {
-                rseOnStartBossP2.Call();
-            }
+            if (currentPhaseState == S_EnumBossPhaseState.Phase1) rseOnStartBossP1.Call();
+            else if (currentPhaseState == S_EnumBossPhaseState.Phase2) rseOnStartBossP2.Call();
         }
         else
         {
@@ -545,10 +545,12 @@ public class S_Boss : MonoBehaviour
         if (currentPhaseState == S_EnumBossPhaseState.Phase1)
         {
             rseOnEndBossP1.Call();
+            rseOnFinishBossP1.Call();
         }
         else if (currentPhaseState == S_EnumBossPhaseState.Phase2)
         {
             rseOnEndBossP2.Call();
+            rseOnFinishBossP2.Call();
         }
     }
     #endregion
@@ -600,6 +602,9 @@ public class S_Boss : MonoBehaviour
 
             transform.position = posSpawn;
             transform.rotation = rotSpawn;
+
+            if (currentPhaseState == S_EnumBossPhaseState.Phase1) rseOnEndBossP1.Call();
+            else if (currentPhaseState == S_EnumBossPhaseState.Phase2) rseOnEndBossP2.Call();
         }
     } 
     #endregion
