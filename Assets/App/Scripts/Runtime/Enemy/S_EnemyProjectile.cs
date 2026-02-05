@@ -56,14 +56,19 @@ public class S_EnemyProjectile : MonoBehaviour, I_AttackProvider, I_ReflectableP
 
     public void Initialize(Transform owner, Transform target = null, S_StructEnemyAttackData attackData = new())
     {
-        if (target == null) Destroy(gameObject);
-
         this.target = target;
+
+        if (this.target == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        origin = this.target.position;
         this.direction = transform.forward;
         this.attackData = attackData;
         isInitialized = true;
         this.owner = owner;
-        origin = target.position;
 
         owner.gameObject.TryGetComponent<I_AimPointProvider>(out I_AimPointProvider aimPointProvider);
         startAimPoint = aimPointProvider != null ? aimPointProvider.GetAimPoint() : null;
