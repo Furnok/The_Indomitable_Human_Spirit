@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MakashiFollow_1
+  m_Name: A_BossMakashiFollow1
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -85895,15 +85895,15 @@ AnimationClip:
   m_HasMotionFloatCurves: 1
   m_Events:
   - time: 0.26666668
-    functionName: VFXStartTrail
-    data: 
+    functionName: PlayFmod
+    data: event:/Player/Combat/HitPrep
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.26666668
-    functionName: PlayFmod
-    data: event:/Player/Combat/HitPrep
+    functionName: VFXStartTrail
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -85916,14 +85916,21 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.43333334
+    functionName: VFXStopTrail
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.43333334
     functionName: Rotate
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.4333334
-    functionName: VFXStopTrail
+  - time: 0.46666667
+    functionName: StopRotate
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

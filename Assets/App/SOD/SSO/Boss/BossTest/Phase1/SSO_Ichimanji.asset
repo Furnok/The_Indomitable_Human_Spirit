@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SSO_Ichimanji
   m_EditorClassIdentifier: 
   _value:
-    health: 100
+    health: 500
     speedPatrol: 2.5
     speedChase: 4
     speedStrafe: 1.5

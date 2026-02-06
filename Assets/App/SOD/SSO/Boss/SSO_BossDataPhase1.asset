@@ -284,7 +284,7 @@ MonoBehaviour:
       pvBossUnlock: 100
       difficultyLevel: 5
       listComboData:
-      - animation: {fileID: 7400000, guid: ebe3ceceda982024d9acaa3062a07c5d, type: 2}
+      - animation: {fileID: 7400000, guid: bb31b3a4252eebe4b85082339f0fc8cd, type: 2}
         rootMotionMultiplier: 2
         showVFXAttackType: 1
         attackData:
@@ -307,7 +307,7 @@ MonoBehaviour:
           lastAttack: 0
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
-      - animation: {fileID: 7400000, guid: 7cf43363318563945bf17ec289351ba9, type: 2}
+      - animation: {fileID: 7400000, guid: 047c3f4f5515cc746b05f943bf14b19a, type: 2}
         rootMotionMultiplier: 2
         showVFXAttackType: 0
         attackData:
@@ -330,7 +330,7 @@ MonoBehaviour:
           lastAttack: 0
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
-      - animation: {fileID: 7400000, guid: 2906ed0f27f04fb4d9d72d803cf48965, type: 2}
+      - animation: {fileID: 7400000, guid: 8a6bbd5d8e3b4664da59df455f66a721, type: 2}
         rootMotionMultiplier: 1
         showVFXAttackType: 0
         attackData:
@@ -353,7 +353,7 @@ MonoBehaviour:
           lastAttack: 0
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
-      - animation: {fileID: 7400000, guid: 2906ed0f27f04fb4d9d72d803cf48965, type: 2}
+      - animation: {fileID: 7400000, guid: 8a6bbd5d8e3b4664da59df455f66a721, type: 2}
         rootMotionMultiplier: 1
         showVFXAttackType: 0
         attackData:
@@ -376,7 +376,7 @@ MonoBehaviour:
           lastAttack: 0
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
-      - animation: {fileID: 7400000, guid: 2906ed0f27f04fb4d9d72d803cf48965, type: 2}
+      - animation: {fileID: 7400000, guid: 8a6bbd5d8e3b4664da59df455f66a721, type: 2}
         rootMotionMultiplier: 1
         showVFXAttackType: 0
         attackData:
@@ -399,7 +399,7 @@ MonoBehaviour:
           lastAttack: 0
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
-      - animation: {fileID: 7400000, guid: 2906ed0f27f04fb4d9d72d803cf48965, type: 2}
+      - animation: {fileID: 7400000, guid: 8a6bbd5d8e3b4664da59df455f66a721, type: 2}
         rootMotionMultiplier: 1
         showVFXAttackType: 0
         attackData:
