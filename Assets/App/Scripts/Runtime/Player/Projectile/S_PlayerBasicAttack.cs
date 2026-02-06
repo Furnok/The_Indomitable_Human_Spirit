@@ -116,6 +116,7 @@ public class S_PlayerBasicAttack : MonoBehaviour
     private Coroutine _weaponAttackCoroutine = null;
 
     private int _currenStepAttack = 0;
+    private float _currenTimeHold = 0;
 
     private void Awake()
     {
@@ -164,6 +165,11 @@ public class S_PlayerBasicAttack : MonoBehaviour
         _rsoCurrentChargeStep.Value = 0;
     }
 
+    private void Update()
+    {
+        if (_isHolding) _currenTimeHold += Time.deltaTime;
+    }
+
     private void OnGamePause(bool newPauseValue)
     {
         if (newPauseValue == true)
@@ -199,6 +205,8 @@ public class S_PlayerBasicAttack : MonoBehaviour
 
         if (_playerStateTransitions.Value.CanTransition(_playerCurrentState.Value, S_EnumPlayerState.Attacking) == false || !stepConvition.Equals(default(S_StructPlayerAttackStep)) && _playerCurrentConviction.Value < stepConvition.ammountConvitionNeeded) return;
 
+        if (_weaponAttackCoroutine != null) StopCoroutine(_weaponAttackCoroutine);
+
         _weaponHand.SetActive(true);
         _weaponBack.SetActive(false);
 
@@ -218,6 +226,7 @@ public class S_PlayerBasicAttack : MonoBehaviour
 
         _isHolding = true;
         _wasCanceled = false;
+        _currenTimeHold = 0f;
         _reservedConviction = 0f;
         _lastCompletedStep = 0;
         _rsoCurrentChargeStep.Value = 0;
@@ -255,7 +264,7 @@ public class S_PlayerBasicAttack : MonoBehaviour
 
         if (_weaponAttackCoroutine != null) StopCoroutine(_weaponAttackCoroutine);
 
-        _weaponAttackCoroutine = StartCoroutine(S_Utils.Delay(0.3f, () =>
+        _weaponAttackCoroutine = StartCoroutine(S_Utils.Delay(Mathf.Clamp(0.2f + _currenTimeHold, 0, 0.6f), () =>
         {
             _weaponHand.SetActive(false);
             _weaponBack.SetActive(true);

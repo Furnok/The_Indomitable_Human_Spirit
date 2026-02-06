@@ -1063,7 +1063,6 @@ Transform:
   - {fileID: 3390883126647606021}
   - {fileID: 6934696179385131823}
   - {fileID: 8456373266874895494}
-  - {fileID: 7407941331798223579}
   - {fileID: 9032198086768978973}
   m_Father: {fileID: 3473314807466382836}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1095,7 +1094,6 @@ MonoBehaviour:
   rseOnSpawnProjectile: {fileID: 11400000, guid: 908a575ef5f3d5145b1903cb17a80456, type: 2}
   _rseOnDodgePerfect: {fileID: 11400000, guid: 1c5a008ba8b4091499ebda621df96bc9, type: 2}
   _rseOnPlayerHealPerfomed: {fileID: 11400000, guid: 52dcd0183e044a14e947f155d1c36c90, type: 2}
-  _playerStats: {fileID: 11400000, guid: 672a77f2978d3824b90e0f910ab84268, type: 2}
   _playerConvictionData: {fileID: 11400000, guid: 69f9f2a36a1381440a990e3461550cb3, type: 2}
 --- !u!114 &8454201312215265849
 MonoBehaviour:
@@ -1661,12 +1659,12 @@ Transform:
   m_GameObject: {fileID: 5228778055071257574}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.546, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7504143973247179551}
-  m_Father: {fileID: 8153173563361757933}
+  m_Father: {fileID: 927176090965110409}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5398515335933686073
 GameObject:
@@ -4050,7 +4048,10 @@ PrefabInstance:
     - {fileID: 330277383, guid: eaf92cc55d1978f4283df924c9242717, type: 3}
     - {fileID: 330277382, guid: eaf92cc55d1978f4283df924c9242717, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7865005113011122431, guid: eaf92cc55d1978f4283df924c9242717, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7407941331798223579}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eaf92cc55d1978f4283df924c9242717, type: 3}
 --- !u!1 &546673962529436723 stripped

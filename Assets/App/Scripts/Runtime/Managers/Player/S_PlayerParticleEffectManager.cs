@@ -55,15 +55,7 @@ public class S_PlayerParticleEffectManager : MonoBehaviour
     [SerializeField] private RSE_OnPlayerHealPerformed _rseOnPlayerHealPerfomed;
 
     [TabGroup("Outputs")]
-    [SerializeField] private SSO_PlayerStats _playerStats;
-
-    [TabGroup("Outputs")]
     [SerializeField] private SSO_PlayerConvictionData _playerConvictionData;
-
-    private void Awake()
-    {
-        _chargingEffectParent.localPosition += _playerStats.Value.attackOffset;
-    }
 
     private void OnEnable()
     {
