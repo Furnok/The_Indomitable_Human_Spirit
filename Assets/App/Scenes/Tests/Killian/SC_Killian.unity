@@ -761,6 +761,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 37309387382343170, guid: 99e77e620cabde6458233c30d32621a2, type: 3}
   m_PrefabInstance: {fileID: 334056396}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &348896093 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5717509932139896987, guid: 0172bb772cbf6cd438211f41bb4053c4, type: 3}
+  m_PrefabInstance: {fileID: 1922405425}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &389650365
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -877,7 +882,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1659810929}
     m_Modifications:
     - target: {fileID: 918399970063036874, guid: 26b32e26939d3614f9dc5380b22f3191, type: 3}
       propertyPath: m_AnchorMax.x
@@ -917,15 +922,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4283267785218327364, guid: 26b32e26939d3614f9dc5380b22f3191, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4283267785218327364, guid: 26b32e26939d3614f9dc5380b22f3191, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4283267785218327364, guid: 26b32e26939d3614f9dc5380b22f3191, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4283267785218327364, guid: 26b32e26939d3614f9dc5380b22f3191, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2073,6 +2078,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 37309387382343170, guid: 99e77e620cabde6458233c30d32621a2, type: 3}
   m_PrefabInstance: {fileID: 1219932787}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1247631458 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4283267785218327364, guid: 26b32e26939d3614f9dc5380b22f3191, type: 3}
+  m_PrefabInstance: {fileID: 446249824}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1252152893
 GameObject:
@@ -3284,6 +3294,8 @@ Transform:
   - {fileID: 498204925}
   - {fileID: 2056725584}
   - {fileID: 319631101}
+  - {fileID: 1247631458}
+  - {fileID: 348896093}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1714896929
@@ -3616,6 +3628,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1659810929}
     m_Modifications:
+    - target: {fileID: 1213021771004338432, guid: b40847abdb388e54794a37b68e5bf3ac, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'Jaw'\n\tFrom animation clip 'A_EnemyHFlourishSword1'"
+      objectReference: {fileID: 0}
     - target: {fileID: 2818859625446955190, guid: b40847abdb388e54794a37b68e5bf3ac, type: 3}
       propertyPath: m_Name
       value: P_Enemy_Demon
@@ -3671,7 +3689,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1659810929}
     m_Modifications:
     - target: {fileID: 5717509932139896987, guid: 0172bb772cbf6cd438211f41bb4053c4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3691,15 +3709,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5717509932139896987, guid: 0172bb772cbf6cd438211f41bb4053c4, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5717509932139896987, guid: 0172bb772cbf6cd438211f41bb4053c4, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5717509932139896987, guid: 0172bb772cbf6cd438211f41bb4053c4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5717509932139896987, guid: 0172bb772cbf6cd438211f41bb4053c4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4641,5 +4659,3 @@ SceneRoots:
   - {fileID: 1212472313}
   - {fileID: 2081433379}
   - {fileID: 3316049811810972053}
-  - {fileID: 446249824}
-  - {fileID: 1922405425}

@@ -67,6 +67,10 @@ public class S_UIGameManager : MonoBehaviour
 
     [TabGroup("References")]
     [Title("Game Over")]
+    [SerializeField] private GameObject gameWinWindow;
+
+    [TabGroup("References")]
+    [Title("Game Over")]
     [SerializeField] private GameObject gameOverWindow;
 
     [TabGroup("References")]
@@ -115,6 +119,9 @@ public class S_UIGameManager : MonoBehaviour
 
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnSaveDisplay rseOnSaveDisplay;
+
+    [TabGroup("Inputs")]
+    [SerializeField] private RSE_OnFinishBossP1 rseOnFinishBossP1;
 
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnUIInputEnabled rseOnUIInputEnabled;
@@ -228,6 +235,7 @@ public class S_UIGameManager : MonoBehaviour
         rseOnPlayerDeath.action += GameOver;
         rseOnDialogueDisplay.action += DisplayDialogue;
         rseOnSaveDisplay.action += DisplaySave;
+        rseOnFinishBossP1.action += GameWin;
     }
 
     private void OnDisable()
@@ -245,6 +253,7 @@ public class S_UIGameManager : MonoBehaviour
         rseOnPlayerDeath.action -= GameOver;
         rseOnDialogueDisplay.action -= DisplayDialogue;
         rseOnSaveDisplay.action -= DisplaySave;
+        rseOnFinishBossP1.action -= GameWin;
 
         healthTween?.Kill();
         convictionTween?.Kill();
@@ -514,6 +523,22 @@ public class S_UIGameManager : MonoBehaviour
     #endregion
 
     #region Game Over
+    private void GameWin()
+    {
+        StartCoroutine(S_Utils.Delay(ssoDisplay.Value, () =>
+        {
+            rseOnUIInputEnabled.Call();
+            rseOnGamePause.Call(true);
+
+            CanvasGroup cg = gameWinWindow.GetComponent<CanvasGroup>();
+            cg.DOKill();
+
+            gameWinWindow.SetActive(true);
+
+            cg.DOFade(1f, ssoDisplay.Value).SetEase(Ease.Linear).SetUpdate(true);
+        }));
+    }
+
     private void GameOver()
     {
         StartCoroutine(S_Utils.Delay(ssoGameOver.Value, () =>
