@@ -36,7 +36,7 @@ MonoBehaviour:
     controllerOverride: {fileID: 22100000, guid: cae966d33f19b4242ab9041cca2e1f84, type: 2}
     listCombos:
     - listAnimationsCombos:
-      - animation: {fileID: 7400000, guid: ebe3ceceda982024d9acaa3062a07c5d, type: 2}
+      - animation: {fileID: 7400000, guid: 54a34b50f863c62489764982bc37e8d8, type: 2}
         rootMotionMultiplier: 2
         showVFXAttackType: 1
         attackData:

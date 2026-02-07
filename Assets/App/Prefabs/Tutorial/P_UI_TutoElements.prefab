@@ -3669,12 +3669,17 @@ MonoBehaviour:
   _rsoSettingsSaved: {fileID: 11400000, guid: 782057adb6fb88f4db3ac2e35a786bc0, type: 2}
   _rsoDevice: {fileID: 11400000, guid: 2d03f278b7224484daa610d79749492f, type: 2}
   _rsoHasEnterAreaTuto: {fileID: 11400000, guid: 521e735be2161e9408824fb1487c0744, type: 2}
+  rseOnTargetsInRangeChange: {fileID: 11400000, guid: 6660d5373f88799428a248d2c3615ece, type: 2}
+  _playerAttackSteps: {fileID: 11400000, guid: ffc4fd5ee4fc81442b745bb06394e7be, type: 2}
+  _playerCurrentConviction: {fileID: 11400000, guid: e9e6e673e8d688d4b96f8309938dbfdc, type: 2}
   _onGamePause: {fileID: 11400000, guid: ae0312c6248bf454a8f047511417352d, type: 2}
   _onChangeHighlightTarget: {fileID: 11400000, guid: 53059718dbc01864b96bc5107c7ff935, type: 2}
   _onChangeActiveStatePanelsFilters: {fileID: 11400000, guid: c2bf9a0cf32e2b140bfaf00bf3c6f8cf, type: 2}
   _onPlayerHealthReduced: {fileID: 11400000, guid: d9db70b8d640c8d47b38c443abcec2ff, type: 2}
   _onPlayerGainConviction: {fileID: 11400000, guid: c3ba1e97cce4a3d4e929f7197f47a3c1, type: 2}
   rseOnGameActionInputEnabled: {fileID: 11400000, guid: 0526673c0b0752b418ffdef1cdaaf184, type: 2}
+  rseOnPlayerTargeting: {fileID: 11400000, guid: b5715b3f29f85be4e87180aa0db11aab, type: 2}
+  rsoCurrentTarget: {fileID: 11400000, guid: 21e74e9f4371e414596255356b9bd1f4, type: 2}
 --- !u!114 &3971288098241229408
 MonoBehaviour:
   m_ObjectHideFlags: 0

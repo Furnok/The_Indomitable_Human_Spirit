@@ -419,52 +419,83 @@ public class S_InputsManager : MonoBehaviour
         iaPlayerInput.Tutorial.Dodge.performed += OnDodgeInput;
         iaPlayerInput.Tutorial.Dodge.performed += OnTutorialDodgeFinish;
     }
+
     void EnableTutorialAttackInput()
     {
         DisableTutorialInputs();
         iaPlayerInput.Tutorial.Attack.performed += AttackPressedTuto;
-        iaPlayerInput.Tutorial.Attack.canceled += AttackCancelTuto;
+        iaPlayerInput.Tutorial.Attack.canceled += AttackCanceledTuto;
+        iaPlayerInput.Tutorial.AttackUpgrade.performed += OnAttackUpgradeInput;
+        iaPlayerInput.Tutorial.AttackUpgrade.performed += AttackUpgradePressedTuto;
+        //iaPlayerInput.Tutorial.AttackUpgrade.canceled += AttackCancelTuto;
         //iaPlayerInput.Tutorial.Attack.canceled += OnTutorialAttackFinish;
     }
 
+    bool isAttackUpgradePressed = false;
+
     void AttackPressedTuto(InputAction.CallbackContext ctx)
     {
-        if (tutorialAttackActionPressed == true)
-            return;
+        //if (tutorialAttackActionPressed == true)
+        //    return;
 
-        _rseOnGamePause.Call(false);
-        //OnTutorialAttackFinish(ctx);
+        //_rseOnGamePause.Call(false);
+
+        //tutorialAttackActionPressed = true;
+        //tutorialAttackActionTimePressed = Time.time;
+
+
+        //OnAttackInput(ctx);
 
         tutorialAttackActionPressed = true;
-        tutorialAttackActionTimePressed = Time.time;
-
-        //FinishActionStep(S_EnumTutorialStep.Attack);
-
         OnAttackInput(ctx);
+    }
+
+    void AttackCanceledTuto(InputAction.CallbackContext ctx)
+    {
+        if(isAttackUpgradePressed == true)
+        {
+            OnAttackInputCancel(ctx);
+            AttackCancelTuto(ctx);
+            return;
+        }
+
+        tutorialAttackActionPressed = false;
+        OnAttackInputCancel(ctx);
+    }
+
+    void AttackUpgradePressedTuto(InputAction.CallbackContext ctx)
+    {
+        if(tutorialAttackActionPressed == false)
+            return;
+        isAttackUpgradePressed = true;
     }
 
     void AttackCancelTuto(InputAction.CallbackContext ctx)
     {
-        if (tutorialAttackActionPressed == true && (Time.time - tutorialAttackActionTimePressed) >= tutorialAttackActionDelay)
-        {
-            tutorialAttackActionPressed = false;
-            OnAttackInputCancel(ctx);
-            OnTutorialAttackFinish(ctx);
-        }
-        else
-        {
-            tutorialAttackActionPressed = true;
+        if(tutorialAttackActionPressed == false) return;
 
-            var timeSincePressed = Time.time - tutorialAttackActionTimePressed;
-            var remainingDelay = tutorialAttackActionDelay - timeSincePressed;
+        OnTutorialAttackFinish(ctx);
 
-            StartCoroutine(S_Utils.Delay(remainingDelay, () =>
-            {
-                tutorialAttackActionPressed = false;
-                OnAttackInputCancel(ctx);
-                OnTutorialAttackFinish(ctx);
-            }));
-        }
+        //if (tutorialAttackActionPressed == true && (Time.time - tutorialAttackActionTimePressed) >= tutorialAttackActionDelay)
+        //{
+        //    tutorialAttackActionPressed = false;
+        //    OnAttackInputCancel(ctx);
+        //    OnTutorialAttackFinish(ctx);
+        //}
+        //else
+        //{
+        //    tutorialAttackActionPressed = true;
+
+        //    var timeSincePressed = Time.time - tutorialAttackActionTimePressed;
+        //    var remainingDelay = tutorialAttackActionDelay - timeSincePressed;
+
+        //    StartCoroutine(S_Utils.Delay(remainingDelay, () =>
+        //    {
+        //        tutorialAttackActionPressed = false;
+        //        OnAttackInputCancel(ctx);
+        //        OnTutorialAttackFinish(ctx);
+        //    }));
+        //}
     }
 
     void EnableTutorialInteractInput()
@@ -497,6 +528,7 @@ public class S_InputsManager : MonoBehaviour
     void FinishActionStep(S_EnumTutorialStep step)
     {
         DisableTutorialInputs();
+        ActivateGameActionInput();
 
         _onTutorialStepCompleted.Call(step);
 

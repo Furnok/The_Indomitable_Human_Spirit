@@ -736,6 +736,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "AttackUpgrade",
+                    "type": "Button",
+                    "id": "fdf45a63-2824-4390-9f58-12cc9eb0033e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Heal",
                     "type": "Button",
                     "id": "b84989dd-dc28-481f-a198-ca742e2b23ec",
@@ -830,6 +839,28 @@
                     "processors": "",
                     "groups": ";Keyboard and mouse",
                     "action": "Next",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e1383e41-d19a-4b90-a9b9-9b372e5a3ee3",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AttackUpgrade",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e4041bb6-5a0d-4403-a67f-fa8451c5bf28",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AttackUpgrade",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1033,8 +1064,8 @@
                 },
                 {
                     "name": "",
-                    "id": "a466ffed-76b0-4df7-9df8-b8146119b74b",
-                    "path": "<Mouse>/leftButton",
+                    "id": "930e2fa7-8ae3-4070-83e5-6da349996eb4",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard and mouse",

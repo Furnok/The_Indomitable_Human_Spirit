@@ -313,7 +313,7 @@ public class S_UIGameManager : MonoBehaviour
     {
         preconvictionTween?.Kill();
 
-        preconvictionTween = sliderPlayerAttackSteps.DOValue(preconvition, ssoAnimationSlider.Value).SetEase(Ease.OutCubic);
+        preconvictionTween = sliderPlayerAttackSteps.DOValue(preconvition, ssoAnimationSlider.Value).SetEase(Ease.OutCubic).SetUpdate(true);
     }
 
     private IEnumerator BuildTicksNextFrame()

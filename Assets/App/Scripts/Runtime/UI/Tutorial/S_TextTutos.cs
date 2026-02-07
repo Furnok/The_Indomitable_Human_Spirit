@@ -163,13 +163,17 @@ public class S_TextTutos : MonoBehaviour
         if (sprite != null)
             _textTutoParry.text = _tplParry.Replace("{PARRY}", $"<sprite name=\"{sprite.name}\">");
 
-        sprite = GetSpriteOrNull(S_EnumTutorialStep.Attack, device);
-        if (sprite != null)
-            _textTutoAttack.text = _tplAttack.Replace("{ATTACK}", $"<sprite name=\"{sprite.name}\">");
+        string result = _tplAttack;
 
-        sprite = GetSpriteOrNull(S_EnumTutorialStep.AttackUpgrade, device);
-        if (sprite != null)
-            _textTutoAttack.text = _tplAttack.Replace("{ATTACK_UPGRADE}", $"<sprite name=\"{sprite.name}\">");
+        var attack = GetSpriteOrNull(S_EnumTutorialStep.Attack, device);
+        if (attack != null)
+            result = result.Replace("{ATTACK}", $"<sprite name=\"{attack.name}\">");
+
+        var attackUp = GetSpriteOrNull(S_EnumTutorialStep.AttackUpgrade, device);
+        if (attackUp != null)
+            result = result.Replace("{ATTACK_UPGRADE}", $"<sprite name=\"{attackUp.name}\">");
+
+        _textTutoAttack.text = result;
 
         sprite = GetSpriteOrNull(S_EnumTutorialStep.Dodge, device);
         if (sprite != null)
