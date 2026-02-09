@@ -964,7 +964,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""62e4dcee-9bb3-4ee9-aaae-1924a4f187f5"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard and mouse"",
