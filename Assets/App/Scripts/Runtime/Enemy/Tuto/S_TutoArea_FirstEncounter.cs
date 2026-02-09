@@ -14,6 +14,7 @@ public class S_TutoArea_FirstEncounter : MonoBehaviour
     [Header("Outputs")]
     [SerializeField] RSE_OnRequestStartTutorialStep _onRequestStartTutorialStep;
     [SerializeField] RSE_OnTutorialStepCompleted _onTutorialStepCompleted;
+    [SerializeField] private RSE_OnPlayerTargetingCancel rseOnPlayerTargetingCancel;
 
 
     Collider _other;
@@ -48,7 +49,12 @@ public class S_TutoArea_FirstEncounter : MonoBehaviour
             if (Vector3.Distance(_other.transform.position, this.transform.position) < _distanceToTriggerTuto)
             {
                 _playerInRange = true;
-                _onRequestStartTutorialStep.Call(S_EnumTutorialStep.Targeting);
+                rseOnPlayerTargetingCancel.Call();
+
+                StartCoroutine(S_Utils.Delay(0.1f, () =>
+                {
+                    _onRequestStartTutorialStep.Call(S_EnumTutorialStep.Targeting);
+                }));
             }
         }
 
