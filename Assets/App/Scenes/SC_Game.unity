@@ -454770,26 +454770,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_AudioManager
       objectReference: {fileID: 0}
-    - target: {fileID: 5887178306676581927, guid: dccf8c9b6c411ac48b25bf18cac48a82, type: 3}
-      propertyPath: music.Path
-      value: event:/World/MusicAmbiance
-      objectReference: {fileID: 0}
-    - target: {fileID: 5887178306676581927, guid: dccf8c9b6c411ac48b25bf18cac48a82, type: 3}
-      propertyPath: music.Guid.Data1
-      value: -958078954
-      objectReference: {fileID: 0}
-    - target: {fileID: 5887178306676581927, guid: dccf8c9b6c411ac48b25bf18cac48a82, type: 3}
-      propertyPath: music.Guid.Data2
-      value: 1226194656
-      objectReference: {fileID: 0}
-    - target: {fileID: 5887178306676581927, guid: dccf8c9b6c411ac48b25bf18cac48a82, type: 3}
-      propertyPath: music.Guid.Data3
-      value: -470862435
-      objectReference: {fileID: 0}
-    - target: {fileID: 5887178306676581927, guid: dccf8c9b6c411ac48b25bf18cac48a82, type: 3}
-      propertyPath: music.Guid.Data4
-      value: -950350801
-      objectReference: {fileID: 0}
     - target: {fileID: 9173507767449303060, guid: dccf8c9b6c411ac48b25bf18cac48a82, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
