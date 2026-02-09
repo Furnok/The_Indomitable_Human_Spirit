@@ -251,13 +251,13 @@ public class S_TutoManager : MonoBehaviour
             }));
         }
 
-        if (tuto != null && tutoStep == S_EnumTutorialStep.Targeting)
-        {
-            StartCoroutine(S_Utils.Delay(0.1f, () =>
-            {
-                _onRequestStartTutorialStep.Call(S_EnumTutorialStep.SwapTarget);
-            }));
-        }
+        //if (tuto != null && tutoStep == S_EnumTutorialStep.Targeting)
+        //{
+        //    StartCoroutine(S_Utils.Delay(0.1f, () =>
+        //    {
+        //        _onRequestStartTutorialStep.Call(S_EnumTutorialStep.SwapTarget);
+        //    }));
+        //}
     }
 }
 
