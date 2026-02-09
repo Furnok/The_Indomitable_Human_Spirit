@@ -1,4 +1,3 @@
-using DG.Tweening;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +8,10 @@ public class S_WindowColor : MonoBehaviour
     [TabGroup("References")]
     [Title("Windows")]
     [SerializeField] private List<MeshRenderer> meshRenderers;
+
+    [TabGroup("References")]
+    [Title("Light")]
+    [SerializeField] private List<GameObject> lights;
 
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnMaterialColor rseOnMaterialColor;
@@ -38,6 +41,12 @@ public class S_WindowColor : MonoBehaviour
         {
             HDMaterial.SetEmissiveColor(mat, color.color);
             HDMaterial.SetEmissiveIntensity(mat, color.intensity, EmissiveIntensityUnit.EV100);
+        }
+
+        foreach (GameObject light in lights)
+        {
+            if (color.intensity != 0) light.SetActive(true);
+            else light.SetActive(false);
         }
     }
 }
