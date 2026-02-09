@@ -931,7 +931,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e1383e41-d19a-4b90-a9b9-9b372e5a3ee3"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -964,7 +964,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""62e4dcee-9bb3-4ee9-aaae-1924a4f187f5"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard and mouse"",
@@ -1151,7 +1151,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""930e2fa7-8ae3-4070-83e5-6da349996eb4"",
-                    ""path"": ""<Keyboard>/leftShift"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard and mouse"",
