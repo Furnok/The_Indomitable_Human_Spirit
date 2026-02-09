@@ -262,6 +262,9 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: -2448047151444027380}
     m_Position: {x: 194, y: 355, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 5739245197581053159}
+    m_Position: {x: 127.9476, y: 179.36682, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 4471689354250125223}
@@ -663,6 +666,32 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 6d9b4397bfb4d694b89c444b28c1ba60, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &5739245197581053159
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Crawling
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: c49fe3cde15c8ba46a1d1fb6e144b1ae, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
