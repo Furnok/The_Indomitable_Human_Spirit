@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{f97abd33-a944-4afe-bcc9-d76fbb340fab}">
+		<property name="assetPath">
+			<value>Voice/7_Rejoice.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>5.7264583333333334</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{001bd8e4-d067-4258-ab4a-b097b925ed35}</destination>
+		</relationship>
+	</object>
+</objects>
