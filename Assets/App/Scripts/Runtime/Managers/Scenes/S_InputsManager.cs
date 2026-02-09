@@ -100,8 +100,8 @@ public class S_InputsManager : MonoBehaviour
 
     private System.Action<InputAction.CallbackContext> _currentNextInputCallback = null;
 
-    private float tutorialAttackActionTimePressed = 0f;
-    private float tutorialAttackActionDelay = 1.0f;
+    //private float tutorialAttackActionTimePressed = 0f;
+    //private float tutorialAttackActionDelay = 1.0f;
     private bool tutorialAttackActionPressed = false;
 
     private void Awake()
