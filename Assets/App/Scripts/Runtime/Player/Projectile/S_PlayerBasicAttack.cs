@@ -37,6 +37,9 @@ public class S_PlayerBasicAttack : MonoBehaviour
     [TabGroup("Inputs")]
     [SerializeField] private RSO_GameInPause _rsoGameInPause;
 
+    [TabGroup("Inputs")]
+    [SerializeField] private RSE_OnPlayerAttackUpgradeInput _rseOnPlayerAttackUpgradeInput;
+
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnSpawnProjectile rseOnSpawnProjectile;
 
@@ -112,6 +115,9 @@ public class S_PlayerBasicAttack : MonoBehaviour
 
     private Coroutine _weaponAttackCoroutine = null;
 
+    private int _currenStepAttack = 0;
+    private float _currenTimeHold = 0;
+
     private void Awake()
     {
         _preconsumedConviction.Value = 0;
@@ -142,6 +148,7 @@ public class S_PlayerBasicAttack : MonoBehaviour
         rseOnPlayerAttack.action += OnPlayerAttackInput;
         _rseOnPlayerGettingHit.action += OnHitCancel;
         _onPlayerAttackInputCancel.action += OnAttackReleased;
+        _rseOnPlayerAttackUpgradeInput.action += OnPlayerAttackUpgradeInput;
 
         _rsoGameInPause.onValueChanged += OnGamePause;
     }
@@ -151,10 +158,16 @@ public class S_PlayerBasicAttack : MonoBehaviour
         rseOnPlayerAttack.action -= OnPlayerAttackInput;
         _rseOnPlayerGettingHit.action -= OnHitCancel;
         _onPlayerAttackInputCancel.action -= OnAttackReleased;
+        _rseOnPlayerAttackUpgradeInput.action -= OnPlayerAttackUpgradeInput;
 
         _rsoGameInPause.onValueChanged -= OnGamePause;
 
         _rsoCurrentChargeStep.Value = 0;
+    }
+
+    private void Update()
+    {
+        if (_isHolding) _currenTimeHold += Time.deltaTime;
     }
 
     private void OnGamePause(bool newPauseValue)
@@ -165,9 +178,34 @@ public class S_PlayerBasicAttack : MonoBehaviour
         }
     }
 
+    private void OnPlayerAttackUpgradeInput()
+    {
+        if(_isHolding == false) return;
+
+
+        S_StructPlayerAttackStep stepConvition = _playerAttackSteps.Value.Where(x => x.step == _currenStepAttack + 1).FirstOrDefault();
+
+        if (!stepConvition.Equals(default(S_StructPlayerAttackStep)) && _playerCurrentConviction.Value >= stepConvition.ammountConvitionNeeded)
+        {
+            _currenStepAttack ++;
+            _rsoCurrentChargeStep.Value = _currenStepAttack;
+
+            _reservedConviction = stepConvition.ammountConvitionNeeded;
+
+            PublishPreconsume(_reservedConviction);
+
+            var rumbleBetweenStepData = _chargeAttackBetweenStepRumbleData.Value;
+            _rseOnRumbleRequested.Call(rumbleBetweenStepData);
+        }
+    }
+
     private void OnPlayerAttackInput()
     {
-        if (_playerStateTransitions.Value.CanTransition(_playerCurrentState.Value, S_EnumPlayerState.Attacking) == false ||_playerCurrentConviction.Value < 2) return;
+        S_StructPlayerAttackStep stepConvition = _playerAttackSteps.Value.Where(x => x.step == 1).FirstOrDefault();
+
+        if (_playerStateTransitions.Value.CanTransition(_playerCurrentState.Value, S_EnumPlayerState.Attacking) == false || !stepConvition.Equals(default(S_StructPlayerAttackStep)) && _playerCurrentConviction.Value < stepConvition.ammountConvitionNeeded) return;
+
+        if (_weaponAttackCoroutine != null) StopCoroutine(_weaponAttackCoroutine);
 
         _weaponHand.SetActive(true);
         _weaponBack.SetActive(false);
@@ -188,14 +226,27 @@ public class S_PlayerBasicAttack : MonoBehaviour
 
         _isHolding = true;
         _wasCanceled = false;
+        _currenTimeHold = 0f;
         _reservedConviction = 0f;
         _lastCompletedStep = 0;
         _rsoCurrentChargeStep.Value = 0;
+        _currenStepAttack = 0;
 
         PublishPreconsume(_reservedConviction);
 
-        if (_attackChargeCoroutine != null) StopCoroutine(_attackChargeCoroutine);
-        _attackChargeCoroutine = StartCoroutine(ChargeRoutine());
+        //if (_attackChargeCoroutine != null) StopCoroutine(_attackChargeCoroutine);
+        //_attackChargeCoroutine = StartCoroutine(ChargeRoutine());
+
+        var rumbleData = _chargeAttackRumbleData.Value;
+        rumbleData.Duration = 300f;
+        _rseOnRumbleRequested.Call(rumbleData);
+
+        if (!_convictionAccumulationSound.IsNull)
+        {
+            _convictionAccumulationInstance = RuntimeManager.CreateInstance(_convictionAccumulationSound);
+            _convictionAccumulationInstance.setParameterByName("ConvictionAccumulated", _reservedConviction / _playerConvictionData.Value.maxConviction);
+            _convictionAccumulationInstance.start();
+        }
 
         rseOnSendConsoleMessage.Call("Player Start Attacking!");
     }
@@ -205,13 +256,15 @@ public class S_PlayerBasicAttack : MonoBehaviour
         _isHolding = false;
         rseOnAnimationBoolValueChange.Call(_attackParam, false);
 
+        FinalizeAttack();
+
         rseOnSendConsoleMessage.Call("Player Launch Attack!");
 
         _rseOnRumbleStopChannel.Call(S_EnumRumbleChannel.ChargeAttack);
 
         if (_weaponAttackCoroutine != null) StopCoroutine(_weaponAttackCoroutine);
 
-        _weaponAttackCoroutine = StartCoroutine(S_Utils.Delay(0.3f, () =>
+        _weaponAttackCoroutine = StartCoroutine(S_Utils.Delay(Mathf.Clamp(0.2f + _currenTimeHold, 0, 0.6f), () =>
         {
             _weaponHand.SetActive(false);
             _weaponBack.SetActive(true);
@@ -382,7 +435,7 @@ public class S_PlayerBasicAttack : MonoBehaviour
         {
             _rseOnRumbleStopChannel.Call(S_EnumRumbleChannel.ChargeAttack);
 
-            if(_attackPerformedSound.IsNull == false)
+            if(_attackPerformedSound.IsNull == false && _currenStepAttack != 0)
             {
                 EventInstance instance = RuntimeManager.CreateInstance(_attackPerformedSound);
                 instance.start();

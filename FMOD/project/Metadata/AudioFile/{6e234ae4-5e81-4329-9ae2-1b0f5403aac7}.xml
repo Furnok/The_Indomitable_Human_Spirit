@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{6e234ae4-5e81-4329-9ae2-1b0f5403aac7}">
+		<property name="assetPath">
+			<value>Voice/Hans_Cine_1.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>32.285145833333331</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{001bd8e4-d067-4258-ab4a-b097b925ed35}</destination>
+		</relationship>
+	</object>
+</objects>

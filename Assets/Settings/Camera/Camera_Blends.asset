@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CustomBlends:
   - From: CinemachineCameraIntro
-    To: CinemachineCameraRail
+    To: CinemachineCameraPlayer
     Blend:
       Style: 3
-      Time: 0.4
+      Time: 1
       CustomCurve:
         serializedVersion: 2
         m_Curve: []

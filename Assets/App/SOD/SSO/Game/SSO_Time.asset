@@ -15,6 +15,6 @@ MonoBehaviour:
   _value:
     _slowScaleDodge: 0.25
     _hitStopDodge: 0.06
-    _slowDurationDodge: 0.5
+    _slowDurationDodge: 0.3
     _blendOutDodge: 0.35
     _hitStopParry: 0

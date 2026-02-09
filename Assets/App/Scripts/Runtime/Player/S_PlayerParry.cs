@@ -86,6 +86,12 @@ public class S_PlayerParry : MonoBehaviour
 
         rseOnAnimationBoolValueChange.Call(_parryParam, true);
 
+        if (_weaponParryCoroutine != null)
+        {
+            StopCoroutine(_weaponParryCoroutine);
+            _weaponParryCoroutine = null;
+        }
+
         _weaponHand.SetActive(true);
         _weaponBack.SetActive(false);
 
@@ -107,8 +113,6 @@ public class S_PlayerParry : MonoBehaviour
                     if (_parryCoroutine != null) StopCoroutine(_parryCoroutine);
 
                     _onPlayerAddState.Call(S_EnumPlayerState.None);
-
-                    if (_weaponParryCoroutine != null) StopCoroutine(_weaponParryCoroutine);
 
                     _weaponParryCoroutine = StartCoroutine(S_Utils.Delay(0.6f, () =>
                     {

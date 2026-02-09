@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SSO_BossDataPhase2
   m_EditorClassIdentifier: 
   _value:
-    health: 100
-    walkSpeed: 3
-    runSpeed: 5
+    health: 200
+    walkSpeed: 2.5
+    runSpeed: 4
     phaseState: 1
     timeDisplay: 0
     stunDuration: 3
@@ -30,8 +30,6 @@ MonoBehaviour:
     difficultyScore: 2
     frequencyScore: 1
     synergieScore: 1
-    minTimeChooseAttack: 0.5
-    maxTimeChooseAttack: 1.5
     rotationTime: 0.6
     controllerOverride: {fileID: 22100000, guid: aba806f790b329a418f1c420ffacdb92, type: 2}
     listAttack:
@@ -605,6 +603,6 @@ MonoBehaviour:
           invicibilityDuration: 0
           convictionReduction: 0
           convictionParryGain: 0
-          lastAttack: 0
+          lastAttack: 1
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}

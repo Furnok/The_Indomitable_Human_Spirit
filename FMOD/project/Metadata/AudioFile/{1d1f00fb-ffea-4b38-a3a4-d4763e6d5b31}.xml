@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{1d1f00fb-ffea-4b38-a3a4-d4763e6d5b31}">
+		<property name="assetPath">
+			<value>Voice/6_YourSlothV2.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.8062916666666666</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{001bd8e4-d067-4258-ab4a-b097b925ed35}</destination>
+		</relationship>
+	</object>
+</objects>

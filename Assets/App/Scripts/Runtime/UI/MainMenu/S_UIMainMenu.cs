@@ -2,7 +2,6 @@
 using FMODUnity;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class S_UIMainMenu : MonoBehaviour
@@ -234,23 +233,13 @@ public class S_UIMainMenu : MonoBehaviour
         }
     }
 
-    public void GYM()
+    public void Form()
     {
-        if (!isTransit)
-        {
-            isTransit = true;
+        Application.OpenURL("https://docs.google.com/forms/d/e/1FAIpQLSfv-M9c5vk5ZcO6x142nddZ2P9dlYln1nQq41wDwrQ_snus3A/viewform");
+    }
 
-            rseOnHideMouseCursor.Call();
-
-            rseOnFadeOut.Call();
-
-            StartCoroutine(S_Utils.DelayRealTime(ssoFadeTime.Value, () =>
-            {
-                rseOnCloseAllWindows.Call();
-                rsoNavigation.Value.selectableFocus = null;
-
-                rseOnLoadScene.Call(levelName.Name);
-            }));
-        }
+    public void Itchio()
+    {
+        Application.OpenURL("https://killian-furno.itch.io/spiritus-invictus");
     }
 }

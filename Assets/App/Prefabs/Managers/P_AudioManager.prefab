@@ -46,11 +46,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   music:
     Guid:
-      Data1: 1888634272
-      Data2: 1298487675
-      Data3: 1364613265
-      Data4: -1674215382
-    Path: event:/World/MusicTest
+      Data1: -958078954
+      Data2: 1226194656
+      Data3: -470862435
+      Data4: -950350801
+    Path: event:/World/MusicAmbiance
   wind:
     Guid:
       Data1: -1233886880

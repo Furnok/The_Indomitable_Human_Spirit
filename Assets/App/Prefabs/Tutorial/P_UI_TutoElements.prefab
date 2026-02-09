@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.5686275}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -411,7 +411,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2932837681144778394
 CanvasRenderer:
@@ -441,7 +441,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: '<style="TitleTuto">DODGE</style>
+
+
+    You can <color="Red">dodge</color>
+    attack with the <color="Red">red indicator </color>using {DODGE} at the right
+    timing which will give you <style="Conviction">conviction</style>.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
@@ -664,7 +669,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6904979364244225977
 CanvasRenderer:
@@ -694,7 +699,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <style="TitleTuto">Ciblage</style>
+  m_text: '<style="TitleTuto">ATTACK SIGNALING</style>
+
+
+    What action you need
+    to make to prevent to be hit is reported by an attack indicator, the <color="yellow">yellow
+    one indicated that you must parry the attack</color>, and the <color="red">red
+    need to be dodged</color>.
+
+
+    Press {NEXT} to continue'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
@@ -924,7 +938,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8889403860769877028
 CanvasRenderer:
@@ -954,7 +968,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: '<style="TitleTuto">Interact</style>
+
+
+    Press {INTERACT} to interact
+    with object near to you.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
@@ -1319,7 +1337,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4572269175211583332
 CanvasRenderer:
@@ -1349,7 +1367,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: '<style="TitleTuto">ATTACK</style>
+
+
+    To attack you need to <style="W1">hold</style>
+    the {ATTACK} button and press consecutively {ATTACK_UPGRADE} to reach a step
+    bar <style="W1">marked </style> on the conviction bar with a <style="W1">black
+    bar</style> and on release  {ATTACK} will consume your entire  <style="Conviction">conviction
+    bar </style> highlighted on the bottom of the screen, each reached step will
+    <style="W1">multiply the damage </style>of your attack.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
@@ -1456,19 +1482,22 @@ MonoBehaviour:
 
 
             To attack you need
-            to <style="W1">hold</style> the {ATTACK} button that''s consume progressively
-            your <style="Conviction">conviction bar </style>on the bottom of the
-            screen, each step are <style="W1">marked </style>by a <style="W1">black
-            bar</style> that''s make you <style="W1">multiply your damage </style>of
-            the attack.'
+            to <style="W1">hold</style> the {ATTACK} button and press consecutively
+            {ATTACK_UPGRADE} to reach a step bar <style="W1">marked </style> on the
+            conviction bar with a <style="W1">black bar</style> and on release  {ATTACK}
+            will consume your entire  <style="Conviction">conviction bar </style>
+            highlighted on the bottom of the screen, each reached step will <style="W1">multiply
+            the damage </style>of your attack.'
         - localeIdentifier:
             m_Code: fr
-          value: "<style=\"TitleTuto\">ATTAQUE</style>\n\nPour attaquer, vous devez
-            <style=\"W1\">maintenir</style> le {ATTACK} bouton qui consomme progressivement
-            votre <style=\"Conviction\">barre de conviction </style>en bas de l'\xE9cran,
-            chaque \xE9tape est marqu\xE9e par une <style=\"W1\">barre noire</style>
-            qui vous permet de  <style=\"W1\">multiplier les d\xE9g\xE2ts de l'attaque</style>
-            de l'attaque."
+          value: "<style=\"TitleTuto\">ATTAQUE</style>\r\n\r\nPour attaquer, vous
+            devez <style=\"W1\">maintenir</style> le bouton {ATTACK} et <style=\"W1\">appuyer
+            successivement</style> sur {ATTACK_UPGRADE} pour atteindre une barre
+            de progression <style=\"W1\">indiqu\xE9e</style> sur la barre de conviction
+            par <style=\"W1\">une barre noire</style>. Rel\xE2chez ensuite {ATTACK}
+            pour consommer toute votre <style=\"Conviction\"> barre de conviction</style>
+            surlign\xE9 en bas de l'\xE9cran. Chaque \xE9tape de progression atteinte
+            <style=\"W1\">multiplie les d\xE9g\xE2ts</style> de votre attaque."
 --- !u!1 &3950543609988186895
 GameObject:
   m_ObjectHideFlags: 0
@@ -1527,7 +1556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.5686275}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1653,7 +1682,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6654689175936938545
 CanvasRenderer:
@@ -2176,7 +2205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.5686275}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2228,8 +2257,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6442408849888514025
 CanvasRenderer:
@@ -2259,7 +2288,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: '<style="TitleTuto">SWAP TARGET</style>
+
+
+    To <style="W1">swap target
+    </style>beetwen enemies in range use the {SWAP_TARGET} in the direction left
+    and right of the current target you want to swap with'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
@@ -2518,7 +2552,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8552567443342872640
 CanvasRenderer:
@@ -2548,7 +2582,18 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: '<style="TitleTuto">CONVICTION</style>
+
+
+    You have a resource bar on
+    the bottom of your screen who is your <style="Conviction">conviction</style>
+    that''s can be <style="W1">gain</style> with <color="Yellow">parry </color>and
+    <style="W1">dodge</style> perfectly attacks, and you will use it to perform <style="W1">charging
+    attack</style> and to <color="Green">heal </color>yourself if you have enough
+    <style="Conviction">conviction</style>.
+
+
+    Press {NEXT} to continue'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
@@ -2781,7 +2826,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5026939436391320912
 CanvasRenderer:
@@ -2811,7 +2856,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: '<style="TitleTuto">HEAL</style>
+
+
+    Press the {HEAL} button to <style="W1">heal</style>
+    yourself if you have enough conviction.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
@@ -3037,7 +3086,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5903727566478622845
 CanvasRenderer:
@@ -3067,7 +3116,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: '<style="TitleTuto">PARRY PROJECTILE</style>
+
+
+    You can also <color="Yellow">parry
+    projectile</color> using {PARRY} at the right timing and that''s will <color="Yellow">reflect</color>
+    the projectile to the enemy.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
@@ -3219,7 +3273,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &455819009109157893
 CanvasRenderer:
@@ -3249,7 +3303,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: '<style="TitleTuto">PARRY</style>
+
+
+    You can <color="Yellow">parry</color>
+    attack with the <color="Yellow">yellow indicator </color>using {PARRY} at the
+    right timing which will give you <style="Conviction">conviction</style>.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
@@ -3457,7 +3516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.5686275}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3588,7 +3647,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a7a646329b344941986f2a691d774a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _looseHealthStartTuto: 20
   _tutoPrefabToEnumDictionary:
     keys: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b000000
     values:
@@ -3610,12 +3668,18 @@ MonoBehaviour:
   _onRequestAcceptedTutorialStep: {fileID: 11400000, guid: b9a2b0d431eef6a4fb87f1922b03ab57, type: 2}
   _rsoSettingsSaved: {fileID: 11400000, guid: 782057adb6fb88f4db3ac2e35a786bc0, type: 2}
   _rsoDevice: {fileID: 11400000, guid: 2d03f278b7224484daa610d79749492f, type: 2}
+  _rsoHasEnterAreaTuto: {fileID: 11400000, guid: 521e735be2161e9408824fb1487c0744, type: 2}
+  rseOnTargetsInRangeChange: {fileID: 11400000, guid: 6660d5373f88799428a248d2c3615ece, type: 2}
+  _playerAttackSteps: {fileID: 11400000, guid: ffc4fd5ee4fc81442b745bb06394e7be, type: 2}
+  _playerCurrentConviction: {fileID: 11400000, guid: e9e6e673e8d688d4b96f8309938dbfdc, type: 2}
   _onGamePause: {fileID: 11400000, guid: ae0312c6248bf454a8f047511417352d, type: 2}
   _onChangeHighlightTarget: {fileID: 11400000, guid: 53059718dbc01864b96bc5107c7ff935, type: 2}
   _onChangeActiveStatePanelsFilters: {fileID: 11400000, guid: c2bf9a0cf32e2b140bfaf00bf3c6f8cf, type: 2}
   _onPlayerHealthReduced: {fileID: 11400000, guid: d9db70b8d640c8d47b38c443abcec2ff, type: 2}
   _onPlayerGainConviction: {fileID: 11400000, guid: c3ba1e97cce4a3d4e929f7197f47a3c1, type: 2}
   rseOnGameActionInputEnabled: {fileID: 11400000, guid: 0526673c0b0752b418ffdef1cdaaf184, type: 2}
+  rseOnPlayerTargeting: {fileID: 11400000, guid: b5715b3f29f85be4e87180aa0db11aab, type: 2}
+  rsoCurrentTarget: {fileID: 11400000, guid: 21e74e9f4371e414596255356b9bd1f4, type: 2}
 --- !u!114 &3971288098241229408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3629,50 +3693,65 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spritesByDevice:
-    keys: 0200000003000000040000000600000007000000090000000a0000000b000000010000000500000008000000
+    keys: 0200000003000000040000000600000007000000090000000a0000000b0000000100000005000000080000000c000000
     values:
-    - keys: 0200000003000000
+    - keys: 020000000300000001000000
       values:
       - {fileID: 21300000, guid: 3d91209dc6a76434aa15433a04689683, type: 3}
       - {fileID: 21300000, guid: c1a0eae6fc88f0a48b388efc8f056989, type: 3}
-    - keys: 0200000003000000
+      - {fileID: 21300000, guid: 624e4084e406d574c8705e85c0fdcd2c, type: 3}
+    - keys: 020000000300000001000000
       values:
       - {fileID: 21300000, guid: 12d4b7991d4c07e4b99ca2bc97bdedfd, type: 3}
       - {fileID: 21300000, guid: c4ca2143141973a4f90ea263d1db64ac, type: 3}
-    - keys: 0200000003000000
+      - {fileID: 21300000, guid: a9fc272e79831d543989a9c8846a303e, type: 3}
+    - keys: 020000000300000001000000
       values:
       - {fileID: 21300000, guid: fa92fee8fd84b42418504ca3e94e13a5, type: 3}
       - {fileID: 21300000, guid: d114730f00e13224a9204af8e0ae9197, type: 3}
-    - keys: 0200000003000000
+      - {fileID: 21300000, guid: 6b0a4164200f95d4d88e368b14329e71, type: 3}
+    - keys: 020000000300000001000000
       values:
       - {fileID: 21300000, guid: c5b399045d31ad24cae3177185e16129, type: 3}
       - {fileID: 21300000, guid: 47342a0c5ac0b7843b146ea94377f3e2, type: 3}
-    - keys: 0200000003000000
+      - {fileID: 21300000, guid: 78d1b3745cbd08147847f64fe421d463, type: 3}
+    - keys: 020000000300000001000000
       values:
       - {fileID: 21300000, guid: 7baf98a9b65c5f94fb02eedccbac3321, type: 3}
       - {fileID: 21300000, guid: fc5c8b0126c5ab045be6f8a382c0dbe1, type: 3}
-    - keys: 0200000003000000
+      - {fileID: 21300000, guid: 18684dcf897161346ab4a7680cb66fa8, type: 3}
+    - keys: 020000000300000001000000
       values:
       - {fileID: 21300000, guid: 538bfc778db139f46aa84c4b006e0d55, type: 3}
       - {fileID: 21300000, guid: cf5ba8af4c7c14541be730c9d6d103cf, type: 3}
-    - keys: 0200000003000000
+      - {fileID: 21300000, guid: 8784e083bdb3e494c8babcb0caa9de70, type: 3}
+    - keys: 020000000300000001000000
       values:
       - {fileID: 21300000, guid: 905d3d917cf07214aad6abc5331c453e, type: 3}
       - {fileID: 21300000, guid: 905d3d917cf07214aad6abc5331c453e, type: 3}
-    - keys: 0200000003000000
+      - {fileID: 21300000, guid: f90b75c8afc47544886592f038ae1006, type: 3}
+    - keys: 020000000300000001000000
       values:
       - {fileID: 21300000, guid: c5b399045d31ad24cae3177185e16129, type: 3}
       - {fileID: 21300000, guid: 47342a0c5ac0b7843b146ea94377f3e2, type: 3}
+      - {fileID: 21300000, guid: 78d1b3745cbd08147847f64fe421d463, type: 3}
     - keys: 
       values: []
-    - keys: 0200000003000000
+    - keys: 020000000300000001000000
       values:
       - {fileID: 21300000, guid: 5be9112b673455548ba57ad413cff80c, type: 3}
       - {fileID: 21300000, guid: dd351d34d062d0245931455186b26bc6, type: 3}
-    - keys: 0200000003000000
+      - {fileID: 21300000, guid: 4ca49a59d5912da47b106e2c9a3bad5b, type: 3}
+    - keys: 020000000300000001000000
       values:
       - {fileID: 21300000, guid: 5be9112b673455548ba57ad413cff80c, type: 3}
       - {fileID: 21300000, guid: dd351d34d062d0245931455186b26bc6, type: 3}
+      - {fileID: 21300000, guid: 4ca49a59d5912da47b106e2c9a3bad5b, type: 3}
+    - keys: 020000000300000001000000
+      values:
+      - {fileID: 21300000, guid: 5be9112b673455548ba57ad413cff80c, type: 3}
+      - {fileID: 21300000, guid: dd351d34d062d0245931455186b26bc6, type: 3}
+      - {fileID: 21300000, guid: 4ca49a59d5912da47b106e2c9a3bad5b, type: 3}
   _tutorialsTextObjects:
   - {fileID: 4386589186397496702}
   - {fileID: 8869209142903574716}
@@ -3805,7 +3884,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &997294820368215787
 CanvasRenderer:
@@ -3835,7 +3914,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '{PARRY}  <sprite name=SP_Input_PlayStation_Button_L2>'
+  m_text: '<style="TitleTuto">Targeting</style>
+
+
+    Press {TARGETING} to target
+    the enemy in range indicated by the indication on the top of the enemy.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}

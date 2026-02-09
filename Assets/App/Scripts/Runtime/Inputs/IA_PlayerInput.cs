@@ -120,6 +120,15 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""AttackUpgrade"",
+                    ""type"": ""Button"",
+                    ""id"": ""5dcd2407-45eb-4414-9bbc-922e89df6a09"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Dodge"",
                     ""type"": ""Button"",
                     ""id"": ""f232e9a7-3784-4a0d-91c9-ab0aca427819"",
@@ -207,10 +216,21 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""204ca329-b895-40eb-9199-297e17e4a58a"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard and mouse"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6d7831f3-3c5c-41b4-93c1-7c748d19a8f7"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -255,6 +275,17 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard and mouse"",
+                    ""action"": ""Parry"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a5f73945-389a-4f1f-93d6-a426f3dc1130"",
+                    ""path"": ""<Keyboard>/leftAlt"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
                     ""action"": ""Parry"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -515,7 +546,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""2883aeaf-e0e9-4ebc-b29a-e0f38dad126b"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard and mouse"",
@@ -588,6 +619,28 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Console"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""553f6d8b-51c5-4de6-944f-b44f3370bae4"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AttackUpgrade"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""978e3d31-6a61-4689-b330-7168877b6dfa"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AttackUpgrade"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -791,6 +844,15 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""AttackUpgrade"",
+                    ""type"": ""Button"",
+                    ""id"": ""fdf45a63-2824-4390-9f58-12cc9eb0033e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Heal"",
                     ""type"": ""Button"",
                     ""id"": ""b84989dd-dc28-481f-a198-ca742e2b23ec"",
@@ -879,12 +941,23 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d203c26a-6801-4b27-8256-f36a3201799c"",
-                    ""path"": ""<Keyboard>/anyKey"",
+                    ""id"": ""e1383e41-d19a-4b90-a9b9-9b372e5a3ee3"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard and mouse"",
-                    ""action"": ""Next"",
+                    ""groups"": """",
+                    ""action"": ""AttackUpgrade"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e4041bb6-5a0d-4403-a67f-fa8451c5bf28"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AttackUpgrade"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -902,7 +975,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""62e4dcee-9bb3-4ee9-aaae-1924a4f187f5"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard and mouse"",
@@ -1033,6 +1106,17 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""2ec98957-3377-4bab-a967-284d3514ae0a"",
+                    ""path"": ""<Keyboard>/leftAlt"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Parry"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""68a155e4-2877-443b-abe8-2deaf002461f"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
@@ -1088,11 +1172,22 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""a466ffed-76b0-4df7-9df8-b8146119b74b"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""id"": ""930e2fa7-8ae3-4070-83e5-6da349996eb4"",
+                    ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard and mouse"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f816f8c8-6b07-4ef3-af1e-ed02e471e968"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1135,6 +1230,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
         m_Game_Move = m_Game.FindAction("Move", throwIfNotFound: true);
         m_Game_Look = m_Game.FindAction("Look", throwIfNotFound: true);
         m_Game_Attack = m_Game.FindAction("Attack", throwIfNotFound: true);
+        m_Game_AttackUpgrade = m_Game.FindAction("AttackUpgrade", throwIfNotFound: true);
         m_Game_Dodge = m_Game.FindAction("Dodge", throwIfNotFound: true);
         m_Game_Parry = m_Game.FindAction("Parry", throwIfNotFound: true);
         m_Game_Pause = m_Game.FindAction("Pause", throwIfNotFound: true);
@@ -1153,6 +1249,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
         // Tutorial
         m_Tutorial = asset.FindActionMap("Tutorial", throwIfNotFound: true);
         m_Tutorial_Next = m_Tutorial.FindAction("Next", throwIfNotFound: true);
+        m_Tutorial_AttackUpgrade = m_Tutorial.FindAction("AttackUpgrade", throwIfNotFound: true);
         m_Tutorial_Heal = m_Tutorial.FindAction("Heal", throwIfNotFound: true);
         m_Tutorial_Targeting = m_Tutorial.FindAction("Targeting", throwIfNotFound: true);
         m_Tutorial_SwapTarget = m_Tutorial.FindAction("Swap Target", throwIfNotFound: true);
@@ -1246,6 +1343,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Game_Move;
     private readonly InputAction m_Game_Look;
     private readonly InputAction m_Game_Attack;
+    private readonly InputAction m_Game_AttackUpgrade;
     private readonly InputAction m_Game_Dodge;
     private readonly InputAction m_Game_Parry;
     private readonly InputAction m_Game_Pause;
@@ -1277,6 +1375,10 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Game/Attack".
         /// </summary>
         public InputAction @Attack => m_Wrapper.m_Game_Attack;
+        /// <summary>
+        /// Provides access to the underlying input action "Game/AttackUpgrade".
+        /// </summary>
+        public InputAction @AttackUpgrade => m_Wrapper.m_Game_AttackUpgrade;
         /// <summary>
         /// Provides access to the underlying input action "Game/Dodge".
         /// </summary>
@@ -1344,6 +1446,9 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
+            @AttackUpgrade.started += instance.OnAttackUpgrade;
+            @AttackUpgrade.performed += instance.OnAttackUpgrade;
+            @AttackUpgrade.canceled += instance.OnAttackUpgrade;
             @Dodge.started += instance.OnDodge;
             @Dodge.performed += instance.OnDodge;
             @Dodge.canceled += instance.OnDodge;
@@ -1388,6 +1493,9 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
+            @AttackUpgrade.started -= instance.OnAttackUpgrade;
+            @AttackUpgrade.performed -= instance.OnAttackUpgrade;
+            @AttackUpgrade.canceled -= instance.OnAttackUpgrade;
             @Dodge.started -= instance.OnDodge;
             @Dodge.performed -= instance.OnDodge;
             @Dodge.canceled -= instance.OnDodge;
@@ -1653,6 +1761,7 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Tutorial;
     private List<ITutorialActions> m_TutorialActionsCallbackInterfaces = new List<ITutorialActions>();
     private readonly InputAction m_Tutorial_Next;
+    private readonly InputAction m_Tutorial_AttackUpgrade;
     private readonly InputAction m_Tutorial_Heal;
     private readonly InputAction m_Tutorial_Targeting;
     private readonly InputAction m_Tutorial_SwapTarget;
@@ -1675,6 +1784,10 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Tutorial/Next".
         /// </summary>
         public InputAction @Next => m_Wrapper.m_Tutorial_Next;
+        /// <summary>
+        /// Provides access to the underlying input action "Tutorial/AttackUpgrade".
+        /// </summary>
+        public InputAction @AttackUpgrade => m_Wrapper.m_Tutorial_AttackUpgrade;
         /// <summary>
         /// Provides access to the underlying input action "Tutorial/Heal".
         /// </summary>
@@ -1732,6 +1845,9 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
             @Next.started += instance.OnNext;
             @Next.performed += instance.OnNext;
             @Next.canceled += instance.OnNext;
+            @AttackUpgrade.started += instance.OnAttackUpgrade;
+            @AttackUpgrade.performed += instance.OnAttackUpgrade;
+            @AttackUpgrade.canceled += instance.OnAttackUpgrade;
             @Heal.started += instance.OnHeal;
             @Heal.performed += instance.OnHeal;
             @Heal.canceled += instance.OnHeal;
@@ -1767,6 +1883,9 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
             @Next.started -= instance.OnNext;
             @Next.performed -= instance.OnNext;
             @Next.canceled -= instance.OnNext;
+            @AttackUpgrade.started -= instance.OnAttackUpgrade;
+            @AttackUpgrade.performed -= instance.OnAttackUpgrade;
+            @AttackUpgrade.canceled -= instance.OnAttackUpgrade;
             @Heal.started -= instance.OnHeal;
             @Heal.performed -= instance.OnHeal;
             @Heal.canceled -= instance.OnHeal;
@@ -1876,6 +1995,13 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnAttack(InputAction.CallbackContext context);
         /// <summary>
+        /// Method invoked when associated input action "AttackUpgrade" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAttackUpgrade(InputAction.CallbackContext context);
+        /// <summary>
         /// Method invoked when associated input action "Dodge" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
@@ -1983,6 +2109,13 @@ public partial class @IA_PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnNext(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "AttackUpgrade" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAttackUpgrade(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Heal" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

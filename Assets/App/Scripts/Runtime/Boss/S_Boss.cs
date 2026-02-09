@@ -46,6 +46,9 @@ public class S_Boss : MonoBehaviour
     [SerializeField] private S_BossDetectionRange bossDetectionRange;
 
     [TabGroup("References")]
+    [SerializeField] private S_EnemyHeadLookAtIK enemyHeadLookAtIK;
+
+    [TabGroup("References")]
     [Title("Animator")]
     [SerializeField] private Animator animator;
 
@@ -113,10 +116,31 @@ public class S_Boss : MonoBehaviour
     [SerializeField] private RSE_OnDisplayBossHealth rseOnDisplayBossHealth;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnBossHealthSetup rseOnBossHealthSetup;
+
+    [TabGroup("Outputs")]
     [SerializeField] private RSE_OnUpdateBossHealth rseOnUpdateBossHealth;
 
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnBossDeath rseOnBossDeath;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnStartBossP1 rseOnStartBossP1;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnStartBossP2 rseOnStartBossP2;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnEndBossP1 rseOnEndBossP1;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnEndBossP2 rseOnEndBossP2;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnFinishBossP1 rseOnFinishBossP1;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnFinishBossP2 rseOnFinishBossP2;
 
     private List<S_ClassAttackOwned> listAttackOwneds = new();
     private List<S_ClassAttackOwned> listAttackOwnedPossibilities = new();
@@ -156,6 +180,9 @@ public class S_Boss : MonoBehaviour
     private bool isPlayerDeath = false;
     private bool isAttacking = false;
     private bool unlockRotate = false;
+
+    private Vector3 posSpawn = Vector3.zero;
+    private Quaternion rotSpawn = Quaternion.identity;
 
     #endregion
 
@@ -224,19 +251,25 @@ public class S_Boss : MonoBehaviour
     }
     private void Start()
     {
+        posSpawn = transform.position;
+        rotSpawn = transform.rotation;
+
         UpdateLastHealthValue();
         UpdateState(S_EnumBossState.Idle);
         bossDifficultyLevel = ssoBossData.Value.initialBossDifficultyLevel;
-        Debug.Log(listAttackOwnedPossibilities.Count);
     }
     
     private void Update()
     {
+        enemyHeadLookAtIK.SetTarget(target);
+
         if (target != null && (unlockRotate || !isAttacking) && !isDead) RotateEnemy();
 
         if (isChasing) Chase();
 
         if (isFighting) Fight();
+
+        Debug.Log(health);
     }
     private void FixedUpdate()
     {
@@ -292,7 +325,6 @@ public class S_Boss : MonoBehaviour
 
     private void ResetBoss()
     {
-        Debug.Log("Resetting Boss State...");
         bossAttackData.DisableWeaponCollider();
         bossAttackData.VFXStopTrail();
         navMeshAgent.enabled = true;
@@ -346,9 +378,12 @@ public class S_Boss : MonoBehaviour
 
             if(currentPhaseState == S_EnumBossPhaseState.Phase2)
             {
-                rseOnUpdateBossHealth.Call(health);
                 rseOnDisplayBossHealth.Call(true);
+                rseOnBossHealthSetup.Call(maxHealth);
             }
+
+            if (currentPhaseState == S_EnumBossPhaseState.Phase1) rseOnStartBossP1.Call();
+            else if (currentPhaseState == S_EnumBossPhaseState.Phase2) rseOnStartBossP2.Call();
         }
         else
         {
@@ -375,8 +410,8 @@ public class S_Boss : MonoBehaviour
     #region Chase
     private void Chasing()
     {
-        Debug.Log("Boss Chasing");
         isChasing = true;
+        animator.SetBool(idleAttack, false);
 
         ChooseAttack();
 
@@ -397,6 +432,7 @@ public class S_Boss : MonoBehaviour
                 if (currentAttack.bossAttack.isAttackDistance)
                 {
                     UpdateState(S_EnumBossState.Combat);
+                    isChasing = false;
                 }
                 else
                 {
@@ -408,6 +444,7 @@ public class S_Boss : MonoBehaviour
         else if (destinationReached)
         {
             UpdateState(S_EnumBossState.Combat);
+            isChasing = false;
         }
     }
     #endregion
@@ -415,14 +452,12 @@ public class S_Boss : MonoBehaviour
     #region Idle
     private void Idle()
     {
-        Debug.Log("Boss Idle");
     }
     #endregion
 
     #region Stun
     private void Stun()
     {
-        Debug.Log("Boss Stun!");
         if (stunCoroutine != null)
         {
             StopCoroutine(stunCoroutine);
@@ -464,6 +499,8 @@ public class S_Boss : MonoBehaviour
 
         if (target != null) UpdateHealth(damage);
 
+        Debug.Log("Boss Took Damage: " + damage);
+
     }
 
     private void UpdateHealth(float damage)
@@ -494,12 +531,15 @@ public class S_Boss : MonoBehaviour
     private void Death()
     {
         isDead = true;
+        animator.SetBool(idleAttack, false);
+
         animator.SetTrigger(deathParam);
 
         if (currentPhaseState == S_EnumBossPhaseState.Phase2)
         {
             rseOnDisplayBossHealth.Call(false);
         }
+
         rseOnBossDeath.Call();
         StopAllCoroutines();
 
@@ -510,6 +550,21 @@ public class S_Boss : MonoBehaviour
         bodyCollider.enabled = false;
         detectionCollider.enabled = false;
         hurtCollider.enabled = false;
+
+        enemyHeadLookAtIK.IsDead(true);
+
+        rseOnEnemyTargetDied.Call(body);
+
+        if (currentPhaseState == S_EnumBossPhaseState.Phase1)
+        {
+            rseOnEndBossP1.Call();
+            rseOnFinishBossP1.Call();
+        }
+        else if (currentPhaseState == S_EnumBossPhaseState.Phase2)
+        {
+            rseOnEndBossP2.Call();
+            rseOnFinishBossP2.Call();
+        }
     }
     #endregion
 
@@ -535,17 +590,7 @@ public class S_Boss : MonoBehaviour
         detectionCollider.enabled = false;
         listAttackOwnedPossibilities.Clear();
         lastValueHealth = 101f;
-        ultimateAttack = null;
-        currentAttack = null;
         isPlayerDeath = true;
-
-        if (isPerformingCombo) pendingState = S_EnumBossState.Idle;
-        else
-        {
-            target = null;
-
-            UpdateState(S_EnumBossState.Idle);
-        }
     }
 
     private void PlayerRespawn()
@@ -554,17 +599,25 @@ public class S_Boss : MonoBehaviour
         {
             isPlayerDeath = false;
             detectionCollider.enabled = true;
+            rb.isKinematic = false;
+            canAttack = true;
 
             target = null;
 
-            if (currentState != S_EnumBossState.Idle)
-            {
-                animator.SetTrigger(stopAttackParam);
-                animator.SetBool(idleAttack, false);
+            animator.SetTrigger(stopAttackParam);
+            animator.SetBool(idleAttack, false);
 
-                UpdateState(S_EnumBossState.Idle);
-            }
+            UpdateState(S_EnumBossState.Idle);
+
             UpdateLastHealthValue();
+
+            ResetBoss();
+
+            transform.position = posSpawn;
+            transform.rotation = rotSpawn;
+
+            if (currentPhaseState == S_EnumBossPhaseState.Phase1) rseOnEndBossP1.Call();
+            else if (currentPhaseState == S_EnumBossPhaseState.Phase2) rseOnEndBossP2.Call();
         }
     } 
     #endregion
@@ -600,7 +653,6 @@ public class S_Boss : MonoBehaviour
             {
                 if(attack.bossAttack.attackName == "Gathering")
                 {
-                    Debug.Log("Unlocking Ultimate Gathering");
                     ultimateAttack = attack;
                 }
                 if (attack.bossAttack.attackName == "Wings Of Hell")
@@ -618,7 +670,6 @@ public class S_Boss : MonoBehaviour
 
     private void ChooseAttack()
     {
-        Debug.Log("Choosing Attack...");
 
         var minAttackFrequency = listAttackOwnedPossibilities.Min(a => a.frequency);
         int roundDifficulty = Mathf.RoundToInt(bossDifficultyLevel);
@@ -645,7 +696,6 @@ public class S_Boss : MonoBehaviour
             var chosenAttack = bestAttacks[Random.Range(0, bestAttacks.Count)];
 
             currentAttack = chosenAttack;
-            Debug.Log("Chosen Attack: " + currentAttack.bossAttack.attackName + canAttack);
 
             foreach (var attack in listAttackOwnedPossibilities) attack.score = 0;
         }
@@ -653,7 +703,6 @@ public class S_Boss : MonoBehaviour
         {
             currentAttack = ultimateAttack;
             ultimateAttack = null;
-            Debug.Log("Chosen Ultimate Attack: " + currentAttack.bossAttack.attackName + canAttack);
             foreach (var attack in listAttackOwnedPossibilities) attack.score = 0;
         }
         
@@ -661,21 +710,21 @@ public class S_Boss : MonoBehaviour
 
     private void Fighting()
     {
-        Debug.Log("Boss Fighting");
         isFighting = true;
         animator.SetBool(idleAttack, true);
     }
     private void SpecialAttackEnd()
     {
-        Debug.Log("Special Attack End");
         rootMotionModifier.Setup(1);
         animator.SetTrigger(stopAttackParam);
         animator.SetBool(idleAttack, true);
 
+        rb.isKinematic = false;
         isPerformingCombo = false;
+        isFighting = false;
         isAttacking = false;
         unlockRotate = false;
-        ChooseAttack();
+        UpdateState(S_EnumBossState.Chase);
         if (resetAttack != null)
         {
             StopCoroutine(resetAttack);
@@ -686,12 +735,11 @@ public class S_Boss : MonoBehaviour
     }
     private void Fight()
     {
-        Debug.Log("Fighting...");
         if (canAttack)
         {
             canAttack = false;
 
-            if(currentAttack.bossAttack.attackName == "Gathering" || currentAttack.bossAttack.attackName == "Wings Of Hell")
+            if (currentAttack.bossAttack.attackName == "Gathering" || currentAttack.bossAttack.attackName == "Wings Of Hell")
             {
                 listAttackOwnedPossibilities.RemoveAt(listAttackOwnedPossibilities.IndexOf(currentAttack));
                 Debug.Log(listAttackOwnedPossibilities.Count);
@@ -701,9 +749,9 @@ public class S_Boss : MonoBehaviour
                 lastAttack = currentAttack;
                 currentAttack.frequency++;
             }
-                
 
-            if(currentAttack.bossAttack.isSpecialAttack)
+
+            if (currentAttack.bossAttack.isSpecialAttack)
             {
                 onExecuteAttack.Call(currentAttack.bossAttack);
                 isPerformingCombo = true;
@@ -724,7 +772,6 @@ public class S_Boss : MonoBehaviour
     }
     private IEnumerator PlayComboSequence()
     {
-        Debug.Log("Performing Combo: " + currentAttack.bossAttack.attackName);
         isPerformingCombo = true;
 
         yield return null;
@@ -734,7 +781,6 @@ public class S_Boss : MonoBehaviour
 
         for (int i = 0; i < currentAttack.bossAttack.listComboData.Count; i++)
         {
-            Debug.Log("Executing Attack " + (i + 1) + " of " + currentAttack.bossAttack.listComboData.Count);
             isAttacking = true;
             RotateEnemy();
 
@@ -753,6 +799,13 @@ public class S_Boss : MonoBehaviour
 
             isAttacking = false;
             RotateEnemy();
+
+            if (target == null)
+            {
+                bossAttackData.DisableWeaponCollider();
+                bossAttackData.VFXStopTrail();
+                break;
+            }
 
             yield return null;
         }
@@ -785,7 +838,7 @@ public class S_Boss : MonoBehaviour
             target = null;
         }
 
-        ChooseAttack();
+        UpdateState(S_EnumBossState.Chase);
         if (resetAttack != null)
         {
             StopCoroutine(resetAttack);

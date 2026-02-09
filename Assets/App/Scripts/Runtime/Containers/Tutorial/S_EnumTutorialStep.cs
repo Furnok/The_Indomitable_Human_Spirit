@@ -13,5 +13,6 @@ public enum S_EnumTutorialStep
     AttackSignaling = 8,
     Interact = 9,
     SwapTarget = 10,
-    ParryProjectile = 11
+    ParryProjectile = 11,
+    AttackUpgrade = 12,
 }

@@ -67,6 +67,10 @@ public class S_UIGameManager : MonoBehaviour
 
     [TabGroup("References")]
     [Title("Game Over")]
+    [SerializeField] private GameObject gameWinWindow;
+
+    [TabGroup("References")]
+    [Title("Game Over")]
     [SerializeField] private GameObject gameOverWindow;
 
     [TabGroup("References")]
@@ -82,6 +86,9 @@ public class S_UIGameManager : MonoBehaviour
 
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnDisplayBossHealth rseOnDisplayBossHealth;
+
+    [TabGroup("Inputs")]
+    [SerializeField] private RSE_OnBossHealthSetup rseOnBossHealthSetup;
 
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnUpdateBossHealth rseOnUpdateBossHealth;
@@ -112,6 +119,9 @@ public class S_UIGameManager : MonoBehaviour
 
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnSaveDisplay rseOnSaveDisplay;
+
+    [TabGroup("Inputs")]
+    [SerializeField] private RSE_OnFinishBossP1 rseOnFinishBossP1;
 
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnUIInputEnabled rseOnUIInputEnabled;
@@ -212,6 +222,7 @@ public class S_UIGameManager : MonoBehaviour
 
     private void OnEnable()
     {
+        rseOnBossHealthSetup.action += SetBossHealthSetup;
         rseOnDisplayBossHealth.action += DisplayBossHealth;
         rseOnUpdateBossHealth.action += SetBossHealthSliderValue;
         rseOnPlayerHealthUpdate.action += SetHealthSliderValue;
@@ -224,10 +235,12 @@ public class S_UIGameManager : MonoBehaviour
         rseOnPlayerDeath.action += GameOver;
         rseOnDialogueDisplay.action += DisplayDialogue;
         rseOnSaveDisplay.action += DisplaySave;
+        rseOnFinishBossP1.action += GameWin;
     }
 
     private void OnDisable()
     {
+        rseOnBossHealthSetup.action -= SetBossHealthSetup;
         rseOnDisplayBossHealth.action -= DisplayBossHealth;
         rseOnUpdateBossHealth.action -= SetBossHealthSliderValue;
         rseOnPlayerHealthUpdate.action -= SetHealthSliderValue;
@@ -240,6 +253,7 @@ public class S_UIGameManager : MonoBehaviour
         rseOnPlayerDeath.action -= GameOver;
         rseOnDialogueDisplay.action -= DisplayDialogue;
         rseOnSaveDisplay.action -= DisplaySave;
+        rseOnFinishBossP1.action -= GameWin;
 
         healthTween?.Kill();
         convictionTween?.Kill();
@@ -267,12 +281,20 @@ public class S_UIGameManager : MonoBehaviour
             });
         }
     }
+
+    private void SetBossHealthSetup(float health)
+    {
+        sliderBossHealth.maxValue = health;
+        sliderBossHealth.value = health;
+    }
+
     private void SetBossHealthSliderValue(float health)
     {
         bossHealthTween?.Kill();
 
         bossHealthTween = sliderBossHealth.DOValue(health, ssoAnimationSlider.Value).SetEase(Ease.OutCubic);
     }
+
     private void SetHealthSliderValue(float health)
     {
         healthTween?.Kill();
@@ -291,7 +313,7 @@ public class S_UIGameManager : MonoBehaviour
     {
         preconvictionTween?.Kill();
 
-        preconvictionTween = sliderPlayerAttackSteps.DOValue(preconvition, ssoAnimationSlider.Value).SetEase(Ease.OutCubic);
+        preconvictionTween = sliderPlayerAttackSteps.DOValue(preconvition, ssoAnimationSlider.Value).SetEase(Ease.OutCubic).SetUpdate(true);
     }
 
     private IEnumerator BuildTicksNextFrame()
@@ -501,6 +523,22 @@ public class S_UIGameManager : MonoBehaviour
     #endregion
 
     #region Game Over
+    private void GameWin()
+    {
+        StartCoroutine(S_Utils.Delay(ssoDisplay.Value, () =>
+        {
+            rseOnUIInputEnabled.Call();
+            rseOnGamePause.Call(true);
+
+            CanvasGroup cg = gameWinWindow.GetComponent<CanvasGroup>();
+            cg.DOKill();
+
+            gameWinWindow.SetActive(true);
+
+            cg.DOFade(1f, ssoDisplay.Value).SetEase(Ease.Linear).SetUpdate(true);
+        }));
+    }
+
     private void GameOver()
     {
         StartCoroutine(S_Utils.Delay(ssoGameOver.Value, () =>

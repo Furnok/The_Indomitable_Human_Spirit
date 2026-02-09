@@ -121,13 +121,17 @@ public class S_CameraManager : MonoBehaviour
     private const int FocusCinematic = 100;
     private const int Unfocus = 1;
 
-    private Tween shoulderTween = null;
     private Tween fovTween = null;
     private Tween resetHorizontalTween = null;
     private Tween resetVerticalTween = null;
-    private float lastDirection = 0f;
-    float currentTargetFOV = 0f;
-    private Vector3 targetOffsetVelocity = Vector3.zero;
+    private float currentTargetFOV = 0f;
+
+    private float lastDirection = -1;
+    private float offset = 0f;
+    private float targetOffset = 0f;
+    private float offsetVelocity = 0f;
+    private float radiusVelocity = 0f;
+    private Tween radiusTween = null;
 
     private void Awake()
     {
@@ -180,18 +184,11 @@ public class S_CameraManager : MonoBehaviour
 
         playerPoint.position = playerPos.position;
 
-        HandlePlayerFade();
         HandleSkipHold();
+        HandlePlayerFade();
         HandleTargeting();
 
-        if (lastDirection > 0)
-        {
-            ChangeShoulderOffsetWorld(ssoCameraData.Value.shoulderOffsetAmountNegative);
-        }
-        else if (lastDirection < 0)
-        {
-            ChangeShoulderOffsetWorld(ssoCameraData.Value.shoulderOffsetAmountPositive);
-        }
+        Offset();
     }
 
     private void SetTarget(GameObject target)
@@ -204,8 +201,14 @@ public class S_CameraManager : MonoBehaviour
 
                 LookActivated(true);
 
-                ChangeShoulderOffset(new Vector3(0, 1, 0));
-                lastDirection = 0;
+                targetOffset = 0f;
+                offset = 0f;
+                offsetVelocity = 0f;
+                lastDirection = -1;
+
+                radiusTween?.Kill();
+
+                radiusTween = DOTween.To(() => cinemachineCameraOrbitalFollow.Radius, x => cinemachineCameraOrbitalFollow.Radius = x, 6, 0.4f).SetEase(Ease.Linear);
             }
             else
             {
@@ -404,6 +407,20 @@ public class S_CameraManager : MonoBehaviour
         if (skipHold >= ssoCameraData.Value.holdSkipTime + 0.35f) SkipCinematic();
     }
 
+    private float GetDistanceFactor()
+    {
+        Vector3 toTarget = currentTarget.GetComponent<S_AimPointProvider>().GetAimPoint().position - playerPos.position;
+
+        float distance = toTarget.magnitude;
+
+        float minDist = 0;
+        float maxDist = 10;
+
+        float t = Mathf.InverseLerp(maxDist, minDist, distance);
+
+        return Mathf.SmoothStep(0f, 1f, t);
+    }
+
     private void HandleTargeting()
     {
         if (currentTarget)
@@ -415,7 +432,13 @@ public class S_CameraManager : MonoBehaviour
 
             float targetYaw = Quaternion.LookRotation(dir).eulerAngles.y;
 
-            cinemachineCameraOrbitalFollow.HorizontalAxis.Value = Mathf.LerpAngle(cinemachineCameraOrbitalFollow.HorizontalAxis.Value, targetYaw, Time.deltaTime * 5f);
+            float distanceFactor = GetDistanceFactor();
+            float scaledOffset = offset * distanceFactor;
+
+            float targetRadius = Mathf.Lerp(7, 5, distanceFactor);
+            cinemachineCameraOrbitalFollow.Radius = Mathf.SmoothDamp(cinemachineCameraOrbitalFollow.Radius, targetRadius, ref radiusVelocity, 0.4f);
+
+            cinemachineCameraOrbitalFollow.HorizontalAxis.Value = Mathf.LerpAngle(cinemachineCameraOrbitalFollow.HorizontalAxis.Value, targetYaw + scaledOffset, Time.deltaTime * 5f);
 
             Vector3 dirNormalized = dir.normalized;
             float lookAtPitch = Mathf.Asin(dirNormalized.y) * Mathf.Rad2Deg;
@@ -462,45 +485,17 @@ public class S_CameraManager : MonoBehaviour
     {
         if (currentTarget != null)
         {
-            if (move.x > 0.25f && lastDirection <= 0)
-            {
-                lastDirection = move.x;
-            }
-            else if (move.x < -0.25f && lastDirection >= 0)
+            if (move.x > 0.25f || move.x < -0.25f)
             {
                 lastDirection = move.x;
             }
         }
     }
 
-    private void ChangeShoulderOffsetWorld(float sideAmount)
+    private void Offset()
     {
-        Vector3 toTarget = currentTarget.GetComponent<S_AimPointProvider>().GetAimPoint().position - playerPos.position;
-
-        float distance = toTarget.magnitude;
-        Vector3 direction = toTarget.normalized;
-
-        Vector3 cameraRight = Vector3.Cross(Vector3.up, direction).normalized;
-
-        float closeFactor = Mathf.Clamp01(1f - (distance / ssoCameraData.Value.maxShoulderDistance));
-
-        float sideOffsetAmount = sideAmount * ssoCameraData.Value.maxShoulderOffset * closeFactor;
-
-        float forwardAmount = ssoCameraData.Value.maxFrontOffset * closeFactor;
-        float backwardAmount = ssoCameraData.Value.maxBackOffset * (1f - closeFactor);
-
-        float forwardOffsetAmount = forwardAmount - backwardAmount;
-
-        Vector3 desiredOffset = cameraRight * sideOffsetAmount + direction * forwardOffsetAmount;
-        desiredOffset.y = cinemachineCameraOrbitalFollow.TargetOffset.y;
-
-        cinemachineCameraOrbitalFollow.TargetOffset = Vector3.SmoothDamp(cinemachineCameraOrbitalFollow.TargetOffset, desiredOffset, ref targetOffsetVelocity, ssoCameraData.Value.offsetTransitionUpdateTime);
-    }
-
-    private void ChangeShoulderOffset(Vector3 target)
-    {
-        shoulderTween?.Kill();
-        shoulderTween = DOTween.To(() => cinemachineCameraOrbitalFollow.TargetOffset, x => cinemachineCameraOrbitalFollow.TargetOffset = x, target, ssoCameraData.Value.offsetTransitionTime).SetEase(Ease.Linear);
+        targetOffset = Mathf.Clamp(targetOffset + lastDirection, ssoCameraData.Value.minOffset, ssoCameraData.Value.maxOffset);
+        offset = Mathf.SmoothDamp(offset, targetOffset, ref offsetVelocity, ssoCameraData.Value.offsetTime);
     }
 
     private void StartSkipTimer()

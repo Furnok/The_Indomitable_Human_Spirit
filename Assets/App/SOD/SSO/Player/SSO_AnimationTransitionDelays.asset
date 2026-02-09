@@ -17,7 +17,7 @@ MonoBehaviour:
     parryStartupDelay: 0.001
     attackStartupDelay: 0.1
     healStartupDelay: 0.1
-    dodgeRecoveryDelay: 0.1
-    parryRecoveryDelay: 0.1
-    attackRecoveryDelay: 0.1
+    dodgeRecoveryDelay: 0.3
+    parryRecoveryDelay: 0.3
+    attackRecoveryDelay: 0.3
     healRecoveryDelay: 0.3

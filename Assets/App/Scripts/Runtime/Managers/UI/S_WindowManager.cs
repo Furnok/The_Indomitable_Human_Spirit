@@ -35,6 +35,12 @@ public class S_WindowManager : MonoBehaviour
     [SerializeField] private GameObject fadeWindow;
 
     [TabGroup("References")]
+    [SerializeField] private GameObject winWindow;
+
+    [TabGroup("References")]
+    [SerializeField] private GameObject overWindow;
+
+    [TabGroup("References")]
     [Title("Console")]
     [SerializeField] private TMP_InputField inputField;
 
@@ -199,7 +205,7 @@ public class S_WindowManager : MonoBehaviour
     #region Pause Game
     private void PauseGame()
     {
-        if (inputField.isFocused) return;
+        if (inputField.isFocused || winWindow.activeInHierarchy || overWindow.activeInHierarchy) return;
 
         if (rsoInConsole.Value)
         {

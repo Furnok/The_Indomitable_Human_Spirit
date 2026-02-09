@@ -136,10 +136,13 @@ public class S_Enemy : MonoBehaviour
     [SerializeField] private RSE_OnPlayerRespawn rseOnPlayerRespawn;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnCameraFOV rseOnCameraFOV;
+
+    [TabGroup("Outputs")]
     [SerializeField] private RSO_DataSaved rsoDataSaved;
 
     [TabGroup("Outputs")]
-    [SerializeField] private RSE_OnCameraFOV rseOnCameraFOV;
+    [SerializeField] private RSO_CurrentTarget rsoCurrentTarget;
 
     [TabGroup("Outputs")]
     [SerializeField] private SSO_CameraData ssoCameraData;
@@ -776,12 +779,15 @@ public class S_Enemy : MonoBehaviour
         animator.SetBool(idleAttack, false);
         isAttacking = false;
 
-        S_ClassCameraFOV fov = new S_ClassCameraFOV();
-        fov.value = ssoCameraData.Value.fovFight;
-        fov.time = ssoCameraData.Value.fovFightSwitchTime;
-        fov.reset = true;
+        if (rsoCurrentTarget.Value == body)
+        {
+            S_ClassCameraFOV fov = new S_ClassCameraFOV();
+            fov.value = ssoCameraData.Value.fovFight;
+            fov.time = ssoCameraData.Value.fovFightSwitchTime;
+            fov.reset = true;
 
-        rseOnCameraFOV.Call(fov);
+            rseOnCameraFOV.Call(fov);
+        }
 
         for (int i = 0; i < combo.listAnimationsCombos.Count; i++)
         {
@@ -843,12 +849,15 @@ public class S_Enemy : MonoBehaviour
         isAttacking = false;
         unlockRotate = false;
 
-        S_ClassCameraFOV fov2 = new S_ClassCameraFOV();
-        fov2.value = 60;
-        fov2.time = ssoCameraData.Value.fovFightSwitchTime;
-        fov2.reset = true;
+        if (rsoCurrentTarget.Value == body)
+        {
+            S_ClassCameraFOV fov2 = new S_ClassCameraFOV();
+            fov2.value = 60;
+            fov2.time = ssoCameraData.Value.fovFightSwitchTime;
+            fov2.reset = true;
 
-        rseOnCameraFOV.Call(fov2);
+            rseOnCameraFOV.Call(fov2);
+        }
 
         if (isPlayerDeath)
         {
@@ -915,12 +924,15 @@ public class S_Enemy : MonoBehaviour
 
         rootMotionModifier.Setup(1, 0);
 
-        S_ClassCameraFOV fov = new S_ClassCameraFOV();
-        fov.value = 60;
-        fov.time = 0.5f;
-        fov.reset = true;
+        if (rsoCurrentTarget.Value == body)
+        {
+            S_ClassCameraFOV fov = new S_ClassCameraFOV();
+            fov.value = 60;
+            fov.time = ssoCameraData.Value.fovFightSwitchTime;
+            fov.reset = true;
 
-        rseOnCameraFOV.Call(fov);
+            rseOnCameraFOV.Call(fov);
+        }
 
         rseOnSendConsoleMessage.Call(gameObject.transform.parent.name + " is Stun!");
 
@@ -958,8 +970,8 @@ public class S_Enemy : MonoBehaviour
     private void Death()
     {
         isDead = true;
-
         animator.SetBool(idleAttack, false);
+
         animator.SetTrigger(deathParam);
 
         var list = rsoDataSaved.Value.enemy;
@@ -983,12 +995,15 @@ public class S_Enemy : MonoBehaviour
         target = null;
         targetInZone = null;
 
-        S_ClassCameraFOV fov = new S_ClassCameraFOV();
-        fov.value = 60;
-        fov.time = 0.5f;
-        fov.reset = true;
+        if (rsoCurrentTarget.Value == body)
+        {
+            S_ClassCameraFOV fov = new S_ClassCameraFOV();
+            fov.value = 60;
+            fov.time = ssoCameraData.Value.fovFightSwitchTime;
+            fov.reset = true;
 
-        rseOnCameraFOV.Call(fov);
+            rseOnCameraFOV.Call(fov);
+        }
 
         bodyCollider.enabled = false;
         detectionCollider.enabled = false;
