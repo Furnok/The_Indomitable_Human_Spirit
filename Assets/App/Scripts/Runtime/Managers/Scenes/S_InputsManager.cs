@@ -553,8 +553,8 @@ public class S_InputsManager : MonoBehaviour
         tutorial.SwapTarget.performed -= OnSwapTargetInput;
         tutorial.Dodge.performed -= OnDodgeInput;
 
-        tutorial.Attack.performed -= AttackPressedTuto;
-        tutorial.Attack.canceled -= AttackCancelTuto;
+        //tutorial.Attack.performed -= AttackPressedTuto;
+        //tutorial.Attack.canceled -= AttackCancelTuto;
 
         tutorial.Interact.performed -= OnInteractInput;
         tutorial.Targeting.performed -= OnTargetingInput;
@@ -568,6 +568,11 @@ public class S_InputsManager : MonoBehaviour
         tutorial.Interact.performed -= OnTutorialInteractFinish;
         tutorial.Targeting.performed -= OnTutorialTargetingFinish;
         tutorial.Heal.performed -= OnTutorialHealFinish;
+
+        tutorial.Attack.performed -= AttackPressedTuto;
+        tutorial.Attack.canceled -= AttackCanceledTuto;
+        tutorial.AttackUpgrade.performed -= OnAttackUpgradeInput;
+        tutorial.AttackUpgrade.performed -= AttackUpgradePressedTuto;
     }
 
     private void ActivateTutorialActionInput()

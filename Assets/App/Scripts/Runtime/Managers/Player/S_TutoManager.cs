@@ -203,6 +203,8 @@ public class S_TutoManager : MonoBehaviour
     {
         var tuto = _tutoStepsFinished.Value.Find(x => x.Step == tutoStep && x.IsFinished == true);
 
+        _onChangeHighlightTarget.Call(_filterConvictionBar);
+
         //if (tuto != null && tutoStep == S_EnumTutorialStep.ParryProjectile)
         //{
         //    StartCoroutine(S_Utils.Delay(1.0f, () =>
@@ -247,17 +249,24 @@ public class S_TutoManager : MonoBehaviour
         {
             StartCoroutine(S_Utils.Delay(0.5f, () =>
             {
+                _onChangeActiveStatePanelsFilters.Call();
+
                 _onRequestStartTutorialStep.Call(S_EnumTutorialStep.Conviction);
             }));
         }
 
-        if (tuto != null && tutoStep == S_EnumTutorialStep.Targeting)
+        if (tuto != null && tutoStep == S_EnumTutorialStep.Conviction)
         {
-            StartCoroutine(S_Utils.Delay(0.1f, () =>
-            {
-                _onRequestStartTutorialStep.Call(S_EnumTutorialStep.SwapTarget);
-            }));
+            _onChangeActiveStatePanelsFilters.Call();
         }
+
+        //if (tuto != null && tutoStep == S_EnumTutorialStep.Targeting)
+        //{
+        //    StartCoroutine(S_Utils.Delay(0.1f, () =>
+        //    {
+        //        _onRequestStartTutorialStep.Call(S_EnumTutorialStep.SwapTarget);
+        //    }));
+        //}
     }
 }
 
