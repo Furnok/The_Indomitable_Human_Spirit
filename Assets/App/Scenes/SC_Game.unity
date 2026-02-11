@@ -419069,10 +419069,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2244929534298167926, guid: 950a41a8bee7f3240a65d9a95c016487, type: 3}
-      propertyPath: m_Radius
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 2687512995774989309, guid: 950a41a8bee7f3240a65d9a95c016487, type: 3}
       propertyPath: m_Name
       value: P_Tuto_AreaParry
@@ -419085,10 +419081,6 @@ PrefabInstance:
       propertyPath: _enemyTuto
       value: 
       objectReference: {fileID: 2064278356}
-    - target: {fileID: 3987870025420001728, guid: 950a41a8bee7f3240a65d9a95c016487, type: 3}
-      propertyPath: _distanceToTriggerTuto
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
