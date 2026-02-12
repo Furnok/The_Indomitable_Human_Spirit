@@ -11,10 +11,6 @@ public class S_Enemy : MonoBehaviour
     [Title("Enemy Data")]
     [SerializeField] private SSO_EnemyData ssoEnemyData;
 
-    [TabGroup("Settings")]
-    [Title("Patrol Points")]
-    [SerializeField] private List<GameObject> patrolPointsList;
-
     [TabGroup("References")]
     [Title("Agent")]
     [SerializeField] private NavMeshAgent navMeshAgent;
@@ -137,6 +133,24 @@ public class S_Enemy : MonoBehaviour
     [TabGroup("Outputs")]
     [SerializeField] private SSO_CameraData ssoCameraData;
 
+    private List<GameObject> patrolPointsList = new();
+
+    private GameObject currentTarget = null;
+    private S_EnumEnemyState currentState = S_EnumEnemyState.None;
+
+    private Tween rotateTween = null;
+
+    private Coroutine idleCoroutine = null;
+    private Coroutine patrolingCoroutine = null;
+
+    private bool isIdle = false;
+    private bool isPatroling = false;
+    private bool isChasing = false;
+
+
+
+
+
     private float health = 0;
 
     private int currentPatrolIndex = 0;
@@ -146,27 +160,21 @@ public class S_Enemy : MonoBehaviour
     private AnimatorOverrideController overrideController = null;
 
     private GameObject targetInZone = null;
-    private GameObject target = null;
 
-    private S_EnumEnemyState currentState = S_EnumEnemyState.Idle;
     private S_ClassAnimationsCombos combo = null;
 
-    private Coroutine idleCoroutine = null;
     private Coroutine comboCoroutine = null;
     private Coroutine stunCoroutine = null;
     private Coroutine resetAttack = null;
-    private Coroutine patrolingCoroutine = null;
     private Coroutine returnBackCoroutine = null;
 
     private bool isPerformingCombo = false;
 
-    private bool isPatroling = false;
-    private bool isChasing = false;
     private bool isFighting = false;
     private bool isHeavyHit = false;
     private bool isDead = false;
 
-    private bool canAttack = false;
+    private bool canAttack = true;
     private bool isPlayerDeath = false;
     private bool isAttacking = false;
     private bool unlockRotate = false;
@@ -175,9 +183,10 @@ public class S_Enemy : MonoBehaviour
 
     private void Awake()
     {
-        Refresh();
+        patrolPointsList.Clear();
 
-        canAttack = true;
+        foreach (Transform child in patrolPoints) patrolPointsList.Add(child.gameObject);
+
         navMeshAgent.avoidancePriority = Random.Range(0, 99);
 
         Animator anim = animator;
@@ -223,37 +232,30 @@ public class S_Enemy : MonoBehaviour
 
         rsoDataSaved.Value.enemy.Add(enemy);
 
+        canAttack = true;
+        SetCombo();
+
         UpdateState(S_EnumEnemyState.Idle);
     }
 
     private void Update()
     {
-        enemyHeadLookAtIK.SetTarget(target);
-
-        if (target != null && (unlockRotate || !isAttacking) && !isDead) RotateEnemy();
-
-        if (isChasing) Chase();
-
-        if (isFighting) Fight();
-    }
-
-    private void FixedUpdate()
-    {
-        bool isMoving = navMeshAgent.velocity.magnitude > 0.1f;
-        animator.SetBool(moveParam, isMoving);
+        if (currentState == S_EnumEnemyState.Chasing || currentState == S_EnumEnemyState.Combat || currentState == S_EnumEnemyState.Attack) enemyHeadLookAtIK.SetTarget(currentTarget);
+    
+        if (isChasing) Chasing();
     }
 
     public void RotateEnemy()
     {
-        if (target != null)
+        if (currentTarget != null)
         {
-            Vector3 direction = target.transform.position - center.transform.position;
+            Vector3 direction = currentTarget.transform.position - center.transform.position;
             direction.y = 0;
 
             Quaternion targetRot = Quaternion.LookRotation(direction);
 
-            transform.DOKill();
-            transform.DORotateQuaternion(targetRot, ssoEnemyData.Value.rotationTime);
+            rotateTween?.Kill();
+            rotateTween = transform.DORotateQuaternion(targetRot, ssoEnemyData.Value.rotationTime);
         }
     }
 
@@ -267,25 +269,23 @@ public class S_Enemy : MonoBehaviour
         unlockRotate = false;
     }
 
-    #region Patrol Points
-    [TabGroup("Settings")]
-    [Button(ButtonSizes.Medium)]
-    private void RefreshPatrolPoints()
+    private void SetDestinationToPatrolPoint(Transform target)
     {
-        Refresh();
+        if (NavMesh.SamplePosition(target.position, out NavMeshHit hit, 1.5f, NavMesh.AllAreas))
+        {
+            navMeshAgent.SetDestination(hit.position);
+        }
+        else
+        {
+            navMeshAgent.SetDestination(target.position);
+        }
     }
-
-    private void Refresh()
-    {
-        patrolPointsList.Clear();
-
-        foreach (Transform child in patrolPoints) patrolPointsList.Add(child.gameObject);
-    }
-    #endregion
 
     #region States
     private void UpdateState(S_EnumEnemyState newState)
     {
+        if (currentState == newState) return;
+
         ResetEnemy();
 
         currentState = newState;
@@ -293,16 +293,22 @@ public class S_Enemy : MonoBehaviour
         switch (currentState)
         {
             case S_EnumEnemyState.Idle:
-                Idle();
+                StartIdle();
                 break;
             case S_EnumEnemyState.Patroling:
-                Patroling();
+                StartPatroling();
+                break;
+            case S_EnumEnemyState.ReturnPatroling:
+
                 break;
             case S_EnumEnemyState.Chasing:
-                Chasing();
+                StartChasing();
                 break;
             case S_EnumEnemyState.Combat:
                 Fighting();
+                break;
+            case S_EnumEnemyState.Attack:
+
                 break;
             case S_EnumEnemyState.Stun:
                 HeavyHit();
@@ -315,6 +321,32 @@ public class S_Enemy : MonoBehaviour
 
     private void ResetEnemy()
     {
+        isIdle = false;
+        isPatroling = false;
+        isChasing= false;
+
+        rotateTween?.Kill();
+
+        if (idleCoroutine != null)
+        {
+            StopCoroutine(idleCoroutine);
+            idleCoroutine = null;
+        }
+
+        if (patrolingCoroutine != null)
+        {
+            StopCoroutine(patrolingCoroutine);
+            patrolingCoroutine = null;
+        }
+
+        navMeshAgent.stoppingDistance = 0.2f;
+        navMeshAgent.ResetPath();
+        navMeshAgent.velocity = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
+
+
+
+
         enemyAttackData.DisableWeaponCollider();
         enemyAttackData.VFXStopTrail();
 
@@ -334,12 +366,6 @@ public class S_Enemy : MonoBehaviour
         {
             StopCoroutine(stunCoroutine);
             stunCoroutine = null;
-        }
-
-        if (patrolingCoroutine != null)
-        {
-            StopCoroutine(patrolingCoroutine);
-            patrolingCoroutine = null;
         }
 
         isPerformingCombo = false;
@@ -369,13 +395,13 @@ public class S_Enemy : MonoBehaviour
 
     public void SetTarget(GameObject newTarget)
     {
-        if (newTarget == target || isDead || newTarget != targetInZone) return;
+        if (newTarget == currentTarget || isDead || newTarget != targetInZone) return;
 
-        target = newTarget;
+        currentTarget = newTarget;
 
         if (isPerformingCombo || isHeavyHit) return;
 
-        if (target != null)
+        if (currentTarget != null)
         {
             newTarget.TryGetComponent<I_AimPointProvider>(out I_AimPointProvider aimPointProvider);
             aimPoint = aimPointProvider != null ? aimPointProvider.GetAimPoint() : newTarget.transform;
@@ -446,7 +472,7 @@ public class S_Enemy : MonoBehaviour
     {
         if (isDead) return;
 
-        if (target != null) UpdateHealth(damage);
+        if (currentTarget != null) UpdateHealth(damage);
         else
         {
             if (targetInZone != null)
@@ -487,7 +513,7 @@ public class S_Enemy : MonoBehaviour
     #region Player
     private void PlayerDeath()
     {
-        if (target == null) return;
+        if (currentTarget == null) return;
 
         if (health != ssoEnemyData.Value.health)
         {
@@ -509,7 +535,7 @@ public class S_Enemy : MonoBehaviour
             isPlayerDeath = false;
             detectionCollider.enabled = false;
 
-            target = null;
+            currentTarget = null;
             targetInZone = null;
 
             if (currentState != S_EnumEnemyState.ReturnPatroling)
@@ -544,8 +570,12 @@ public class S_Enemy : MonoBehaviour
     #endregion
 
     #region Idle
-    private void Idle()
+    private void StartIdle()
     {
+        if (isIdle) return;
+
+        isIdle = true;
+
         float waitTime = Random.Range(ssoEnemyData.Value.startPatrolWaitMin, ssoEnemyData.Value.startPatrolWaitMax );
 
         idleCoroutine = StartCoroutine(S_Utils.Delay(waitTime, () => UpdateState(S_EnumEnemyState.Patroling)));
@@ -553,18 +583,17 @@ public class S_Enemy : MonoBehaviour
     #endregion
 
     #region Patroling
-    private void Patroling()
+    private void StartPatroling()
     {
+        if (patrolPointsList == null || patrolPointsList.Count == 0 || isPatroling) return;
+
         isPatroling = true;
+
         detectionCollider.enabled = true;
-
-        if (patrolPointsList == null || patrolPointsList.Count == 0) return;
-
         navMeshAgent.speed = ssoEnemyData.Value.speedPatrol;
+        navMeshAgent.stoppingDistance = 0.2f;
 
         patrolingCoroutine = StartCoroutine(PatrolingRoutine());
-
-        rseOnSendConsoleMessage.Call(gameObject.transform.parent.name + " Start Patroling!");
     }
 
     private IEnumerator PatrolingRoutine()
@@ -573,13 +602,11 @@ public class S_Enemy : MonoBehaviour
         {
             GameObject targetPoint = patrolPointsList[currentPatrolIndex];
 
-            navMeshAgent.SetDestination(targetPoint.transform.position);
+            SetDestinationToPatrolPoint(targetPoint.transform);
 
-            while (navMeshAgent.pathPending || navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance) yield return null;
+            yield return new WaitUntil(() => !navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance);
 
-            float waitTime = Random.Range(ssoEnemyData.Value.patrolPointWaitMin, ssoEnemyData.Value.patrolPointWaitMax);
-
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(Random.Range(ssoEnemyData.Value.patrolPointWaitMin, ssoEnemyData.Value.patrolPointWaitMax));
 
             currentPatrolIndex = (currentPatrolIndex + 1) % patrolPointsList.Count;
         }
@@ -587,25 +614,25 @@ public class S_Enemy : MonoBehaviour
     #endregion
 
     #region Chasing
-    private void Chasing()
+    private void StartChasing()
     {
+        if (isChasing) return;
+
         isChasing = true;
+        navMeshAgent.stoppingDistance = combo.distanceToChase;
 
-        SetCombo();
-
+        detectionCollider.enabled = true;
         navMeshAgent.speed = ssoEnemyData.Value.speedChase;
-
-        rseOnSendConsoleMessage.Call(gameObject.transform.parent.name + " is Chasing the Player!");
     }
 
-    private void Chase()
+    private void Chasing()
     {
-        float distance = Vector3.Distance(center.transform.position, target.transform.position);
+        float distance = Vector3.Distance(center.transform.position, currentTarget.transform.position);
 
-        bool destinationReached = distance <= (combo.distanceToChase);
+        bool destinationReached = distance <= combo.distanceToChase;
 
-        if (!destinationReached) navMeshAgent.SetDestination(target.transform.position);
-        else if (destinationReached) UpdateState(S_EnumEnemyState.Combat);
+        if (!destinationReached) SetDestinationToPatrolPoint(currentTarget.transform);
+        //else if (destinationReached) UpdateState(S_EnumEnemyState.Combat);
     }
     #endregion
 
@@ -628,7 +655,7 @@ public class S_Enemy : MonoBehaviour
     {
         if (canAttack)
         {
-            float distance = Vector3.Distance(center.transform.position, target.transform.position);
+            float distance = Vector3.Distance(center.transform.position, currentTarget.transform.position);
 
             if (distance > combo.distanceToLoseAttack)
             {
@@ -657,7 +684,7 @@ public class S_Enemy : MonoBehaviour
         }
         else if (!isPerformingCombo)
         {
-            float distance = Vector3.Distance(center.transform.position, target.transform.position);
+            float distance = Vector3.Distance(center.transform.position, currentTarget.transform.position);
 
             if (distance > combo.distanceToLoseAttack)
             {
@@ -714,7 +741,7 @@ public class S_Enemy : MonoBehaviour
             {
                 yield return new WaitForSeconds(combo.listAnimationsCombos[i].attackData.timeCast);
 
-                if (target != null)
+                if (currentTarget != null)
                 {
                     S_EnemyProjectile projectileInstance = Instantiate(enemyProjectile, spawnProjectilePoint.transform.position, Quaternion.identity);
                     projectileInstance.Initialize(bodyCollider.transform, aimPoint, combo.listAnimationsCombos[i].attackData);
@@ -724,9 +751,9 @@ public class S_Enemy : MonoBehaviour
             isAttacking = false;
             RotateEnemy();
 
-            if (target != null)
+            if (currentTarget != null)
             {
-                float distance = Vector3.Distance(center.transform.position, target.transform.position);
+                float distance = Vector3.Distance(center.transform.position, currentTarget.transform.position);
                 if (distance > combo.distanceToLoseAttack)
                 {
                     enemyAttackData.DisableWeaponCollider();
@@ -779,7 +806,7 @@ public class S_Enemy : MonoBehaviour
             yield break;
         }
 
-        if (target != null)
+        if (currentTarget != null)
         {
             SetCombo();
         }
@@ -843,7 +870,7 @@ public class S_Enemy : MonoBehaviour
 
         stunCoroutine = StartCoroutine(S_Utils.Delay(ssoEnemyData.Value.stunTime, () =>
         {
-            if (target != null)
+            if (currentTarget != null)
             {
                 SetCombo();
 
@@ -897,7 +924,7 @@ public class S_Enemy : MonoBehaviour
         }
 
         canAttack = false;
-        target = null;
+        currentTarget = null;
         targetInZone = null;
 
         if (rsoCurrentTarget.Value == body)

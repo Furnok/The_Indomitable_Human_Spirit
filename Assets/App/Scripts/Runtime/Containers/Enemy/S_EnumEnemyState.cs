@@ -1,5 +1,6 @@
 ﻿public enum S_EnumEnemyState
 {
+    None,
     Idle,
 	Patroling,
     ReturnPatroling,

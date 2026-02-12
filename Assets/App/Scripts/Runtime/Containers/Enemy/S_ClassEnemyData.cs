@@ -11,6 +11,8 @@ public class S_ClassEnemyData
 
     public float speedPatrol = 0;
 
+    public float speedReturnPatrol = 0;
+
     public float speedChase = 0;
 
     public float detectionRange = 0;

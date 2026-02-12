@@ -267,11 +267,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ssoEnemyData: {fileID: 11400000, guid: beacd9468b7bcba4981759fd6576733c, type: 2}
-  patrolPointsList:
-  - {fileID: 5199276408535089712}
-  - {fileID: 4238934561793798638}
-  - {fileID: 3932769474522726717}
-  - {fileID: 481751962266192794}
   navMeshAgent: {fileID: 1431773725924121066}
   rb: {fileID: 2819568101127906853}
   bodyCollider: {fileID: 6217138946037749130}
@@ -285,9 +280,6 @@ MonoBehaviour:
   comboParam: IsCombo
   stopAttackParam: IsStopAttack
   hitHeavyParam: IsHeavyHit
-  isStrafeParam: IsStrafe
-  strafXParam: StrafeDirectionX
-  strafYParam: StrafeDirectionY
   moveSpeedParam: MoveSpeed
   body: {fileID: 6905421159853868602}
   center: {fileID: 5421673960955687534}
@@ -1412,7 +1404,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 15
+  m_Radius: 30
   m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &5830951658339230131
 MonoBehaviour:
