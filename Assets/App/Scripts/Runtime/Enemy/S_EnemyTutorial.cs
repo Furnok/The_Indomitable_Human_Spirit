@@ -704,46 +704,6 @@ public class S_EnemyTutorial : MonoBehaviour
         }
     }
 
-    private IEnumerator Strafing()
-    {
-        int strafeDirection = Random.value > 0.5f ? 1 : -1;
-
-        Vector3 offsetPlayer = transform.position - target.transform.position;
-        offsetPlayer.y = 0;
-
-        Vector3 offsetAtRadius = offsetPlayer.normalized * (combo.distanceToChase);
-
-        float angle = Random.Range(ssoEnemyData.Value.strafeRotationMin, ssoEnemyData.Value.strafeRotationMax) * strafeDirection;
-
-        Quaternion rot = Quaternion.Euler(0f, angle, 0f);
-        Vector3 rotatedOffset = rot * offsetAtRadius;
-
-        Vector3 finalPos = target.transform.position + rotatedOffset;
-        navMeshAgent.SetDestination(finalPos);
-
-        Vector3 moveDir = (finalPos - transform.position);
-        moveDir.y = 0f;
-        moveDir.Normalize();
-
-        Vector3 localDir = transform.InverseTransformDirection(moveDir);
-
-        animator.SetFloat(strafXParam, localDir.x);
-        animator.SetFloat(strafYParam, localDir.z);
-
-        yield return new WaitUntil(() => !navMeshAgent.pathPending && navMeshAgent.remainingDistance <= 0.01f);
-
-        animator.SetBool(isStrafeParam, false);
-        animator.SetFloat(strafXParam, 0);
-        animator.SetFloat(strafYParam, 0);
-        animator.SetFloat(moveSpeedParam, 0);
-
-        float strafeWaitTime = Random.Range(ssoEnemyData.Value.strafeWaitTimeMin, ssoEnemyData.Value.strafeWaitTimeMax);
-
-        yield return new WaitForSeconds(strafeWaitTime);
-
-        isStrafe = false;
-    }
-
     private IEnumerator PlayComboSequence()
     {
         isPerformingCombo = true;

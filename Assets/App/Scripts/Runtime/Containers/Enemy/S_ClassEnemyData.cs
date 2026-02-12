@@ -13,21 +13,6 @@ public class S_ClassEnemyData
 
     public float speedChase = 0;
 
-    public float speedStrafe = 0;
-
-    [Title("Strafe")]
-    [SuffixLabel("s", Overlay = true)]
-    public float strafeWaitTimeMin = 0;
-
-    [SuffixLabel("s", Overlay = true)]
-    public float strafeWaitTimeMax = 0;
-
-    [SuffixLabel("°", Overlay = true)]
-    public float strafeRotationMin = 0;
-
-    [SuffixLabel("°", Overlay = true)]
-    public float strafeRotationMax = 0;
-
     [Title("Combat")]
     public float detectionRange = 0;
 
