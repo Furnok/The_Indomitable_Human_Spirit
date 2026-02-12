@@ -60,12 +60,6 @@ public class S_Enemy : MonoBehaviour
     [SerializeField, S_AnimationName("animator")] private string hitHeavyParam;
 
     [TabGroup("References")]
-    [SerializeField, S_AnimationName("animator")] private string strafXParam;
-
-    [TabGroup("References")]
-    [SerializeField, S_AnimationName("animator")] private string strafYParam;
-
-    [TabGroup("References")]
     [SerializeField, S_AnimationName("animator")] private string moveSpeedParam;
 
     [TabGroup("References")]
@@ -357,8 +351,6 @@ public class S_Enemy : MonoBehaviour
         unlockRotate = false;
 
         animator.SetTrigger(stopAttackParam);
-        animator.SetFloat(strafXParam, 0);
-        animator.SetFloat(strafYParam, 0);
         animator.SetFloat(moveSpeedParam, 0);
 
         navMeshAgent.ResetPath();
