@@ -839,7 +839,7 @@ public class S_EnemyTutorial : MonoBehaviour
 
         rseOnSendConsoleMessage.Call(gameObject.transform.parent.name + " is Stun!");
 
-        stunCoroutine = StartCoroutine(S_Utils.Delay(ssoEnemyData.Value.waitStun, () =>
+        stunCoroutine = StartCoroutine(S_Utils.Delay(ssoEnemyData.Value.stunTime, () =>
         {
             if (target != null)
             {

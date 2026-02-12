@@ -41,7 +41,7 @@ public class S_EnemyUI : MonoBehaviour
     {
         sliderHealth.maxValue = ssoEnemyData.Value.health;
         sliderHealth.value = ssoEnemyData.Value.health;
-        timeDisplay = ssoEnemyData.Value.timeDisplay;
+        timeDisplay = ssoEnemyData.Value.displayUITime;
 
         if (content.activeInHierarchy)
         {
