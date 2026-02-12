@@ -37,7 +37,7 @@ MonoBehaviour:
     listCombos:
     - listAnimationsCombos:
       - animation: {fileID: 7400000, guid: a560317b9147edd4fba0893992161518, type: 2}
-        rootMotionMultiplier: 1
+        rootMotionMultiplier: 2
         showVFXAttackType: 1
         attackData:
           attackId: 0
@@ -60,7 +60,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: 42b135111bbe964408a1e9d68bfd7e40, type: 2}
-        rootMotionMultiplier: 1
+        rootMotionMultiplier: 2
         showVFXAttackType: 0
         attackData:
           attackId: 0
@@ -83,7 +83,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: c34ce13b5bc91fd429de665691f34f7d, type: 2}
-        rootMotionMultiplier: 1
+        rootMotionMultiplier: 2
         showVFXAttackType: 0
         attackData:
           attackId: 0

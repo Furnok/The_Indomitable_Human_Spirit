@@ -106,7 +106,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: 2906ed0f27f04fb4d9d72d803cf48965, type: 2}
-        rootMotionMultiplier: 1
+        rootMotionMultiplier: 2
         showVFXAttackType: 0
         attackData:
           attackId: 0
