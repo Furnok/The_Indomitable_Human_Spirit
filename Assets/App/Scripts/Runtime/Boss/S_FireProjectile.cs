@@ -17,11 +17,11 @@ public class S_FireProjectile : MonoBehaviour, I_AttackProvider
 
 
 
-    private S_StructEnemyAttackData attackData;
+    private S_StructAttackData attackData;
     private bool isInitialized = false;
     private float timeAlive = 0f;
 
-    public void Initialize(Quaternion rotation, S_StructEnemyAttackData attackData = new())
+    public void Initialize(Quaternion rotation, S_StructAttackData attackData = new())
     {
         transform.rotation = rotation;
         this.attackData = attackData;
@@ -45,7 +45,7 @@ public class S_FireProjectile : MonoBehaviour, I_AttackProvider
 
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
-    public ref S_StructEnemyAttackData GetAttackData()
+    public ref S_StructAttackData GetAttackData()
     {
         return ref attackData;
     }

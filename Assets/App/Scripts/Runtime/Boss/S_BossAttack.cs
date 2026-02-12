@@ -394,7 +394,7 @@ public class S_BossAttack : MonoBehaviour
 
             yield return new WaitForSeconds(currentAttack.listComboData[i].animation.length);
 
-            if (currentAttack.listComboData[i].attackData.attackType == S_EnumEnemyAttackType.Projectile)
+            if (currentAttack.listComboData[i].attackData.attackType == S_EnumAttackType.Projectile)
             {
                 yield return new WaitForSeconds(currentAttack.listComboData[i].attackData.timeCast);
 
@@ -493,7 +493,7 @@ public class S_BossAttack : MonoBehaviour
 
             yield return new WaitForSeconds(currentAttack.listComboData[i].animation.length);
 
-            if (currentAttack.listComboData[i].attackData.attackType == S_EnumEnemyAttackType.Projectile)
+            if (currentAttack.listComboData[i].attackData.attackType == S_EnumAttackType.Projectile)
             {
                 for (int j = 0; j < currentAttack.listComboData[i].attackData.numberOfProjectiles; j++)
                 {
@@ -687,7 +687,7 @@ public class S_BossAttack : MonoBehaviour
             if (currentAttack.listComboData[i].showVFXAttackType) bossAttackData.VFXAttackType();
             animator.SetTrigger(i == 0 ? attackParam : comboParam);
             yield return new WaitForSeconds(currentAttack.listComboData[i].animation.length);
-            if (currentAttack.listComboData[i].attackData.attackType == S_EnumEnemyAttackType.Projectile)
+            if (currentAttack.listComboData[i].attackData.attackType == S_EnumAttackType.Projectile)
             {
                 yield return new WaitForSeconds(currentAttack.listComboData[i].attackData.timeCast);
                 S_BossProjectile projectileInstance = Instantiate(bossProjectile, projectilePingPongSpawn.transform.position, Quaternion.identity);

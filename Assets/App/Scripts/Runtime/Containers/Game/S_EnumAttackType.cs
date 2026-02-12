@@ -1,4 +1,4 @@
-﻿public enum S_EnumEnemyAttackType
+﻿public enum S_EnumAttackType
 {
     None,
     Dodgeable,

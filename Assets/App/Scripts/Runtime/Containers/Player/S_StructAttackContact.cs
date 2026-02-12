@@ -6,7 +6,7 @@ using UnityEngine;
 public struct S_StructAttackContact
 {
     [Title("Data")]
-    public S_StructEnemyAttackData data;
+    public S_StructAttackData data;
 
     public Collider source;
 }

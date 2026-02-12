@@ -733,7 +733,7 @@ public class S_EnemyTutorial : MonoBehaviour
 
             yield return new WaitForSeconds(combo.listAnimationsCombos[i].animation.length);
 
-            if (combo.listAnimationsCombos[i].attackData.attackType == S_EnumEnemyAttackType.Projectile)
+            if (combo.listAnimationsCombos[i].attackData.attackType == S_EnumAttackType.Projectile)
             {
                 yield return new WaitForSeconds(combo.listAnimationsCombos[i].attackData.timeCast);
 

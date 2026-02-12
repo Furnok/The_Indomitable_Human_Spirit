@@ -3,14 +3,14 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public struct S_StructEnemyAttackData
+public struct S_StructAttackData
 {
     [HideInInspector] public int attackId;
 
     [HideInInspector] public int goSourceId;
 
     [Title("Type")]
-    public S_EnumEnemyAttackType attackType;
+    public S_EnumAttackType attackType;
 
     [Title("Damage")]
     [ShowIf("isProjectile")]
@@ -70,6 +70,6 @@ public struct S_StructEnemyAttackData
 
     [HideInInspector] public Vector3 contactPoint;
 
-    private bool isTyped => attackType != S_EnumEnemyAttackType.None;
-    private bool isProjectile => attackType == S_EnumEnemyAttackType.Projectile;
+    private bool isTyped => attackType != S_EnumAttackType.None;
+    private bool isProjectile => attackType == S_EnumAttackType.Projectile;
 }

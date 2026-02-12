@@ -29,9 +29,9 @@ public class S_EnemyAttackData : MonoBehaviour
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnRequestStartTutorialStep rseOnRequestStartTutorialStep;
 
-    private S_StructEnemyAttackData attackData;
+    private S_StructAttackData attackData;
 
-    public void SetAttackMode(S_StructEnemyAttackData enemyAttackData)
+    public void SetAttackMode(S_StructAttackData enemyAttackData)
     {
         attackData = enemyAttackData;
 
@@ -50,11 +50,11 @@ public class S_EnemyAttackData : MonoBehaviour
 
     public void VFXAttackType()
     {
-        if (attackData.attackType == S_EnumEnemyAttackType.Parryable || attackData.attackType == S_EnumEnemyAttackType.Projectile)
+        if (attackData.attackType == S_EnumAttackType.Parryable || attackData.attackType == S_EnumAttackType.Projectile)
         {
             if (particleParryType != null) particleParryType.Play();
         }
-        else if (attackData.attackType == S_EnumEnemyAttackType.Dodgeable)
+        else if (attackData.attackType == S_EnumAttackType.Dodgeable)
         {
             if (particleDodgeType != null) particleDodgeType.Play();
         }
