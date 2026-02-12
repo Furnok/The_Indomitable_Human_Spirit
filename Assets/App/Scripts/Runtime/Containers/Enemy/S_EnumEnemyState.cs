@@ -2,9 +2,10 @@
 {
     Idle,
 	Patroling,
-	Chasing,
-	Fighting,
-	HeavyHit,
+    ReturnPatroling,
+    Chasing,
+	Combat,
+    Attack,
+    Stun,
 	Death,
-	ReturnBack,
 }

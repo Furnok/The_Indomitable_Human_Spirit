@@ -307,10 +307,10 @@ public class S_Enemy : MonoBehaviour
             case S_EnumEnemyState.Chasing:
                 Chasing();
                 break;
-            case S_EnumEnemyState.Fighting:
+            case S_EnumEnemyState.Combat:
                 Fighting();
                 break;
-            case S_EnumEnemyState.HeavyHit:
+            case S_EnumEnemyState.Stun:
                 HeavyHit();
                 break;
             case S_EnumEnemyState.Death:
@@ -417,7 +417,7 @@ public class S_Enemy : MonoBehaviour
 
     private IEnumerator ReturnBack()
     {
-        UpdateState(S_EnumEnemyState.ReturnBack);
+        UpdateState(S_EnumEnemyState.ReturnPatroling);
 
         navMeshAgent.speed = ssoEnemyData.Value.speedChase;
 
@@ -482,7 +482,7 @@ public class S_Enemy : MonoBehaviour
         enemyUI.UpdateHealthBar(health);
 
         if (health <= 0) UpdateState(S_EnumEnemyState.Death);
-        else if (damage >= 1) UpdateState(S_EnumEnemyState.HeavyHit);
+        else if (damage >= 1) UpdateState(S_EnumEnemyState.Stun);
     }
 
     private void TextDamageDisplay(float damage)
@@ -520,7 +520,7 @@ public class S_Enemy : MonoBehaviour
             target = null;
             targetInZone = null;
 
-            if (currentState != S_EnumEnemyState.ReturnBack)
+            if (currentState != S_EnumEnemyState.ReturnPatroling)
             {
                 animator.SetBool(idleAttack, false);
                 animator.SetTrigger(stopAttackParam);
@@ -613,7 +613,7 @@ public class S_Enemy : MonoBehaviour
         bool destinationReached = distance <= (combo.distanceToChase);
 
         if (!destinationReached) navMeshAgent.SetDestination(target.transform.position);
-        else if (destinationReached) UpdateState(S_EnumEnemyState.Fighting);
+        else if (destinationReached) UpdateState(S_EnumEnemyState.Combat);
     }
     #endregion
 
