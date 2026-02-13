@@ -274,13 +274,12 @@ MonoBehaviour:
   hurtCollider: {fileID: 6177182004407894465}
   animator: {fileID: 5886562096679836169}
   moveParam: IsMoving
-  deathParam: IsDead
-  idleAttack: IsIdleAttack
+  combatParam: IsCombat
   attackParam: IsAttack
   comboParam: IsCombo
   stopAttackParam: IsStopAttack
-  hitHeavyParam: IsHeavyHit
-  moveSpeedParam: MoveSpeed
+  stunParam: IsStun
+  deadParam: IsDead
   body: {fileID: 6905421159853868602}
   center: {fileID: 5421673960955687534}
   spawnProjectilePoint: {fileID: 1872526195975783811}

@@ -26,6 +26,7 @@ MonoBehaviour:
     patrolPointWaitMax: 3
     startPatrolWaitMin: 1
     startPatrolWaitMax: 3
+    returnPatrolWait: 0.4
     timeBeforeChaseMin: 0.2
     timeBeforeChaseMax: 0.5
     displayUITime: 3

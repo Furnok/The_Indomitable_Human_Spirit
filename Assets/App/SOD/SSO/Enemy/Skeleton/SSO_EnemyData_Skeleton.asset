@@ -26,6 +26,7 @@ MonoBehaviour:
     patrolPointWaitMax: 3
     startPatrolWaitMin: 1
     startPatrolWaitMax: 3
+    returnPatrolWait: 0.4
     timeBeforeChaseMin: 0.2
     timeBeforeChaseMax: 0.5
     displayUITime: 3
@@ -37,7 +38,7 @@ MonoBehaviour:
       listAnimationsCombos:
       - animation: {fileID: 7400000, guid: a560317b9147edd4fba0893992161518, type: 2}
         rootMotionMultiplier: 2
-        showVFXAttackType: 1
+        showVFXAttackType: 0
         attackData:
           attackId: 0
           goSourceId: 0
@@ -45,7 +46,7 @@ MonoBehaviour:
           timeCast: 0
           timeInterval: 0
           numberOfProjectiles: 0
-          damage: 5
+          damage: 50
           knockbackHitDuration: 0.1
           knockbackHitDistance: 2
           knockbackOnParryDuration: 0.2

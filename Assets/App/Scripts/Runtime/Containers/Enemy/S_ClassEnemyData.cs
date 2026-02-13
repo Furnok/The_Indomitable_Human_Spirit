@@ -42,6 +42,9 @@ public class S_ClassEnemyData
     [SuffixLabel("s", Overlay = true)]
     public float startPatrolWaitMax = 0;
 
+    [SuffixLabel("s", Overlay = true)]
+    public float returnPatrolWait = 0;
+
     [Title("Chase")]
     [SuffixLabel("s", Overlay = true)]
     public float timeBeforeChaseMin = 0;

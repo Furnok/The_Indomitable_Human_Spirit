@@ -38,10 +38,7 @@ public class S_Enemy : MonoBehaviour
     [SerializeField, S_AnimationName("animator")] private string moveParam;
 
     [TabGroup("References")]
-    [SerializeField, S_AnimationName("animator")] private string deathParam;
-
-    [TabGroup("References")]
-    [SerializeField, S_AnimationName("animator")] private string idleAttack;
+    [SerializeField, S_AnimationName("animator")] private string combatParam;
 
     [TabGroup("References")]
     [SerializeField, S_AnimationName("animator")] private string attackParam;
@@ -53,10 +50,10 @@ public class S_Enemy : MonoBehaviour
     [SerializeField, S_AnimationName("animator")] private string stopAttackParam;
 
     [TabGroup("References")]
-    [SerializeField, S_AnimationName("animator")] private string hitHeavyParam;
+    [SerializeField, S_AnimationName("animator")] private string stunParam;
 
     [TabGroup("References")]
-    [SerializeField, S_AnimationName("animator")] private string moveSpeedParam;
+    [SerializeField, S_AnimationName("animator")] private string deadParam;
 
     [TabGroup("References")]
     [Title("Body")]
@@ -133,19 +130,35 @@ public class S_Enemy : MonoBehaviour
     [TabGroup("Outputs")]
     [SerializeField] private SSO_CameraData ssoCameraData;
 
+    private AnimatorOverrideController overrideController = null;
+    private S_ClassAnimationsCombos combo = null;
+
+    private int currentPatrolIndex = 0;
     private List<GameObject> patrolPointsList = new();
 
+    private GameObject targetInZone = null;
     private GameObject currentTarget = null;
+    private Transform aimPoint = null;
+
     private S_EnumEnemyState currentState = S_EnumEnemyState.None;
 
     private Tween rotateTween = null;
 
     private Coroutine idleCoroutine = null;
     private Coroutine patrolingCoroutine = null;
+    private Coroutine returnPatrolingCoroutine = null;
+    private Coroutine comboCoroutine = null;
+    private Coroutine resetAttack = null;
 
     private bool isIdle = false;
     private bool isPatroling = false;
+    private bool isReturnPatroling = false;
     private bool isChasing = false;
+    private bool isCombat = false;
+    private bool isAttack = false;
+
+    private bool canAttack = true;
+    private bool unlockRotate = false;
 
 
 
@@ -153,31 +166,15 @@ public class S_Enemy : MonoBehaviour
 
     private float health = 0;
 
-    private int currentPatrolIndex = 0;
-
-    private Transform aimPoint = null;
-
-    private AnimatorOverrideController overrideController = null;
-
-    private GameObject targetInZone = null;
-
-    private S_ClassAnimationsCombos combo = null;
-
-    private Coroutine comboCoroutine = null;
     private Coroutine stunCoroutine = null;
-    private Coroutine resetAttack = null;
-    private Coroutine returnBackCoroutine = null;
 
     private bool isPerformingCombo = false;
-
-    private bool isFighting = false;
+    
     private bool isHeavyHit = false;
     private bool isDead = false;
 
-    private bool canAttack = true;
     private bool isPlayerDeath = false;
     private bool isAttacking = false;
-    private bool unlockRotate = false;
 
     private Vector3 posBeforeChase = Vector3.zero;
 
@@ -240,9 +237,13 @@ public class S_Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (currentState == S_EnumEnemyState.Chasing || currentState == S_EnumEnemyState.Combat || currentState == S_EnumEnemyState.Attack) enemyHeadLookAtIK.SetTarget(currentTarget);
-    
-        if (isChasing) Chasing();
+        if ((currentState == S_EnumEnemyState.Chasing || currentState == S_EnumEnemyState.Combat || currentState == S_EnumEnemyState.Attack) && !isDead) enemyHeadLookAtIK.SetTarget(currentTarget);
+
+        if (currentTarget != null && (unlockRotate || !isAttack) && !isDead) RotateEnemy();
+
+        if (isChasing && !isDead) Chasing();
+
+        if (isCombat && !isDead) Combat();
     }
 
     public void RotateEnemy()
@@ -269,15 +270,15 @@ public class S_Enemy : MonoBehaviour
         unlockRotate = false;
     }
 
-    private void SetDestinationToPatrolPoint(Transform target)
+    private void SetDestinationToPatrolPoint(Vector3 newPos)
     {
-        if (NavMesh.SamplePosition(target.position, out NavMeshHit hit, 1.5f, NavMesh.AllAreas))
+        if (NavMesh.SamplePosition(newPos, out NavMeshHit hit, 1.5f, NavMesh.AllAreas))
         {
             navMeshAgent.SetDestination(hit.position);
         }
         else
         {
-            navMeshAgent.SetDestination(target.position);
+            navMeshAgent.SetDestination(newPos);
         }
     }
 
@@ -299,31 +300,39 @@ public class S_Enemy : MonoBehaviour
                 StartPatroling();
                 break;
             case S_EnumEnemyState.ReturnPatroling:
-
+                StartReturnPatroling();
                 break;
             case S_EnumEnemyState.Chasing:
                 StartChasing();
                 break;
             case S_EnumEnemyState.Combat:
-                Fighting();
+                StartCombat();
                 break;
             case S_EnumEnemyState.Attack:
-
+                StartAttack();
                 break;
             case S_EnumEnemyState.Stun:
-                HeavyHit();
+                //HeavyHit();
                 break;
             case S_EnumEnemyState.Death:
-                Death();
+                //Death();
                 break;
         }
     }
 
     private void ResetEnemy()
     {
+        enemyAttackData.DisableWeaponCollider();
+        enemyAttackData.VFXStopTrail();
+
         isIdle = false;
         isPatroling = false;
-        isChasing= false;
+        isReturnPatroling = false;
+        isChasing = false;
+        isCombat = false;
+        isAttack = false;
+
+        unlockRotate = false;
 
         rotateTween?.Kill();
 
@@ -339,21 +348,10 @@ public class S_Enemy : MonoBehaviour
             patrolingCoroutine = null;
         }
 
-        navMeshAgent.stoppingDistance = 0.2f;
-        navMeshAgent.ResetPath();
-        navMeshAgent.velocity = Vector3.zero;
-        rb.linearVelocity = Vector3.zero;
-
-
-
-
-        enemyAttackData.DisableWeaponCollider();
-        enemyAttackData.VFXStopTrail();
-
-        if (idleCoroutine != null)
+        if (returnPatrolingCoroutine != null)
         {
-            StopCoroutine(idleCoroutine);
-            idleCoroutine = null;
+            StopCoroutine(returnPatrolingCoroutine);
+            returnPatrolingCoroutine = null;
         }
 
         if (comboCoroutine != null)
@@ -362,6 +360,20 @@ public class S_Enemy : MonoBehaviour
             comboCoroutine = null;
         }
 
+        navMeshAgent.stoppingDistance = 0.2f;
+        navMeshAgent.ResetPath();
+        navMeshAgent.velocity = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
+
+        animator.SetBool(moveParam, false);
+        animator.SetBool(combatParam, false);
+
+
+
+
+
+
+
         if (stunCoroutine != null)
         {
             StopCoroutine(stunCoroutine);
@@ -369,19 +381,8 @@ public class S_Enemy : MonoBehaviour
         }
 
         isPerformingCombo = false;
-        isPatroling = false;
-        isChasing = false;
-        isFighting = false;
         isHeavyHit = false;
         isAttacking = false;
-        unlockRotate = false;
-
-        animator.SetTrigger(stopAttackParam);
-        animator.SetFloat(moveSpeedParam, 0);
-
-        navMeshAgent.ResetPath();
-        navMeshAgent.velocity = Vector3.zero;
-        rb.linearVelocity = Vector3.zero;
     }
     #endregion
 
@@ -390,62 +391,29 @@ public class S_Enemy : MonoBehaviour
     {
         if (isDead) return;
 
-        targetInZone = newTarget;
+        if (currentTarget == newTarget) targetInZone = null;
+        else targetInZone = newTarget;
     }
 
     public void SetTarget(GameObject newTarget)
     {
-        if (newTarget == currentTarget || isDead || newTarget != targetInZone) return;
+        if (isDead || newTarget != targetInZone || isAttack) return;
 
         currentTarget = newTarget;
-
-        if (isPerformingCombo || isHeavyHit) return;
 
         if (currentTarget != null)
         {
             newTarget.TryGetComponent<I_AimPointProvider>(out I_AimPointProvider aimPointProvider);
             aimPoint = aimPointProvider != null ? aimPointProvider.GetAimPoint() : newTarget.transform;
 
-            if (posBeforeChase == Vector3.zero) posBeforeChase = transform.position;
+            if (posBeforeChase == Vector3.zero) posBeforeChase = center.transform.position;
 
             UpdateState(S_EnumEnemyState.Chasing);
         }
         else
         {
-            if (health != ssoEnemyData.Value.health)
-            {
-                health = ssoEnemyData.Value.health;
-                enemyUI.UpdateHealthBar(health);
-            }
-
-            aimPoint = null;
-            detectionCollider.enabled = false;
-
-            animator.SetBool(idleAttack, false);
-
-            if (returnBackCoroutine != null)
-            {
-                StopCoroutine(returnBackCoroutine);
-                returnBackCoroutine = null;
-            }
-
-            returnBackCoroutine = StartCoroutine(ReturnBack());
+            UpdateState(S_EnumEnemyState.ReturnPatroling);
         }
-    }
-
-    private IEnumerator ReturnBack()
-    {
-        UpdateState(S_EnumEnemyState.ReturnPatroling);
-
-        navMeshAgent.speed = ssoEnemyData.Value.speedChase;
-
-        navMeshAgent.SetDestination(posBeforeChase);
-
-        yield return new WaitUntil(() => !navMeshAgent.pathPending && navMeshAgent.remainingDistance <= 0.01f);
-
-        posBeforeChase = Vector3.zero;
-
-        UpdateState(S_EnumEnemyState.Patroling);
     }
     #endregion
 
@@ -466,29 +434,28 @@ public class S_Enemy : MonoBehaviour
         if (rsoDataSaved.Value.enemy[index].isDead) UpdateState(S_EnumEnemyState.Death);
     }
     #endregion
-
+    
     #region Damage & Health
     public void TakeDamage(float damage)
     {
         if (isDead) return;
 
-        if (currentTarget != null) UpdateHealth(damage);
+        if (currentTarget != null) ;//UpdateHealth(damage);
         else
         {
             if (targetInZone != null)
             {
-                UpdateHealth(damage);
+                //UpdateHealth(damage);
 
                 if (!isDead)
                 {
                     SetTarget(targetInZone);
-
-                    UpdateState(S_EnumEnemyState.Chasing);
                 }
             }
         }
     }
 
+    /*
     private void UpdateHealth(float damage)
     {
         rseOnSendConsoleMessage.Call(gameObject.transform.parent.name + " Take " + damage + " Damage!");
@@ -508,6 +475,7 @@ public class S_Enemy : MonoBehaviour
         S_EnemyUIDamage textDamage = Instantiate(enemyUIDamage, textParent.transform.position, Quaternion.identity);
         textDamage.Initialize(damage);
     }
+    */
     #endregion
 
     #region Player
@@ -515,17 +483,11 @@ public class S_Enemy : MonoBehaviour
     {
         if (currentTarget == null) return;
 
-        if (health != ssoEnemyData.Value.health)
-        {
-            health = ssoEnemyData.Value.health;
-            enemyUI.UpdateHealthBar(health);
-        }
-
-        aimPoint = null;
-        detectionCollider.enabled = false;
-        isPlayerDeath = true;
-
+        currentTarget = null;
         targetInZone = null;
+        aimPoint = null;
+
+        isPlayerDeath = true;
     }
 
     private void PlayerRespawn()
@@ -533,38 +495,8 @@ public class S_Enemy : MonoBehaviour
         if (isPlayerDeath)
         {
             isPlayerDeath = false;
-            detectionCollider.enabled = false;
 
-            currentTarget = null;
-            targetInZone = null;
-
-            if (currentState != S_EnumEnemyState.ReturnPatroling)
-            {
-                animator.SetBool(idleAttack, false);
-                animator.SetTrigger(stopAttackParam);
-
-                if (resetAttack != null)
-                {
-                    StopCoroutine(resetAttack);
-                    resetAttack = null;
-                }
-
-                resetAttack = StartCoroutine(S_Utils.Delay(ssoEnemyData.Value.attackCooldown, () => canAttack = true));
-
-                rootMotionModifier.Setup(1, 0);
-
-                ResetEnemy();
-
-                navMeshAgent.speed = ssoEnemyData.Value.speedChase;
-
-                if (returnBackCoroutine != null)
-                {
-                    StopCoroutine(returnBackCoroutine);
-                    returnBackCoroutine = null;
-                }
-
-                returnBackCoroutine = StartCoroutine(ReturnBack());
-            }
+            UpdateState(S_EnumEnemyState.ReturnPatroling);
         }
     }
     #endregion
@@ -576,7 +508,12 @@ public class S_Enemy : MonoBehaviour
 
         isIdle = true;
 
+        navMeshAgent.speed = ssoEnemyData.Value.speedPatrol;
+        navMeshAgent.stoppingDistance = 0.2f;
+
         float waitTime = Random.Range(ssoEnemyData.Value.startPatrolWaitMin, ssoEnemyData.Value.startPatrolWaitMax );
+
+        animator.SetBool(moveParam, false);
 
         idleCoroutine = StartCoroutine(S_Utils.Delay(waitTime, () => UpdateState(S_EnumEnemyState.Patroling)));
     }
@@ -593,6 +530,8 @@ public class S_Enemy : MonoBehaviour
         navMeshAgent.speed = ssoEnemyData.Value.speedPatrol;
         navMeshAgent.stoppingDistance = 0.2f;
 
+        animator.SetBool(moveParam, true);
+
         patrolingCoroutine = StartCoroutine(PatrolingRoutine());
     }
 
@@ -602,14 +541,48 @@ public class S_Enemy : MonoBehaviour
         {
             GameObject targetPoint = patrolPointsList[currentPatrolIndex];
 
-            SetDestinationToPatrolPoint(targetPoint.transform);
+            animator.SetBool(moveParam, true);
+
+            SetDestinationToPatrolPoint(targetPoint.transform.position);
 
             yield return new WaitUntil(() => !navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance);
+
+            animator.SetBool(moveParam, false);
 
             yield return new WaitForSeconds(Random.Range(ssoEnemyData.Value.patrolPointWaitMin, ssoEnemyData.Value.patrolPointWaitMax));
 
             currentPatrolIndex = (currentPatrolIndex + 1) % patrolPointsList.Count;
         }
+    }
+
+    private void StartReturnPatroling()
+    {
+        if (isReturnPatroling) return;
+
+        isReturnPatroling = true;
+
+        detectionCollider.enabled = false;
+        enemyHeadLookAtIK.SetTarget(null);
+
+        navMeshAgent.speed = ssoEnemyData.Value.speedReturnPatrol;
+        navMeshAgent.stoppingDistance = 0.2f;
+
+        returnPatrolingCoroutine = StartCoroutine(ReturnBack());
+    }
+
+    private IEnumerator ReturnBack()
+    {
+        yield return new WaitForSeconds(ssoEnemyData.Value.returnPatrolWait);
+
+        animator.SetBool(moveParam, true);
+
+        SetDestinationToPatrolPoint(posBeforeChase);
+
+        yield return new WaitUntil(() => !navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance);
+
+        posBeforeChase = center.transform.position;
+
+        UpdateState(S_EnumEnemyState.Patroling);
     }
     #endregion
 
@@ -619,10 +592,11 @@ public class S_Enemy : MonoBehaviour
         if (isChasing) return;
 
         isChasing = true;
-        navMeshAgent.stoppingDistance = combo.distanceToChase;
+        navMeshAgent.stoppingDistance = combo.distanceToChase - 0.2f;
 
-        detectionCollider.enabled = true;
         navMeshAgent.speed = ssoEnemyData.Value.speedChase;
+
+        animator.SetBool(moveParam, true);
     }
 
     private void Chasing()
@@ -631,12 +605,12 @@ public class S_Enemy : MonoBehaviour
 
         bool destinationReached = distance <= combo.distanceToChase;
 
-        if (!destinationReached) SetDestinationToPatrolPoint(currentTarget.transform);
-        //else if (destinationReached) UpdateState(S_EnumEnemyState.Combat);
+        if (!destinationReached) SetDestinationToPatrolPoint(currentTarget.transform.position);
+        else if (destinationReached) UpdateState(S_EnumEnemyState.Combat);
     }
     #endregion
 
-    #region Fighting
+    #region Combat
     private void SetCombo()
     {
         int rnd = Random.Range(0, ssoEnemyData.Value.listCombos.Count);
@@ -644,14 +618,20 @@ public class S_Enemy : MonoBehaviour
         combo = ssoEnemyData.Value.listCombos[rnd];
     }
 
-    private void Fighting()
+    private void StartCombat()
     {
-        isFighting = true;
+        if (isCombat) return;
 
-        animator.SetBool(idleAttack, true);
+        isCombat = true;
+        navMeshAgent.stoppingDistance = combo.distanceToChase - 0.2f;
+
+        navMeshAgent.speed = ssoEnemyData.Value.speedChase;
+
+        animator.SetBool(moveParam, false);
+        animator.SetBool(combatParam, true);
     }
 
-    private void Fight()
+    private void Combat()
     {
         if (canAttack)
         {
@@ -659,59 +639,52 @@ public class S_Enemy : MonoBehaviour
 
             if (distance > combo.distanceToLoseAttack)
             {
-                navMeshAgent.speed = ssoEnemyData.Value.speedChase;
-
-                animator.SetBool(idleAttack, false);
-
                 UpdateState(S_EnumEnemyState.Chasing);
-
-                return;
             }
             else
             {
                 canAttack = false;
 
-                if (comboCoroutine != null)
-                {
-                    StopCoroutine(comboCoroutine);
-                    comboCoroutine = null;
-                }
-
-                comboCoroutine = StartCoroutine(PlayComboSequence());
-
-                return;
+                UpdateState(S_EnumEnemyState.Attack);
             }
         }
-        else if (!isPerformingCombo)
+        else if (!isAttack)
         {
             float distance = Vector3.Distance(center.transform.position, currentTarget.transform.position);
 
             if (distance > combo.distanceToLoseAttack)
             {
-                navMeshAgent.speed = ssoEnemyData.Value.speedChase;
-
-                animator.SetBool(idleAttack, false);
-
                 UpdateState(S_EnumEnemyState.Chasing);
-
-                return;
             }
         }
     }
-    private IEnumerator PlayComboSequence()
+    #endregion
+
+    #region Attack
+    private void StartAttack()
     {
-        isPerformingCombo = true;
+        if (isAttack) return;
 
-        yield return null;
+        isAttack = true;
 
-        rseOnSendConsoleMessage.Call(gameObject.transform.parent.name + " is Attacking with a Combo!");
+        navMeshAgent.stoppingDistance = combo.distanceToChase - 0.2f;
 
-        animator.SetBool(idleAttack, false);
-        isAttacking = false;
+        navMeshAgent.speed = ssoEnemyData.Value.speedChase;
 
+        if (comboCoroutine != null)
+        {
+            StopCoroutine(comboCoroutine);
+            comboCoroutine = null;
+        }
+
+        comboCoroutine = StartCoroutine(Attack());
+    }
+
+    private IEnumerator Attack()
+    {
         if (rsoCurrentTarget.Value == body)
         {
-            S_ClassCameraFOV fov = new S_ClassCameraFOV();
+            S_ClassCameraFOV fov = new();
             fov.value = ssoCameraData.Value.fovFight;
             fov.time = ssoCameraData.Value.fovFightSwitchTime;
             fov.reset = true;
@@ -721,7 +694,14 @@ public class S_Enemy : MonoBehaviour
 
         for (int i = 0; i < combo.listAnimationsCombos.Count; i++)
         {
-            isAttacking = true;
+            if (isPlayerDeath && currentTarget == null) break;
+            else
+            {
+                float distance = Vector3.Distance(center.transform.position, currentTarget.transform.position);
+
+                if (distance > combo.distanceToLoseAttack) break;
+            }
+
             RotateEnemy();
 
             string overrideKey = (i % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
@@ -732,7 +712,7 @@ public class S_Enemy : MonoBehaviour
             enemyAttackData.SetAttackMode(combo.listAnimationsCombos[i].attackData);
 
             if (combo.listAnimationsCombos[i].showVFXAttackType) enemyAttackData.VFXAttackType();
-            
+
             animator.SetTrigger(i == 0 ? attackParam : comboParam);
 
             yield return new WaitForSeconds(combo.listAnimationsCombos[i].animation.length);
@@ -741,91 +721,33 @@ public class S_Enemy : MonoBehaviour
             {
                 yield return new WaitForSeconds(combo.listAnimationsCombos[i].attackData.timeCast);
 
-                if (currentTarget != null)
+                if (!isPlayerDeath && currentTarget != null)
                 {
                     S_EnemyProjectile projectileInstance = Instantiate(enemyProjectile, spawnProjectilePoint.transform.position, Quaternion.identity);
                     projectileInstance.Initialize(bodyCollider.transform, aimPoint, combo.listAnimationsCombos[i].attackData);
                 }
             }
 
-            isAttacking = false;
             RotateEnemy();
 
-            if (currentTarget != null)
-            {
-                float distance = Vector3.Distance(center.transform.position, currentTarget.transform.position);
-                if (distance > combo.distanceToLoseAttack)
-                {
-                    enemyAttackData.DisableWeaponCollider();
-                    enemyAttackData.VFXStopTrail();
-
-                    break;
-                }
-            }
-            else
-            {
-                enemyAttackData.DisableWeaponCollider();
-                enemyAttackData.VFXStopTrail();
-
-                break;
-            }
-
-            yield return null;
+            enemyAttackData.DisableWeaponCollider();
+            enemyAttackData.VFXStopTrail();
+            unlockRotate = false;
         }
+
+        isAttack = false;
 
         rootMotionModifier.Setup(1, 0);
         animator.SetTrigger(stopAttackParam);
-        animator.SetBool(idleAttack, true);
-
-        isPerformingCombo = false;
-        isAttacking = false;
-        unlockRotate = false;
 
         if (rsoCurrentTarget.Value == body)
         {
-            S_ClassCameraFOV fov2 = new S_ClassCameraFOV();
+            S_ClassCameraFOV fov2 = new();
             fov2.value = 60;
             fov2.time = ssoCameraData.Value.fovFightSwitchTime;
             fov2.reset = true;
 
             rseOnCameraFOV.Call(fov2);
-        }
-
-        if (isPlayerDeath)
-        {
-            SetTarget(null);
-
-            if (resetAttack != null)
-            {
-                StopCoroutine(resetAttack);
-                resetAttack = null;
-            }
-
-            resetAttack = StartCoroutine(S_Utils.Delay(ssoEnemyData.Value.attackCooldown, () => canAttack = true));
-
-            yield break;
-        }
-
-        if (currentTarget != null)
-        {
-            SetCombo();
-        }
-        else
-        {
-            animator.SetBool(idleAttack, false);
-            detectionCollider.enabled = false;
-
-            ResetEnemy();
-
-            navMeshAgent.speed = ssoEnemyData.Value.speedChase;
-
-            if (returnBackCoroutine != null)
-            {
-                StopCoroutine(returnBackCoroutine);
-                returnBackCoroutine = null;
-            }
-
-            returnBackCoroutine = StartCoroutine(ReturnBack());
         }
 
         if (resetAttack != null)
@@ -835,9 +757,19 @@ public class S_Enemy : MonoBehaviour
         }
 
         resetAttack = StartCoroutine(S_Utils.Delay(ssoEnemyData.Value.attackCooldown, () => canAttack = true));
+
+        if (!isPlayerDeath && currentTarget != null) UpdateState(S_EnumEnemyState.Chasing);
+        else
+        {
+            animator.SetBool(moveParam, false);
+
+            targetInZone = null;
+            currentTarget = null;
+        }
     }
     #endregion
 
+    /*
     #region HeavyHit
     private void HeavyHit()
     {
@@ -948,7 +880,7 @@ public class S_Enemy : MonoBehaviour
         rseOnSendConsoleMessage.Call(gameObject.transform.parent.name + " is Dead!");
     }
     #endregion
-
+    */
     private void OnDrawGizmos()
     {
         if (patrolPointsList == null || patrolPointsList.Count < 2) return;
