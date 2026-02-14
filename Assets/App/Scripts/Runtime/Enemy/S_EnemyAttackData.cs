@@ -30,6 +30,7 @@ public class S_EnemyAttackData : MonoBehaviour
     [SerializeField] private RSE_OnRequestStartTutorialStep rseOnRequestStartTutorialStep;
 
     private S_StructAttackData attackData;
+    private bool isInterupted = false;
 
     public void SetAttackMode(S_StructAttackData enemyAttackData)
     {
@@ -38,53 +39,61 @@ public class S_EnemyAttackData : MonoBehaviour
         if (enemyWeapon != null) enemyWeapon.ChangeAttackData(attackData);
     }
 
+    public void Interuption(bool value)
+    {
+        isInterupted = value;
+    }
+
     public void EnableWeaponCollider()
     {
-        if (weaponCollider != null) weaponCollider.enabled = true;
+        if (weaponCollider != null && !isInterupted) weaponCollider.enabled = true;
     }
 
     public void DisableWeaponCollider()
     {
-        if (weaponCollider != null) weaponCollider.enabled = false;
+        if (weaponCollider != null && !isInterupted) weaponCollider.enabled = false;
     }
 
     public void VFXAttackType()
     {
-        if (attackData.attackType == S_EnumAttackType.Parryable || attackData.attackType == S_EnumAttackType.Projectile)
+        if (!isInterupted)
         {
-            if (particleParryType != null) particleParryType.Play();
-        }
-        else if (attackData.attackType == S_EnumAttackType.Dodgeable)
-        {
-            if (particleDodgeType != null) particleDodgeType.Play();
+            if (attackData.attackType == S_EnumAttackType.Parryable || attackData.attackType == S_EnumAttackType.Projectile)
+            {
+                if (particleParryType != null) particleParryType.Play();
+            }
+            else if (attackData.attackType == S_EnumAttackType.Dodgeable)
+            {
+                if (particleDodgeType != null) particleDodgeType.Play();
+            }
         }
     }
 
     public void Rotate()
     {
-        enemy.RotateEnemyAnim();
+        if (!isInterupted) enemy.RotateEnemyAnim();
     }
 
     public void StopRotate()
     {
-        enemy.StopRotateEnemyAnim();
+        if (!isInterupted) enemy.StopRotateEnemyAnim();
     }
 
     public void PlayFmod(string eventName)
     {
-        RuntimeManager.PlayOneShot(eventName, transform.position);
+        if (!isInterupted) RuntimeManager.PlayOneShot(eventName, transform.position);
     }
 
     public void VFXStartTrail()
     {
-        if (particlesTrail == null || particlesTrail.Count == 0) return;
+        if (particlesTrail == null || particlesTrail.Count == 0 || isInterupted) return;
 
         foreach (ParticleSystem particle in particlesTrail) particle.Play();
     }
 
     public void VFXStopTrail()
     {
-        if (particlesTrail == null || particlesTrail.Count == 0) return;
+        if (particlesTrail == null || particlesTrail.Count == 0 || isInterupted) return;
 
         foreach (ParticleSystem particle in particlesTrail) particle.Stop();
     }

@@ -136,6 +136,7 @@ public class S_Enemy : MonoBehaviour
 
     private int currentPatrolIndex = 0;
     private List<GameObject> patrolPointsList = new();
+    private Vector3 posBeforeChase = Vector3.zero;
 
     private GameObject targetInZone = null;
     private GameObject currentTarget = null;
@@ -148,8 +149,9 @@ public class S_Enemy : MonoBehaviour
     private Coroutine idleCoroutine = null;
     private Coroutine patrolingCoroutine = null;
     private Coroutine returnPatrolingCoroutine = null;
-    private Coroutine comboCoroutine = null;
+    private Coroutine attackCoroutine = null;
     private Coroutine resetAttack = null;
+    private Coroutine stunCoroutine = null;
 
     private bool isIdle = false;
     private bool isPatroling = false;
@@ -163,20 +165,6 @@ public class S_Enemy : MonoBehaviour
     private bool isPlayerDeath = false;
     private bool canAttack = true;
     private bool unlockRotate = false;
-
-
-
-
-
-    
-
-    private Coroutine stunCoroutine = null;
-
-    private bool isPerformingCombo = false;
-
-    private bool isAttacking = false;
-
-    private Vector3 posBeforeChase = Vector3.zero;
 
     private void Awake()
     {
@@ -315,7 +303,7 @@ public class S_Enemy : MonoBehaviour
                 StartStun();
                 break;
             case S_EnumEnemyState.Death:
-                //Death();
+                Death();
                 break;
         }
     }
@@ -331,6 +319,8 @@ public class S_Enemy : MonoBehaviour
         isChasing = false;
         isCombat = false;
         isAttack = false;
+        isStun = false;
+        isDead = false;
 
         unlockRotate = false;
 
@@ -354,10 +344,16 @@ public class S_Enemy : MonoBehaviour
             returnPatrolingCoroutine = null;
         }
 
-        if (comboCoroutine != null)
+        if (attackCoroutine != null)
         {
-            StopCoroutine(comboCoroutine);
-            comboCoroutine = null;
+            StopCoroutine(attackCoroutine);
+            attackCoroutine = null;
+        }
+
+        if (stunCoroutine != null)
+        {
+            StopCoroutine(stunCoroutine);
+            stunCoroutine = null;
         }
 
         navMeshAgent.stoppingDistance = 0.2f;
@@ -367,22 +363,6 @@ public class S_Enemy : MonoBehaviour
 
         animator.SetBool(moveParam, false);
         animator.SetBool(combatParam, false);
-
-
-
-
-
-
-
-        if (stunCoroutine != null)
-        {
-            StopCoroutine(stunCoroutine);
-            stunCoroutine = null;
-        }
-
-        isPerformingCombo = false;
-        isStun = false;
-        isAttacking = false;
     }
     #endregion
 
@@ -667,13 +647,13 @@ public class S_Enemy : MonoBehaviour
 
         navMeshAgent.speed = ssoEnemyData.Value.speedChase;
 
-        if (comboCoroutine != null)
+        if (attackCoroutine != null)
         {
-            StopCoroutine(comboCoroutine);
-            comboCoroutine = null;
+            StopCoroutine(attackCoroutine);
+            attackCoroutine = null;
         }
 
-        comboCoroutine = StartCoroutine(Attack());
+        attackCoroutine = StartCoroutine(Attack());
     }
 
     private IEnumerator Attack()
@@ -765,37 +745,23 @@ public class S_Enemy : MonoBehaviour
     }
     #endregion
 
-
     #region HeavyHit
     private void StartStun()
     {
         if (isStun) return;
 
         isStun = true;
+        enemyAttackData.Interuption(true);
 
         navMeshAgent.stoppingDistance = 0.2f;
-
         navMeshAgent.speed = 0;
 
-        animator.SetTrigger(stunParam);
-
-
-
-
-
-        /*if (resetAttack != null)
-        {
-            StopCoroutine(resetAttack);
-            resetAttack = null;
-        }
-
-        resetAttack = StartCoroutine(S_Utils.Delay(ssoEnemyData.Value.attackCooldown, () => canAttack = true));
-
         rootMotionModifier.Setup(1, 0);
+        animator.SetTrigger(stunParam);
 
         if (rsoCurrentTarget.Value == body)
         {
-            S_ClassCameraFOV fov = new S_ClassCameraFOV();
+            S_ClassCameraFOV fov = new();
             fov.value = 60;
             fov.time = ssoCameraData.Value.fovFightSwitchTime;
             fov.reset = true;
@@ -803,61 +769,54 @@ public class S_Enemy : MonoBehaviour
             rseOnCameraFOV.Call(fov);
         }
 
-        rseOnSendConsoleMessage.Call(gameObject.transform.parent.name + " is Stun!");
-
-        stunCoroutine = StartCoroutine(S_Utils.Delay(ssoEnemyData.Value.stunTime, () =>
+        if (resetAttack != null)
         {
-            if (currentTarget != null)
-            {
-                SetCombo();
+            StopCoroutine(resetAttack);
+            resetAttack = null;
+        }
 
-                navMeshAgent.speed = ssoEnemyData.Value.speedChase;
+        resetAttack = StartCoroutine(S_Utils.Delay(ssoEnemyData.Value.attackCooldown, () => canAttack = true));
 
-                UpdateState(S_EnumEnemyState.Chasing);
-            }
-            else
-            {
-                detectionCollider.enabled = false;
-
-                ResetEnemy();
-
-                navMeshAgent.speed = ssoEnemyData.Value.speedChase;
-
-                if (returnBackCoroutine != null)
-                {
-                    StopCoroutine(returnBackCoroutine);
-                    returnBackCoroutine = null;
-                }
-
-                returnBackCoroutine = StartCoroutine(ReturnBack());
-            }
-        }));*/
+        stunCoroutine = StartCoroutine(Stun());
     }
 
-    private void Stun()
+    private IEnumerator Stun()
     {
+        yield return new WaitForSeconds(ssoEnemyData.Value.stunTime);
 
+        enemyAttackData.Interuption(false);
+
+        if (currentTarget != null) UpdateState(S_EnumEnemyState.Chasing);
+        else UpdateState(S_EnumEnemyState.ReturnPatroling);
     }
     #endregion
-    /*
+
     #region Death
     private void Death()
     {
+        if (isDead) return;
+
         isDead = true;
-        animator.SetBool(idleAttack, false);
+        enemyAttackData.Interuption(true);
 
-        animator.SetTrigger(deathParam);
+        navMeshAgent.stoppingDistance = 0.2f;
+        navMeshAgent.speed = 0;
 
-        var list = rsoDataSaved.Value.enemy;
+        rootMotionModifier.Setup(1, 0);
+        enemyHeadLookAtIK.IsDead(true);
+        animator.SetTrigger(deadParam);
 
-        for (int i = 0; i < list.Count; i++)
+        if (rsoCurrentTarget.Value == body)
         {
-            if (list[i].entity == gameObject)
-            {
-                list[i].isDead = isDead;
-                break;
-            }
+            S_ClassCameraFOV fov = new();
+            fov.value = 60;
+            fov.time = ssoCameraData.Value.fovFightSwitchTime;
+            fov.reset = true;
+
+            rseOnCameraFOV.Call(fov);
         }
+
+        rseOnEnemyTargetDied.Call(body);
 
         if (resetAttack != null)
         {
@@ -869,28 +828,22 @@ public class S_Enemy : MonoBehaviour
         currentTarget = null;
         targetInZone = null;
 
-        if (rsoCurrentTarget.Value == body)
-        {
-            S_ClassCameraFOV fov = new S_ClassCameraFOV();
-            fov.value = 60;
-            fov.time = ssoCameraData.Value.fovFightSwitchTime;
-            fov.reset = true;
-
-            rseOnCameraFOV.Call(fov);
-        }
-
         bodyCollider.enabled = false;
         detectionCollider.enabled = false;
         hurtCollider.enabled = false;
 
-        enemyHeadLookAtIK.IsDead(true);
+        var list = rsoDataSaved.Value.enemy;
 
-        rseOnEnemyTargetDied.Call(body);
-
-        rseOnSendConsoleMessage.Call(gameObject.transform.parent.name + " is Dead!");
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (list[i].entity == gameObject)
+            {
+                list[i].isDead = isDead;
+                break;
+            }
+        }
     }
     #endregion
-    */
 
     private void OnDrawGizmos()
     {
