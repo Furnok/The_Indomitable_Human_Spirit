@@ -130,6 +130,7 @@ public class S_Enemy : MonoBehaviour
     [TabGroup("Outputs")]
     [SerializeField] private SSO_CameraData ssoCameraData;
 
+    private float health = 0;
     private AnimatorOverrideController overrideController = null;
     private S_ClassAnimationsCombos combo = null;
 
@@ -156,7 +157,10 @@ public class S_Enemy : MonoBehaviour
     private bool isChasing = false;
     private bool isCombat = false;
     private bool isAttack = false;
+    private bool isStun = false;
+    private bool isDead = false;
 
+    private bool isPlayerDeath = false;
     private bool canAttack = true;
     private bool unlockRotate = false;
 
@@ -164,16 +168,12 @@ public class S_Enemy : MonoBehaviour
 
 
 
-    private float health = 0;
+    
 
     private Coroutine stunCoroutine = null;
 
     private bool isPerformingCombo = false;
-    
-    private bool isHeavyHit = false;
-    private bool isDead = false;
 
-    private bool isPlayerDeath = false;
     private bool isAttacking = false;
 
     private Vector3 posBeforeChase = Vector3.zero;
@@ -312,7 +312,7 @@ public class S_Enemy : MonoBehaviour
                 StartAttack();
                 break;
             case S_EnumEnemyState.Stun:
-                //HeavyHit();
+                StartStun();
                 break;
             case S_EnumEnemyState.Death:
                 //Death();
@@ -381,7 +381,7 @@ public class S_Enemy : MonoBehaviour
         }
 
         isPerformingCombo = false;
-        isHeavyHit = false;
+        isStun = false;
         isAttacking = false;
     }
     #endregion
@@ -440,12 +440,12 @@ public class S_Enemy : MonoBehaviour
     {
         if (isDead) return;
 
-        if (currentTarget != null) ;//UpdateHealth(damage);
+        if (currentTarget != null) UpdateHealth(damage);
         else
         {
             if (targetInZone != null)
             {
-                //UpdateHealth(damage);
+                UpdateHealth(damage);
 
                 if (!isDead)
                 {
@@ -455,11 +455,8 @@ public class S_Enemy : MonoBehaviour
         }
     }
 
-    /*
     private void UpdateHealth(float damage)
     {
-        rseOnSendConsoleMessage.Call(gameObject.transform.parent.name + " Take " + damage + " Damage!");
-
         TextDamageDisplay(damage);
 
         health = Mathf.Max(health - damage, 0);
@@ -467,7 +464,7 @@ public class S_Enemy : MonoBehaviour
         enemyUI.UpdateHealthBar(health);
 
         if (health <= 0) UpdateState(S_EnumEnemyState.Death);
-        else if (damage >= 1) UpdateState(S_EnumEnemyState.Stun);
+        else if (damage >= ssoEnemyData.Value.health / 2) UpdateState(S_EnumEnemyState.Stun);
     }
 
     private void TextDamageDisplay(float damage)
@@ -475,7 +472,6 @@ public class S_Enemy : MonoBehaviour
         S_EnemyUIDamage textDamage = Instantiate(enemyUIDamage, textParent.transform.position, Quaternion.identity);
         textDamage.Initialize(damage);
     }
-    */
     #endregion
 
     #region Player
@@ -769,16 +765,25 @@ public class S_Enemy : MonoBehaviour
     }
     #endregion
 
-    /*
+
     #region HeavyHit
-    private void HeavyHit()
+    private void StartStun()
     {
-        isHeavyHit = true;
+        if (isStun) return;
 
-        animator.SetBool(idleAttack, false);
-        animator.SetTrigger(hitHeavyParam);
+        isStun = true;
 
-        if (resetAttack != null)
+        navMeshAgent.stoppingDistance = 0.2f;
+
+        navMeshAgent.speed = 0;
+
+        animator.SetTrigger(stunParam);
+
+
+
+
+
+        /*if (resetAttack != null)
         {
             StopCoroutine(resetAttack);
             resetAttack = null;
@@ -826,10 +831,15 @@ public class S_Enemy : MonoBehaviour
 
                 returnBackCoroutine = StartCoroutine(ReturnBack());
             }
-        }));
+        }));*/
+    }
+
+    private void Stun()
+    {
+
     }
     #endregion
-
+    /*
     #region Death
     private void Death()
     {
@@ -881,6 +891,7 @@ public class S_Enemy : MonoBehaviour
     }
     #endregion
     */
+
     private void OnDrawGizmos()
     {
         if (patrolPointsList == null || patrolPointsList.Count < 2) return;
