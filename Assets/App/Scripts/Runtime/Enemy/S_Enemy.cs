@@ -377,7 +377,7 @@ public class S_Enemy : MonoBehaviour
 
     public void SetTarget(GameObject newTarget)
     {
-        if (isDead || newTarget != targetInZone || isAttack) return;
+        if (isDead || newTarget != targetInZone) return;
 
         currentTarget = newTarget;
 
@@ -392,6 +392,18 @@ public class S_Enemy : MonoBehaviour
         }
         else
         {
+            aimPoint = null;
+
+            animator.SetTrigger(stopAttackParam);
+
+            if (resetAttack != null)
+            {
+                StopCoroutine(resetAttack);
+                resetAttack = null;
+            }
+
+            resetAttack = StartCoroutine(S_Utils.Delay(ssoEnemyData.Value.attackCooldown, () => canAttack = true));
+
             UpdateState(S_EnumEnemyState.ReturnPatroling);
         }
     }
