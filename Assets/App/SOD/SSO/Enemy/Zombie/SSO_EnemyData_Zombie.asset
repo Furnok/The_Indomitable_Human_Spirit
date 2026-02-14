@@ -47,14 +47,14 @@ MonoBehaviour:
           timeInterval: 0
           numberOfProjectiles: 0
           damage: 20
-          knockbackHitDuration: 0
-          knockbackHitDistance: 0
+          knockbackHitDuration: 0.1
+          knockbackHitDistance: 2
           knockbackOnParryDuration: 0
           knockbackOnParrryDistance: 0
-          parryToleranceBeforeHit: 0.1
+          parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 1.2
-          convictionReduction: 0
+          convictionReduction: 2
           convictionParryGain: 0
           lastAttack: 0
           attackDirection: {x: 0, y: 0, z: 0}
@@ -70,14 +70,14 @@ MonoBehaviour:
           timeInterval: 0
           numberOfProjectiles: 0
           damage: 20
-          knockbackHitDuration: 0
-          knockbackHitDistance: 0
+          knockbackHitDuration: 0.1
+          knockbackHitDistance: 2
           knockbackOnParryDuration: 0
           knockbackOnParrryDistance: 0
-          parryToleranceBeforeHit: 0.1
+          parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 1.2
-          convictionReduction: 0
+          convictionReduction: 2
           convictionParryGain: 0
           lastAttack: 0
           attackDirection: {x: 0, y: 0, z: 0}
@@ -93,15 +93,15 @@ MonoBehaviour:
           timeInterval: 0
           numberOfProjectiles: 0
           damage: 20
-          knockbackHitDuration: 0
-          knockbackHitDistance: 0
+          knockbackHitDuration: 0.1
+          knockbackHitDistance: 2
           knockbackOnParryDuration: 0
           knockbackOnParrryDistance: 0
-          parryToleranceBeforeHit: 0.1
+          parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 1.2
-          convictionReduction: 0
+          convictionReduction: 2
           convictionParryGain: 0
-          lastAttack: 0
+          lastAttack: 1
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}

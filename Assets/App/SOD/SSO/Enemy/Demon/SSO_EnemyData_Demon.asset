@@ -70,14 +70,14 @@ MonoBehaviour:
           timeInterval: 0
           numberOfProjectiles: 0
           damage: 20
-          knockbackHitDuration: 0.3
+          knockbackHitDuration: 0.1
           knockbackHitDistance: 2
           knockbackOnParryDuration: 0.2
           knockbackOnParrryDistance: 1
-          parryToleranceBeforeHit: 0.1
+          parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
-          convictionReduction: 1
+          convictionReduction: 2
           convictionParryGain: 5
           lastAttack: 0
           attackDirection: {x: 0, y: 0, z: 0}
@@ -139,14 +139,14 @@ MonoBehaviour:
           timeInterval: 0
           numberOfProjectiles: 0
           damage: 20
-          knockbackHitDuration: 0.3
+          knockbackHitDuration: 0.1
           knockbackHitDistance: 2
           knockbackOnParryDuration: 0.2
           knockbackOnParrryDistance: 1
-          parryToleranceBeforeHit: 0.1
+          parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
-          convictionReduction: 1
+          convictionReduction: 2
           convictionParryGain: 5
           lastAttack: 0
           attackDirection: {x: 0, y: 0, z: 0}
@@ -208,14 +208,14 @@ MonoBehaviour:
           timeInterval: 0
           numberOfProjectiles: 0
           damage: 20
-          knockbackHitDuration: 0.3
+          knockbackHitDuration: 0.1
           knockbackHitDistance: 2
           knockbackOnParryDuration: 0.2
           knockbackOnParrryDistance: 1
-          parryToleranceBeforeHit: 0.1
+          parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
-          convictionReduction: 1
+          convictionReduction: 2
           convictionParryGain: 5
           lastAttack: 0
           attackDirection: {x: 0, y: 0, z: 0}
@@ -277,14 +277,14 @@ MonoBehaviour:
           timeInterval: 0
           numberOfProjectiles: 0
           damage: 20
-          knockbackHitDuration: 0.3
+          knockbackHitDuration: 0.1
           knockbackHitDistance: 2
           knockbackOnParryDuration: 0.2
           knockbackOnParrryDistance: 1
-          parryToleranceBeforeHit: 0.1
+          parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
-          convictionReduction: 1
+          convictionReduction: 2
           convictionParryGain: 5
           lastAttack: 0
           attackDirection: {x: 0, y: 0, z: 0}
@@ -346,16 +346,16 @@ MonoBehaviour:
           timeInterval: 0
           numberOfProjectiles: 0
           damage: 20
-          knockbackHitDuration: 0.3
+          knockbackHitDuration: 0.1
           knockbackHitDistance: 2
           knockbackOnParryDuration: 0.2
           knockbackOnParrryDistance: 1
-          parryToleranceBeforeHit: 0.1
+          parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
-          convictionReduction: 1
+          convictionReduction: 2
           convictionParryGain: 5
-          lastAttack: 0
+          lastAttack: 1
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: 48ca1dcbc112c7a43b806b9a0df5db3d, type: 2}

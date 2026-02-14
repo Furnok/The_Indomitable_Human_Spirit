@@ -38,7 +38,7 @@ MonoBehaviour:
       listAnimationsCombos:
       - animation: {fileID: 7400000, guid: a560317b9147edd4fba0893992161518, type: 2}
         rootMotionMultiplier: 2
-        showVFXAttackType: 0
+        showVFXAttackType: 1
         attackData:
           attackId: 0
           goSourceId: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
-          convictionReduction: 1
+          convictionReduction: 2
           convictionParryGain: 5
           lastAttack: 0
           attackDirection: {x: 0, y: 0, z: 0}
@@ -77,7 +77,7 @@ MonoBehaviour:
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
-          convictionReduction: 1
+          convictionReduction: 2
           convictionParryGain: 5
           lastAttack: 0
           attackDirection: {x: 0, y: 0, z: 0}
@@ -100,8 +100,8 @@ MonoBehaviour:
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
-          convictionReduction: 1
+          convictionReduction: 2
           convictionParryGain: 5
-          lastAttack: 0
+          lastAttack: 1
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}

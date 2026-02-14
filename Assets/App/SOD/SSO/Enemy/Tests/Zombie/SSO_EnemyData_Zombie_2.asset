@@ -125,6 +125,6 @@ MonoBehaviour:
           invicibilityDuration: 1.2
           convictionReduction: 0
           convictionParryGain: 0
-          lastAttack: 0
+          lastAttack: 1
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
