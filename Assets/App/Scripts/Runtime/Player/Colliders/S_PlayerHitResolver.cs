@@ -102,7 +102,7 @@ public class S_PlayerHitResolver : MonoBehaviour
     {
         var attackData = contact.data;
 
-        if (attackData.attackType == S_EnumEnemyAttackType.Parryable)
+        if (attackData.attackType == S_EnumAttackType.Parryable)
         {
             StartCoroutine(IsWithinParryWindowCoroutine((canParry, data) =>
             {
@@ -166,14 +166,14 @@ public class S_PlayerHitResolver : MonoBehaviour
                     }
             }, contact));
         }
-        else if (attackData.attackType == S_EnumEnemyAttackType.Dodgeable)
+        else if (attackData.attackType == S_EnumAttackType.Dodgeable)
         {
             var canHit = _attackCanHitPlayer.Value.ContainsKey(attackData.goSourceId);
 
             if (canHit) _rseOnPlayerHit.Call(contact);
             else Debug.Log("Dont hit cause dodge perfect");
         }
-        else if (attackData.attackType == S_EnumEnemyAttackType.Projectile)
+        else if (attackData.attackType == S_EnumAttackType.Projectile)
         {
             StartCoroutine(IsWithinParryWindowCoroutine((canParry, data) =>
             {

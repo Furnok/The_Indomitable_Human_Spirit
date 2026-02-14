@@ -32,10 +32,10 @@ public class S_DodgeableAreaDetector : MonoBehaviour
 
     private void Awake()
     {
-        _attackDataInDodgeableArea.Value = new S_SerializableDictionary<int, S_StructEnemyAttackData>();
+        _attackDataInDodgeableArea.Value = new S_SerializableDictionary<int, S_StructAttackData>();
         _attackDataInDodgeableArea.Value.Clear();
 
-        _attackCanHitPlayer.Value = new S_SerializableDictionary<int, S_StructEnemyAttackData>();
+        _attackCanHitPlayer.Value = new S_SerializableDictionary<int, S_StructAttackData>();
         _attackCanHitPlayer.Value.Clear();
         _tempAttackDataInDodgeableArea.Clear();
     }
@@ -53,7 +53,7 @@ public class S_DodgeableAreaDetector : MonoBehaviour
                 _tempAttackDataInDodgeableArea.Add(attack, other);
             }
 
-            if ( attackData.attackType == S_EnumEnemyAttackType.Projectile && _hasParryedProjectile == false && _rsoSettingsSaved.Value.activateTuto == true)
+            if ( attackData.attackType == S_EnumAttackType.Projectile && _hasParryedProjectile == false && _rsoSettingsSaved.Value.activateTuto == true)
             {
                 if (_tutoStepsFinished.Value != null && _tutoStepsFinished.Value.Count > 0)
                 {
@@ -65,7 +65,7 @@ public class S_DodgeableAreaDetector : MonoBehaviour
                 }
             }
 
-            if (_attackDataInDodgeableArea.Value == null || _attackDataInDodgeableArea.Value.ContainsKey(goId) || attackData.attackType != S_EnumEnemyAttackType.Dodgeable)
+            if (_attackDataInDodgeableArea.Value == null || _attackDataInDodgeableArea.Value.ContainsKey(goId) || attackData.attackType != S_EnumAttackType.Dodgeable)
             {
 
             }
@@ -75,7 +75,7 @@ public class S_DodgeableAreaDetector : MonoBehaviour
             }
 
 
-            if (_attackCanHitPlayer.Value == null || _attackCanHitPlayer.Value.ContainsKey(goId) || attackData.attackType != S_EnumEnemyAttackType.Dodgeable)
+            if (_attackCanHitPlayer.Value == null || _attackCanHitPlayer.Value.ContainsKey(goId) || attackData.attackType != S_EnumAttackType.Dodgeable)
             {
 
             }

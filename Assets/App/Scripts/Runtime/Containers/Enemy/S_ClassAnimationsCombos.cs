@@ -5,13 +5,13 @@ using System.Collections.Generic;
 [Serializable]
 public class S_ClassAnimationsCombos
 {
-    [Title("Combos")]
-    public List<S_ClassAnimation> listAnimationsCombos = new();
-
     [Title("Distances")]
     public float distanceMin = 0;
 
     public float distanceToChase = 0;
 
     public float distanceToLoseAttack = 0;
+
+    [Title("Combos")]
+    public List<S_ClassAnimation> listAnimationsCombos = new();
 }

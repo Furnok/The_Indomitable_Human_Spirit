@@ -11,38 +11,25 @@ public class S_ClassEnemyData
 
     public float speedPatrol = 0;
 
+    public float speedReturnPatrol = 0;
+
     public float speedChase = 0;
 
-    public float speedStrafe = 0;
-
-    [Title("Strafe")]
-    [SuffixLabel("s", Overlay = true)]
-    public float strafeWaitTimeMin = 0;
-
-    [SuffixLabel("s", Overlay = true)]
-    public float strafeWaitTimeMax = 0;
-
-    [SuffixLabel("°", Overlay = true)]
-    public float strafeRotationMin = 0;
-
-    [SuffixLabel("°", Overlay = true)]
-    public float strafeRotationMax = 0;
-
-    [Title("Combat")]
     public float detectionRange = 0;
 
     public float detectionAggroRangeMax = 0;
 
+    [Title("Combat")]
     [SuffixLabel("s", Overlay = true)]
     public float attackCooldown = 0;
 
     [SuffixLabel("s", Overlay = true)]
-    public float waitStun = 0;
+    public float stunTime = 0;
 
     [SuffixLabel("s", Overlay = true)]
     public float rotationTime = 0;
 
-    [Title("Delay")]
+    [Title("Patrol")]
     [SuffixLabel("s", Overlay = true)]
     public float patrolPointWaitMin = 0;
 
@@ -56,6 +43,10 @@ public class S_ClassEnemyData
     public float startPatrolWaitMax = 0;
 
     [SuffixLabel("s", Overlay = true)]
+    public float returnPatrolWait = 0;
+
+    [Title("Chase")]
+    [SuffixLabel("s", Overlay = true)]
     public float timeBeforeChaseMin = 0;
 
     [SuffixLabel("s", Overlay = true)]
@@ -63,7 +54,7 @@ public class S_ClassEnemyData
 
     [Title("UI")]
     [SuffixLabel("s", Overlay = true)]
-    public float timeDisplay = 0;
+    public float displayUITime = 0;
 
     [Title("Animations")]
     public AnimatorOverrideController controllerOverride = null;

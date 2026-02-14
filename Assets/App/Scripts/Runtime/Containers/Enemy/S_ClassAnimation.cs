@@ -15,5 +15,5 @@ public class S_ClassAnimation
     public bool showVFXAttackType = false;
 
     [Title("Data")]
-    public S_StructEnemyAttackData attackData;
+    public S_StructAttackData attackData;
 }
