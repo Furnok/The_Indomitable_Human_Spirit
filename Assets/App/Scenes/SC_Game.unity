@@ -10624,7 +10624,7 @@ MonoBehaviour:
     invertFade: 0
     distanceFadeStart: 10000
     distanceFadeEnd: 10000
-    textureOffset: {x: -164.8222, y: -0, z: -82.4111}
+    textureOffset: {x: -140.898, y: -0, z: -70.449}
     falloffMode: 1
     maskMode: 0
     materialMask: {fileID: 0}
@@ -26628,7 +26628,7 @@ MonoBehaviour:
     invertFade: 0
     distanceFadeStart: 10000
     distanceFadeEnd: 10000
-    textureOffset: {x: -164.8222, y: -0, z: -82.4111}
+    textureOffset: {x: -140.898, y: -0, z: -70.449}
     falloffMode: 1
     maskMode: 0
     materialMask: {fileID: 0}
@@ -241944,87 +241944,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8969619324851929703, guid: 05882b86ea1d69d4094119a61f32aed3, type: 3}
---- !u!1001 &1094069694
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2217502411195808315, guid: 1b06de37ed433e94aade4509e551b12a, type: 3}
-      propertyPath: m_Name
-      value: P_DodgeAttack
-      objectReference: {fileID: 0}
-    - target: {fileID: 3723637968151444951, guid: 1b06de37ed433e94aade4509e551b12a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 15.599689
-      objectReference: {fileID: 0}
-    - target: {fileID: 3723637968151444951, guid: 1b06de37ed433e94aade4509e551b12a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 12.63
-      objectReference: {fileID: 0}
-    - target: {fileID: 3723637968151444951, guid: 1b06de37ed433e94aade4509e551b12a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 24.15929
-      objectReference: {fileID: 0}
-    - target: {fileID: 3723637968151444951, guid: 1b06de37ed433e94aade4509e551b12a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 3723637968151444951, guid: 1b06de37ed433e94aade4509e551b12a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 3723637968151444951, guid: 1b06de37ed433e94aade4509e551b12a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3723637968151444951, guid: 1b06de37ed433e94aade4509e551b12a, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3723637968151444951, guid: 1b06de37ed433e94aade4509e551b12a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 3723637968151444951, guid: 1b06de37ed433e94aade4509e551b12a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3723637968151444951, guid: 1b06de37ed433e94aade4509e551b12a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8398856732165972794, guid: 1b06de37ed433e94aade4509e551b12a, type: 3}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8398856732165972794, guid: 1b06de37ed433e94aade4509e551b12a, type: 3}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8398856732165972794, guid: 1b06de37ed433e94aade4509e551b12a, type: 3}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].inSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8398856732165972794, guid: 1b06de37ed433e94aade4509e551b12a, type: 3}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].inSlope
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8398856732165972794, guid: 1b06de37ed433e94aade4509e551b12a, type: 3}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].outSlope
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8398856732165972794, guid: 1b06de37ed433e94aade4509e551b12a, type: 3}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].outSlope
-      value: -2
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1b06de37ed433e94aade4509e551b12a, type: 3}
 --- !u!1001 &1094690411
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -475878,4 +475797,3 @@ SceneRoots:
   - {fileID: 1939420171}
   - {fileID: 1300481303}
   - {fileID: 1844114350}
-  - {fileID: 1094069694}
