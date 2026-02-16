@@ -24,7 +24,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 4
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -10624,7 +10624,7 @@ MonoBehaviour:
     invertFade: 0
     distanceFadeStart: 10000
     distanceFadeEnd: 10000
-    textureOffset: {x: -0, y: -0, z: -0}
+    textureOffset: {x: -24.610416, y: -0, z: -12.305208}
     falloffMode: 1
     maskMode: 0
     materialMask: {fileID: 0}
@@ -26628,7 +26628,7 @@ MonoBehaviour:
     invertFade: 0
     distanceFadeStart: 10000
     distanceFadeEnd: 10000
-    textureOffset: {x: -0, y: -0, z: -0}
+    textureOffset: {x: -24.610416, y: -0, z: -12.305208}
     falloffMode: 1
     maskMode: 0
     materialMask: {fileID: 0}
@@ -453632,7 +453632,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1121744088300672380, guid: 709123c95f2726c46b4bf0178217e257, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14
+      value: -16.32
       objectReference: {fileID: 0}
     - target: {fileID: 1121744088300672380, guid: 709123c95f2726c46b4bf0178217e257, type: 3}
       propertyPath: m_LocalPosition.y
@@ -453640,7 +453640,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1121744088300672380, guid: 709123c95f2726c46b4bf0178217e257, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.42
+      value: 3.96
       objectReference: {fileID: 0}
     - target: {fileID: 1121744088300672380, guid: 709123c95f2726c46b4bf0178217e257, type: 3}
       propertyPath: m_LocalRotation.w
