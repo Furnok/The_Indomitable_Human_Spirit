@@ -440,10 +440,7 @@ public class S_Enemy : MonoBehaviour
             {
                 UpdateHealth(damage);
 
-                if (!isDead)
-                {
-                    SetTarget(targetInZone);
-                }
+                if (!isDead) SetTarget(targetInZone);
             }
         }
     }
@@ -626,10 +623,7 @@ public class S_Enemy : MonoBehaviour
         {
             float distance = Vector3.Distance(center.transform.position, currentTarget.transform.position);
 
-            if (distance > combo.distanceToLoseAttack)
-            {
-                UpdateState(S_EnumEnemyState.Chasing);
-            }
+            if (distance > combo.distanceToLoseAttack) UpdateState(S_EnumEnemyState.Chasing);
             else
             {
                 canAttack = false;
@@ -641,10 +635,7 @@ public class S_Enemy : MonoBehaviour
         {
             float distance = Vector3.Distance(center.transform.position, currentTarget.transform.position);
 
-            if (distance > combo.distanceToLoseAttack)
-            {
-                UpdateState(S_EnumEnemyState.Chasing);
-            }
+            if (distance > combo.distanceToLoseAttack) UpdateState(S_EnumEnemyState.Chasing);
         }
     }
     #endregion
