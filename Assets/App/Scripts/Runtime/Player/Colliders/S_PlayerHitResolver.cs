@@ -114,7 +114,6 @@ public class S_PlayerHitResolver : MonoBehaviour
 
                         _rseOnRumbleStopChannel.Call(S_EnumRumbleChannel.Parry);
                         _rseOnRumbleRequested.Call(_parryRumbleData.Value);
-                        Debug.Log("Parried!");
 
                         bool isLastAttack = attackData.lastAttack;
 

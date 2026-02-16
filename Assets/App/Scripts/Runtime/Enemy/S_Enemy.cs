@@ -282,27 +282,35 @@ public class S_Enemy : MonoBehaviour
         switch (currentState)
         {
             case S_EnumEnemyState.Idle:
+                Debug.Log("Idle");
                 StartIdle();
                 break;
             case S_EnumEnemyState.Patroling:
+                Debug.Log("Patroling");
                 StartPatroling();
                 break;
             case S_EnumEnemyState.ReturnPatroling:
+                Debug.Log("ReturnPatroling");
                 StartReturnPatroling();
                 break;
             case S_EnumEnemyState.Chasing:
+                Debug.Log("Chasing");
                 StartChasing();
                 break;
             case S_EnumEnemyState.Combat:
+                Debug.Log("Combat");
                 StartCombat();
                 break;
             case S_EnumEnemyState.Attack:
+                Debug.Log("Attack");
                 StartAttack();
                 break;
             case S_EnumEnemyState.Stun:
+                Debug.Log("Stun");
                 StartStun();
                 break;
             case S_EnumEnemyState.Death:
+                Debug.Log("Death");
                 Death();
                 break;
         }
@@ -682,14 +690,6 @@ public class S_Enemy : MonoBehaviour
 
         for (int i = 0; i < combo.listAnimationsCombos.Count; i++)
         {
-            if (isPlayerDeath && currentTarget == null) break;
-            else
-            {
-                float distance = Vector3.Distance(center.transform.position, currentTarget.transform.position);
-
-                if (distance > combo.distanceToLoseAttack) break;
-            }
-
             RotateEnemy();
 
             string overrideKey = (i % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
@@ -701,7 +701,14 @@ public class S_Enemy : MonoBehaviour
 
             if (combo.listAnimationsCombos[i].showVFXAttackType) enemyAttackData.VFXAttackType();
 
-            animator.SetTrigger(i == 0 ? attackParam : comboParam);
+            if (i == 0)
+            {
+                animator.SetBool(attackParam, true);
+            }
+            else
+            {
+                animator.SetTrigger(comboParam);
+            }
 
             yield return new WaitForSeconds(combo.listAnimationsCombos[i].animation.length);
 
@@ -726,7 +733,10 @@ public class S_Enemy : MonoBehaviour
         isAttack = false;
 
         rootMotionModifier.Setup(1, 0);
-        animator.SetTrigger(stopAttackParam);
+
+        Debug.Log("t");
+
+        animator.SetBool(attackParam, false);
 
         if (rsoCurrentTarget.Value == body)
         {
@@ -746,7 +756,10 @@ public class S_Enemy : MonoBehaviour
 
         resetAttack = StartCoroutine(S_Utils.Delay(ssoEnemyData.Value.attackCooldown, () => canAttack = true));
 
-        if (!isPlayerDeath && currentTarget != null) UpdateState(S_EnumEnemyState.Chasing);
+        if (!isPlayerDeath || currentTarget != null)
+        {
+            UpdateState(S_EnumEnemyState.Chasing);
+        }
         else
         {
             animator.SetBool(moveParam, false);
