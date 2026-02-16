@@ -10624,7 +10624,7 @@ MonoBehaviour:
     invertFade: 0
     distanceFadeStart: 10000
     distanceFadeEnd: 10000
-    textureOffset: {x: -156.32841, y: -0, z: -78.16421}
+    textureOffset: {x: -164.8222, y: -0, z: -82.4111}
     falloffMode: 1
     maskMode: 0
     materialMask: {fileID: 0}
@@ -26628,7 +26628,7 @@ MonoBehaviour:
     invertFade: 0
     distanceFadeStart: 10000
     distanceFadeEnd: 10000
-    textureOffset: {x: -156.32841, y: -0, z: -78.16421}
+    textureOffset: {x: -164.8222, y: -0, z: -82.4111}
     falloffMode: 1
     maskMode: 0
     materialMask: {fileID: 0}
