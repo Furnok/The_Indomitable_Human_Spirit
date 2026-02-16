@@ -19,6 +19,7 @@ MonoBehaviour:
     speedChase: 0
     detectionRange: 10
     detectionAggroRangeMax: 30
+    isIdle: 1
     attackCooldown: 2
     stunTime: 1
     rotationTime: 0.6

@@ -493,7 +493,7 @@ public class S_Enemy : MonoBehaviour
     #region Idle
     private void StartIdle()
     {
-        if (isIdle) return;
+        if (isIdle || ssoEnemyData.Value.isIdle) return;
 
         isIdle = true;
 
