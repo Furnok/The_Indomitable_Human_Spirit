@@ -702,14 +702,8 @@ public class S_Enemy : MonoBehaviour
 
             if (combo.listAnimationsCombos[i].showVFXAttackType) enemyAttackData.VFXAttackType();
 
-            if (i == 0)
-            {
-                animator.SetBool(attackParam, true);
-            }
-            else
-            {
-                animator.SetTrigger(comboParam);
-            }
+            if (i == 0) animator.SetBool(attackParam, true);
+            else animator.SetTrigger(comboParam);
 
             yield return new WaitForSeconds(combo.listAnimationsCombos[i].animation.length);
 
@@ -755,10 +749,7 @@ public class S_Enemy : MonoBehaviour
 
         resetAttack = StartCoroutine(S_Utils.Delay(ssoEnemyData.Value.attackCooldown, () => canAttack = true));
 
-        if (!isPlayerDeath || currentTarget != null)
-        {
-            UpdateState(S_EnumEnemyState.Chasing);
-        }
+        if (!isPlayerDeath || currentTarget != null) UpdateState(S_EnumEnemyState.Chasing);
         else
         {
             animator.SetBool(moveParam, false);
