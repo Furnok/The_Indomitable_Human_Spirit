@@ -16,9 +16,11 @@ public class S_TextTutos : MonoBehaviour
     [Header("References - TMP")]
     [SerializeField] TextMeshProUGUI _textTutoMovement;
     [SerializeField] TextMeshProUGUI _textTutoDodge;
+    [SerializeField] TextMeshProUGUI _textTutoDodgeDup;
     [SerializeField] TextMeshProUGUI _textTutoAttack;
     [SerializeField] TextMeshProUGUI _textTutoHeal;
     [SerializeField] TextMeshProUGUI _textTutoParry;
+    [SerializeField] TextMeshProUGUI _textTutoParryDup;
     [SerializeField] TextMeshProUGUI _textTutoTargeting;
     [SerializeField] TextMeshProUGUI _textTutoSwapTarget;
     [SerializeField] TextMeshProUGUI _textTutoParryProjectile;
@@ -34,9 +36,11 @@ public class S_TextTutos : MonoBehaviour
 
     private string _tplTargeting;
     private string _tplParry;
+    private string _tplParryDuplicate;
     private string _tplInteract;
     private string _tplParryProjectile;
     private string _tplDodge;
+    private string _tplDodgeDuplicate;
     private string _tplHeal;
     private string _tplAttack;
     private string _tplMovement;
@@ -141,6 +145,9 @@ public class S_TextTutos : MonoBehaviour
 
         _tplConviction = _textTutoConviction.text;
         _tplAttackSignaling = _textTutoAttackSignaling.text;
+
+        _tplParryDuplicate = _textTutoParryDup.text;
+        _tplDodgeDuplicate = _textTutoDodgeDup.text;
     }
 
     private Sprite GetSpriteOrNull(S_EnumTutorialStep step, S_EnumDevice device)
@@ -206,6 +213,14 @@ public class S_TextTutos : MonoBehaviour
         sprite = GetSpriteOrNull(S_EnumTutorialStep.AttackSignaling, device);
         if (sprite != null)
             _textTutoAttackSignaling.text = _tplAttackSignaling.Replace("{NEXT}", $"<sprite name=\"{sprite.name}\">");
+
+        sprite = GetSpriteOrNull(S_EnumTutorialStep.ParryDuplicate, device);
+        if (sprite != null)
+            _textTutoParryDup.text = _tplParryDuplicate.Replace("{Parry}", $"<sprite name=\"{sprite.name}\">");
+
+        sprite = GetSpriteOrNull(S_EnumTutorialStep.DodgeDuplicate, device);
+        if (sprite != null)
+            _textTutoDodgeDup.text = _tplDodgeDuplicate.Replace("{Dodge}", $"<sprite name=\"{sprite.name}\">");
     }
 
 
