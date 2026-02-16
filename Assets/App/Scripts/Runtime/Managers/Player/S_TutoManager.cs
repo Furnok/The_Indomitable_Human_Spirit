@@ -40,9 +40,11 @@ public class S_TutoManager : MonoBehaviour
 
     private HashSet<GameObject> targetsPossible = new();
 
-
-
     private Dictionary<S_EnumTutorialStep, TutoStepData> _tutorials = new Dictionary<S_EnumTutorialStep, TutoStepData>();
+
+    private int _parryCountDupplicate = 0;
+    private int _dodgeCountDupplicate = 0;
+
 
     private void OnEnable()
     {
@@ -85,25 +87,25 @@ public class S_TutoManager : MonoBehaviour
 
     void OnConvictionChange(float conviction)
     {
-        if(_rsoSettingsSaved.Value.activateTuto == false) return;
+        //if(_rsoSettingsSaved.Value.activateTuto == false) return;
 
-        S_StructPlayerAttackStep stepConvition = _playerAttackSteps.Value.Where(x => x.step == 1).FirstOrDefault();
+        //S_StructPlayerAttackStep stepConvition = _playerAttackSteps.Value.Where(x => x.step == 1).FirstOrDefault();
 
-        if (!stepConvition.Equals(default(S_StructPlayerAttackStep)) && _playerCurrentConviction.Value >= stepConvition.ammountConvitionNeeded)
-        {
-            if(targetsPossible.Count > 0)
-            {
-                if(rsoCurrentTarget.Value == null)
-                {
-                    rseOnPlayerTargeting.Call();
-                    _onRequestStartTutorialStep.Call(S_EnumTutorialStep.Attack);
-                }
-                else
-                {
-                    _onRequestStartTutorialStep.Call(S_EnumTutorialStep.Attack);
-                }
-            }
-        }
+        //if (!stepConvition.Equals(default(S_StructPlayerAttackStep)) && _playerCurrentConviction.Value >= stepConvition.ammountConvitionNeeded)
+        //{
+        //    if(targetsPossible.Count > 0)
+        //    {
+        //        if(rsoCurrentTarget.Value == null)
+        //        {
+        //            rseOnPlayerTargeting.Call();
+        //            _onRequestStartTutorialStep.Call(S_EnumTutorialStep.Attack);
+        //        }
+        //        else
+        //        {
+        //            _onRequestStartTutorialStep.Call(S_EnumTutorialStep.Attack);
+        //        }
+        //    }
+        //}
     }
 
     private void OnChangeTargetsPosible(HashSet<GameObject> targetsList)
@@ -143,28 +145,6 @@ public class S_TutoManager : MonoBehaviour
         DisableTutoGO();
     }
 
-    //void StartMovementTuto()
-    //{
-    //    _tutoPrefabToEnumDictionary[S_EnumTutorialStep.Movement].SetActive(true);
-    //}
-
-    //void StartParryTuto()
-    //{
-    //    if (_tutorials.ContainsKey(S_EnumTutorialStep.Parry))
-    //    {
-    //        _tutorials.TryGetValue(S_EnumTutorialStep.Parry, out TutoStepData stepData);
-    //        if (stepData.IsFinished)
-    //        {
-    //            // Parry tuto already finished, do not show it again
-    //            return;
-    //        }
-    //        else if (_tutoPrefabToEnumDictionary.ContainsKey(S_EnumTutorialStep.Parry))
-    //        {
-    //            _tutoPrefabToEnumDictionary[S_EnumTutorialStep.None].SetActive(true);
-    //        }
-    //    }
-    //}
-
     void StartTuto(S_EnumTutorialStep tutoStep)
     {
         if(_rsoHasEnterAreaTuto.Value == false && tutoStep == S_EnumTutorialStep.ParryProjectile) return;
@@ -173,14 +153,26 @@ public class S_TutoManager : MonoBehaviour
         if (_tutorials.ContainsKey(tutoStep))
         {
             _tutorials.TryGetValue(tutoStep, out TutoStepData stepData);
-            if (stepData.IsFinished == true)
+            if (stepData.IsFinished == true || tutoStep == S_EnumTutorialStep.Parry && _parryCountDupplicate >= 3)
             {
                 // Parry tuto already finished, do not show it again
                 return;
             }
             else if (_tutoPrefabToEnumDictionary.ContainsKey(tutoStep))
             {
-                _tutoPrefabToEnumDictionary[tutoStep].SetActive(true);
+                if(tutoStep == S_EnumTutorialStep.Parry && _parryCountDupplicate >= 1)
+                {
+                    _tutoPrefabToEnumDictionary[S_EnumTutorialStep.ParryDuplicate].SetActive(true);
+                }
+                else if(tutoStep == S_EnumTutorialStep.Dodge && _dodgeCountDupplicate >= 1)
+                {
+                    _tutoPrefabToEnumDictionary[S_EnumTutorialStep.DodgeDuplicate].SetActive(true);
+                }
+                else
+                {
+                    _tutoPrefabToEnumDictionary[tutoStep].SetActive(true);
+                }
+
                 _onGamePause.Call(true);
                 _onRequestAcceptedTutorialStep.Call(tutoStep);
             }
@@ -244,16 +236,75 @@ public class S_TutoManager : MonoBehaviour
             }));
         }
 
-
         if (tuto != null && tutoStep == S_EnumTutorialStep.Parry)
+        {
+            _parryCountDupplicate++;
+            if (_parryCountDupplicate <= 3)
+            {
+                _tutorials.TryGetValue(tutoStep, out TutoStepData stepData);
+
+                stepData.IsFinished = true;
+            }
+            else
+            {
+                _tutorials.TryGetValue(tutoStep, out TutoStepData stepData);
+
+                stepData.IsFinished = false;
+            }
+        }
+
+        if (tuto != null && tutoStep == S_EnumTutorialStep.Dodge)
+        {
+            _dodgeCountDupplicate++;
+            if (_dodgeCountDupplicate <= 1)
+            {
+                _tutorials.TryGetValue(tutoStep, out TutoStepData stepData);
+
+                stepData.IsFinished = true;
+            }
+            else
+            {
+                _tutorials.TryGetValue(tutoStep, out TutoStepData stepData);
+
+                stepData.IsFinished = false;
+            }
+        }
+
+        if (tuto != null && tutoStep == S_EnumTutorialStep.Parry && _parryCountDupplicate >= 3)
         {
             StartCoroutine(S_Utils.Delay(0.5f, () =>
             {
                 _onChangeActiveStatePanelsFilters.Call();
 
-                _onRequestStartTutorialStep.Call(S_EnumTutorialStep.Conviction);
+                if (targetsPossible.Count > 0)
+                {
+                    if (rsoCurrentTarget.Value == null)
+                    {
+                        rseOnPlayerTargeting.Call();
+                        _onRequestStartTutorialStep.Call(S_EnumTutorialStep.Attack);
+                    }
+                    else
+                    {
+                        _onRequestStartTutorialStep.Call(S_EnumTutorialStep.Attack);
+                    }
+                }
             }));
         }
+
+        if (tuto != null && tutoStep == S_EnumTutorialStep.Attack)
+        {
+            _onChangeActiveStatePanelsFilters.Call();
+        }
+
+        //if (tuto != null && tutoStep == S_EnumTutorialStep.Parry)
+        //{
+        //    StartCoroutine(S_Utils.Delay(0.5f, () =>
+        //    {
+        //        _onChangeActiveStatePanelsFilters.Call();
+
+        //        _onRequestStartTutorialStep.Call(S_EnumTutorialStep.Conviction);
+        //    }));
+        //}
 
         if (tuto != null && tutoStep == S_EnumTutorialStep.Conviction)
         {
