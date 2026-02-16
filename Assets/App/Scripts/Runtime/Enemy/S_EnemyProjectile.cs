@@ -41,7 +41,7 @@ public class S_EnemyProjectile : MonoBehaviour, I_AttackProvider, I_ReflectableP
     private bool isInitialized = false;
 
     private Vector3 direction = Vector3.zero;
-    private S_StructEnemyAttackData attackData;
+    private S_StructAttackData attackData;
     private Vector3 startPos = Vector3.zero;
     private Vector3 controlPoint = Vector3.zero;
     private Vector3 origin = Vector3.zero;
@@ -54,7 +54,7 @@ public class S_EnemyProjectile : MonoBehaviour, I_AttackProvider, I_ReflectableP
     private float arcRandomDirectionMax => ssoProjectileData.Value.arcRandomDirectionMax;
     private float travelTime;
 
-    public void Initialize(Transform owner, Transform target = null, S_StructEnemyAttackData attackData = new())
+    public void Initialize(Transform owner, Transform target = null, S_StructAttackData attackData = new())
     {
         this.target = target;
 
@@ -209,7 +209,7 @@ public class S_EnemyProjectile : MonoBehaviour, I_AttackProvider, I_ReflectableP
         }
     }
 
-    public ref S_StructEnemyAttackData GetAttackData()
+    public ref S_StructAttackData GetAttackData()
     {
         return ref attackData;
     }

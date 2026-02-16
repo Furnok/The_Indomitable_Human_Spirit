@@ -183,14 +183,24 @@ public class S_PlayerBasicAttack : MonoBehaviour
         if(_isHolding == false) return;
 
 
-        S_StructPlayerAttackStep stepConvition = _playerAttackSteps.Value.Where(x => x.step == _currenStepAttack + 1).FirstOrDefault();
+        S_StructPlayerAttackStep nextStepConvitionNeed = _playerAttackSteps.Value.Where(x => x.step == _currenStepAttack + 1).FirstOrDefault();
+        S_StructPlayerAttackStep currentStepConvitionNeed = _playerAttackSteps.Value.Where(x => x.step == _currenStepAttack).FirstOrDefault();
 
-        if (!stepConvition.Equals(default(S_StructPlayerAttackStep)) && _playerCurrentConviction.Value >= stepConvition.ammountConvitionNeeded)
+        if (!nextStepConvitionNeed.Equals(default(S_StructPlayerAttackStep)) && _playerCurrentConviction.Value >= nextStepConvitionNeed.ammountConvitionNeeded)
         {
             _currenStepAttack ++;
             _rsoCurrentChargeStep.Value = _currenStepAttack;
 
-            _reservedConviction = stepConvition.ammountConvitionNeeded;
+            _reservedConviction = nextStepConvitionNeed.ammountConvitionNeeded;
+
+            PublishPreconsume(_reservedConviction);
+
+            var rumbleBetweenStepData = _chargeAttackBetweenStepRumbleData.Value;
+            _rseOnRumbleRequested.Call(rumbleBetweenStepData);
+        }
+        else if(!nextStepConvitionNeed.Equals(default(S_StructPlayerAttackStep)) && _playerCurrentConviction.Value <= nextStepConvitionNeed.ammountConvitionNeeded && _playerCurrentConviction.Value >= currentStepConvitionNeed.ammountConvitionNeeded)
+        {
+            _reservedConviction = _playerCurrentConviction.Value;
 
             PublishPreconsume(_reservedConviction);
 
@@ -201,9 +211,9 @@ public class S_PlayerBasicAttack : MonoBehaviour
 
     private void OnPlayerAttackInput()
     {
-        S_StructPlayerAttackStep stepConvition = _playerAttackSteps.Value.Where(x => x.step == 1).FirstOrDefault();
+        //S_StructPlayerAttackStep stepConvition = _playerAttackSteps.Value.Where(x => x.step == 1).FirstOrDefault();
 
-        if (_playerStateTransitions.Value.CanTransition(_playerCurrentState.Value, S_EnumPlayerState.Attacking) == false || !stepConvition.Equals(default(S_StructPlayerAttackStep)) && _playerCurrentConviction.Value < stepConvition.ammountConvitionNeeded) return;
+        if (_playerStateTransitions.Value.CanTransition(_playerCurrentState.Value, S_EnumPlayerState.Attacking) == false || _playerCurrentConviction.Value < 1/* || !stepConvition.Equals(default(S_StructPlayerAttackStep)) && _playerCurrentConviction.Value < stepConvition.ammountConvitionNeeded*/) return;
 
         if (_weaponAttackCoroutine != null) StopCoroutine(_weaponAttackCoroutine);
 

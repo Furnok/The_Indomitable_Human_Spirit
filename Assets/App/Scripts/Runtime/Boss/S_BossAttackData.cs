@@ -41,9 +41,9 @@ public class S_BossAttackData : MonoBehaviour
     [TabGroup("References")]
     [SerializeField] private S_BossWeapon bossAfterImageWeapon;
 
-    private S_StructEnemyAttackData attackData;
+    private S_StructAttackData attackData;
 
-    public void SetAttackMode(S_StructEnemyAttackData bossAttackData)
+    public void SetAttackMode(S_StructAttackData bossAttackData)
     {
         attackData = bossAttackData;
 
@@ -97,11 +97,11 @@ public class S_BossAttackData : MonoBehaviour
 
     public void VFXAttackType()
     {
-        if (attackData.attackType == S_EnumEnemyAttackType.Parryable || attackData.attackType == S_EnumEnemyAttackType.Projectile)
+        if (attackData.attackType == S_EnumAttackType.Parryable || attackData.attackType == S_EnumAttackType.Projectile)
         {
             if (particleParryType != null) particleParryType.Play();
         }
-        else if (attackData.attackType == S_EnumEnemyAttackType.Dodgeable)
+        else if (attackData.attackType == S_EnumAttackType.Dodgeable)
         {
             if (particleDodgeType != null) particleDodgeType.Play();
         }

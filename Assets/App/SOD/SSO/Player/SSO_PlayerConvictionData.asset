@@ -16,7 +16,7 @@ MonoBehaviour:
     maxConviction: 110
     startConviction: 0
     healCost: 20
-    ammountLostOverTick: 0.05
+    ammountLostOverTick: 0.03
     tickIntervalSec: 0.1
     pauseIntervalAfterGained: 0.5
     pauseIntervalAfterLoss: 0.5

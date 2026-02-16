@@ -197,7 +197,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -267,11 +267,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ssoEnemyData: {fileID: 11400000, guid: beacd9468b7bcba4981759fd6576733c, type: 2}
-  patrolPointsList:
-  - {fileID: 5199276408535089712}
-  - {fileID: 4238934561793798638}
-  - {fileID: 3932769474522726717}
-  - {fileID: 481751962266192794}
   navMeshAgent: {fileID: 1431773725924121066}
   rb: {fileID: 2819568101127906853}
   bodyCollider: {fileID: 6217138946037749130}
@@ -279,16 +274,12 @@ MonoBehaviour:
   hurtCollider: {fileID: 6177182004407894465}
   animator: {fileID: 5886562096679836169}
   moveParam: IsMoving
-  deathParam: IsDead
-  idleAttack: IsIdleAttack
+  combatParam: IsCombat
   attackParam: IsAttack
   comboParam: IsCombo
   stopAttackParam: IsStopAttack
-  hitHeavyParam: IsHeavyHit
-  isStrafeParam: IsStrafe
-  strafXParam: StrafeDirectionX
-  strafYParam: StrafeDirectionY
-  moveSpeedParam: MoveSpeed
+  stunParam: IsStun
+  deadParam: IsDead
   body: {fileID: 6905421159853868602}
   center: {fileID: 5421673960955687534}
   spawnProjectilePoint: {fileID: 1872526195975783811}

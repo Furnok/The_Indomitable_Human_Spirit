@@ -12,7 +12,7 @@ public class TestEnemyAttackHitbox : MonoBehaviour, I_AttackProvider
 
     //[Header("Output")]
 
-    S_StructEnemyAttackData _attackData /*=> _testAttackData.Value*/;
+    S_StructAttackData _attackData /*=> _testAttackData.Value*/;
 
     void Awake()
     {
@@ -25,7 +25,7 @@ public class TestEnemyAttackHitbox : MonoBehaviour, I_AttackProvider
         //Debug.Log($"{test.damage} && {test.attackType}");
     }
 
-    public ref S_StructEnemyAttackData GetAttackData()
+    public ref S_StructAttackData GetAttackData()
     {
         return ref _attackData;
     }

@@ -297,10 +297,10 @@ public class S_EnemyTutorial : MonoBehaviour
             case S_EnumEnemyState.Chasing:
                 Chasing();
                 break;
-            case S_EnumEnemyState.Fighting:
+            case S_EnumEnemyState.Combat:
                 Fighting();
                 break;
-            case S_EnumEnemyState.HeavyHit:
+            case S_EnumEnemyState.Stun:
                 HeavyHit();
                 break;
             case S_EnumEnemyState.Death:
@@ -412,7 +412,7 @@ public class S_EnemyTutorial : MonoBehaviour
 
     private IEnumerator ReturnBack()
     {
-        UpdateState(S_EnumEnemyState.ReturnBack);
+        UpdateState(S_EnumEnemyState.ReturnPatroling);
 
         navMeshAgent.speed = ssoEnemyData.Value.speedChase;
 
@@ -475,7 +475,7 @@ public class S_EnemyTutorial : MonoBehaviour
         enemyUI.UpdateHealthBar(health);
 
         if (health <= 0) UpdateState(S_EnumEnemyState.Death);
-        else if (damage >= (ssoEnemyData.Value.health / 2)) UpdateState(S_EnumEnemyState.HeavyHit);
+        else if (damage >= (ssoEnemyData.Value.health / 2)) UpdateState(S_EnumEnemyState.Stun);
     }
     #endregion
 
@@ -507,7 +507,7 @@ public class S_EnemyTutorial : MonoBehaviour
             target = null;
             targetInZone = null;
 
-            if (currentState != S_EnumEnemyState.ReturnBack)
+            if (currentState != S_EnumEnemyState.ReturnPatroling)
             {
                 animator.SetBool(idleAttack, false);
                 animator.SetTrigger(stopAttackParam);
@@ -602,7 +602,7 @@ public class S_EnemyTutorial : MonoBehaviour
         bool destinationReached = distance <= (combo.distanceToChase);
 
         if (!destinationReached) navMeshAgent.SetDestination(target.transform.position);
-        else if (destinationReached) UpdateState(S_EnumEnemyState.Fighting);
+        else if (destinationReached) UpdateState(S_EnumEnemyState.Combat);
     }
     #endregion
 
@@ -704,46 +704,6 @@ public class S_EnemyTutorial : MonoBehaviour
         }
     }
 
-    private IEnumerator Strafing()
-    {
-        int strafeDirection = Random.value > 0.5f ? 1 : -1;
-
-        Vector3 offsetPlayer = transform.position - target.transform.position;
-        offsetPlayer.y = 0;
-
-        Vector3 offsetAtRadius = offsetPlayer.normalized * (combo.distanceToChase);
-
-        float angle = Random.Range(ssoEnemyData.Value.strafeRotationMin, ssoEnemyData.Value.strafeRotationMax) * strafeDirection;
-
-        Quaternion rot = Quaternion.Euler(0f, angle, 0f);
-        Vector3 rotatedOffset = rot * offsetAtRadius;
-
-        Vector3 finalPos = target.transform.position + rotatedOffset;
-        navMeshAgent.SetDestination(finalPos);
-
-        Vector3 moveDir = (finalPos - transform.position);
-        moveDir.y = 0f;
-        moveDir.Normalize();
-
-        Vector3 localDir = transform.InverseTransformDirection(moveDir);
-
-        animator.SetFloat(strafXParam, localDir.x);
-        animator.SetFloat(strafYParam, localDir.z);
-
-        yield return new WaitUntil(() => !navMeshAgent.pathPending && navMeshAgent.remainingDistance <= 0.01f);
-
-        animator.SetBool(isStrafeParam, false);
-        animator.SetFloat(strafXParam, 0);
-        animator.SetFloat(strafYParam, 0);
-        animator.SetFloat(moveSpeedParam, 0);
-
-        float strafeWaitTime = Random.Range(ssoEnemyData.Value.strafeWaitTimeMin, ssoEnemyData.Value.strafeWaitTimeMax);
-
-        yield return new WaitForSeconds(strafeWaitTime);
-
-        isStrafe = false;
-    }
-
     private IEnumerator PlayComboSequence()
     {
         isPerformingCombo = true;
@@ -773,7 +733,7 @@ public class S_EnemyTutorial : MonoBehaviour
 
             yield return new WaitForSeconds(combo.listAnimationsCombos[i].animation.length);
 
-            if (combo.listAnimationsCombos[i].attackData.attackType == S_EnumEnemyAttackType.Projectile)
+            if (combo.listAnimationsCombos[i].attackData.attackType == S_EnumAttackType.Projectile)
             {
                 yield return new WaitForSeconds(combo.listAnimationsCombos[i].attackData.timeCast);
 
@@ -879,7 +839,7 @@ public class S_EnemyTutorial : MonoBehaviour
 
         rseOnSendConsoleMessage.Call(gameObject.transform.parent.name + " is Stun!");
 
-        stunCoroutine = StartCoroutine(S_Utils.Delay(ssoEnemyData.Value.waitStun, () =>
+        stunCoroutine = StartCoroutine(S_Utils.Delay(ssoEnemyData.Value.stunTime, () =>
         {
             if (target != null)
             {

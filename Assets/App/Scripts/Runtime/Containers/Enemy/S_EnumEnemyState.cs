@@ -1,10 +1,12 @@
 ﻿public enum S_EnumEnemyState
 {
+    None,
     Idle,
 	Patroling,
-	Chasing,
-	Fighting,
-	HeavyHit,
+    ReturnPatroling,
+    Chasing,
+	Combat,
+    Attack,
+    Stun,
 	Death,
-	ReturnBack,
 }

@@ -25231,7 +25231,7 @@ MonoBehaviour:
           value: You Win!
         - localeIdentifier:
             m_Code: fr
-          value: "Tu a Gagn\xE9 !"
+          value: "Tu as Gagn\xE9 !"
 --- !u!1 &5382147421323811253
 GameObject:
   m_ObjectHideFlags: 0
