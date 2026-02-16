@@ -260,14 +260,8 @@ public class S_Enemy : MonoBehaviour
 
     private void SetDestinationToPatrolPoint(Vector3 newPos)
     {
-        if (NavMesh.SamplePosition(newPos, out NavMeshHit hit, 1.5f, NavMesh.AllAreas))
-        {
-            navMeshAgent.SetDestination(hit.position);
-        }
-        else
-        {
-            navMeshAgent.SetDestination(newPos);
-        }
+        if (NavMesh.SamplePosition(newPos, out NavMeshHit hit, 1.5f, NavMesh.AllAreas)) navMeshAgent.SetDestination(hit.position);
+        else navMeshAgent.SetDestination(newPos);
     }
 
     #region States
@@ -282,35 +276,27 @@ public class S_Enemy : MonoBehaviour
         switch (currentState)
         {
             case S_EnumEnemyState.Idle:
-                Debug.Log("Idle");
                 StartIdle();
                 break;
             case S_EnumEnemyState.Patroling:
-                Debug.Log("Patroling");
                 StartPatroling();
                 break;
             case S_EnumEnemyState.ReturnPatroling:
-                Debug.Log("ReturnPatroling");
                 StartReturnPatroling();
                 break;
             case S_EnumEnemyState.Chasing:
-                Debug.Log("Chasing");
                 StartChasing();
                 break;
             case S_EnumEnemyState.Combat:
-                Debug.Log("Combat");
                 StartCombat();
                 break;
             case S_EnumEnemyState.Attack:
-                Debug.Log("Attack");
                 StartAttack();
                 break;
             case S_EnumEnemyState.Stun:
-                Debug.Log("Stun");
                 StartStun();
                 break;
             case S_EnumEnemyState.Death:
-                Debug.Log("Death");
                 Death();
                 break;
         }
@@ -381,6 +367,13 @@ public class S_Enemy : MonoBehaviour
 
         if (currentTarget == newTarget) targetInZone = null;
         else targetInZone = newTarget;
+    }
+
+    public void DetectTarget(GameObject newTarget)
+    {
+        if (isDead || currentTarget == newTarget) return;
+
+        SetTarget(newTarget);
     }
 
     public void SetTarget(GameObject newTarget)
@@ -690,6 +683,14 @@ public class S_Enemy : MonoBehaviour
 
         for (int i = 0; i < combo.listAnimationsCombos.Count; i++)
         {
+            if (isPlayerDeath && currentTarget == null) break;
+            else
+            {
+                float distance = Vector3.Distance(center.transform.position, currentTarget.transform.position);
+
+                if (distance > combo.distanceToLoseAttack) break;
+            }
+
             RotateEnemy();
 
             string overrideKey = (i % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
@@ -733,8 +734,6 @@ public class S_Enemy : MonoBehaviour
         isAttack = false;
 
         rootMotionModifier.Setup(1, 0);
-
-        Debug.Log("t");
 
         animator.SetBool(attackParam, false);
 
