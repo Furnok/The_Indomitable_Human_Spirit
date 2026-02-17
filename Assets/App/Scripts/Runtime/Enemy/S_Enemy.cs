@@ -405,7 +405,8 @@ public class S_Enemy : MonoBehaviour
 
             resetAttack = StartCoroutine(S_Utils.Delay(ssoEnemyData.Value.attackCooldown, () => canAttack = true));
 
-            UpdateState(S_EnumEnemyState.ReturnPatroling);
+            if (!ssoEnemyData.Value.isIdle) UpdateState(S_EnumEnemyState.ReturnPatroling);
+            else UpdateState(S_EnumEnemyState.Idle);
         }
     }
     #endregion
