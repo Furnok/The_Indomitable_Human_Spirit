@@ -358141,14 +358141,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1173214819416248163, guid: 0172bb772cbf6cd438211f41bb4053c4, type: 3}
-      propertyPath: flyParam
-      value: isFly
-      objectReference: {fileID: 0}
-    - target: {fileID: 1173214819416248163, guid: 0172bb772cbf6cd438211f41bb4053c4, type: 3}
-      propertyPath: jumpParam
-      value: isJump
-      objectReference: {fileID: 0}
     - target: {fileID: 1867408803417137689, guid: 0172bb772cbf6cd438211f41bb4053c4, type: 3}
       propertyPath: m_TagString
       value: Untagged
