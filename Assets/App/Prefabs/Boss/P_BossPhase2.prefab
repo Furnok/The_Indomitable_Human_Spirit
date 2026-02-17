@@ -171,6 +171,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: fa5e674b008435f468e167ec38d17337, type: 2}
     - target: {fileID: 6465511601208726001, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+      propertyPath: flyParam
+      value: isFly
+      objectReference: {fileID: 0}
+    - target: {fileID: 6465511601208726001, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+      propertyPath: jumpParam
+      value: isJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 6465511601208726001, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
       propertyPath: rseOnPlayerDeath
       value: 
       objectReference: {fileID: 11400000, guid: 05b30ffda8ad63c4d82da9ab419e36e1, type: 2}

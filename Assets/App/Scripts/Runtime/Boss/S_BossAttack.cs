@@ -84,6 +84,12 @@ public class S_BossAttack : MonoBehaviour
     [TabGroup("References")]
     [SerializeField, S_AnimationName("animator")] private string comboParam;
 
+    [TabGroup("References")]
+    [SerializeField, S_AnimationName("animator")] private string jumpParam;
+
+    [TabGroup("References")]
+    [SerializeField, S_AnimationName("animator")] private string flyParam;
+
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnExecuteAttack onExecuteAttack;
 
@@ -213,116 +219,112 @@ public class S_BossAttack : MonoBehaviour
             gatheringCoroutine = null;
         }
     }
-    
-    #region PingPong
-    private void PingPong()
+
+    private IEnumerator DoJump(
+    Rigidbody rb,
+    float distance,
+    float jumpPower,
+    float duration,
+    int animStartIndex,
+    Action<int> onComplete)
     {
-        if (pingPongJumpCoroutine != null)
-        {
-            StopCoroutine(pingPongJumpCoroutine);
-            pingPongJumpCoroutine = null;
-        }
-        pingPongJumpCoroutine = StartCoroutine(PingPongJump(rbBody, aimPointPlayer.position, backDistancePingPong, jumpPowerPingPong, durationPingPong, 1));
-    }
-    private IEnumerator PingPongJump(Rigidbody rb, Vector3 playerPos, float distance, float jumpPower, float duration, int numJumps)
-    {
-        int animNumb = 0;
+        int animNumb = animStartIndex;
+
         bossNavMeshAgent.enabled = false;
 
-        Vector3 dir = rb.position - playerPos;
-        if (dir.sqrMagnitude <= 1e-6f) dir = rb.transform.forward;
+        Vector3 dir = rb.position - aimPointPlayer.position;
+
+        if (dir.sqrMagnitude <= 0.0001f)
+            dir = rb.transform.forward;
+
         dir.Normalize();
 
         Vector3 desiredTarget = rb.position + dir * distance;
 
         Vector3 target = GetSafeJumpTarget(desiredTarget, rb.position, distance);
 
-        string overrideKey = (animNumb % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
-        overrideController[overrideKey] = currentAttack.listComboData[animNumb].animation;
+        bool finished = false;
 
-        Debug.Log("Play Jump Prepa Animation");
-        animator.SetTrigger(animNumb == 0 ? attackParam : comboParam);
-
-        yield return new WaitForSeconds(currentAttack.listComboData[animNumb].animation.length);
-        animNumb++;
-
-        Sequence seq = rb.DOJump(target, jumpPower, numJumps, duration)
-            .SetEase(Ease.OutQuad).OnStart(() =>
-            {
-                overrideKey = (animNumb % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
-                overrideController[overrideKey] = currentAttack.listComboData[animNumb].animation;
-
-                Debug.Log("Play Jump Animation");
-                animator.SetTrigger(animNumb == 0 ? attackParam : comboParam);
-                animNumb++;
-            })
-            .OnComplete(() =>
-            {
-                if (pingPongFlyCoroutine != null)
-                {
-                    StopCoroutine(pingPongFlyCoroutine);
-                    pingPongFlyCoroutine = null;
-                }
-                pingPongFlyCoroutine = StartCoroutine(PingPongFly(animNumb));
-            });
-        yield return null;
-    }
-    private IEnumerator PingPongFly(int value)
-    {
-        if (currentAttack == null || currentAttack.listComboData == null || currentAttack.listComboData.Count == 0)
-            yield break;
-
-        int animNumb = value;
-        bossNavMeshAgent.enabled = false;
-
-        string overrideKey = (animNumb % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
-        overrideController[overrideKey] = currentAttack.listComboData[animNumb].animation;
-
-        Debug.Log("Play JumpFall Animation");
-        animator.SetTrigger(animNumb == 0 ? attackParam : comboParam);
-
-
-        yield return new WaitForSeconds(currentAttack.listComboData[animNumb].animation.length);
-        animNumb++;
-        pingPongStartPos = rbBody.position;
-        pingPongPeakPos = pingPongStartPos + Vector3.up * jumpPowerPingPong;
-
-        overrideKey = (animNumb % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
-        overrideController[overrideKey] = currentAttack.listComboData[animNumb].animation;
-
-        Debug.Log("Play Fly Prepa Animation");
-        animator.SetTrigger(animNumb == 0 ? attackParam : comboParam);
-
-        yield return new WaitForSeconds(currentAttack.listComboData[animNumb].animation.length);
-        animNumb++;
-
-        rbBody.DOMove(pingPongPeakPos, durationPingPong)
+        rb.DOJump(target, jumpPower, 1, duration)
             .SetEase(Ease.OutQuad)
             .OnStart(() =>
             {
-                overrideKey = (animNumb % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
-                if (animNumb < currentAttack.listComboData.Count)
-                    overrideController[overrideKey] = currentAttack.listComboData[animNumb].animation;
+                animator.SetTrigger(jumpParam);
+            })
+            .OnComplete(() =>
+            {
+                finished = true;
+            });
 
-                Debug.Log("Play Fly Up Animation");
-                animator.SetTrigger(animNumb == 0 ? attackParam : comboParam);
-                animNumb++;
+        yield return new WaitUntil(() => finished);
+
+        onComplete?.Invoke(animNumb);
+    }
+
+    private IEnumerator DoFly(
+    float jumpPower,
+    float duration,
+    int animStartIndex,
+    Action<int> onComplete)
+    {
+        int animNumb = animStartIndex;
+
+        bossNavMeshAgent.enabled = false;
+
+        pingPongStartPos = rbBody.position;
+
+        pingPongPeakPos =
+            pingPongStartPos + Vector3.up * jumpPower;
+
+
+        bool finished = false;
+
+        rbBody.DOMove(pingPongPeakPos, duration)
+            .SetEase(Ease.OutQuad)
+            .OnStart(() =>
+            {
+                animator.SetTrigger(flyParam);
             })
             .OnComplete(() =>
             {
                 rbBody.isKinematic = true;
-                pingPongAnimNumb = animNumb;
                 pingPongInAir = true;
-
-                if (pingPongCoroutine != null)
-                {
-                    StopCoroutine(pingPongCoroutine);
-                    pingPongCoroutine = null;
-                }
-                pingPongCoroutine = StartCoroutine(PingPongCoroutine(animNumb));
+                finished = true;
             });
 
+        yield return new WaitUntil(() => finished);
+
+        onComplete?.Invoke(animNumb);
     }
+
+    #region PingPong
+    private void PingPong()
+    {
+        pingPongJumpCoroutine =
+    StartCoroutine(
+        DoJump(
+            rbBody,
+            backDistancePingPong,
+            jumpPowerPingPong,
+            durationPingPong,
+            0,
+            (animIndex) =>
+            {
+                pingPongFlyCoroutine =
+                    StartCoroutine(
+                        DoFly(
+                            jumpPowerPingPong,
+                            durationPingPong,
+                            animIndex,
+                            (nextIndex) =>
+                            {
+                                pingPongCoroutine =
+                                    StartCoroutine(
+                                        PingPongCoroutine(nextIndex));
+                            }));
+            }));
+    }
+    
     private void PingPongDescend()
     {
         if (pingPongInAir)
@@ -345,27 +347,12 @@ public class S_BossAttack : MonoBehaviour
         bossNavMeshAgent.enabled = false;
         rbBody.isKinematic = false;
         int animNumb = pingPongAnimNumb;
-        Debug.Log("PingPong Descend Anim Numb: " + animNumb);
-        string overrideKey = (animNumb % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
-        overrideController[overrideKey] = currentAttack.listComboData[animNumb].animation;
 
-        Debug.Log("Play Fly Fall Animation");
-        animator.SetTrigger(animNumb == 0 ? attackParam : comboParam);
-
-        yield return new WaitForSeconds(currentAttack.listComboData[animNumb].animation.length);
-        animNumb++;
-
-        // Tween de descente vers la position de départ
         rbBody.DOMove(pingPongStartPos, durationPingPong)
             .SetEase(Ease.InQuad)
             .OnStart(() =>
             {
-                string ovKey = (animNumb % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
-                if (animNumb < currentAttack.listComboData.Count)
-                    overrideController[ovKey] = currentAttack.listComboData[animNumb].animation;
-
-                Debug.Log("Play Fly Down Animation");
-                animator.SetTrigger(animNumb == 0 ? attackParam : comboParam);
+                animator.SetTrigger(flyParam);
             })
             .OnComplete(() =>
             {
@@ -410,71 +397,21 @@ public class S_BossAttack : MonoBehaviour
     #region Balls
     private void Balls()
     {
-        if (ballsFlyCoroutine != null)
-        {
-            StopCoroutine(ballsFlyCoroutine);
-            ballsFlyCoroutine = null;
-        }
-        ballsFlyCoroutine = StartCoroutine(BallsFly(true));
+        ballsFlyCoroutine =
+    StartCoroutine(
+        DoFly(
+            jumpPowerPingPong,
+            durationPingPong,
+            0,
+            (animIndex) =>
+            {
+                ballsCoroutine =
+                    StartCoroutine(
+                        BallsCoroutine(animIndex));
+            }));
     }
 
-    private IEnumerator BallsFly(bool stun)
-    {
-        if (currentAttack == null || currentAttack.listComboData == null || currentAttack.listComboData.Count == 0)
-            yield break;
-
-        int animNumb = 0;
-        bossNavMeshAgent.enabled = false;
-
-        string overrideKey = (animNumb % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
-        overrideController[overrideKey] = currentAttack.listComboData[animNumb].animation;
-
-        Debug.Log("Play JumpFall Animation");
-        animator.SetTrigger(animNumb == 0 ? attackParam : comboParam);
-
-
-        yield return new WaitForSeconds(currentAttack.listComboData[animNumb].animation.length);
-        animNumb++;
-        pingPongStartPos = rbBody.position;
-        pingPongPeakPos = pingPongStartPos + Vector3.up * jumpPowerPingPong;
-
-        overrideKey = (animNumb % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
-        overrideController[overrideKey] = currentAttack.listComboData[animNumb].animation;
-
-        Debug.Log("Play Fly Prepa Animation");
-        animator.SetTrigger(animNumb == 0 ? attackParam : comboParam);
-
-        yield return new WaitForSeconds(currentAttack.listComboData[animNumb].animation.length);
-        animNumb++;
-
-        rbBody.DOMove(pingPongPeakPos, durationPingPong)
-            .SetEase(Ease.OutQuad)
-            .OnStart(() =>
-            {
-                overrideKey = (animNumb % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
-                if (animNumb < currentAttack.listComboData.Count)
-                    overrideController[overrideKey] = currentAttack.listComboData[animNumb].animation;
-
-                Debug.Log("Play Fly Up Animation");
-                animator.SetTrigger(animNumb == 0 ? attackParam : comboParam);
-                animNumb++;
-            })
-            .OnComplete(() =>
-            {
-                rbBody.isKinematic = true;
-                pingPongAnimNumb = animNumb;
-                pingPongInAir = true;
-
-                if (ballsCoroutine != null)
-                {
-                    StopCoroutine(ballsCoroutine);
-                    ballsCoroutine = null;
-                }
-                ballsCoroutine = StartCoroutine(BallsCoroutine(animNumb, stun));
-            });
-    }
-
-    private IEnumerator BallsCoroutine(int value, bool stun)
+    private IEnumerator BallsCoroutine(int value)
     {
         yield return null;
         bossNavMeshAgent.enabled = false;
@@ -508,73 +445,31 @@ public class S_BossAttack : MonoBehaviour
 
         }
         yield return null;
-        bossNavMeshAgent.enabled = true;
         rbBody.isKinematic = false;
-        if (stun)
-        {
-            rseOnBossStun.Call(S_EnumBossState.Stun);
-        }
+        bossNavMeshAgent.enabled = true;
+        rseOnBossStun.Call(S_EnumBossState.Stun);
     } 
     #endregion
 
     #region Gathering
     private void Gathering()
     {
-
-        Debug.Log("Gathering Jump");
-        if (gatheringJumpCoroutine != null)
-        {
-            StopCoroutine(gatheringJumpCoroutine);
-            gatheringJumpCoroutine = null;
-        }
-        gatheringJumpCoroutine = StartCoroutine(GatheringJumpCoroutine(rbBody, aimPointPlayer.position, backDistanceGathering, jumpPowerGathering, durationGathering, 1));
-
+        gatheringJumpCoroutine =
+    StartCoroutine(
+        DoJump(
+            rbBody,
+            backDistanceGathering,
+            jumpPowerGathering,
+            durationGathering,
+            0,
+            (animIndex) =>
+            {
+                gatheringCoroutine =
+                    StartCoroutine(
+                        GatheringCoroutine(animIndex));
+            }));
     }
 
-    private IEnumerator GatheringJumpCoroutine(Rigidbody rb, Vector3 playerPos, float distance, float jumpPower, float duration, int numJumps, bool keepY = true)
-    {
-        int animNumb = 0;
-        bossNavMeshAgent.enabled = false;
-
-        Vector3 dir = rb.position - playerPos;
-        if (dir.sqrMagnitude <= 1e-6f) dir = rb.transform.forward;
-        dir.Normalize();
-
-        Vector3 desiredTarget = rb.position + dir * distance;
-
-        Vector3 target = GetSafeJumpTarget(desiredTarget, rb.position, distance);
-
-        string overrideKey = (animNumb % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
-        overrideController[overrideKey] = currentAttack.listComboData[animNumb].animation;
-
-        Debug.Log("Play Jump Prepa Animation");
-        animator.SetTrigger(animNumb == 0 ? attackParam : comboParam);
-
-        yield return new WaitForSeconds(currentAttack.listComboData[animNumb].animation.length);
-        animNumb++;
-
-        Sequence seq = rb.DOJump(target, jumpPower, numJumps, duration)
-            .SetEase(Ease.OutQuad).OnStart(() =>
-            {
-                overrideKey = (animNumb % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
-                overrideController[overrideKey] = currentAttack.listComboData[animNumb].animation;
-
-                Debug.Log("Play Jump Animation");
-                animator.SetTrigger(animNumb == 0 ? attackParam : comboParam);
-                animNumb++;
-            })
-            .OnComplete(() =>
-            {
-                if (gatheringCoroutine != null)
-                {
-                    StopCoroutine(gatheringCoroutine);
-                    gatheringCoroutine = null;
-                }
-                gatheringCoroutine = StartCoroutine(GatheringCoroutine(animNumb));
-            });
-        yield return null;
-
-    }
     private IEnumerator GatheringCoroutine(int value)
     {
         int animNumb = value;
@@ -613,6 +508,7 @@ public class S_BossAttack : MonoBehaviour
         s_FireProjectile.Initialize(transform.rotation, currentAttack.listComboData[animNumb].attackData);
 
         rseOnPlayParticle.Call();
+        rbBody.isKinematic = false;
         bossNavMeshAgent.enabled = true;
         rseOnEndAttack.Call();
     }
@@ -621,80 +517,84 @@ public class S_BossAttack : MonoBehaviour
     #region WingsOfHell
     private void WingsOfHell()
     {
-        StartCoroutine(WingsOfHellFly());
+        ballsFlyCoroutine =
+    StartCoroutine(
+        DoFly(
+            jumpPowerPingPong,
+            durationPingPong,
+            0,
+            (animIndex) =>
+            {
+                ballsCoroutine =
+                    StartCoroutine(
+                        WingsOfHellCoroutine(animIndex));
+            }));
     }
-
-    private IEnumerator WingsOfHellFly()
+    private IEnumerator DescendCoroutine()
     {
-        if (currentAttack == null || currentAttack.listComboData == null || currentAttack.listComboData.Count == 0)
+        // Sécurité
+        if (!pingPongInAir)
             yield break;
 
-        int animNumb = 0;
+        // Prépare override/animation pour la redescente
         bossNavMeshAgent.enabled = false;
+        rbBody.isKinematic = false;
 
-        string overrideKey = (animNumb % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
-        overrideController[overrideKey] = currentAttack.listComboData[animNumb].animation;
-
-        Debug.Log("Play JumpFall Animation");
-        animator.SetTrigger(animNumb == 0 ? attackParam : comboParam);
-
-
-        yield return new WaitForSeconds(currentAttack.listComboData[animNumb].animation.length);
-        animNumb++;
-        pingPongStartPos = rbBody.position;
-        pingPongPeakPos = pingPongStartPos + Vector3.up * jumpPowerPingPong;
-
-        overrideKey = (animNumb % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
-        overrideController[overrideKey] = currentAttack.listComboData[animNumb].animation;
-
-        Debug.Log("Play Fly Prepa Animation");
-        animator.SetTrigger(animNumb == 0 ? attackParam : comboParam);
-
-        yield return new WaitForSeconds(currentAttack.listComboData[animNumb].animation.length);
-        animNumb++;
-
-        rbBody.DOMove(pingPongPeakPos, durationPingPong)
-            .SetEase(Ease.OutQuad)
+        rbBody.DOMove(pingPongStartPos, durationPingPong)
+            .SetEase(Ease.InQuad)
             .OnStart(() =>
             {
-                overrideKey = (animNumb % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
-                if (animNumb < currentAttack.listComboData.Count)
-                    overrideController[overrideKey] = currentAttack.listComboData[animNumb].animation;
-
-                Debug.Log("Play Fly Up Animation");
-                animator.SetTrigger(animNumb == 0 ? attackParam : comboParam);
-                animNumb++;
+                animator.SetTrigger(flyParam);
             })
             .OnComplete(() =>
             {
-                rbBody.isKinematic = true;
-                pingPongAnimNumb = animNumb;
-                pingPongInAir = true;
-                StartCoroutine(WingsOfHellCoroutine(animNumb));
+                bossNavMeshAgent.enabled = true;
+                pingPongInAir = false;
             });
     }
-
-    private IEnumerator WingsOfHellCoroutine(int value)
+    private IEnumerator WingsOfHellCoroutine(int index)
     {
         yield return null;
         bossNavMeshAgent.enabled = false;
-        for (int i = value; i < currentAttack.listComboData.Count; i++)
-        {
-            string overrideKey = (i % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
-            overrideController[overrideKey] = currentAttack.listComboData[i].animation;
-            rootMotionModifier.Setup(currentAttack.listComboData[i].rootMotionMultiplier);
-            bossAttackData.SetAttackMode(currentAttack.listComboData[i].attackData);
-            if (currentAttack.listComboData[i].showVFXAttackType) bossAttackData.VFXAttackType();
-            animator.SetTrigger(i == 0 ? attackParam : comboParam);
-            yield return new WaitForSeconds(currentAttack.listComboData[i].animation.length);
-            if (currentAttack.listComboData[i].attackData.attackType == S_EnumAttackType.Projectile)
+        
+            for (int i = index; i < currentAttack.listComboData.Count; i++)
             {
-                yield return new WaitForSeconds(currentAttack.listComboData[i].attackData.timeCast);
-                S_BossProjectile projectileInstance = Instantiate(bossProjectile, projectilePingPongSpawn.transform.position, Quaternion.identity);
-                projectileInstance.Initialize(aimPointBoss, aimPointPlayer, currentAttack.listComboData[i].attackData);
-            }
-            yield return null;
+                if (pingPongInAir) yield return null;
+                if (i == 1)
+                {
+                    yield return StartCoroutine(DescendCoroutine());
+                }
+                string overrideKey = (i % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
+                overrideController[overrideKey] = currentAttack.listComboData[i].animation;
+
+                rootMotionModifier.Setup(currentAttack.listComboData[i].rootMotionMultiplier);
+
+                bossAttackData.SetAttackMode(currentAttack.listComboData[i].attackData);
+
+                if (currentAttack.listComboData[i].showVFXAttackType) bossAttackData.VFXAttackType();
+
+                animator.SetTrigger(i == 0 ? attackParam : comboParam);
+
+                yield return new WaitForSeconds(currentAttack.listComboData[i].animation.length);
+
+                if (currentAttack.listComboData[i].attackData.attackType == S_EnumAttackType.Projectile)
+                {
+                    for (int j = 0; j < currentAttack.listComboData[i].attackData.numberOfProjectiles; j++)
+                    {
+                        yield return new WaitForSeconds(currentAttack.listComboData[i].attackData.timeCast);
+
+                        S_EnemyProjectile projectileInstance = Instantiate(enemyProjectile, projectileBallsSpawn.transform.position, Quaternion.identity);
+                        projectileInstance.Initialize(aimPointBoss, aimPointPlayer, currentAttack.listComboData[i].attackData);
+                    }
+
+                }
+                yield return new WaitForSeconds(currentAttack.listComboData[i].attackData.timeInterval);
         }
+        
+        yield return null;
+        rbBody.isKinematic = false;
+        bossNavMeshAgent.enabled = true;
+        rseOnEndAttack.Call();
     }
     #endregion
 
