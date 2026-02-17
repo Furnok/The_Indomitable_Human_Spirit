@@ -479,12 +479,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '<style="TitleTuto">DODGE</style>
+  m_text: 'A <color="Red">red indicator </color> mean you have to <style="W1">Dodge</style>.
 
-
-    You can <color="Red">dodge</color>
-    attack with the <color="Red">red indicator </color>using {DODGE} at the right
-    timing which will give you <style="Conviction">conviction</style>.'
+    Press
+    {DODGE}'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
@@ -590,14 +588,22 @@ MonoBehaviour:
           value: '<style="TitleTuto">DODGE</style>
 
 
-            You can <color="Red">dodge</color>
-            attack with the <color="Red">red indicator </color>using {DODGE} at the
-            right timing which will give you <style="Conviction">conviction</style>.'
+            A <color="Red">red
+            indicator </color> mean you have to <style="W1">Dodge</style>.
+
+            Press
+            {DODGE}'
         - localeIdentifier:
             m_Code: fr
-          value: "<style=\"TitleTuto\">Esquiver</style>\r\n\r\nVous pouvez <color=\"Red\">esquiver
-            </color>une attaque qui \xE0 <color=\"Red\">l'indicateur rouge</color>
-            en utilisant {DODGE} au bon moment, ce qui vous donnera de la <style=\"Conviction\">conviction</style>."
+          value: '<style="TitleTuto">Esquiver</style>
+
+            
+
+            Un
+            <color="Red">indicateur rouge </color> singifie que vous devez <style="W1">Esquiver</style>.
+
+            Appuyez
+            sur {DODGE}'
 --- !u!1 &2618436227971787516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1517,9 +1523,9 @@ MonoBehaviour:
   m_text: '<style="TitleTuto">PARRY</style>
 
 
-    You can <color="Yellow">parry</color>
-    attack with the <color="Yellow">yellow indicator </color>using {PARRY} at the
-    right timing which will give you <style="Conviction">conviction</style>.'
+    Parry
+
+    {PARRY}'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
@@ -1625,14 +1631,18 @@ MonoBehaviour:
           value: '<style="TitleTuto">PARRY</style>
 
 
-            You can <color="Yellow">parry</color>
-            attack with the <color="Yellow">yellow indicator </color>using {PARRY}
-            at the right timing which will give you <style="Conviction">conviction</style>.'
+            Parry
+
+            {PARRY}'
         - localeIdentifier:
             m_Code: fr
-          value: "<style=\"TitleTuto\">PARADE</style>\r\n\r\nVous pouvez <color=\"Yellow\">parer</color>
-            une attaque qui \xE0 <color=\"Yellow\">l'indicateur yellow</color> en
-            utilisant {PARRY} au bon moment, ce qui vous donnera de la <style=\"Conviction\">conviction</style>."
+          value: '<style="TitleTuto">PARADE</style>
+
+            
+
+            Parer
+
+            {PARRY}'
 --- !u!1 &3867124084758317990
 GameObject:
   m_ObjectHideFlags: 0
@@ -1702,12 +1712,20 @@ MonoBehaviour:
   m_text: '<style="TitleTuto">ATTACK</style>
 
 
-    To attack you need to <style="W1">hold</style>
-    the {ATTACK} button and press consecutively {ATTACK_UPGRADE} to reach a step
-    bar <style="W1">marked </style> on the conviction bar with a <style="W1">black
-    bar</style> and on release  {ATTACK} will consume your entire  <style="Conviction">conviction
-    bar </style> highlighted on the bottom of the screen, each reached step will
-    <style="W1">multiply the damage </style>of your attack.'
+    Press {ATTACK} to load an attack.
+
+    While
+    pressing, press {ATTACK_UPGRADE} to charge your attack.
+
+    
+
+    Release
+    {ATTACK} to launch it.
+
+    
+
+    You can only charge with the amount of <style="Conviction">Mana</style>
+    you have.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
@@ -1813,23 +1831,28 @@ MonoBehaviour:
           value: '<style="TitleTuto">ATTACK</style>
 
 
-            To attack you need
-            to <style="W1">hold</style> the {ATTACK} button and press consecutively
-            {ATTACK_UPGRADE} to reach a step bar <style="W1">marked </style> on the
-            conviction bar with a <style="W1">black bar</style> and on release  {ATTACK}
-            will consume your entire  <style="Conviction">conviction bar </style>
-            highlighted on the bottom of the screen, each reached step will <style="W1">multiply
-            the damage </style>of your attack.'
+            Press {ATTACK}
+            to load an attack.
+
+            While pressing, press {ATTACK_UPGRADE}
+            to charge your attack.
+
+            
+
+            Release {ATTACK}
+            to launch it.
+
+            
+
+            You can only charge with the
+            amount of <style="Conviction">Mana</style> you have.'
         - localeIdentifier:
             m_Code: fr
-          value: "<style=\"TitleTuto\">ATTAQUE</style>\r\n\r\nPour attaquer, vous
-            devez <style=\"W1\">maintenir</style> le bouton {ATTACK} et <style=\"W1\">appuyer
-            successivement</style> sur {ATTACK_UPGRADE} pour atteindre une barre
-            de progression <style=\"W1\">indiqu\xE9e</style> sur la barre de conviction
-            par <style=\"W1\">une barre noire</style>. Rel\xE2chez ensuite {ATTACK}
-            pour consommer toute votre <style=\"Conviction\"> barre de conviction</style>
-            surlign\xE9 en bas de l'\xE9cran. Chaque \xE9tape de progression atteinte
-            <style=\"W1\">multiplie les d\xE9g\xE2ts</style> de votre attaque."
+          value: "<style=\"TitleTuto\">ATTAQUE</style>\r\n\r\nAppuyez sur {ATTACK}
+            pour charger une attaque.\r\n\r\nTout en maintenant la touche enfonc\xE9e,
+            appuyez sur {ATTACK_UPGRADE} pour charger votre attaque.\r\n\r\nRel\xE2chez
+            {ATTACK} pour lancer l'attaque.\r\n\r\nVous ne pouvez charger que la
+            quantit\xE9 de <style=\"Conviction\">Mana</style> dont vous disposez."
 --- !u!1 &3950543609988186895
 GameObject:
   m_ObjectHideFlags: 0
@@ -3191,9 +3214,9 @@ MonoBehaviour:
   m_text: '<style="TitleTuto">DODGE</style>
 
 
-    You can <color="Red">dodge</color>
-    attack with the <color="Red">red indicator </color>using {DODGE} at the right
-    timing which will give you <style="Conviction">conviction</style>.'
+    Dodge
+
+    {DODGE}'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
@@ -3299,14 +3322,17 @@ MonoBehaviour:
           value: '<style="TitleTuto">DODGE</style>
 
 
-            You can <color="Red">dodge</color>
-            attack with the <color="Red">red indicator </color>using {DODGE} at the
-            right timing which will give you <style="Conviction">conviction</style>.'
+            Dodge
+
+            {DODGE}'
         - localeIdentifier:
             m_Code: fr
-          value: "<style=\"TitleTuto\">Esquiver</style>\r\n\r\nVous pouvez <color=\"Red\">esquiver
-            </color>une attaque qui \xE0 <color=\"Red\">l'indicateur rouge</color>
-            en utilisant {DODGE} au bon moment, ce qui vous donnera de la <style=\"Conviction\">conviction</style>."
+          value: '<style="TitleTuto">ESQUIVER</style>
+
+
+            Esquive
+
+            {DODGE}'
 --- !u!1 &7820674759441226033
 GameObject:
   m_ObjectHideFlags: 0
@@ -3376,8 +3402,10 @@ MonoBehaviour:
   m_text: '<style="TitleTuto">HEAL</style>
 
 
-    Press the {HEAL} button to <style="W1">heal</style>
-    yourself if you have enough conviction.'
+    Use <style="Conviction">Mana</style>
+    to <style="W1">heal</style>.
+
+    Press {HEAL}'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
@@ -3483,17 +3511,21 @@ MonoBehaviour:
           value: '<style="TitleTuto">HEAL</style>
 
 
-            Press the {HEAL}
-            button to <style="W1">heal</style> yourself if you have enough conviction.'
+            Use <style="Conviction">Mana</style>
+            to <style="W1">heal</style>.
+
+            Press {HEAL}'
         - localeIdentifier:
             m_Code: fr
           value: '<style="TitleTuto">GUERIR</style>
 
 
 
-            Appuyez sur le
-            bouton {HEAL} pour vous <style="W1">soigner</style> si vous avez assez
-            de conviction.'
+            Utilise de la
+            <style="Conviction">Mana</style> pour te <style="W1">soigner</style>.
+
+            Appuyez
+            sur {HEAL}'
 --- !u!1 &8035690339914434346
 GameObject:
   m_ObjectHideFlags: 0
@@ -3636,9 +3668,10 @@ MonoBehaviour:
   m_text: '<style="TitleTuto">PARRY PROJECTILE</style>
 
 
-    You can also <color="Yellow">parry
-    projectile</color> using {PARRY} at the right timing and that''s will <color="Yellow">reflect</color>
-    the projectile to the enemy.'
+    You can <style="W1">Parry
+    projectiles</style>.
+
+    Press {PARRY}'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
@@ -3745,15 +3778,20 @@ MonoBehaviour:
 
 
             You can
-            also <color="Yellow">parry projectile</color> using {PARRY} at the right
-            timing and that''s will <color="Yellow">reflect</color> the projectile
-            to the enemy.'
+            <style="W1">Parry projectiles</style>.
+
+            Press {PARRY}'
         - localeIdentifier:
             m_Code: fr
-          value: "<style=\"TitleTuto\">PARER UN PROJECTILE</style>\r\n\r\nVous pouvez
-            \xE9galement <color=\"Yellow\">parer un projectile</color> en utilisant
-            {PARRY} au bon moment, ce qui <color=\"Yellow\">renvoiera</color> le
-            projectile vers l'ennemi."
+          value: '<style="TitleTuto">PARER UN PROJECTILE</style>
+
+            
+
+            Vous
+            pouvez <style="W1">Parer les projectiles</style>.
+
+            Appuyez
+            sur {PARRY}'
 --- !u!1 &8370863397799136362
 GameObject:
   m_ObjectHideFlags: 0
@@ -3823,9 +3861,10 @@ MonoBehaviour:
   m_text: '<style="TitleTuto">PARRY</style>
 
 
-    You can <color="Yellow">parry</color>
-    attack with the <color="Yellow">yellow indicator </color>using {PARRY} at the
-    right timing which will give you <style="Conviction">conviction</style>.'
+    A <color="Yellow"> yellow indicator
+    </color> mean you have to  <style="W1">Parry</style>.
+
+    Press {PARRY}'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
@@ -3931,14 +3970,22 @@ MonoBehaviour:
           value: '<style="TitleTuto">PARRY</style>
 
 
-            You can <color="Yellow">parry</color>
-            attack with the <color="Yellow">yellow indicator </color>using {PARRY}
-            at the right timing which will give you <style="Conviction">conviction</style>.'
+            A <color="Yellow">
+            yellow indicator </color> mean you have to  <style="W1">Parry</style>.
+
+            Press
+            {PARRY}'
         - localeIdentifier:
             m_Code: fr
-          value: "<style=\"TitleTuto\">PARADE</style>\r\n\r\nVous pouvez <color=\"Yellow\">parer</color>
-            une attaque qui \xE0 <color=\"Yellow\">l'indicateur yellow</color> en
-            utilisant {PARRY} au bon moment, ce qui vous donnera de la <style=\"Conviction\">conviction</style>."
+          value: '<style="TitleTuto">PARADE</style>
+
+            
+
+            Un
+            <color="Yellow">indicateur jaune</color> signifie que vous devez  <style="W1">Parer</style>.
+
+            Appuyez
+            sur {PARRY}'
 --- !u!1 &8404774834678163487
 GameObject:
   m_ObjectHideFlags: 0
@@ -4523,8 +4570,8 @@ MonoBehaviour:
   m_text: '<style="TitleTuto">Targeting</style>
 
 
-    Press {TARGETING} to target
-    the enemy in range indicated by the indication on the top of the enemy.'
+    <style="W1">Target</style>
+    an enemy with {TARGETING}.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
@@ -4632,14 +4679,15 @@ MonoBehaviour:
           value: '<style="TitleTuto">Targeting</style>
 
 
-            Press {TARGETING}
-            to target the enemy in range indicated by the indication on the top of
-            the enemy.'
+            <style="W1">Target</style>
+            an enemy with {TARGETING}.'
         - localeIdentifier:
             m_Code: fr
-          value: "<style=\"TitleTuto\">Ciblage</style>\n\nAppuyez {TARGETING} pour
-            cibler l'ennemi \xE0 port\xE9e indiqu\xE9 par l'indication au sommet
-            de l'ennemi."
+          value: '<style="TitleTuto">Ciblage</style>
+
+
+            <style="W1">Cibler</style>
+            un ennemi avec {TARGETING}.'
     - rid: 1159296937788964952
       type: {class: UnityObjectProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
