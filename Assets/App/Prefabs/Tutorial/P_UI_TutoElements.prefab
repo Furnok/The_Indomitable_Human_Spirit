@@ -479,10 +479,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'A <color="Red">red indicator </color> mean you have to <style="W1">Dodge</style>.
+  m_text: '<style="TitleTuto">DODGE</style>
 
-    Press
-    {DODGE}'
+
+    A <color="Red">red indicator </color>
+    mean you have to <style="W1">Dodge</style>.
+
+    Press {DODGE}'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
@@ -597,10 +600,9 @@ MonoBehaviour:
             m_Code: fr
           value: '<style="TitleTuto">Esquiver</style>
 
-            
 
-            Un
-            <color="Red">indicateur rouge </color> singifie que vous devez <style="W1">Esquiver</style>.
+            Un <color="Red">indicateur
+            rouge </color> singifie que vous devez <style="W1">Esquiver</style>.
 
             Appuyez
             sur {DODGE}'
@@ -1638,7 +1640,7 @@ MonoBehaviour:
             m_Code: fr
           value: '<style="TitleTuto">PARADE</style>
 
-            
+
 
             Parer
 
@@ -1717,12 +1719,12 @@ MonoBehaviour:
     While
     pressing, press {ATTACK_UPGRADE} to charge your attack.
 
-    
 
-    Release
-    {ATTACK} to launch it.
 
-    
+    Release {ATTACK}
+    to launch it.
+
+
 
     You can only charge with the amount of <style="Conviction">Mana</style>
     you have.'
@@ -1837,15 +1839,15 @@ MonoBehaviour:
             While pressing, press {ATTACK_UPGRADE}
             to charge your attack.
 
-            
 
-            Release {ATTACK}
-            to launch it.
 
-            
+            Release {ATTACK} to launch it.
 
-            You can only charge with the
-            amount of <style="Conviction">Mana</style> you have.'
+
+
+            You
+            can only charge with the amount of <style="Conviction">Mana</style> you
+            have.'
         - localeIdentifier:
             m_Code: fr
           value: "<style=\"TitleTuto\">ATTAQUE</style>\r\n\r\nAppuyez sur {ATTACK}
@@ -3785,7 +3787,7 @@ MonoBehaviour:
             m_Code: fr
           value: '<style="TitleTuto">PARER UN PROJECTILE</style>
 
-            
+
 
             Vous
             pouvez <style="W1">Parer les projectiles</style>.
@@ -3979,10 +3981,10 @@ MonoBehaviour:
             m_Code: fr
           value: '<style="TitleTuto">PARADE</style>
 
-            
 
-            Un
-            <color="Yellow">indicateur jaune</color> signifie que vous devez  <style="W1">Parer</style>.
+
+            Un <color="Yellow">indicateur
+            jaune</color> signifie que vous devez  <style="W1">Parer</style>.
 
             Appuyez
             sur {PARRY}'
