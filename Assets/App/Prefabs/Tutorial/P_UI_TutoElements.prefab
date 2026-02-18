@@ -485,7 +485,7 @@ MonoBehaviour:
     A <color="Red">red indicator </color>
     mean you have to <style="W1">Dodge</style>.
 
-    Press {DODGE}'
+    Press <style="SPA">{DODGE}</style>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
@@ -595,7 +595,7 @@ MonoBehaviour:
             indicator </color> mean you have to <style="W1">Dodge</style>.
 
             Press
-            {DODGE}'
+            <style="SPA">{DODGE}</style>'
         - localeIdentifier:
             m_Code: fr
           value: '<style="TitleTuto">Esquiver</style>
@@ -605,7 +605,7 @@ MonoBehaviour:
             rouge </color> singifie que vous devez <style="W1">Esquiver</style>.
 
             Appuyez
-            sur {DODGE}'
+            sur <style="SPA">{DODGE}</style>'
 --- !u!1 &2618436227971787516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1527,7 +1527,7 @@ MonoBehaviour:
 
     Parry
 
-    {PARRY}'
+    <style="SPA">{PARRY}</style>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
@@ -1635,7 +1635,7 @@ MonoBehaviour:
 
             Parry
 
-            {PARRY}'
+            <style="SPA">{PARRY}</style>'
         - localeIdentifier:
             m_Code: fr
           value: '<style="TitleTuto">PARADE</style>
@@ -1644,7 +1644,7 @@ MonoBehaviour:
 
             Parer
 
-            {PARRY}'
+            <style="SPA">{PARRY}</style>'
 --- !u!1 &3867124084758317990
 GameObject:
   m_ObjectHideFlags: 0
@@ -1714,15 +1714,16 @@ MonoBehaviour:
   m_text: '<style="TitleTuto">ATTACK</style>
 
 
-    Press {ATTACK} to load an attack.
+    Press  <style="SPA">{ATTACK}</style>
+    to load an attack.
 
-    While
-    pressing, press {ATTACK_UPGRADE} to charge your attack.
+    While pressing, press <style="SPA">{ATTACK_UPGRADE}</style>
+    to charge your attack.
 
 
 
-    Release {ATTACK}
-    to launch it.
+    Release  <style="SPA">{ATTACK}</style> to launch
+    it.
 
 
 
@@ -1833,28 +1834,29 @@ MonoBehaviour:
           value: '<style="TitleTuto">ATTACK</style>
 
 
-            Press {ATTACK}
+            Press  <style="SPA">{ATTACK}</style>
             to load an attack.
 
-            While pressing, press {ATTACK_UPGRADE}
+            While pressing, press <style="SPA">{ATTACK_UPGRADE}</style>
             to charge your attack.
 
 
 
-            Release {ATTACK} to launch it.
+            Release  <style="SPA">{ATTACK_UPGRADE}</style>
+            to launch it.
 
 
 
-            You
-            can only charge with the amount of <style="Conviction">Mana</style> you
-            have.'
+            You can only charge with the amount of <style="Conviction">Mana</style>
+            you have.'
         - localeIdentifier:
             m_Code: fr
-          value: "<style=\"TitleTuto\">ATTAQUE</style>\r\n\r\nAppuyez sur {ATTACK}
+          value: "<style=\"TitleTuto\">ATTAQUE</style>\r\n\r\nAppuyez sur  <style=\"SPA\">{ATTACK}</style>
             pour charger une attaque.\r\n\r\nTout en maintenant la touche enfonc\xE9e,
-            appuyez sur {ATTACK_UPGRADE} pour charger votre attaque.\r\n\r\nRel\xE2chez
-            {ATTACK} pour lancer l'attaque.\r\n\r\nVous ne pouvez charger que la
-            quantit\xE9 de <style=\"Conviction\">Mana</style> dont vous disposez."
+            appuyez sur <style=\"SPA\">{ATTACK_UPGRADE}</style> pour charger votre
+            attaque.\r\n\r\nRel\xE2chez  <style=\"SPA\">{ATTACK_UPGRADE}</style>
+            pour lancer l'attaque.\r\n\r\nVous ne pouvez charger que la quantit\xE9
+            de <style=\"Conviction\">Mana</style> dont vous disposez."
 --- !u!1 &3950543609988186895
 GameObject:
   m_ObjectHideFlags: 0
@@ -3218,7 +3220,7 @@ MonoBehaviour:
 
     Dodge
 
-    {DODGE}'
+    <style="SPA">{DODGE}</style>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
@@ -3326,7 +3328,7 @@ MonoBehaviour:
 
             Dodge
 
-            {DODGE}'
+            <style="SPA">{DODGE}</style>'
         - localeIdentifier:
             m_Code: fr
           value: '<style="TitleTuto">ESQUIVER</style>
@@ -3334,7 +3336,7 @@ MonoBehaviour:
 
             Esquive
 
-            {DODGE}'
+            <style="SPA">{DODGE}</style>'
 --- !u!1 &7820674759441226033
 GameObject:
   m_ObjectHideFlags: 0
@@ -3407,7 +3409,7 @@ MonoBehaviour:
     Use <style="Conviction">Mana</style>
     to <style="W1">heal</style>.
 
-    Press {HEAL}'
+    Press  <style="SPA">{HEAL}</style>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
@@ -3516,7 +3518,7 @@ MonoBehaviour:
             Use <style="Conviction">Mana</style>
             to <style="W1">heal</style>.
 
-            Press {HEAL}'
+            Press  <style="SPA">{HEAL}</style>'
         - localeIdentifier:
             m_Code: fr
           value: '<style="TitleTuto">GUERIR</style>
@@ -3527,7 +3529,7 @@ MonoBehaviour:
             <style="Conviction">Mana</style> pour te <style="W1">soigner</style>.
 
             Appuyez
-            sur {HEAL}'
+            sur  <style="SPA">{HEAL}</style>'
 --- !u!1 &8035690339914434346
 GameObject:
   m_ObjectHideFlags: 0
@@ -3673,7 +3675,7 @@ MonoBehaviour:
     You can <style="W1">Parry
     projectiles</style>.
 
-    Press {PARRY}'
+    Press  <style="SPA">{PARRY}</style>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
@@ -3782,7 +3784,7 @@ MonoBehaviour:
             You can
             <style="W1">Parry projectiles</style>.
 
-            Press {PARRY}'
+            Press  <style="SPA">{PARRY}</style>'
         - localeIdentifier:
             m_Code: fr
           value: '<style="TitleTuto">PARER UN PROJECTILE</style>
@@ -3793,7 +3795,7 @@ MonoBehaviour:
             pouvez <style="W1">Parer les projectiles</style>.
 
             Appuyez
-            sur {PARRY}'
+            sur  <style="SPA">{PARRY}</style>'
 --- !u!1 &8370863397799136362
 GameObject:
   m_ObjectHideFlags: 0
@@ -3866,7 +3868,7 @@ MonoBehaviour:
     A <color="Yellow"> yellow indicator
     </color> mean you have to  <style="W1">Parry</style>.
 
-    Press {PARRY}'
+    Press  <style="SPA">{PARRY}</style>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
@@ -3973,21 +3975,20 @@ MonoBehaviour:
 
 
             A <color="Yellow">
-            yellow indicator </color> mean you have to  <style="W1">Parry</style>.
+            yellow circle indicator </color> mean you have to  <style="W1">Parry</style>.
 
-            Press
-            {PARRY}'
+            Press 
+            <style="SPA">{PARRY}</style>'
         - localeIdentifier:
             m_Code: fr
           value: '<style="TitleTuto">PARADE</style>
 
 
-
             Un <color="Yellow">indicateur
-            jaune</color> signifie que vous devez  <style="W1">Parer</style>.
+            cercle jaune</color> signifie que vous devez  <style="W1">Parer</style>.
 
             Appuyez
-            sur {PARRY}'
+            sur  <style="SPA">{PARRY}</style>'
 --- !u!1 &8404774834678163487
 GameObject:
   m_ObjectHideFlags: 0
@@ -4573,7 +4574,7 @@ MonoBehaviour:
 
 
     <style="W1">Target</style>
-    an enemy with {TARGETING}.'
+    an enemy with  <style="SPA">{TARGETING}</style>.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
@@ -4682,14 +4683,14 @@ MonoBehaviour:
 
 
             <style="W1">Target</style>
-            an enemy with {TARGETING}.'
+            an enemy with  <style="SPA">{TARGETING}</style>.'
         - localeIdentifier:
             m_Code: fr
           value: '<style="TitleTuto">Ciblage</style>
 
 
             <style="W1">Cibler</style>
-            un ennemi avec {TARGETING}.'
+            un ennemi avec  <style="SPA">{TARGETING}</style>.'
     - rid: 1159296937788964952
       type: {class: UnityObjectProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
       data:
