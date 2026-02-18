@@ -46,7 +46,6 @@ public class S_Enemy : MonoBehaviour
     [TabGroup("References")]
     [SerializeField, S_AnimationName("animator")] private string comboParam;
 
-
     [TabGroup("References")]
     [SerializeField, S_AnimationName("animator")] private string stunParam;
 
