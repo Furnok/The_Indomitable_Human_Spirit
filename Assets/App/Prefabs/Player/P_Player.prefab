@@ -2984,8 +2984,8 @@ Animator:
   m_AnimatePhysics: 0
   m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
     are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'Eyes'\n\tFrom animation clip 'A_PlayerHitLB'\n\tFrom
-    animation clip 'A_PlayerHitHB'\n\tFrom animation clip 'A_PlayerDeath'"
+    by Humanoid clips.\n\tTransform 'Eyes'\n\tFrom animation clip 'A_PlayerHit'\n\tFrom
+    animation clip 'A_PlayerHit'\n\tFrom animation clip 'A_PlayerDeath'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -3092,7 +3092,7 @@ MonoBehaviour:
   _onPlayerAddState: {fileID: 11400000, guid: 38569afc7ffff0c4eb66c76bc8a6146e, type: 2}
   rseOnAnimationBoolValueChange: {fileID: 11400000, guid: f3b68030aacb033438a094c87c0e44ca, type: 2}
   _onHealStart: {fileID: 11400000, guid: 854472d4185f3db4cba11bf764790a7e, type: 2}
-  _onDisplayError: {fileID: 11400000, guid: 0a19a2cd4b20ecc4d8c86b8aebbbf4a1, type: 2}
+  _onPlayerHealNotEnoughMana: {fileID: 11400000, guid: fd02ca51d3ba15047b36d53785c221cf, type: 2}
   _playerCurrentState: {fileID: 11400000, guid: 16388ffed06f1314f8caba9f9a324afe, type: 2}
   _playerCurrentHealth: {fileID: 11400000, guid: deb512c1ca8eaec4286f764395e6d686, type: 2}
   _playerCurrentConviction: {fileID: 11400000, guid: e9e6e673e8d688d4b96f8309938dbfdc, type: 2}

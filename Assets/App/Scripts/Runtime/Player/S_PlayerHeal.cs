@@ -26,7 +26,7 @@ public class S_PlayerHeal : MonoBehaviour
     [SerializeField] private RSE_OnHealStart _onHealStart;
 
     [TabGroup("Outputs")]
-    [SerializeField] private RSE_OnDisplayError _onDisplayError;
+    [SerializeField] private RSE_OnPlayerHealNotEnoughMana _onPlayerHealNotEnoughMana;
 
     [TabGroup("Outputs")]
     [SerializeField] private RSO_PlayerCurrentState _playerCurrentState;
@@ -71,7 +71,7 @@ public class S_PlayerHeal : MonoBehaviour
 
         if (_playerCurrentConviction.Value < _playerConvictionData.Value.healCost)
         {
-            _onDisplayError.Call();
+            _onPlayerHealNotEnoughMana.Call();
             return;
         }
 
