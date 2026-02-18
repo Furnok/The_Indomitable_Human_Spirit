@@ -353,7 +353,7 @@ public class S_Enemy : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
 
         animator.SetBool(moveParam, false);
-        animator.SetBool(combatParam, false);
+        animator.SetFloat(combatParam, 0);
     }
     #endregion
 
@@ -613,7 +613,7 @@ public class S_Enemy : MonoBehaviour
         navMeshAgent.speed = ssoEnemyData.Value.speedChase;
 
         animator.SetBool(moveParam, false);
-        animator.SetBool(combatParam, true);
+        animator.SetFloat(combatParam, 1);
     }
 
     private void Combat()

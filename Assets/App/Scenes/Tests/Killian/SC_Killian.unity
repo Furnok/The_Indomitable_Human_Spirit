@@ -1006,6 +1006,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7430720674804394264, guid: 709123c95f2726c46b4bf0178217e257, type: 3}
+      propertyPath: combatParam
+      value: Blend
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430720674804394264, guid: 709123c95f2726c46b4bf0178217e257, type: 3}
       propertyPath: hitHeavyParam
       value: 
       objectReference: {fileID: 0}
@@ -2777,6 +2781,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 37309387382343170, guid: 99e77e620cabde6458233c30d32621a2, type: 3}
   m_PrefabInstance: {fileID: 1427840093}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1452409710 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6571051923970516415, guid: c156732cb46eb1c4f825606c4264be76, type: 3}
+  m_PrefabInstance: {fileID: 8630298198351531622}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1469956948
 GameObject:
   m_ObjectHideFlags: 0
@@ -4034,6 +4043,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3715047057152782743, guid: cfbc9a18fd4e24040bc327887bfd4444, type: 3}
+      propertyPath: _propLantern
+      value: 
+      objectReference: {fileID: 1452409710}
+    - target: {fileID: 3715047057152782743, guid: cfbc9a18fd4e24040bc327887bfd4444, type: 3}
+      propertyPath: _playerDamageVFX
+      value: 
+      objectReference: {fileID: 5031515662437908494, guid: d7f1e6fbe361f0148ac17a4a49fa4a01, type: 3}
     - target: {fileID: 6440775602794653530, guid: cfbc9a18fd4e24040bc327887bfd4444, type: 3}
       propertyPath: m_Name
       value: P_PlayerManagers
@@ -4444,6 +4461,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 96938918936595426, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 113279173493086640, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -4528,6 +4549,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_CanvasGame
       objectReference: {fileID: 0}
+    - target: {fileID: 6538386197411336980, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8056213273916310995, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
       propertyPath: defaultWindow
       value: 
@@ -4589,6 +4614,13 @@ PrefabInstance:
     - target: {fileID: 3473314807466382836, guid: c156732cb46eb1c4f825606c4264be76, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7834620151722910443, guid: c156732cb46eb1c4f825606c4264be76, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'Eyes'\n\tFrom animation clip 'A_PlayerHit'\n\tFrom
+        animation clip 'A_PlayerHit'\n\tFrom animation clip 'A_PlayerDeath'"
       objectReference: {fileID: 0}
     - target: {fileID: 8313228278302547986, guid: c156732cb46eb1c4f825606c4264be76, type: 3}
       propertyPath: m_Name
