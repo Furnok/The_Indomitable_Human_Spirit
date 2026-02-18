@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _value:
     maxConviction: 110
-    startConviction: 0
+    startConviction: 110
     healCost: 20
     ammountLostOverTick: 0.03
     tickIntervalSec: 0.1

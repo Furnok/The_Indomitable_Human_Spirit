@@ -10624,7 +10624,7 @@ MonoBehaviour:
     invertFade: 0
     distanceFadeStart: 10000
     distanceFadeEnd: 10000
-    textureOffset: {x: -0.59219116, y: -0, z: -0.29609558}
+    textureOffset: {x: -7.251339, y: -0, z: -3.6256695}
     falloffMode: 1
     maskMode: 0
     materialMask: {fileID: 0}
@@ -26542,7 +26542,7 @@ MonoBehaviour:
     invertFade: 0
     distanceFadeStart: 10000
     distanceFadeEnd: 10000
-    textureOffset: {x: -0.59219116, y: -0, z: -0.29609558}
+    textureOffset: {x: -7.251339, y: -0, z: -3.6256695}
     falloffMode: 1
     maskMode: 0
     materialMask: {fileID: 0}
@@ -54845,6 +54845,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 546673962529436723, guid: c156732cb46eb1c4f825606c4264be76, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2913246072451232177, guid: c156732cb46eb1c4f825606c4264be76, type: 3}
       propertyPath: looping
       value: 0
@@ -54969,9 +54973,20 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 3de2d5fbd34197f4b9e1106b11078e09, type: 2}
+    - target: {fileID: 5836320029152079228, guid: c156732cb46eb1c4f825606c4264be76, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6083054333620447077, guid: c156732cb46eb1c4f825606c4264be76, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7834620151722910443, guid: c156732cb46eb1c4f825606c4264be76, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'Eyes'\n\tFrom animation clip 'A_PlayerHit'\n\tFrom
+        animation clip 'A_PlayerHit'\n\tFrom animation clip 'A_PlayerDeath'"
       objectReference: {fileID: 0}
     - target: {fileID: 8313228278302547986, guid: c156732cb46eb1c4f825606c4264be76, type: 3}
       propertyPath: m_Name
