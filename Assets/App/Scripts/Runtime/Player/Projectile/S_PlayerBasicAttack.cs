@@ -221,8 +221,13 @@ public class S_PlayerBasicAttack : MonoBehaviour
         _weaponBack.SetActive(false);
 
         _onPlayerAddState.Call(S_EnumPlayerState.Attacking);
-        _onAttackStartPerformed.Call();
+        
         rseOnAnimationBoolValueChange.Call(_attackParam, true);
+
+        StartCoroutine(S_Utils.Delay(0.05f, () =>
+        {
+            _onAttackStartPerformed.Call();
+        }));
 
         /*
         _attackCoroutine = StartCoroutine(S_Utils.Delay(_animationTransitionDelays.Value.attackStartupDelay, () =>
