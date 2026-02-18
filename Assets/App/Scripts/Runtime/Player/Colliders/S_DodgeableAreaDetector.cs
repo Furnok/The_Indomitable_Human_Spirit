@@ -119,17 +119,35 @@ public class S_DodgeableAreaDetector : MonoBehaviour
         {
             if (kvp.Value == null || kvp.Value.enabled == false)
             {
+                int? goId = null;
+
                 if (kvp.Value != null)
                 {
-                    var goId = kvp.Value.gameObject.GetInstanceID();
-                    if (_attackDataInDodgeableArea.Value != null && _attackDataInDodgeableArea.Value.ContainsKey(goId) == true)
+                    goId = kvp.Value.gameObject.GetInstanceID();
+                }
+                else if (kvp.Key != null)
+                {
+                    try
                     {
-                        _attackDataInDodgeableArea.Value.Remove(goId);
+                        ref var attackData = ref kvp.Key.GetAttackData();
+                        goId = attackData.goSourceId;
+                    }
+                    catch
+                    {
+                        goId = null;
+                    }
+                }
+
+                if (goId.HasValue)
+                {
+                    if (_attackDataInDodgeableArea.Value != null && _attackDataInDodgeableArea.Value.ContainsKey(goId.Value))
+                    {
+                        _attackDataInDodgeableArea.Value.Remove(goId.Value);
                     }
 
-                    if (_attackCanHitPlayer.Value != null && _attackCanHitPlayer.Value.ContainsKey(goId) == true)
+                    if (_attackCanHitPlayer.Value != null && _attackCanHitPlayer.Value.ContainsKey(goId.Value))
                     {
-                        _attackCanHitPlayer.Value.Remove(goId);
+                        _attackCanHitPlayer.Value.Remove(goId.Value);
                     }
                 }
 

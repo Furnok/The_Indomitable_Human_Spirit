@@ -216,11 +216,11 @@ public class S_TextTutos : MonoBehaviour
 
         sprite = GetSpriteOrNull(S_EnumTutorialStep.ParryDuplicate, device);
         if (sprite != null)
-            _textTutoParryDup.text = _tplParryDuplicate.Replace("{Parry}", $"<sprite name=\"{sprite.name}\">");
+            _textTutoParryDup.text = _tplParryDuplicate.Replace("{PARRY}", $"<sprite name=\"{sprite.name}\">");
 
         sprite = GetSpriteOrNull(S_EnumTutorialStep.DodgeDuplicate, device);
         if (sprite != null)
-            _textTutoDodgeDup.text = _tplDodgeDuplicate.Replace("{Dodge}", $"<sprite name=\"{sprite.name}\">");
+            _textTutoDodgeDup.text = _tplDodgeDuplicate.Replace("{DODGE}", $"<sprite name=\"{sprite.name}\">");
     }
 
 

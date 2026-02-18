@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class S_UIGameManager : MonoBehaviour
 {
@@ -84,6 +85,10 @@ public class S_UIGameManager : MonoBehaviour
     [Title("Save")]
     [SerializeField] private GameObject saveWindow;
 
+    [TabGroup("References")]
+    [Title("Error")]
+    [SerializeField] private GameObject errorWindow;
+
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnDisplayBossHealth rseOnDisplayBossHealth;
 
@@ -122,6 +127,9 @@ public class S_UIGameManager : MonoBehaviour
 
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnFinishBossP1 rseOnFinishBossP1;
+
+    [TabGroup("Inputs")]
+    [SerializeField] private RSE_OnDisplayError rseOnDisplayError;
 
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnUIInputEnabled rseOnUIInputEnabled;
@@ -203,6 +211,7 @@ public class S_UIGameManager : MonoBehaviour
 
     private Coroutine resetCoroutine = null;
     private Coroutine resetSaveCoroutine = null;
+    private Coroutine errorCoroutine = null;
 
     private Material materialConviction = null;
 
@@ -236,6 +245,7 @@ public class S_UIGameManager : MonoBehaviour
         rseOnDialogueDisplay.action += DisplayDialogue;
         rseOnSaveDisplay.action += DisplaySave;
         rseOnFinishBossP1.action += GameWin;
+        rseOnDisplayError.action += DisplayError;
     }
 
     private void OnDisable()
@@ -254,6 +264,7 @@ public class S_UIGameManager : MonoBehaviour
         rseOnDialogueDisplay.action -= DisplayDialogue;
         rseOnSaveDisplay.action -= DisplaySave;
         rseOnFinishBossP1.action -= GameWin;
+        rseOnDisplayError.action -= DisplayError;
 
         healthTween?.Kill();
         convictionTween?.Kill();
@@ -639,4 +650,39 @@ public class S_UIGameManager : MonoBehaviour
         });
     }
     #endregion
+
+    private void DisplayError()
+    {
+        CanvasGroup cg = errorWindow.GetComponent<CanvasGroup>();
+        cg.DOKill();
+
+        if (errorCoroutine != null)
+        {
+            StopCoroutine(errorCoroutine);
+            errorCoroutine = null;
+        }
+
+        errorWindow.gameObject.SetActive(false);
+        cg.alpha = 0;
+
+        cg.DOFade(1f, ssoDisplay.Value).SetEase(Ease.Linear)
+        .OnStart(() =>
+        {
+            errorWindow.gameObject.SetActive(true);
+        })
+        .OnComplete(() =>
+        {
+            errorCoroutine = StartCoroutine(TimeError(cg));
+        });   
+    }
+
+    private IEnumerator TimeError(CanvasGroup cg)
+    {
+        yield return new WaitForSeconds(2);
+
+        cg.DOFade(0f, ssoUnDisplay.Value).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            sliderBossHealth.gameObject.SetActive(false);
+        });
+    }
 }
