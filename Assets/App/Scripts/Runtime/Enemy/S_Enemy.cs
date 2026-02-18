@@ -401,6 +401,7 @@ public class S_Enemy : MonoBehaviour
             }
 
             resetAttack = StartCoroutine(S_Utils.Delay(ssoEnemyData.Value.attackCooldown, () => canAttack = true));
+            SetCombo();
 
             if (!ssoEnemyData.Value.isIdle) UpdateState(S_EnumEnemyState.ReturnPatroling);
             else UpdateState(S_EnumEnemyState.Idle);
@@ -581,8 +582,6 @@ public class S_Enemy : MonoBehaviour
         navMeshAgent.speed = ssoEnemyData.Value.speedChase;
 
         animator.SetBool(moveParam, true);
-
-        SetCombo();
     }
 
     private void Chasing()
@@ -739,6 +738,7 @@ public class S_Enemy : MonoBehaviour
         }
 
         resetAttack = StartCoroutine(S_Utils.Delay(ssoEnemyData.Value.attackCooldown, () => canAttack = true));
+        SetCombo();
 
         if (!isPlayerDeath || currentTarget != null) UpdateState(S_EnumEnemyState.Chasing);
         else
@@ -782,6 +782,7 @@ public class S_Enemy : MonoBehaviour
         }
 
         resetAttack = StartCoroutine(S_Utils.Delay(ssoEnemyData.Value.attackCooldown, () => canAttack = true));
+        SetCombo();
 
         stunCoroutine = StartCoroutine(Stun());
     }
