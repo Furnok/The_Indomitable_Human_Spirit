@@ -401,6 +401,7 @@ public class S_Enemy : MonoBehaviour
             }
 
             resetAttack = StartCoroutine(S_Utils.Delay(ssoEnemyData.Value.attackCooldown, () => canAttack = true));
+            SetCombo();
 
             if (!ssoEnemyData.Value.isIdle) UpdateState(S_EnumEnemyState.ReturnPatroling);
             else UpdateState(S_EnumEnemyState.Idle);
@@ -576,13 +577,11 @@ public class S_Enemy : MonoBehaviour
         if (isChasing) return;
 
         isChasing = true;
-        navMeshAgent.stoppingDistance = combo.distanceToChase - 0.2f;
+        navMeshAgent.stoppingDistance = combo.distanceToChase - 0.5f;
 
         navMeshAgent.speed = ssoEnemyData.Value.speedChase;
 
         animator.SetBool(moveParam, true);
-
-        SetCombo();
     }
 
     private void Chasing()
@@ -609,7 +608,7 @@ public class S_Enemy : MonoBehaviour
         if (isCombat) return;
 
         isCombat = true;
-        navMeshAgent.stoppingDistance = combo.distanceToChase - 0.2f;
+        navMeshAgent.stoppingDistance = combo.distanceToChase - 0.5f;
 
         navMeshAgent.speed = ssoEnemyData.Value.speedChase;
 
@@ -647,7 +646,7 @@ public class S_Enemy : MonoBehaviour
 
         isAttack = true;
 
-        navMeshAgent.stoppingDistance = combo.distanceToChase - 0.2f;
+        navMeshAgent.stoppingDistance = combo.distanceToChase - 0.5f;
 
         navMeshAgent.speed = ssoEnemyData.Value.speedChase;
 
@@ -739,6 +738,7 @@ public class S_Enemy : MonoBehaviour
         }
 
         resetAttack = StartCoroutine(S_Utils.Delay(ssoEnemyData.Value.attackCooldown, () => canAttack = true));
+        SetCombo();
 
         if (!isPlayerDeath || currentTarget != null) UpdateState(S_EnumEnemyState.Chasing);
         else
@@ -782,6 +782,7 @@ public class S_Enemy : MonoBehaviour
         }
 
         resetAttack = StartCoroutine(S_Utils.Delay(ssoEnemyData.Value.attackCooldown, () => canAttack = true));
+        SetCombo();
 
         stunCoroutine = StartCoroutine(Stun());
     }

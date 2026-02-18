@@ -1002,16 +1002,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7430720674804394264, guid: 709123c95f2726c46b4bf0178217e257, type: 3}
-      propertyPath: comboParam
-      value: IsTest2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7430720674804394264, guid: 709123c95f2726c46b4bf0178217e257, type: 3}
       propertyPath: idleAttack
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7430720674804394264, guid: 709123c95f2726c46b4bf0178217e257, type: 3}
-      propertyPath: attackParam
-      value: IsTest
       objectReference: {fileID: 0}
     - target: {fileID: 7430720674804394264, guid: 709123c95f2726c46b4bf0178217e257, type: 3}
       propertyPath: hitHeavyParam
