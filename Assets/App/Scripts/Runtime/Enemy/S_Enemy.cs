@@ -413,6 +413,8 @@ public class S_Enemy : MonoBehaviour
 
             animator.SetBool(attackParam, false);
 
+            enemyHeadLookAtIK.SetTarget(null);
+
             if (resetAttack != null)
             {
                 StopCoroutine(resetAttack);
@@ -604,8 +606,11 @@ public class S_Enemy : MonoBehaviour
 
         navMeshAgent.speed = ssoEnemyData.Value.speedChase;
 
-        animator.SetBool(moveParam, true);
-        animator.SetFloat(moveSpeedParam, navMeshAgent.speed);
+        if (!ssoEnemyData.Value.isIdle)
+        {
+            animator.SetBool(moveParam, true);
+            animator.SetFloat(moveSpeedParam, navMeshAgent.speed);
+        }
     }
 
     private void Chasing()
