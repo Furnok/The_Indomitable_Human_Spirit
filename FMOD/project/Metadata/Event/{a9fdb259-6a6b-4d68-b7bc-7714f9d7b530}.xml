@@ -5,7 +5,7 @@
 			<value>DamagePlayer</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{d427cbc8-acfe-4341-98e1-f3897e7f129e}</destination>
@@ -96,7 +96,6 @@
 	<object class="MixerBusEffectChain" id="{ec79355d-5688-43ab-89d8-4fd88cf7a404}">
 		<relationship name="effects">
 			<destination>{27026221-7ee7-4fd0-bc69-24584aa42386}</destination>
-			<destination>{6c6e8e24-2e70-48dc-9849-22558113a66d}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{5327930c-78bb-4bc3-b6c1-ea717b05c111}" />
@@ -110,5 +109,4 @@
 	</object>
 	<object class="MixerBusFader" id="{292906b4-df21-4fdc-92a0-5340d9d07538}" />
 	<object class="MixerBusFader" id="{27026221-7ee7-4fd0-bc69-24584aa42386}" />
-	<object class="SpatialiserEffect" id="{6c6e8e24-2e70-48dc-9849-22558113a66d}" />
 </objects>
