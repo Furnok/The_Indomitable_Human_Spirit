@@ -581,6 +581,8 @@ public class S_Enemy : MonoBehaviour
         navMeshAgent.speed = ssoEnemyData.Value.speedChase;
 
         animator.SetBool(moveParam, true);
+
+        SetCombo();
     }
 
     private void Chasing()
