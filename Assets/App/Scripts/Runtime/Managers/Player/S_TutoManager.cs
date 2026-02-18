@@ -44,6 +44,7 @@ public class S_TutoManager : MonoBehaviour
 
     private int _parryCountDupplicate = 0;
     private int _dodgeCountDupplicate = 0;
+    private int _targetCountDupplicate = 0;
 
 
     private void OnEnable()
@@ -149,6 +150,7 @@ public class S_TutoManager : MonoBehaviour
     {
         if(_rsoHasEnterAreaTuto.Value == false && tutoStep == S_EnumTutorialStep.ParryProjectile) return;
         if (_rsoSettingsSaved.Value.activateTuto == false) return;
+        //Debug.Log("Start tuto step : " + tutoStep);
 
         if (_tutorials.ContainsKey(tutoStep))
         {
@@ -239,7 +241,7 @@ public class S_TutoManager : MonoBehaviour
         if (tuto != null && tutoStep == S_EnumTutorialStep.Parry)
         {
             _parryCountDupplicate++;
-            if (_parryCountDupplicate <= 3)
+            if (_parryCountDupplicate >= 3)
             {
                 _tutorials.TryGetValue(tutoStep, out TutoStepData stepData);
 
@@ -248,6 +250,7 @@ public class S_TutoManager : MonoBehaviour
             else
             {
                 _tutorials.TryGetValue(tutoStep, out TutoStepData stepData);
+                _onRequestAcceptedTutorialStep.Call(tutoStep);
 
                 stepData.IsFinished = false;
             }
@@ -256,7 +259,7 @@ public class S_TutoManager : MonoBehaviour
         if (tuto != null && tutoStep == S_EnumTutorialStep.Dodge)
         {
             _dodgeCountDupplicate++;
-            if (_dodgeCountDupplicate <= 1)
+            if (_dodgeCountDupplicate >= 2)
             {
                 _tutorials.TryGetValue(tutoStep, out TutoStepData stepData);
 
@@ -267,6 +270,9 @@ public class S_TutoManager : MonoBehaviour
                 _tutorials.TryGetValue(tutoStep, out TutoStepData stepData);
 
                 stepData.IsFinished = false;
+                _onRequestAcceptedTutorialStep.Call(tutoStep);
+
+
             }
         }
 
@@ -309,6 +315,23 @@ public class S_TutoManager : MonoBehaviour
         if (tuto != null && tutoStep == S_EnumTutorialStep.Conviction)
         {
             _onChangeActiveStatePanelsFilters.Call();
+        }
+
+        if (tuto != null && tutoStep == S_EnumTutorialStep.Targeting)
+        {
+            _targetCountDupplicate++;
+            if (_targetCountDupplicate >= 2)
+            {
+                _tutorials.TryGetValue(tutoStep, out TutoStepData stepData);
+
+                stepData.IsFinished = true;
+            }
+            else
+            {
+                _tutorials.TryGetValue(tutoStep, out TutoStepData stepData);
+
+                stepData.IsFinished = false;
+            }
         }
 
         //if (tuto != null && tutoStep == S_EnumTutorialStep.Targeting)

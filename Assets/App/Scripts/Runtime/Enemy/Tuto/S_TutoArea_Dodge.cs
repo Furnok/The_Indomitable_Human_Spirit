@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class S_TutoArea_Dodge : MonoBehaviour
 {
-    //[Header("Settings")]
+    [Header("Settings")]
+    [SerializeField] float _distanceToTriggerTuto = 2.5f;
+
 
     [Header("References")]
     [SerializeField] S_Enemy _enemyTuto;
@@ -12,10 +14,12 @@ public class S_TutoArea_Dodge : MonoBehaviour
 
     [Header("Outputs")]
     [SerializeField] RSE_OnRequestStartTutorialStep _onRequestStartTutorialStep;
+    [SerializeField] private RSE_OnPlayerTargetingCancel rseOnPlayerTargetingCancel;
 
 
     Collider _other;
     bool _hasTriggered = false;
+    bool _playerInRange = false;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -28,5 +32,30 @@ public class S_TutoArea_Dodge : MonoBehaviour
 
             _onRequestStartTutorialStep.Call(S_EnumTutorialStep.None);
         }
+    }
+
+    private void FixedUpdate()
+    {
+        if (_hasTriggered == true && _playerInRange == false)
+        {
+            if (_other == null)
+            {
+                Debug.LogError("Player is null");
+                return;
+            }
+
+
+            if (Vector3.Distance(_other.transform.position, this.transform.position) < _distanceToTriggerTuto)
+            {
+                _playerInRange = true;
+                rseOnPlayerTargetingCancel.Call();
+
+                StartCoroutine(S_Utils.Delay(0.1f, () =>
+                {
+                    _onRequestStartTutorialStep.Call(S_EnumTutorialStep.Targeting);
+                }));
+            }
+        }
+
     }
 }

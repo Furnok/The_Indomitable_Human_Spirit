@@ -19,6 +19,7 @@ MonoBehaviour:
     speedChase: 4
     detectionRange: 5
     detectionAggroRangeMax: 30
+    isIdle: 0
     attackCooldown: 2
     stunTime: 1
     rotationTime: 0.6
@@ -59,7 +60,7 @@ MonoBehaviour:
           lastAttack: 0
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
-      - animation: {fileID: 7400000, guid: 42b135111bbe964408a1e9d68bfd7e40, type: 2}
+      - animation: {fileID: 7400000, guid: 2a3906b1821d4184c9d31614a74bd1f6, type: 2}
         rootMotionMultiplier: 2
         showVFXAttackType: 0
         attackData:
@@ -82,7 +83,7 @@ MonoBehaviour:
           lastAttack: 0
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
-      - animation: {fileID: 7400000, guid: c34ce13b5bc91fd429de665691f34f7d, type: 2}
+      - animation: {fileID: 7400000, guid: db020a760a64b824caec6efcc3436aa5, type: 2}
         rootMotionMultiplier: 2
         showVFXAttackType: 0
         attackData:
