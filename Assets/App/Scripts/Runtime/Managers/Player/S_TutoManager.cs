@@ -152,6 +152,15 @@ public class S_TutoManager : MonoBehaviour
         if (_rsoSettingsSaved.Value.activateTuto == false) return;
         //Debug.Log("Start tuto step : " + tutoStep);
 
+        if (tutoStep == S_EnumTutorialStep.Parry || tutoStep == S_EnumTutorialStep.Dodge)
+        {
+            _tutorials.TryGetValue(tutoStep, out TutoStepData stepData);
+            if (rsoCurrentTarget.Value == null && targetsPossible.Count > 0 && (stepData.IsFinished == false))
+            {
+                rseOnPlayerTargeting.Call();
+            }
+        }
+
         if (_tutorials.ContainsKey(tutoStep))
         {
             _tutorials.TryGetValue(tutoStep, out TutoStepData stepData);
@@ -332,6 +341,14 @@ public class S_TutoManager : MonoBehaviour
 
                 stepData.IsFinished = false;
             }
+
+            StartCoroutine(S_Utils.Delay(0.1f, () =>
+            {
+                if (rsoCurrentTarget.Value == null && targetsPossible.Count > 0)
+                {
+                    rseOnPlayerTargeting.Call();
+                }
+            }));
         }
 
         //if (tuto != null && tutoStep == S_EnumTutorialStep.Targeting)

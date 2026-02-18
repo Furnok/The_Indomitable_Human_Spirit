@@ -183201,7 +183201,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.7333333
+  - time: 1.7666667
     functionName: TriggerTutorialDodgeStep
     data: 
     objectReferenceParameter: {fileID: 0}
