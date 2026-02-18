@@ -36975,7 +36975,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You don't have enough conviction!
+  m_text: You don't have enough Mana!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
   m_sharedMaterial: {fileID: 7114413539391100157, guid: 30b824733b613a546a2e5ec327a7aee6, type: 2}
@@ -37078,10 +37078,10 @@ MonoBehaviour:
         m_VariantData:
         - localeIdentifier:
             m_Code: en
-          value: You don't have enough conviction!
+          value: You don't have enough Mana!
         - localeIdentifier:
             m_Code: fr
-          value: Vous n'avez pas assez de Conviction!
+          value: Vous n'avez pas assez de Mana!
 --- !u!1 &8898206704878023140
 GameObject:
   m_ObjectHideFlags: 0
