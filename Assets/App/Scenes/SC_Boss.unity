@@ -53055,6 +53055,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7834620151722910443, guid: c156732cb46eb1c4f825606c4264be76, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'Eyes'\n\tFrom animation clip 'A_PlayerHit'\n\tFrom
+        animation clip 'A_PlayerHit'\n\tFrom animation clip 'A_PlayerDeath'"
+      objectReference: {fileID: 0}
     - target: {fileID: 8313228278302547986, guid: c156732cb46eb1c4f825606c4264be76, type: 3}
       propertyPath: m_Name
       value: P_Player
@@ -358188,10 +358195,6 @@ PrefabInstance:
     - target: {fileID: 5972448417234124833, guid: 0172bb772cbf6cd438211f41bb4053c4, type: 3}
       propertyPath: m_Name
       value: P_BossPhase2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7615724087262089983, guid: 0172bb772cbf6cd438211f41bb4053c4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
