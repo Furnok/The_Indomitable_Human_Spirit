@@ -38,6 +38,9 @@ public class S_Enemy : MonoBehaviour
     [SerializeField, S_AnimationName("animator")] private string moveParam;
 
     [TabGroup("References")]
+    [SerializeField, S_AnimationName("animator")] private string moveSpeedParam;
+
+    [TabGroup("References")]
     [SerializeField, S_AnimationName("animator")] private string combatParam;
 
     [TabGroup("References")]
@@ -45,6 +48,9 @@ public class S_Enemy : MonoBehaviour
 
     [TabGroup("References")]
     [SerializeField, S_AnimationName("animator")] private string comboParam;
+
+    [TabGroup("References")]
+    [SerializeField, S_AnimationName("animator")] private string parryParam;
 
     [TabGroup("References")]
     [SerializeField, S_AnimationName("animator")] private string stunParam;
@@ -109,6 +115,9 @@ public class S_Enemy : MonoBehaviour
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnPlayerDeath rseOnPlayerDeath;
 
+    [TabGroup("Inputs")]
+    [SerializeField] private RSE_OnParrySuccess rseOnParrySuccess;
+
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnSendConsoleMessage rseOnSendConsoleMessage;
 
@@ -163,6 +172,10 @@ public class S_Enemy : MonoBehaviour
     private bool canAttack = true;
     private bool unlockRotate = false;
 
+    private int currentComboIndex = 0;
+    private float waitTime = 0;
+    private float timer = 0;
+
     private void Awake()
     {
         patrolPointsList.Clear();
@@ -195,6 +208,7 @@ public class S_Enemy : MonoBehaviour
         rseOnPlayerDeath.action += PlayerDeath;
         rseOnPlayerRespawn.action += PlayerRespawn;
         rseOnDataLoad.action += LoadEnemy;
+        rseOnParrySuccess.action += Parry;
     }
 
     private void OnDisable()
@@ -202,6 +216,7 @@ public class S_Enemy : MonoBehaviour
         rseOnPlayerDeath.action -= PlayerDeath;
         rseOnPlayerRespawn.action -= PlayerRespawn;
         rseOnDataLoad.action -= LoadEnemy;
+        rseOnParrySuccess.action -= Parry;
     }
 
     private void Start()
@@ -353,7 +368,11 @@ public class S_Enemy : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
 
         animator.SetBool(moveParam, false);
+        animator.SetFloat(moveSpeedParam, navMeshAgent.speed);
         animator.SetFloat(combatParam, 0);
+
+        overrideController["AttackAnimation"] = overrideController["IdleAnimation"];
+        overrideController["AttackAnimation2"] = overrideController["IdleAnimation"];
     }
     #endregion
 
@@ -516,6 +535,7 @@ public class S_Enemy : MonoBehaviour
         navMeshAgent.stoppingDistance = 0.2f;
 
         animator.SetBool(moveParam, true);
+        animator.SetFloat(moveSpeedParam, navMeshAgent.speed);
 
         patrolingCoroutine = StartCoroutine(PatrolingRoutine());
     }
@@ -527,12 +547,14 @@ public class S_Enemy : MonoBehaviour
             GameObject targetPoint = patrolPointsList[currentPatrolIndex];
 
             animator.SetBool(moveParam, true);
+            animator.SetFloat(moveSpeedParam, navMeshAgent.speed);
 
             SetDestinationToPatrolPoint(targetPoint.transform.position);
 
             yield return new WaitUntil(() => !navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance);
 
             animator.SetBool(moveParam, false);
+            animator.SetFloat(moveSpeedParam, navMeshAgent.speed);
 
             yield return new WaitForSeconds(Random.Range(ssoEnemyData.Value.patrolPointWaitMin, ssoEnemyData.Value.patrolPointWaitMax));
 
@@ -560,6 +582,7 @@ public class S_Enemy : MonoBehaviour
         yield return new WaitForSeconds(ssoEnemyData.Value.returnPatrolWait);
 
         animator.SetBool(moveParam, true);
+        animator.SetFloat(moveSpeedParam, navMeshAgent.speed);
 
         SetDestinationToPatrolPoint(posBeforeChase);
 
@@ -582,6 +605,7 @@ public class S_Enemy : MonoBehaviour
         navMeshAgent.speed = ssoEnemyData.Value.speedChase;
 
         animator.SetBool(moveParam, true);
+        animator.SetFloat(moveSpeedParam, navMeshAgent.speed);
     }
 
     private void Chasing()
@@ -613,6 +637,7 @@ public class S_Enemy : MonoBehaviour
         navMeshAgent.speed = ssoEnemyData.Value.speedChase;
 
         animator.SetBool(moveParam, false);
+        animator.SetFloat(moveSpeedParam, ssoEnemyData.Value.speedChase);
         animator.SetFloat(combatParam, 1);
     }
 
@@ -681,6 +706,8 @@ public class S_Enemy : MonoBehaviour
                 if (distance > combo.distanceToLoseAttack) break;
             }
 
+            currentComboIndex = i;
+
             RotateEnemy();
 
             string overrideKey = (i % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
@@ -695,7 +722,17 @@ public class S_Enemy : MonoBehaviour
             if (i == 0) animator.SetBool(attackParam, true);
             else animator.SetTrigger(comboParam);
 
-            yield return new WaitForSeconds(combo.listAnimationsCombos[i].animation.length);
+            waitTime = combo.listAnimationsCombos[i].animation.length;
+            timer = 0f;
+
+            string overrideKey2 = (i % 2 == 0) ? "AttackParryAnimation" : "AttackParryAnimation2";
+            overrideController[overrideKey2] = combo.listAnimationsCombos[i].animationParry;
+
+            while (timer < waitTime)
+            {
+                timer += Time.deltaTime;
+                yield return null;
+            }
 
             if (combo.listAnimationsCombos[i].attackData.attackType == S_EnumAttackType.Projectile)
             {
@@ -744,10 +781,22 @@ public class S_Enemy : MonoBehaviour
         else
         {
             animator.SetBool(moveParam, false);
+            animator.SetFloat(moveSpeedParam, navMeshAgent.speed);
 
             targetInZone = null;
             currentTarget = null;
         }
+    }
+
+    private void Parry(S_StructAttackContact attack)
+    {
+        if (!isAttack || ssoEnemyData.Value.isIdle) return;
+
+        waitTime = combo.listAnimationsCombos[currentComboIndex].animationParry.length;
+        timer = 0f;
+
+        rootMotionModifier.Setup(0, 0);
+        animator.SetTrigger(parryParam);
     }
     #endregion
 

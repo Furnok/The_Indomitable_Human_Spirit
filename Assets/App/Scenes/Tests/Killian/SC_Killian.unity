@@ -1001,29 +1001,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7430720674804394264, guid: 709123c95f2726c46b4bf0178217e257, type: 3}
-      propertyPath: idleAttack
+    - target: {fileID: 3495865099561543266, guid: 709123c95f2726c46b4bf0178217e257, type: 3}
+      propertyPath: m_WarningMessage
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7430720674804394264, guid: 709123c95f2726c46b4bf0178217e257, type: 3}
-      propertyPath: combatParam
-      value: Blend
-      objectReference: {fileID: 0}
-    - target: {fileID: 7430720674804394264, guid: 709123c95f2726c46b4bf0178217e257, type: 3}
-      propertyPath: hitHeavyParam
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7430720674804394264, guid: 709123c95f2726c46b4bf0178217e257, type: 3}
-      propertyPath: moveSpeedParam
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7430720674804394264, guid: 709123c95f2726c46b4bf0178217e257, type: 3}
-      propertyPath: stopAttackParam
-      value: IsCombo
-      objectReference: {fileID: 0}
-    - target: {fileID: 8281034902877349249, guid: 709123c95f2726c46b4bf0178217e257, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

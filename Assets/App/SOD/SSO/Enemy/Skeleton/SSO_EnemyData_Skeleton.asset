@@ -38,6 +38,7 @@ MonoBehaviour:
       distanceToLoseAttack: 5
       listAnimationsCombos:
       - animation: {fileID: 7400000, guid: a560317b9147edd4fba0893992161518, type: 2}
+        animationParry: {fileID: 7400000, guid: da58a7a4c7c34ae44b55870df6440e8d, type: 2}
         rootMotionMultiplier: 2
         showVFXAttackType: 1
         attackData:
@@ -61,6 +62,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: 2a3906b1821d4184c9d31614a74bd1f6, type: 2}
+        animationParry: {fileID: 7400000, guid: da58a7a4c7c34ae44b55870df6440e8d, type: 2}
         rootMotionMultiplier: 2
         showVFXAttackType: 0
         attackData:
@@ -84,6 +86,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: db020a760a64b824caec6efcc3436aa5, type: 2}
+        animationParry: {fileID: 7400000, guid: da58a7a4c7c34ae44b55870df6440e8d, type: 2}
         rootMotionMultiplier: 2
         showVFXAttackType: 0
         attackData:

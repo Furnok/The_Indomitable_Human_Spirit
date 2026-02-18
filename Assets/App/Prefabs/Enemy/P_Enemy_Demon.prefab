@@ -2555,9 +2555,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 445208566684554611, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
+      propertyPath: parryParam
+      value: IsParry
+      objectReference: {fileID: 0}
+    - target: {fileID: 445208566684554611, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
       propertyPath: ssoEnemyData
       value: 
       objectReference: {fileID: 11400000, guid: 1281e7b71f0ede94c94386c941b6c32c, type: 2}
+    - target: {fileID: 445208566684554611, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
+      propertyPath: moveSpeedParam
+      value: MoveSpeed
+      objectReference: {fileID: 0}
     - target: {fileID: 445208566684554611, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
       propertyPath: spawnProjectilePoint
       value: 
