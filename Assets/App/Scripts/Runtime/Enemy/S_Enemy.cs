@@ -46,8 +46,6 @@ public class S_Enemy : MonoBehaviour
     [TabGroup("References")]
     [SerializeField, S_AnimationName("animator")] private string comboParam;
 
-    [TabGroup("References")]
-    [SerializeField, S_AnimationName("animator")] private string stopAttackParam;
 
     [TabGroup("References")]
     [SerializeField, S_AnimationName("animator")] private string stunParam;
@@ -395,7 +393,7 @@ public class S_Enemy : MonoBehaviour
         {
             aimPoint = null;
 
-            animator.SetTrigger(stopAttackParam);
+            animator.SetBool(attackParam, false);
 
             if (resetAttack != null)
             {
