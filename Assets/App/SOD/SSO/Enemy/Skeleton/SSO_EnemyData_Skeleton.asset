@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _value:
     health: 80
-    speedPatrol: 2.5
-    speedReturnPatrol: 4
-    speedChase: 4
+    speedPatrol: 4.5
+    speedReturnPatrol: 6
+    speedChase: 6
     detectionRange: 5
     detectionAggroRangeMax: 30
     isIdle: 0

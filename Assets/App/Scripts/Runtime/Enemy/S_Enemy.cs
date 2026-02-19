@@ -369,10 +369,11 @@ public class S_Enemy : MonoBehaviour
 
         animator.SetBool(moveParam, false);
         animator.SetFloat(moveSpeedParam, navMeshAgent.speed);
-        animator.SetFloat(combatParam, 0);
 
         overrideController["AttackAnimation"] = overrideController["IdleAnimation"];
         overrideController["AttackAnimation2"] = overrideController["IdleAnimation"];
+        overrideController["AttackParryAnimation"] = overrideController["IdleAnimation"];
+        overrideController["AttackParryAnimation2"] = overrideController["IdleAnimation"];
     }
     #endregion
 
@@ -553,7 +554,7 @@ public class S_Enemy : MonoBehaviour
 
             SetDestinationToPatrolPoint(targetPoint.transform.position);
 
-            yield return new WaitUntil(() => !navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance);
+            yield return new WaitUntil(() => !navMeshAgent.pathPending && navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && navMeshAgent.velocity.sqrMagnitude < 0.1f);
 
             animator.SetBool(moveParam, false);
             animator.SetFloat(moveSpeedParam, navMeshAgent.speed);
@@ -611,6 +612,8 @@ public class S_Enemy : MonoBehaviour
             animator.SetBool(moveParam, true);
             animator.SetFloat(moveSpeedParam, navMeshAgent.speed);
         }
+
+        animator.SetBool(combatParam, false);
     }
 
     private void Chasing()
@@ -643,7 +646,7 @@ public class S_Enemy : MonoBehaviour
 
         animator.SetBool(moveParam, false);
         animator.SetFloat(moveSpeedParam, ssoEnemyData.Value.speedChase);
-        animator.SetFloat(combatParam, 1);
+        animator.SetBool(combatParam, true);
     }
 
     private void Combat()
@@ -691,6 +694,8 @@ public class S_Enemy : MonoBehaviour
 
     private IEnumerator Attack()
     {
+        yield return new WaitForSeconds(0.3f);
+
         if (rsoCurrentTarget.Value == body)
         {
             S_ClassCameraFOV fov = new();
@@ -782,7 +787,9 @@ public class S_Enemy : MonoBehaviour
         resetAttack = StartCoroutine(S_Utils.Delay(ssoEnemyData.Value.attackCooldown, () => canAttack = true));
         SetCombo();
 
-        if (!isPlayerDeath || currentTarget != null) UpdateState(S_EnumEnemyState.Chasing);
+        yield return new WaitForSeconds(0.3f);
+
+        if (!isPlayerDeath || currentTarget != null) UpdateState(S_EnumEnemyState.Combat);
         else
         {
             animator.SetBool(moveParam, false);

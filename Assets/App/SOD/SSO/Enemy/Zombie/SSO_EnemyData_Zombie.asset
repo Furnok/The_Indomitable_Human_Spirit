@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _value:
     health: 80
-    speedPatrol: 2.5
-    speedReturnPatrol: 4
-    speedChase: 4
+    speedPatrol: 4.5
+    speedReturnPatrol: 6
+    speedChase: 6
     detectionRange: 5
     detectionAggroRangeMax: 30
     isIdle: 0
@@ -38,6 +38,7 @@ MonoBehaviour:
       distanceToLoseAttack: 5
       listAnimationsCombos:
       - animation: {fileID: 7400000, guid: 54a34b50f863c62489764982bc37e8d8, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 5
         showVFXAttackType: 1
         attackData:
@@ -61,6 +62,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: 45f9024d01bdc8f41948b767f162ec13, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 5
         showVFXAttackType: 0
         attackData:
@@ -84,6 +86,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: f87cd8b6158447f4d988f7fcfe0445a0, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 4
         showVFXAttackType: 0
         attackData:
