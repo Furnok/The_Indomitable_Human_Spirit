@@ -7,6 +7,7 @@ public class S_ClassAnimation
 {
     [Title("Animation")]
     public AnimationClip animation = null;
+    public AnimationClip animationParry = null;
 
     [Title("Animation Root")]
     [Range(0, 100)] public float rootMotionMultiplier = 1;

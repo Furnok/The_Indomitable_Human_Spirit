@@ -103,6 +103,9 @@ public class S_CameraManager : MonoBehaviour
     [SerializeField] private RSE_OnUpdateVisibility rseUpdateVisibility;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSO_PlayerCurrentState rsoPlayerCurrentState;
+
+    [TabGroup("Outputs")]
     [SerializeField] private SSO_CameraData ssoCameraData;
 
     private CinemachineCamera currentCam = null;
@@ -485,6 +488,8 @@ public class S_CameraManager : MonoBehaviour
     {
         if (currentTarget != null)
         {
+            if (rsoPlayerCurrentState.Value == S_EnumPlayerState.Attacking || rsoPlayerCurrentState.Value == S_EnumPlayerState.Dying || rsoPlayerCurrentState.Value == S_EnumPlayerState.Healing || rsoPlayerCurrentState.Value == S_EnumPlayerState.HitReact || rsoPlayerCurrentState.Value == S_EnumPlayerState.Parrying) return;
+
             if (move.x > 0.25f || move.x < -0.25f)
             {
                 lastDirection = move.x;

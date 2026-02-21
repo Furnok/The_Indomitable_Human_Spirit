@@ -171,6 +171,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: fa5e674b008435f468e167ec38d17337, type: 2}
     - target: {fileID: 6465511601208726001, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+      propertyPath: bossData
+      value: 
+      objectReference: {fileID: 11400000, guid: 36ebc4169508682489e0a76e586210c0, type: 2}
+    - target: {fileID: 6465511601208726001, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+      propertyPath: flyParam
+      value: isFly
+      objectReference: {fileID: 0}
+    - target: {fileID: 6465511601208726001, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+      propertyPath: jumpParam
+      value: isJump
+      objectReference: {fileID: 0}
+    - target: {fileID: 6465511601208726001, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
       propertyPath: rseOnPlayerDeath
       value: 
       objectReference: {fileID: 11400000, guid: 05b30ffda8ad63c4d82da9ab419e36e1, type: 2}
@@ -253,6 +265,10 @@ PrefabInstance:
     - target: {fileID: 68131245699349090, guid: 9b42a44743b9a1442bfa1facacf63695, type: 3}
       propertyPath: m_Layer
       value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 68131245699349090, guid: 9b42a44743b9a1442bfa1facacf63695, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 68131245699349090, guid: 9b42a44743b9a1442bfa1facacf63695, type: 3}
       propertyPath: m_TagString

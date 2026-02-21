@@ -788,7 +788,7 @@
 	</object>
 	<object class="NamedMarker" id="{578a2f1c-3fc6-40b6-8489-226ea833a526}">
 		<property name="position">
-			<value>84.871595455916363</value>
+			<value>84.300000000000011</value>
 		</property>
 		<property name="name">
 			<value>Cut_24</value>
@@ -1081,6 +1081,9 @@
 	</object>
 	<object class="MixerBusFader" id="{6c4e2f13-8d9f-4e49-b1d8-2bf3f282e193}" />
 	<object class="SFXReverbEffect" id="{aeb04ad2-1fab-4b5e-93b4-852b768c6ae7}">
+		<property name="bypass">
+			<value>true</value>
+		</property>
 		<property name="decayTime">
 			<value>4000</value>
 		</property>
@@ -1465,7 +1468,7 @@
 			<value>11</value>
 		</property>
 		<property name="value">
-			<value>0</value>
+			<value>-6</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{d301af73-a947-4066-81cb-08d917eaa440}">

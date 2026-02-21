@@ -474,6 +474,7 @@ public class S_Boss : MonoBehaviour
         animator.SetTrigger(stunParam);
         yield return new WaitForSeconds(duration);
         isStunned = false;
+        animator.SetBool(idleAttack, true);
         if (target != null)
         {
             UpdateState(S_EnumBossState.Chase);
@@ -533,6 +534,8 @@ public class S_Boss : MonoBehaviour
         isDead = true;
         animator.SetBool(idleAttack, false);
 
+        bossAttackData.DisableWeaponCollider();
+        bossAttackData.DisableAfterImageWeaponCollider();
         animator.SetTrigger(deathParam);
 
         if (currentPhaseState == S_EnumBossPhaseState.Phase2)
@@ -753,6 +756,7 @@ public class S_Boss : MonoBehaviour
 
             if (currentAttack.bossAttack.isSpecialAttack)
             {
+                animator.SetBool(idleAttack, false);
                 onExecuteAttack.Call(currentAttack.bossAttack);
                 isPerformingCombo = true;
             }

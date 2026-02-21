@@ -7,6 +7,8 @@ public class S_PlayerDamageSystem : MonoBehaviour
     [TabGroup("Reference")]
     [Title("Audio")]
     [SerializeField] private EventReference _damageSound;
+    [SerializeField] private GameObject _playerDamageVFX;
+    [SerializeField] private GameObject _propLantern;
 
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnPlayerHit _rseOnPlayerHit;
@@ -53,6 +55,8 @@ public class S_PlayerDamageSystem : MonoBehaviour
         _rseOnPlayerHit.action += TakeDamage;
     }
     
+
+
     private void OnDisable()
     {
         _rseOnPlayerHit.action -= TakeDamage;
@@ -66,7 +70,10 @@ public class S_PlayerDamageSystem : MonoBehaviour
 
             if (_hitReactCoroutine != null) StopCoroutine(_hitReactCoroutine);
 
+
             RuntimeManager.PlayOneShot(_damageSound);
+            Instantiate(_playerDamageVFX, _propLantern.transform.position, Quaternion.identity);
+
             rseOnAnimationTriggerValueChange.Call("isHit");
             _onPlayerAddState.Call(S_EnumPlayerState.HitReact);
             _isInvicible = true;

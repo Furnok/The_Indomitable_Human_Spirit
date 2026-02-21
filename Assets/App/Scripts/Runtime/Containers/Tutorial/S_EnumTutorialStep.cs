@@ -15,4 +15,6 @@ public enum S_EnumTutorialStep
     SwapTarget = 10,
     ParryProjectile = 11,
     AttackUpgrade = 12,
+    ParryDuplicate = 13,
+    DodgeDuplicate = 14,
 }

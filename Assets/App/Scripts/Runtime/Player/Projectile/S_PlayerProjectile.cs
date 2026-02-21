@@ -225,8 +225,6 @@ public class S_PlayerProjectile : MonoBehaviour
                     impactSound.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject));
                     impactSound.start();
                 }
-
-                Debug.Log($"Hit enemy for {_damage} damage.");
             }
         }
         else

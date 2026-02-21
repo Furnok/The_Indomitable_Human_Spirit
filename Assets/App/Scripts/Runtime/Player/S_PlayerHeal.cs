@@ -26,6 +26,9 @@ public class S_PlayerHeal : MonoBehaviour
     [SerializeField] private RSE_OnHealStart _onHealStart;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnPlayerHealNotEnoughMana _onPlayerHealNotEnoughMana;
+
+    [TabGroup("Outputs")]
     [SerializeField] private RSO_PlayerCurrentState _playerCurrentState;
 
     [TabGroup("Outputs")]
@@ -64,7 +67,13 @@ public class S_PlayerHeal : MonoBehaviour
     {
         if (_playerStateTransitions.Value.CanTransition(_playerCurrentState.Value, S_EnumPlayerState.Healing) == false) return;
 
-        if (_playerCurrentHealth.Value >= ssoPlayerStats.Value.maxHealth || _playerCurrentConviction.Value < _playerConvictionData.Value.healCost) return;
+        if (_playerCurrentHealth.Value >= ssoPlayerStats.Value.maxHealth) return;
+
+        if (_playerCurrentConviction.Value < _playerConvictionData.Value.healCost)
+        {
+            _onPlayerHealNotEnoughMana.Call();
+            return;
+        }
 
         _onPlayerAddState.Call(S_EnumPlayerState.Healing);
         rseOnAnimationBoolValueChange.Call(_healParam, true);

@@ -168,7 +168,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1039572514723219672}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -182,7 +182,7 @@ Transform:
   - {fileID: 5653424367057378731}
   - {fileID: 6289024950766738601}
   m_Father: {fileID: 7972417589024532759}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!195 &1431773725924121066
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -196,7 +196,7 @@ NavMeshAgent:
   m_Speed: 0
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 180
   m_StoppingDistance: 0.2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -235,8 +235,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1039572514723219672}
   serializedVersion: 4
-  m_Mass: 100000
-  m_Drag: 0
+  m_Mass: 25000
+  m_Drag: 0.05
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -251,9 +251,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &445208566684554611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,10 +274,11 @@ MonoBehaviour:
   hurtCollider: {fileID: 6177182004407894465}
   animator: {fileID: 5886562096679836169}
   moveParam: IsMoving
+  moveSpeedParam: 
   combatParam: IsCombat
   attackParam: IsAttack
   comboParam: IsCombo
-  stopAttackParam: IsStopAttack
+  parryParam: 
   stunParam: IsStun
   deadParam: IsDead
   body: {fileID: 6905421159853868602}
@@ -297,6 +298,7 @@ MonoBehaviour:
   rseOnEnemyTargetDied: {fileID: 11400000, guid: a6d4a41f4054c224a832b2ce84286687, type: 2}
   rseOnDataLoad: {fileID: 11400000, guid: d8401e7eeb710344ca47f8e9df92d71d, type: 2}
   rseOnPlayerDeath: {fileID: 11400000, guid: 05b30ffda8ad63c4d82da9ab419e36e1, type: 2}
+  rseOnParrySuccess: {fileID: 0}
   rseOnSendConsoleMessage: {fileID: 11400000, guid: e2e3ecd3153d9a14d9d9e380efc21861, type: 2}
   rseOnPlayerRespawn: {fileID: 11400000, guid: 3b09f2a06394f4642a88a2d57f0cec43, type: 2}
   rseOnCameraFOV: {fileID: 11400000, guid: be074528f87be5f469eb9a1c75eeb202, type: 2}

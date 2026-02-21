@@ -19,6 +19,8 @@ public class S_ClassEnemyData
 
     public float detectionAggroRangeMax = 0;
 
+    public bool isIdle = false;
+
     [Title("Combat")]
     [SuffixLabel("s", Overlay = true)]
     public float attackCooldown = 0;

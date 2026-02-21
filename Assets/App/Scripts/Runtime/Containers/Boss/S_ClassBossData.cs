@@ -62,10 +62,54 @@ public class S_ClassBossData
     [SuffixLabel("s", Overlay = true)]
     public float rotationTime = 0;
 
+    [TitleGroup("Jump & Fly")]
+    [Title("Gathering")]
+    [ShowIf("isPhase2")]
+    public float jumpDistanceGathering;
+
+    [ShowIf("isPhase2")]
+    public float jumpPowerGathering;
+
+    [ShowIf("isPhase2")]
+    public float jumpDurationGathering;
+
+    [Title("PingPong")]
+    [ShowIf("isPhase2")]
+    public float jumpDistancePingPong;
+
+    [ShowIf("isPhase2")]
+    public float jumpPowerPingPong;
+
+    [ShowIf("isPhase2")]
+    public float jumpDurationPingPong;
+
+    [ShowIf("isPhase2")]
+    public float flyPowerPingPong;
+
+    [ShowIf("isPhase2")]
+    public float flyDurationPingPong;
+
+    [Title("Balls")]
+    [ShowIf("isPhase2")]
+    public float flyPowerBalls;
+
+    [ShowIf("isPhase2")]
+    public float flyDurationBalls;
+
+    [Title("Wings Of Hell")]
+    [ShowIf("isPhase2")]
+    public float flyPowerWings;
+
+    [ShowIf("isPhase2")]
+    public float flyDurationWings;
+
+
+
     [Title("Animations")]
     public AnimatorOverrideController controllerOverride = null;
 
     public List<S_ClassBossAttack> listAttack = new();
 
     private bool isPhase1 => phaseState == S_EnumBossPhaseState.Phase1;
+    private bool isPhase2 => phaseState == S_EnumBossPhaseState.Phase2;
 }
