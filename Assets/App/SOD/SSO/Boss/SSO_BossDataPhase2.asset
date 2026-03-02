@@ -49,7 +49,7 @@ MonoBehaviour:
       isSpecialAttack: 1
       timeAfterAttack: 4
       isAttackDistance: 1
-      pvBossUnlock: 90
+      pvBossUnlock: 100
       difficultyLevel: 5
       listComboData:
       - animation: {fileID: -6759780123328594538, guid: ee840371c325fd748b10e1b2f509cff2, type: 3}
@@ -869,7 +869,7 @@ MonoBehaviour:
       isSpecialAttack: 1
       timeAfterAttack: 2
       isAttackDistance: 1
-      pvBossUnlock: 100
+      pvBossUnlock: 80
       difficultyLevel: 7
       listComboData:
       - animation: {fileID: 7400000, guid: 313b8138c91e15a469ccc69af8d1eb11, type: 2}
