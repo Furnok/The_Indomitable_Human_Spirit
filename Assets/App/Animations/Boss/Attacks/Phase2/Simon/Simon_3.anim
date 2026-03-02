@@ -172786,6 +172786,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 2.3
+    functionName: EnableAfterImageWeaponCollider
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 2.4333334
     functionName: DisableWeaponCollider
     data: 
@@ -172795,13 +172802,6 @@ AnimationClip:
     messageOptions: 0
   - time: 2.5
     functionName: VFXStopTrail
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 2.5333333
-    functionName: EnableAfterImageWeaponCollider
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
