@@ -188,7 +188,7 @@ MonoBehaviour:
     m_Bits: 4224
   ownLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 34816
   playerLayer: 8
   rb: {fileID: 6375349480578834582}
   enemyMat: {fileID: 2100000, guid: 46fd367f7816d434ba541584b0a91a9f, type: 2}
