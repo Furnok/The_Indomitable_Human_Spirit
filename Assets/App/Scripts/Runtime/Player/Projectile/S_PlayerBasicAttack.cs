@@ -167,7 +167,6 @@ public class S_PlayerBasicAttack : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(_isHolding);
         if (_isHolding) _currenTimeHold += Time.deltaTime;
     }
 
@@ -523,6 +522,8 @@ public class S_PlayerBasicAttack : MonoBehaviour
         rseOnAnimationBoolValueChange.Call(_attackParam, false);
 
         _reservedConviction = 0f;
+
+        rseOnSpawnProjectile.Call(0);
 
         if (_convictionAccumulationInstance.isValid())
         {
