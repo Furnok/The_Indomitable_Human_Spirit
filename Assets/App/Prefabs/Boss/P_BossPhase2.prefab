@@ -134,6 +134,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_BossPhase2
       objectReference: {fileID: 0}
+    - target: {fileID: 3961580513568290508, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+      propertyPath: m_Height
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3961580513568290508, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+      propertyPath: m_Radius
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6352494224581732303, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
       propertyPath: ssoBossData
       value: 

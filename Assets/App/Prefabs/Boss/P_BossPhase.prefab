@@ -976,6 +976,7 @@ MonoBehaviour:
   detectionCollider: {fileID: 6240607319024186}
   hurtCollider: {fileID: 6623810594226599851}
   bossDetectionRange: {fileID: 4396067441703182030}
+  enemyHeadLookAtIK: {fileID: 0}
   animator: {fileID: 3048319605574608049}
   moveParam: isMoving
   deathParam: isDead
@@ -1074,12 +1075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c976a15a48ad544fa1149705621f53f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backDistanceGathering: 0
-  jumpPowerGathering: 0
-  durationGathering: 0
-  backDistancePingPong: 5
-  jumpPowerPingPong: 3
-  durationPingPong: 1
+  bossData: {fileID: 0}
   bodyCollider: {fileID: 2172925691496945250}
   rbBody: {fileID: 6290640343244561212}
   bossProjectile: {fileID: 8140121101017001052, guid: f1fb51f3df4ed10408671800bfdcfdc4, type: 3}
@@ -1096,6 +1092,8 @@ MonoBehaviour:
   animator: {fileID: 3048319605574608049}
   attackParam: isAttacking
   comboParam: isCombo
+  jumpParam: 
+  flyParam: 
   onExecuteAttack: {fileID: 11400000, guid: 3da07f09686258c4f84c0ab1889d9bcd, type: 2}
   onEndFly: {fileID: 11400000, guid: 4250bf271bad23e42ab1b18f912469ba, type: 2}
   rseOnBossDeath: {fileID: 11400000, guid: a8782c22c581a2b44ace556be4c59d62, type: 2}
@@ -1835,9 +1833,9 @@ GameObject:
   - component: {fileID: 9194433492713377969}
   - component: {fileID: 3961580513568290508}
   - component: {fileID: 7670651181594837628}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Reflect
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2208,9 +2206,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3714886273426229285}
   - {fileID: 9194433492713377969}
   - {fileID: 5975370878276458468}
+  - {fileID: 3714886273426229285}
   m_Father: {fileID: 6565682890114688657}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8037166424633864361

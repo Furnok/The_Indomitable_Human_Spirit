@@ -98,3 +98,5 @@ MonoBehaviour:
       forbiddenTo: 4
     - forbiddenFrom: 64
       forbiddenTo: 0
+    - forbiddenFrom: 4
+      forbiddenTo: 4

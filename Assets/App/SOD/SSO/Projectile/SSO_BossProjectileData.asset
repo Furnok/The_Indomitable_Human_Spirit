@@ -19,7 +19,7 @@ MonoBehaviour:
     arcRandomDirectionMin: 0.5
     arcRandomDirectionMax: 1
     travelTime: 1
-    lifeTime: 3
+    lifeTime: 10
     speedAnimationCurve:
       serializedVersion: 2
       m_Curve:
@@ -45,4 +45,4 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     reflectDmgMul: 1.5
-    reflectMax: 1
+    reflectMax: 3
