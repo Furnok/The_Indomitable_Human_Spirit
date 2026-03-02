@@ -1,4 +1,5 @@
-﻿using Sirenix.OdinInspector;
+﻿using FMODUnity;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class S_PlayerHeal : MonoBehaviour
@@ -6,6 +7,10 @@ public class S_PlayerHeal : MonoBehaviour
     [TabGroup("References")]
     [Title("Animation")]
     [SerializeField, S_AnimationName] private string _healParam;
+
+    [TabGroup("References")]
+    [Title("Audios")]
+    [SerializeField] private EventReference audioError;
 
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnPlayerHealInput rseOnPlayerHeal;
@@ -72,6 +77,7 @@ public class S_PlayerHeal : MonoBehaviour
         if (_playerCurrentConviction.Value < _playerConvictionData.Value.healCost)
         {
             _onPlayerHealNotEnoughMana.Call();
+            RuntimeManager.PlayOneShot(audioError);
             return;
         }
 
