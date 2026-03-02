@@ -10,7 +10,7 @@ public class S_BossReflect : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Search if the Object that Enter is Reflectible Projectile
-        if (other.TryGetComponent<I_ReflectableProjectile>(out var reflectable))
+        if(other.TryGetComponent<I_ReflectableProjectile>(out var reflectable))
         {
             if (reflectable.CanReflect() == false) return;
 
