@@ -3086,6 +3086,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healParam: Heal
+  audioError:
+    Guid:
+      Data1: 150340337
+      Data2: 1213369722
+      Data3: 831518887
+      Data4: 1699086335
+    Path: event:/UI/Error
   rseOnPlayerHeal: {fileID: 11400000, guid: 4c1dd4b878a2bbe49bee7a0802da40cf, type: 2}
   _rseOnPlayerGettingHit: {fileID: 11400000, guid: 0bde5f6bad322664c9a88a5237c9d868, type: 2}
   rseOnPlayerHealPerformed: {fileID: 11400000, guid: 52dcd0183e044a14e947f155d1c36c90, type: 2}
