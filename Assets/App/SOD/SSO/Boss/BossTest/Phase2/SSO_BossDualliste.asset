@@ -15,28 +15,30 @@ MonoBehaviour:
   _value:
     health: 500
     speedPatrol: 2.5
+    speedReturnPatrol: 0
     speedChase: 4
-    speedStrafe: 1.5
-    strafeWaitTimeMin: 3
-    strafeWaitTimeMax: 5
-    strafeRotationMin: 30
-    strafeRotationMax: 90
     detectionRange: 5
     detectionAggroRangeMax: 50
+    isIdle: 0
     attackCooldown: 1
-    waitStun: 0.6
+    stunTime: 0
     rotationTime: 0.6
     patrolPointWaitMin: 1
     patrolPointWaitMax: 3
     startPatrolWaitMin: 1
     startPatrolWaitMax: 3
+    returnPatrolWait: 0
     timeBeforeChaseMin: 0.2
     timeBeforeChaseMax: 0.5
-    timeDisplay: 3
+    displayUITime: 0
     controllerOverride: {fileID: 22100000, guid: cae966d33f19b4242ab9041cca2e1f84, type: 2}
     listCombos:
-    - listAnimationsCombos:
+    - distanceMin: 0.5
+      distanceToChase: 3
+      distanceToLoseAttack: 8
+      listAnimationsCombos:
       - animation: {fileID: 7400000, guid: 7cf43363318563945bf17ec289351ba9, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 1
         showVFXAttackType: 1
         attackData:
@@ -60,6 +62,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: 2906ed0f27f04fb4d9d72d803cf48965, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 1
         showVFXAttackType: 0
         attackData:
@@ -83,6 +86,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: 522cadce2a766b9488f3d7df802d82cc, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 2
         showVFXAttackType: 1
         attackData:
@@ -106,6 +110,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: c3830364c1dedd048ab61e3a6f1786e7, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 2
         showVFXAttackType: 0
         attackData:
@@ -129,6 +134,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: cc0d0bd4e6798bb4ebfba4c60ea10c74, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 2
         showVFXAttackType: 0
         attackData:
@@ -152,6 +158,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: 53ad5fb40b18ceb4796751c5c9d5c39a, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 2
         showVFXAttackType: 0
         attackData:
@@ -175,6 +182,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: e0e12f60eb0054c468a788a4b4554def, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 2
         showVFXAttackType: 0
         attackData:
@@ -198,6 +206,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: 53ad5fb40b18ceb4796751c5c9d5c39a, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 2
         showVFXAttackType: 0
         attackData:
@@ -221,6 +230,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: e0e12f60eb0054c468a788a4b4554def, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 2
         showVFXAttackType: 0
         attackData:
@@ -244,6 +254,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: 2906ed0f27f04fb4d9d72d803cf48965, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 1
         showVFXAttackType: 1
         attackData:
@@ -267,6 +278,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: c3830364c1dedd048ab61e3a6f1786e7, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 2
         showVFXAttackType: 0
         attackData:
@@ -290,6 +302,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: e0e12f60eb0054c468a788a4b4554def, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 2
         showVFXAttackType: 0
         attackData:
@@ -313,7 +326,8 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: c3830364c1dedd048ab61e3a6f1786e7, type: 2}
-        rootMotionMultiplier: 2
+        animationParry: {fileID: 7400000, guid: da58a7a4c7c34ae44b55870df6440e8d, type: 2}
+        rootMotionMultiplier: 3
         showVFXAttackType: 0
         attackData:
           attackId: 0
@@ -336,7 +350,8 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: 1d1885aa4cf4b2a459b110917509eeef, type: 2}
-        rootMotionMultiplier: 1
+        animationParry: {fileID: 7400000, guid: da58a7a4c7c34ae44b55870df6440e8d, type: 2}
+        rootMotionMultiplier: 3
         showVFXAttackType: 0
         attackData:
           attackId: 0
@@ -358,6 +373,3 @@ MonoBehaviour:
           lastAttack: 1
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
-      distanceMin: 0.5
-      distanceToChase: 3
-      distanceToLoseAttack: 8
