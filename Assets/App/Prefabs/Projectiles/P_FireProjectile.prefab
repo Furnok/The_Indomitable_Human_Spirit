@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tagHurt: Hurtbox
   lifeTime: 5
-  speed: 10
+  speed: 30
 --- !u!65 &529521284934629458
 BoxCollider:
   m_ObjectHideFlags: 0
