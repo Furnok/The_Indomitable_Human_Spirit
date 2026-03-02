@@ -164696,7 +164696,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7573482851289621820, guid: e144a8f254e58954fa24225376ac56f3, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7573482851289621820, guid: e144a8f254e58954fa24225376ac56f3, type: 3}
       propertyPath: VelocityModule.orbitalX.scalar
@@ -184717,7 +184717,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7573482851289621820, guid: e144a8f254e58954fa24225376ac56f3, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7573482851289621820, guid: e144a8f254e58954fa24225376ac56f3, type: 3}
       propertyPath: VelocityModule.orbitalX.scalar
