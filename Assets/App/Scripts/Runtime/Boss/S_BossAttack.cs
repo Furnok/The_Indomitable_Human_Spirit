@@ -432,6 +432,9 @@ public class S_BossAttack : MonoBehaviour
 
         yield return new WaitForSeconds(currentAttack.listComboData[animNumb].animation.length);
 
+        rootMotionModifier.Setup(currentAttack.listComboData[animNumb].rootMotionMultiplier);
+        bossAttackData.SetAttackMode(currentAttack.listComboData[animNumb].attackData);
+
         if (currentAttack.listComboData[animNumb].showVFXAttackType) bossAttackData.VFXAttackType();
 
         S_FireProjectile s_FireProjectile = Instantiate(fireProjectile, fireProjectileSpawn.transform.position, Quaternion.identity);

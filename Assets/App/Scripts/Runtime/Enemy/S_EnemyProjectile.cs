@@ -12,6 +12,9 @@ public class S_EnemyProjectile : MonoBehaviour, I_AttackProvider, I_ReflectableP
     [SerializeField] private LayerMask blockLayer;
 
     [TabGroup("References")]
+    [SerializeField] private LayerMask ownLayer;
+
+    [TabGroup("References")]
     [SerializeField, S_LayerName] private int playerLayer;
 
     [TabGroup("References")]
@@ -199,7 +202,7 @@ public class S_EnemyProjectile : MonoBehaviour, I_AttackProvider, I_ReflectableP
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(tagHurt) && other.TryGetComponent(out I_Damageable damageable))
+        if (other.CompareTag(tagHurt) && other.gameObject.layer != ownLayer && other.TryGetComponent(out I_Damageable damageable))
         {
             if (damageable != null)
             {
