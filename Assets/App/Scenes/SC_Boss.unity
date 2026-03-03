@@ -52943,6 +52943,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1512257038926798052, guid: c156732cb46eb1c4f825606c4264be76, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.659
+      objectReference: {fileID: 0}
     - target: {fileID: 3473314807466382836, guid: c156732cb46eb1c4f825606c4264be76, type: 3}
       propertyPath: m_LocalPosition.x
       value: 24.1
@@ -347590,6 +347594,10 @@ PrefabInstance:
     - target: {fileID: 4531223415954674657, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536495382137262365, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
+      propertyPath: managedReferences[5078650288347545724].m_VariantData.Array.data[1].value
+      value: Tu es Mort !
       objectReference: {fileID: 0}
     - target: {fileID: 6197051584241607373, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
       propertyPath: haveGameOver
