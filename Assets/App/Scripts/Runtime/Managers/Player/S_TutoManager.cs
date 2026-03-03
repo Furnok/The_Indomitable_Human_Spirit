@@ -12,6 +12,7 @@ public class S_TutoManager : MonoBehaviour
     [SerializeField] S_SerializableDictionary<S_EnumTutorialStep, GameObject> _tutoPrefabToEnumDictionary;
     [SerializeField] RSO_ListTutoStepFinished _tutoStepsFinished;
     [SerializeField] RectTransform _filterConvictionBar;
+    [SerializeField] GameObject _tutoInProgressGO;
 
     //[SerializeField] List<GameObject> _tutoStepPrefabs;
     [Header("Inputs")]
@@ -192,6 +193,8 @@ public class S_TutoManager : MonoBehaviour
         {
             _onRequestAcceptedTutorialStep.Call(tutoStep);
         }
+
+        _tutoInProgressGO.SetActive(true);
     }
 
     void DisableTutoGO()
@@ -204,6 +207,7 @@ public class S_TutoManager : MonoBehaviour
 
     void StepFinished(S_EnumTutorialStep tutoStep)
     {
+
         var tuto = _tutoStepsFinished.Value.Find(x => x.Step == tutoStep && x.IsFinished == true);
 
         _onChangeHighlightTarget.Call(_filterConvictionBar);
@@ -244,7 +248,15 @@ public class S_TutoManager : MonoBehaviour
             StartCoroutine(S_Utils.Delay(0.2f, () =>
             {
                 rseOnGameActionInputEnabled.Call();
+
+                _tutoInProgressGO.SetActive(false);
+
             }));
+        }
+
+        if (tuto != null && tutoStep == S_EnumTutorialStep.ParryProjectile)
+        {
+            _tutoInProgressGO.SetActive(false);
         }
 
         if (tuto != null && tutoStep == S_EnumTutorialStep.Parry)
@@ -255,6 +267,8 @@ public class S_TutoManager : MonoBehaviour
                 _tutorials.TryGetValue(tutoStep, out TutoStepData stepData);
 
                 stepData.IsFinished = true;
+
+                _tutoInProgressGO.SetActive(false);
             }
             else
             {
@@ -273,6 +287,8 @@ public class S_TutoManager : MonoBehaviour
                 _tutorials.TryGetValue(tutoStep, out TutoStepData stepData);
 
                 stepData.IsFinished = true;
+
+                _tutoInProgressGO.SetActive(false);
             }
             else
             {
@@ -309,6 +325,8 @@ public class S_TutoManager : MonoBehaviour
         if (tuto != null && tutoStep == S_EnumTutorialStep.Attack)
         {
             _onChangeActiveStatePanelsFilters.Call();
+
+            _tutoInProgressGO.SetActive(false);
         }
 
         //if (tuto != null && tutoStep == S_EnumTutorialStep.Parry)
