@@ -6,7 +6,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using static UnityEngine.Rendering.DebugUI;
 
 public class S_UIGameManager : MonoBehaviour
 {
@@ -26,10 +25,13 @@ public class S_UIGameManager : MonoBehaviour
     [SerializeField] private Slider sliderHealth;
 
     [TabGroup("References")]
-    [SerializeField] private Image sliderConviction;
+    [SerializeField] private Slider sliderConviction;
 
     [TabGroup("References")]
     [SerializeField] private Slider sliderPlayerAttackSteps;
+
+    [TabGroup("References")]
+    [SerializeField] private Slider sliderPlayerConvictionNeed;
 
     [TabGroup("References")]
     [Title("Skip")]
@@ -41,6 +43,9 @@ public class S_UIGameManager : MonoBehaviour
     [TabGroup("References")]
     [Title("Rect Transform Conviction")]
     [SerializeField] private RectTransform sliderFillAreaRectTransform;
+
+    [TabGroup("References")]
+    [SerializeField] private Image sliderConvictionFill;
 
     [TabGroup("References")]
     [SerializeField] private RectTransform ticksParent;
@@ -129,7 +134,7 @@ public class S_UIGameManager : MonoBehaviour
     [SerializeField] private RSE_OnFinishBossP1 rseOnFinishBossP1;
 
     [TabGroup("Inputs")]
-    [SerializeField] private RSE_OnDisplayError rseOnDisplayError;
+    [SerializeField] private RSE_OnPlayerHealNotEnoughMana rseOnPlayerHealNotEnoughMana;
 
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnUIInputEnabled rseOnUIInputEnabled;
@@ -219,12 +224,18 @@ public class S_UIGameManager : MonoBehaviour
     {
         sliderHealth.maxValue = ssoPlayerStats.Value.maxHealth;
 
-        materialConviction = new Material(sliderConviction.material);
-        sliderConviction.material = materialConviction;
+        sliderConviction.maxValue = ssoPlayerConvictionData.Value.maxConviction;
+        sliderConviction.value = ssoPlayerConvictionData.Value.maxConviction;
+
+        materialConviction = new Material(sliderConvictionFill.material);
+        sliderConvictionFill.material = materialConviction;
 
         materialConviction.SetFloat("_FillAmount", ssoPlayerConvictionData.Value.maxConviction / ssoPlayerConvictionData.Value.maxConviction);
 
         sliderPlayerAttackSteps.maxValue = ssoPlayerConvictionData.Value.maxConviction;
+        sliderPlayerConvictionNeed.maxValue = ssoPlayerConvictionData.Value.maxConviction;
+
+        sliderPlayerConvictionNeed.value = ssoPlayerConvictionData.Value.healCost;
 
         StartCoroutine(BuildTicksNextFrame());
     }
@@ -245,7 +256,7 @@ public class S_UIGameManager : MonoBehaviour
         rseOnDialogueDisplay.action += DisplayDialogue;
         rseOnSaveDisplay.action += DisplaySave;
         rseOnFinishBossP1.action += GameWin;
-        rseOnDisplayError.action += DisplayError;
+        rseOnPlayerHealNotEnoughMana.action += DisplayHealNotEnoughtMana;
     }
 
     private void OnDisable()
@@ -264,7 +275,7 @@ public class S_UIGameManager : MonoBehaviour
         rseOnDialogueDisplay.action -= DisplayDialogue;
         rseOnSaveDisplay.action -= DisplaySave;
         rseOnFinishBossP1.action -= GameWin;
-        rseOnDisplayError.action -= DisplayError;
+        rseOnPlayerHealNotEnoughMana.action -= DisplayHealNotEnoughtMana;
 
         healthTween?.Kill();
         convictionTween?.Kill();
@@ -364,6 +375,28 @@ public class S_UIGameManager : MonoBehaviour
             rt.anchorMax = new Vector2(normalized, 0.5f);
             rt.pivot = new Vector2(0.5f, 0.5f);
             rt.anchoredPosition = Vector2.zero;
+        }
+    }
+
+    private void DisplayHealNotEnoughtMana()
+    {
+        CanvasGroup cg = sliderPlayerConvictionNeed.GetComponent<CanvasGroup>();
+        cg.DOKill();
+
+        if (errorCoroutine != null)
+        {
+            StopCoroutine(errorCoroutine);
+            errorCoroutine = null;
+        }
+
+        cg.alpha = 0;
+
+        Sequence seq = DOTween.Sequence();
+
+        for (int i = 0; i < 3; i++)
+        {
+            seq.Append(cg.DOFade(1f, ssoDisplay.Value).SetEase(Ease.Linear));
+            seq.Append(cg.DOFade(0f, ssoDisplay.Value).SetEase(Ease.Linear));
         }
     }
     #endregion
@@ -650,39 +683,4 @@ public class S_UIGameManager : MonoBehaviour
         });
     }
     #endregion
-
-    private void DisplayError()
-    {
-        CanvasGroup cg = errorWindow.GetComponent<CanvasGroup>();
-        cg.DOKill();
-
-        if (errorCoroutine != null)
-        {
-            StopCoroutine(errorCoroutine);
-            errorCoroutine = null;
-        }
-
-        errorWindow.gameObject.SetActive(false);
-        cg.alpha = 0;
-
-        cg.DOFade(1f, ssoDisplay.Value).SetEase(Ease.Linear)
-        .OnStart(() =>
-        {
-            errorWindow.gameObject.SetActive(true);
-        })
-        .OnComplete(() =>
-        {
-            errorCoroutine = StartCoroutine(TimeError(cg));
-        });   
-    }
-
-    private IEnumerator TimeError(CanvasGroup cg)
-    {
-        yield return new WaitForSeconds(2);
-
-        cg.DOFade(0f, ssoUnDisplay.Value).SetEase(Ease.Linear).OnComplete(() =>
-        {
-            sliderBossHealth.gameObject.SetActive(false);
-        });
-    }
 }
