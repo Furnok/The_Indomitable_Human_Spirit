@@ -49,8 +49,8 @@ MonoBehaviour:
       isSpecialAttack: 1
       timeAfterAttack: 4
       isAttackDistance: 1
-      pvBossUnlock: 80
-      difficultyLevel: 5
+      pvBossUnlock: 100
+      difficultyLevel: 3
       listComboData:
       - animation: {fileID: -6759780123328594538, guid: ee840371c325fd748b10e1b2f509cff2, type: 3}
         animationParry: {fileID: 0}
@@ -153,7 +153,7 @@ MonoBehaviour:
       timeAfterAttack: 4
       isAttackDistance: 0
       pvBossUnlock: 75
-      difficultyLevel: 5
+      difficultyLevel: 2
       listComboData:
       - animation: {fileID: 7400000, guid: 7cf43363318563945bf17ec289351ba9, type: 2}
         animationParry: {fileID: 0}
@@ -917,7 +917,7 @@ MonoBehaviour:
       isSpecialAttack: 1
       timeAfterAttack: 2
       isAttackDistance: 1
-      pvBossUnlock: 100
+      pvBossUnlock: 80
       difficultyLevel: 7
       listComboData:
       - animation: {fileID: 7400000, guid: 313b8138c91e15a469ccc69af8d1eb11, type: 2}
