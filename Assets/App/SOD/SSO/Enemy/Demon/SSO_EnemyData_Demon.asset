@@ -38,6 +38,7 @@ MonoBehaviour:
       distanceToLoseAttack: 13.2
       listAnimationsCombos:
       - animation: {fileID: 7400000, guid: 348c9aeec081fb74f86aba7e2f2e2409, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 1
         showVFXAttackType: 0
         attackData:
@@ -61,6 +62,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: 1d36c61374118ed428af765b224937d7, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 1
         showVFXAttackType: 1
         attackData:
@@ -72,9 +74,9 @@ MonoBehaviour:
           numberOfProjectiles: 0
           damage: 20
           knockbackHitDuration: 0.1
-          knockbackHitDistance: 2
+          knockbackHitDistance: 1
           knockbackOnParryDuration: 0.2
-          knockbackOnParrryDistance: 1
+          knockbackOnParrryDistance: 0.3
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
@@ -84,6 +86,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: 48ca1dcbc112c7a43b806b9a0df5db3d, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 1
         showVFXAttackType: 0
         attackData:
@@ -107,6 +110,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: 348c9aeec081fb74f86aba7e2f2e2409, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 1
         showVFXAttackType: 0
         attackData:
@@ -130,6 +134,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: 1d36c61374118ed428af765b224937d7, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 1
         showVFXAttackType: 1
         attackData:
@@ -141,9 +146,9 @@ MonoBehaviour:
           numberOfProjectiles: 0
           damage: 20
           knockbackHitDuration: 0.1
-          knockbackHitDistance: 2
+          knockbackHitDistance: 1
           knockbackOnParryDuration: 0.2
-          knockbackOnParrryDistance: 1
+          knockbackOnParrryDistance: 0.3
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
@@ -153,6 +158,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: 48ca1dcbc112c7a43b806b9a0df5db3d, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 1
         showVFXAttackType: 0
         attackData:
@@ -176,6 +182,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: 348c9aeec081fb74f86aba7e2f2e2409, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 1
         showVFXAttackType: 0
         attackData:
@@ -199,6 +206,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: 1d36c61374118ed428af765b224937d7, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 1
         showVFXAttackType: 1
         attackData:
@@ -210,9 +218,9 @@ MonoBehaviour:
           numberOfProjectiles: 0
           damage: 20
           knockbackHitDuration: 0.1
-          knockbackHitDistance: 2
+          knockbackHitDistance: 1
           knockbackOnParryDuration: 0.2
-          knockbackOnParrryDistance: 1
+          knockbackOnParrryDistance: 0.3
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
@@ -222,6 +230,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: 48ca1dcbc112c7a43b806b9a0df5db3d, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 1
         showVFXAttackType: 0
         attackData:
@@ -245,6 +254,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: 348c9aeec081fb74f86aba7e2f2e2409, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 1
         showVFXAttackType: 0
         attackData:
@@ -268,6 +278,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: 1d36c61374118ed428af765b224937d7, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 1
         showVFXAttackType: 1
         attackData:
@@ -279,9 +290,9 @@ MonoBehaviour:
           numberOfProjectiles: 0
           damage: 20
           knockbackHitDuration: 0.1
-          knockbackHitDistance: 2
+          knockbackHitDistance: 1
           knockbackOnParryDuration: 0.2
-          knockbackOnParrryDistance: 1
+          knockbackOnParrryDistance: 0.3
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
@@ -291,6 +302,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: 48ca1dcbc112c7a43b806b9a0df5db3d, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 1
         showVFXAttackType: 0
         attackData:
@@ -314,6 +326,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: 348c9aeec081fb74f86aba7e2f2e2409, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 1
         showVFXAttackType: 0
         attackData:
@@ -337,6 +350,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: 1d36c61374118ed428af765b224937d7, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 1
         showVFXAttackType: 1
         attackData:
@@ -348,9 +362,9 @@ MonoBehaviour:
           numberOfProjectiles: 0
           damage: 20
           knockbackHitDuration: 0.1
-          knockbackHitDistance: 2
+          knockbackHitDistance: 1
           knockbackOnParryDuration: 0.2
-          knockbackOnParrryDistance: 1
+          knockbackOnParrryDistance: 0.3
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
@@ -360,6 +374,7 @@ MonoBehaviour:
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: 48ca1dcbc112c7a43b806b9a0df5db3d, type: 2}
+        animationParry: {fileID: 0}
         rootMotionMultiplier: 1
         showVFXAttackType: 0
         attackData:

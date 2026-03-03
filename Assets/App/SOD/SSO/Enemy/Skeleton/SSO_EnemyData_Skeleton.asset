@@ -50,9 +50,9 @@ MonoBehaviour:
           numberOfProjectiles: 0
           damage: 5
           knockbackHitDuration: 0.1
-          knockbackHitDistance: 2
+          knockbackHitDistance: 1
           knockbackOnParryDuration: 0.2
-          knockbackOnParrryDistance: 1
+          knockbackOnParrryDistance: 0.5
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
@@ -74,7 +74,7 @@ MonoBehaviour:
           numberOfProjectiles: 0
           damage: 5
           knockbackHitDuration: 0.1
-          knockbackHitDistance: 1.5
+          knockbackHitDistance: 1
           knockbackOnParryDuration: 0.1
           knockbackOnParrryDistance: 0.5
           parryToleranceBeforeHit: 0.05
@@ -98,9 +98,9 @@ MonoBehaviour:
           numberOfProjectiles: 0
           damage: 5
           knockbackHitDuration: 0.1
-          knockbackHitDistance: 2
+          knockbackHitDistance: 1.5
           knockbackOnParryDuration: 0.2
-          knockbackOnParrryDistance: 5
+          knockbackOnParrryDistance: 0.7
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
