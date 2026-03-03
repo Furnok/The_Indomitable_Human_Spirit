@@ -59,7 +59,7 @@ public class S_BossProjectile : MonoBehaviour, I_AttackProvider, I_ReflectablePr
     private Transform startAimPoint = null;
     private bool _canReflect = true;
     private bool bossHit= false;
-    private float timeAdd = 0;
+    private float timeRemove = 0f;
 
     private float arcHeightMultiplier => ssoProjectileData.Value.arcHeightMultiplier;
     private float arcDirection => ssoProjectileData.Value.arcDirection;
@@ -99,7 +99,7 @@ public class S_BossProjectile : MonoBehaviour, I_AttackProvider, I_ReflectablePr
         if (!isInitialized) return;
 
         timeAlive += Time.deltaTime;
-        float t = timeAlive / travelTime;
+        float t = timeAlive / (travelTime - timeRemove);
 
         if (timeAlive >= ssoProjectileData.Value.lifeTime)
         {
@@ -137,7 +137,7 @@ public class S_BossProjectile : MonoBehaviour, I_AttackProvider, I_ReflectablePr
                 return;
             }
 
-            float curveSpeed = (b - a).magnitude / (travelTime * 0.5f);
+            float curveSpeed = (b - a).magnitude / ((travelTime - timeRemove) * 0.5f);
             transform.position += tangent * curveSpeed * Time.deltaTime;
             transform.forward = tangent;
             direction = tangent;
@@ -153,8 +153,8 @@ public class S_BossProjectile : MonoBehaviour, I_AttackProvider, I_ReflectablePr
     {
         attackData.damage *= ssoProjectileData.Value.reflectDmgMul;
         timeAlive = 0;
-        timeAlive += timeAdd;
-        timeAdd = timeAdd + 0.1f;
+
+        timeRemove = timeRemove + 0.1f;
 
         if (gameObject.layer == enemyLayer)
         {
