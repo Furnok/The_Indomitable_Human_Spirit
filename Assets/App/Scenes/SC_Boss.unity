@@ -59664,7 +59664,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67fb6a5d86826bc44a21ea96a2c5a103, type: 2}
+  - {fileID: 2100000, guid: 0a179832f3f65e94a9e8cb4aa1ad76c5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -134814,6 +134814,58 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 902152431755447821, guid: 62d08d809745aec44b0c9fa87327d70c, type: 3}
+      propertyPath: prewarm
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 902152431755447821, guid: 62d08d809745aec44b0c9fa87327d70c, type: 3}
+      propertyPath: ShapeModule.type
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 902152431755447821, guid: 62d08d809745aec44b0c9fa87327d70c, type: 3}
+      propertyPath: VelocityModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 902152431755447821, guid: 62d08d809745aec44b0c9fa87327d70c, type: 3}
+      propertyPath: VelocityModule.x.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 902152431755447821, guid: 62d08d809745aec44b0c9fa87327d70c, type: 3}
+      propertyPath: VelocityModule.y.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 902152431755447821, guid: 62d08d809745aec44b0c9fa87327d70c, type: 3}
+      propertyPath: VelocityModule.z.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 902152431755447821, guid: 62d08d809745aec44b0c9fa87327d70c, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 12.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 902152431755447821, guid: 62d08d809745aec44b0c9fa87327d70c, type: 3}
+      propertyPath: VelocityModule.x.minScalar
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 902152431755447821, guid: 62d08d809745aec44b0c9fa87327d70c, type: 3}
+      propertyPath: NoiseModule.strength.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 902152431755447821, guid: 62d08d809745aec44b0c9fa87327d70c, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 902152431755447821, guid: 62d08d809745aec44b0c9fa87327d70c, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.0006
+      objectReference: {fileID: 0}
+    - target: {fileID: 902152431755447821, guid: 62d08d809745aec44b0c9fa87327d70c, type: 3}
+      propertyPath: VelocityModule.orbitalY.scalar
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 902152431755447821, guid: 62d08d809745aec44b0c9fa87327d70c, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 1028970867693538119, guid: 62d08d809745aec44b0c9fa87327d70c, type: 3}
       propertyPath: m_Name
       value: FX_Fire_Embers_Large_01
@@ -164636,7 +164688,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 474368864564698576, guid: e144a8f254e58954fa24225376ac56f3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 33.6
+      value: 35.4
       objectReference: {fileID: 0}
     - target: {fileID: 474368864564698576, guid: e144a8f254e58954fa24225376ac56f3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -184657,7 +184709,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 474368864564698576, guid: e144a8f254e58954fa24225376ac56f3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 33.6
+      value: 35.4
       objectReference: {fileID: 0}
     - target: {fileID: 474368864564698576, guid: e144a8f254e58954fa24225376ac56f3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -334039,7 +334091,7 @@ Transform:
   m_GameObject: {fileID: 1773350855}
   serializedVersion: 2
   m_LocalRotation: {x: -0.000000029470218, y: 0.7071069, z: -0.70710677, w: -0.000000044703484}
-  m_LocalPosition: {x: -45.800003, y: -44.998344, z: 679.9}
+  m_LocalPosition: {x: -192, y: 143, z: 679.9}
   m_LocalScale: {x: 72.9496, y: 72.94961, z: 72.94961}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -358403,6 +358455,18 @@ PrefabInstance:
     - target: {fileID: 2915668357006469683, guid: 0172bb772cbf6cd438211f41bb4053c4, type: 3}
       propertyPath: delay
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5717509932139896987, guid: 0172bb772cbf6cd438211f41bb4053c4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5717509932139896987, guid: 0172bb772cbf6cd438211f41bb4053c4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5717509932139896987, guid: 0172bb772cbf6cd438211f41bb4053c4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5717509932139896987, guid: 0172bb772cbf6cd438211f41bb4053c4, type: 3}
       propertyPath: m_LocalPosition.x
