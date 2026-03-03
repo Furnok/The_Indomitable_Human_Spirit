@@ -154,7 +154,7 @@ public class S_BossProjectile : MonoBehaviour, I_AttackProvider, I_ReflectablePr
         attackData.damage *= ssoProjectileData.Value.reflectDmgMul;
         timeAlive = 0;
 
-        timeRemove = timeRemove + 0.1f;
+        timeRemove = timeRemove + ssoProjectileData.Value.timeReduce;
 
         if (gameObject.layer == enemyLayer)
         {

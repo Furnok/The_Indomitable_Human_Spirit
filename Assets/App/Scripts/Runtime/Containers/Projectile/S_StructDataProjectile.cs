@@ -23,6 +23,9 @@ public struct S_StructDataProjectile
     [SuffixLabel("s", Overlay = true)]
     public float lifeTime;
 
+    [SuffixLabel("s", Overlay = true)]
+    public float timeReduce;
+
     [Title("Curve")]
     public AnimationCurve speedAnimationCurve;
 
