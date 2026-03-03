@@ -59,8 +59,8 @@ MonoBehaviour:
       m_RotationOrder: 4
     dodgeDistance: 5
     dodgeCooldown: 0.8
-    parryDuration: 0.2
-    parryCooldown: 0.2
+    parryDuration: 0.01
+    parryCooldown: 0.01
     projectileLifeTime: 10
     delayBeforeCastAttack: 0.25
     timeWaitBetweenSteps: 0.2

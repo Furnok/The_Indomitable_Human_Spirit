@@ -69,7 +69,7 @@ MonoBehaviour:
           knockbackOnParryDuration: 0
           knockbackOnParrryDistance: 0
           parryToleranceBeforeHit: 0.1
-          parryToleranceAfterHit: 0.1
+          parryToleranceAfterHit: 0.05
           invicibilityDuration: 0
           convictionReduction: 0.1
           convictionParryGain: 5
@@ -84,7 +84,7 @@ MonoBehaviour:
           attackId: 0
           goSourceId: 0
           attackType: 3
-          timeCast: 0.5
+          timeCast: 0.35
           timeInterval: 1
           numberOfProjectiles: 20
           damage: 25
@@ -93,7 +93,7 @@ MonoBehaviour:
           knockbackOnParryDuration: 0
           knockbackOnParrryDistance: 0
           parryToleranceBeforeHit: 0.1
-          parryToleranceAfterHit: 0.1
+          parryToleranceAfterHit: 0.05
           invicibilityDuration: 0
           convictionReduction: 0.1
           convictionParryGain: 5
