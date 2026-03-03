@@ -62,7 +62,7 @@ MonoBehaviour:
           attackType: 3
           timeCast: 0.5
           timeInterval: 1
-          numberOfProjectiles: 20
+          numberOfProjectiles: 10
           damage: 10
           knockbackHitDuration: 0
           knockbackHitDistance: 0
@@ -84,7 +84,7 @@ MonoBehaviour:
           attackId: 0
           goSourceId: 0
           attackType: 3
-          timeCast: 0.25
+          timeCast: 0.5
           timeInterval: 1
           numberOfProjectiles: 20
           damage: 25

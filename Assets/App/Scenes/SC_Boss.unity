@@ -178738,6 +178738,11 @@ MonoBehaviour:
   m_IgnoreFromBuild: 0
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
+--- !u!1 &917622133 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5074663784930992709, guid: c156732cb46eb1c4f825606c4264be76, type: 3}
+  m_PrefabInstance: {fileID: 255517538}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &918056936
 Mesh:
   m_ObjectHideFlags: 0
@@ -335293,6 +335298,11 @@ MonoBehaviour:
   m_IgnoreFromBuild: 0
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
+--- !u!1 &1780045565 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6571051923970516415, guid: c156732cb46eb1c4f825606c4264be76, type: 3}
+  m_PrefabInstance: {fileID: 255517538}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1780886109
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -405410,6 +405420,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3715047057152782743, guid: cfbc9a18fd4e24040bc327887bfd4444, type: 3}
+      propertyPath: _propLantern
+      value: 
+      objectReference: {fileID: 1780045565}
+    - target: {fileID: 3715047057152782743, guid: cfbc9a18fd4e24040bc327887bfd4444, type: 3}
+      propertyPath: _playerDamageVFX
+      value: 
+      objectReference: {fileID: 917622133}
     - target: {fileID: 6440775602794653530, guid: cfbc9a18fd4e24040bc327887bfd4444, type: 3}
       propertyPath: m_Name
       value: P_PlayerManagers
