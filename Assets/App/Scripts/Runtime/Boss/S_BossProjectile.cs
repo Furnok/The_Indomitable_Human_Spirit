@@ -59,6 +59,7 @@ public class S_BossProjectile : MonoBehaviour, I_AttackProvider, I_ReflectablePr
     private Transform startAimPoint = null;
     private bool _canReflect = true;
     private bool bossHit= false;
+    private float timeAdd = 0;
 
     private float arcHeightMultiplier => ssoProjectileData.Value.arcHeightMultiplier;
     private float arcDirection => ssoProjectileData.Value.arcDirection;
@@ -150,9 +151,10 @@ public class S_BossProjectile : MonoBehaviour, I_AttackProvider, I_ReflectablePr
 
     public void Reflect(Transform reflectOwner)
     {
-
         attackData.damage *= ssoProjectileData.Value.reflectDmgMul;
         timeAlive = 0;
+        timeAlive += timeAdd;
+        timeAdd = timeAdd + 0.1f;
 
         if (gameObject.layer == enemyLayer)
         {

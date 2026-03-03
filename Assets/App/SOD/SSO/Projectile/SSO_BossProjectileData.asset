@@ -19,7 +19,7 @@ MonoBehaviour:
     arcRandomDirectionMin: -2
     arcRandomDirectionMax: 2
     travelTime: 1
-    lifeTime: 10
+    lifeTime: 3
     speedAnimationCurve:
       serializedVersion: 2
       m_Curve:
