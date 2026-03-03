@@ -57,6 +57,14 @@ public class S_PlayerParticleEffectManager : MonoBehaviour
     [TabGroup("Outputs")]
     [SerializeField] private SSO_PlayerConvictionData _playerConvictionData;
 
+
+    S_ParticlesAttract attract;
+    private void Awake()
+    {
+        attract = Instantiate(_prefabParticlesAttractDodgeGain, _convictionDodgeEffectParent.position, _convictionDodgeEffectParent.rotation, _convictionDodgeEffectParent);
+
+    }
+
     private void OnEnable()
     {
         _onParrySuccess.action += ActiveParryEffect;
@@ -97,9 +105,11 @@ public class S_PlayerParticleEffectManager : MonoBehaviour
 
     private void ActiveDodgeEffect()
     {
-        var attract = Instantiate(_prefabParticlesAttractDodgeGain, _convictionDodgeEffectParent.position, _convictionDodgeEffectParent.rotation, _convictionDodgeEffectParent);
+        StartCoroutine(S_Utils.Delay(0.1f, () =>
+        {
+            attract.InitializeTransform(_targetAttract, _playerConvictionData.Value.dodgeSuccessGain);
 
-        attract.InitializeTransform(_targetAttract, _playerConvictionData.Value.dodgeSuccessGain);
+        }));
     }
 
     private void ActiveChargeEffect()
