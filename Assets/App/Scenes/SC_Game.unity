@@ -23198,7 +23198,7 @@ MonoBehaviour:
   m_LightUnit: 0
   m_LuxAtDistance: 1
   m_Intensity: 0
-  m_InnerSpotPercent: 47.996918
+  m_InnerSpotPercent: 50
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
   m_VolumetricDimmer: 1
@@ -23332,9 +23332,9 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 0.4631136, b: 0, a: 1}
-  m_Intensity: 25000000
+  m_Intensity: 16777216
   m_Range: 10
-  m_SpotAngle: 90
+  m_SpotAngle: 120
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
@@ -23383,7 +23383,7 @@ Light:
   m_ForceVisible: 0
   m_ShadowRadius: 0.025
   m_ShadowAngle: 0
-  m_LightUnit: 2
+  m_LightUnit: 4
   m_LuxAtDistance: 0.5
   m_EnableSpotReflector: 1
 --- !u!1001 &98638051
@@ -72377,7 +72377,7 @@ MonoBehaviour:
   m_LightUnit: 0
   m_LuxAtDistance: 1
   m_Intensity: 0
-  m_InnerSpotPercent: 47.996918
+  m_InnerSpotPercent: 50
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
   m_VolumetricDimmer: 1
@@ -72511,9 +72511,9 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 0.4631136, b: 0, a: 1}
-  m_Intensity: 25000000
+  m_Intensity: 16777216
   m_Range: 10
-  m_SpotAngle: 90
+  m_SpotAngle: 120
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
@@ -72562,7 +72562,7 @@ Light:
   m_ForceVisible: 0
   m_ShadowRadius: 0.025
   m_ShadowAngle: 0
-  m_LightUnit: 2
+  m_LightUnit: 4
   m_LuxAtDistance: 0.5
   m_EnableSpotReflector: 1
 --- !u!1001 &339295077
@@ -232825,7 +232825,7 @@ MonoBehaviour:
   m_LightUnit: 0
   m_LuxAtDistance: 1
   m_Intensity: 0
-  m_InnerSpotPercent: 47.996918
+  m_InnerSpotPercent: 50
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
   m_VolumetricDimmer: 1
@@ -232959,9 +232959,9 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 0.4631136, b: 0, a: 1}
-  m_Intensity: 25000000
+  m_Intensity: 16777216
   m_Range: 10
-  m_SpotAngle: 90
+  m_SpotAngle: 120
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
@@ -233010,7 +233010,7 @@ Light:
   m_ForceVisible: 0
   m_ShadowRadius: 0.025
   m_ShadowAngle: 0
-  m_LightUnit: 2
+  m_LightUnit: 4
   m_LuxAtDistance: 0.5
   m_EnableSpotReflector: 1
 --- !u!1001 &1043192171
@@ -479053,7 +479053,7 @@ MonoBehaviour:
   m_LightUnit: 0
   m_LuxAtDistance: 1
   m_Intensity: 0
-  m_InnerSpotPercent: 47.996918
+  m_InnerSpotPercent: 50
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
   m_VolumetricDimmer: 1
@@ -479187,9 +479187,9 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 0.4631136, b: 0, a: 1}
-  m_Intensity: 25000000
+  m_Intensity: 16777216
   m_Range: 10
-  m_SpotAngle: 90
+  m_SpotAngle: 120
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
@@ -479238,7 +479238,7 @@ Light:
   m_ForceVisible: 0
   m_ShadowRadius: 0.025
   m_ShadowAngle: 0
-  m_LightUnit: 2
+  m_LightUnit: 4
   m_LuxAtDistance: 0.5
   m_EnableSpotReflector: 1
 --- !u!1001 &2144794959
