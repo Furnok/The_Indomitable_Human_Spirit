@@ -113,7 +113,11 @@ public class S_CursorManager : MonoBehaviour
                 ResetFocus();
 
                 rsoDevice.Value = S_EnumDevice.KeyboardMouse;
-                ShowMouseCursor();
+
+                if (needCursor)
+                {
+                    ShowMouseCursor();
+                }
             }
         }
     }
