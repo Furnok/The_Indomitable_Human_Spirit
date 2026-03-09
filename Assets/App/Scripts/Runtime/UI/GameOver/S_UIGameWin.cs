@@ -24,6 +24,9 @@ public class S_UIGameWin : MonoBehaviour
     [SerializeField] private RSE_OnShowMouseCursor rseOnShowMouseCursor;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnNeedCursor rseOnNeedCursor;
+
+    [TabGroup("Outputs")]
     [SerializeField] private RSO_Navigation rsoNavigation;
 
     [TabGroup("Outputs")]
@@ -34,6 +37,7 @@ public class S_UIGameWin : MonoBehaviour
     private void OnEnable()
     {
         if (Gamepad.current == null) rseOnShowMouseCursor.Call();
+        rseOnNeedCursor.Call(true);
 
         isTransit = false;
     }

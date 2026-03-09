@@ -35,6 +35,9 @@ public class S_UIGameOver : MonoBehaviour
     [SerializeField] private RSE_OnHideMouseCursor rseOnHideMouseCursor;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnNeedCursor rseOnNeedCursor;
+
+    [TabGroup("Outputs")]
     [SerializeField] private RSE_OnGameInputEnabled rseOnGameInputEnabled;
 
     [TabGroup("Outputs")]
@@ -57,6 +60,7 @@ public class S_UIGameOver : MonoBehaviour
     private void OnEnable()
     {
         if (Gamepad.current == null) rseOnShowMouseCursor.Call();
+        rseOnNeedCursor.Call(true);
 
         isTransit = false;
     }
@@ -77,6 +81,7 @@ public class S_UIGameOver : MonoBehaviour
             rseOnFadeOut.Call();
 
             rseOnHideMouseCursor.Call();
+            rseOnNeedCursor.Call(false);
 
             rseOnCloseAllWindows.Call();
 

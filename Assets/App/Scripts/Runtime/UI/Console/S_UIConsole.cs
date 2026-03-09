@@ -23,6 +23,9 @@ public class S_UIConsole : MonoBehaviour
     [SerializeField] private RSE_OnShowMouseCursor rseOnShowMouseCursor;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnNeedCursor rseOnNeedCursor;
+
+    [TabGroup("Outputs")]
     [SerializeField] private RSO_ConsoleDisplay rsoConsoleDisplay;
 
     private int lastSoundFrame = -1;
@@ -35,6 +38,7 @@ public class S_UIConsole : MonoBehaviour
         rsoConsoleDisplay.Value = true;
 
         if (Gamepad.current == null) rseOnShowMouseCursor.Call();
+        rseOnNeedCursor.Call(true);
 
         scrollRect.verticalNormalizedPosition = 0;
     }
