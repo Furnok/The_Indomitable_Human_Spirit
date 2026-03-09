@@ -172,19 +172,19 @@ public class S_TutoManager : MonoBehaviour
             }
             else if (_tutoPrefabToEnumDictionary.ContainsKey(tutoStep))
             {
-                if(tutoStep == S_EnumTutorialStep.Parry && _parryCountDupplicate >= 1)
-                {
-                    _tutoPrefabToEnumDictionary[S_EnumTutorialStep.ParryDuplicate].SetActive(true);
-                }
-                else if(tutoStep == S_EnumTutorialStep.Dodge && _dodgeCountDupplicate >= 1)
-                {
-                    _tutoPrefabToEnumDictionary[S_EnumTutorialStep.DodgeDuplicate].SetActive(true);
-                }
-                else
-                {
-                    _tutoPrefabToEnumDictionary[tutoStep].SetActive(true);
-                }
-
+                //if(tutoStep == S_EnumTutorialStep.Parry && _parryCountDupplicate >= 1)
+                //{
+                //    _tutoPrefabToEnumDictionary[S_EnumTutorialStep.ParryDuplicate].SetActive(true);
+                //}
+                //else if (tutoStep == S_EnumTutorialStep.Dodge && _dodgeCountDupplicate >= 1)
+                //{
+                //    _tutoPrefabToEnumDictionary[S_EnumTutorialStep.DodgeDuplicate].SetActive(true);
+                //}
+                //else
+                //{
+                //    _tutoPrefabToEnumDictionary[tutoStep].SetActive(true);
+                //}
+                _tutoPrefabToEnumDictionary[tutoStep].SetActive(true);
                 _onGamePause.Call(true);
                 _onRequestAcceptedTutorialStep.Call(tutoStep);
             }
@@ -261,47 +261,51 @@ public class S_TutoManager : MonoBehaviour
 
         if (tuto != null && tutoStep == S_EnumTutorialStep.Parry)
         {
-            _parryCountDupplicate++;
-            if (_parryCountDupplicate >= 3)
-            {
-                _tutorials.TryGetValue(tutoStep, out TutoStepData stepData);
+            //_parryCountDupplicate++;
+            //if (_parryCountDupplicate >= 3)
+            //{
+            //    _tutorials.TryGetValue(tutoStep, out TutoStepData stepData);
 
-                stepData.IsFinished = true;
+            //    stepData.IsFinished = true;
 
-                _tutoInProgressGO.SetActive(false);
-            }
-            else
-            {
-                _tutorials.TryGetValue(tutoStep, out TutoStepData stepData);
-                _onRequestAcceptedTutorialStep.Call(tutoStep);
+            //    _tutoInProgressGO.SetActive(false);
+            //}
+            //else
+            //{
+            //    _tutorials.TryGetValue(tutoStep, out TutoStepData stepData);
+            //    _onRequestAcceptedTutorialStep.Call(tutoStep);
 
-                stepData.IsFinished = false;
-            }
+            //    stepData.IsFinished = false;
+            //}
+
+            _tutoInProgressGO.SetActive(false);
         }
 
         if (tuto != null && tutoStep == S_EnumTutorialStep.Dodge)
         {
-            _dodgeCountDupplicate++;
-            if (_dodgeCountDupplicate >= 2)
-            {
-                _tutorials.TryGetValue(tutoStep, out TutoStepData stepData);
+            //_dodgeCountDupplicate++;
+            //if (_dodgeCountDupplicate >= 2)
+            //{
+            //    _tutorials.TryGetValue(tutoStep, out TutoStepData stepData);
 
-                stepData.IsFinished = true;
+            //    stepData.IsFinished = true;
 
-                _tutoInProgressGO.SetActive(false);
-            }
-            else
-            {
-                _tutorials.TryGetValue(tutoStep, out TutoStepData stepData);
+            //    _tutoInProgressGO.SetActive(false);
+            //}
+            //else
+            //{
+            //    _tutorials.TryGetValue(tutoStep, out TutoStepData stepData);
 
-                stepData.IsFinished = false;
-                _onRequestAcceptedTutorialStep.Call(tutoStep);
+            //    stepData.IsFinished = false;
+            //    _onRequestAcceptedTutorialStep.Call(tutoStep);
 
 
-            }
+            //}
+
+            _tutoInProgressGO.SetActive(false);
         }
 
-        if (tuto != null && tutoStep == S_EnumTutorialStep.Parry && _parryCountDupplicate >= 3)
+        if (tuto != null && tutoStep == S_EnumTutorialStep.Parry/* && _parryCountDupplicate >= 3*/)
         {
             StartCoroutine(S_Utils.Delay(0.5f, () =>
             {
