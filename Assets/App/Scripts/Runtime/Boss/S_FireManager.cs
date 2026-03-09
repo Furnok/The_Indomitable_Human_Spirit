@@ -1,5 +1,7 @@
 using Sirenix.OdinInspector;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization.SmartFormat.Core.Parsing;
 
 public class S_FireManager : MonoBehaviour
 {
@@ -23,16 +25,19 @@ public class S_FireManager : MonoBehaviour
 
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnAttractParticle rseOnAttractParticle;
+    [TabGroup("Inputs")]
+    [SerializeField] private RSE_OnStopAttract rseOnStopAttract;
 
-    //[Header("Outputs")]
-
+    private List<GameObject> spawnedAttracts = new List<GameObject>();
     private void OnEnable()
     {
         rseOnAttractParticle.action += InstantiatFireAttract;
+        rseOnStopAttract.action += ResetAttract;
     }
     private void OnDisable()
     {
         rseOnAttractParticle.action -= InstantiatFireAttract;
+        rseOnStopAttract.action -= ResetAttract;
     }
     private void InstantiatFireAttract()
     {
@@ -47,8 +52,21 @@ public class S_FireManager : MonoBehaviour
             Vector3 spawnPos = spawnCenter.position + new Vector3(rnd.x, _spawnHeight, rnd.y);
 
             var attract = Instantiate(fireAttract, spawnPos, Quaternion.identity);
+            spawnedAttracts.Add(attract.gameObject);
             attract.InitializeTransform(_targetAttract);
         }
 
+    }
+
+    private void ResetAttract()
+    {
+        foreach (var item in spawnedAttracts)
+        {
+            if (item != null)
+            {
+                Destroy(item);
+            }
+        }
+        spawnedAttracts.Clear();
     }
 }

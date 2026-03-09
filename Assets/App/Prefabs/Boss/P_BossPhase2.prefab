@@ -195,6 +195,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 05b30ffda8ad63c4d82da9ab419e36e1, type: 2}
     - target: {fileID: 6465511601208726001, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+      propertyPath: rseOnStopAttract
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f3b2c4511629e34d954d68b026a5106, type: 2}
+    - target: {fileID: 6465511601208726001, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
       propertyPath: durationGathering
       value: 1
       objectReference: {fileID: 0}
@@ -295,6 +299,7 @@ MonoBehaviour:
   fireAttract: {fileID: 1154783769500328815, guid: b4257b7bc18f7254892b6b102b3c61da, type: 3}
   bossTransform: {fileID: 1364584018897827843}
   rseOnAttractParticle: {fileID: 11400000, guid: 6b56ca48f31ff474482a67eb74243284, type: 2}
+  rseOnStopAttract: {fileID: 11400000, guid: 8f3b2c4511629e34d954d68b026a5106, type: 2}
 --- !u!1001 &7584749744290211997
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -375,6 +380,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2013937455260769207, guid: 9b42a44743b9a1442bfa1facacf63695, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a9b9182ba843b9f45b3a5fa84e662d67, type: 2}
     m_RemovedComponents:
     - {fileID: 476060215, guid: 9b42a44743b9a1442bfa1facacf63695, type: 3}
     m_RemovedGameObjects: []
@@ -439,7 +448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 2710950465709425117}
-  delay: 1.5
+  delay: 0.5
   syncValuesInstantly: 1
 --- !u!114 &13417093255898653
 MonoBehaviour:
