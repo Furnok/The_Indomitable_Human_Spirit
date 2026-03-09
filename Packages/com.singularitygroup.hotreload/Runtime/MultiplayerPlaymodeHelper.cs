@@ -11,7 +11,7 @@ namespace SingularityGroup.HotReload {
         public static bool IsClone => false;
 #endif
 
-        private static bool HasCommandLineArgument(string[] commandLineArgs, string argumentName) {
+        public static bool HasCommandLineArgument(string[] commandLineArgs, string argumentName) {
 	        foreach (string commandLineArg in commandLineArgs) {
 		        if (commandLineArg == argumentName) {
 			        return true;
