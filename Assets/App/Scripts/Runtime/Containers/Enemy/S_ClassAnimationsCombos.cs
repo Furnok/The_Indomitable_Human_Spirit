@@ -12,6 +12,11 @@ public class S_ClassAnimationsCombos
 
     public float distanceToLoseAttack = 0;
 
+    [Title("Tuto")]
+    public bool isTutoCombo = false;
+
+    public S_EnumTutorialStep tutoStepToUnlock;
+
     [Title("Combos")]
     public List<S_ClassAnimation> listAnimationsCombos = new();
 }

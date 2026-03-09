@@ -185,7 +185,13 @@ public class S_TutoManager : MonoBehaviour
                 //    _tutoPrefabToEnumDictionary[tutoStep].SetActive(true);
                 //}
                 _tutoPrefabToEnumDictionary[tutoStep].SetActive(true);
-                _onGamePause.Call(true);
+
+                if (tutoStep != S_EnumTutorialStep.Attack)
+                {
+                    _onGamePause.Call(true);
+
+                }
+
                 _onRequestAcceptedTutorialStep.Call(tutoStep);
             }
         }

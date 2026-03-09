@@ -36,6 +36,8 @@ MonoBehaviour:
     - distanceMin: 1
       distanceToChase: 2
       distanceToLoseAttack: 5
+      isTutoCombo: 0
+      tutoStepToUnlock: 0
       listAnimationsCombos:
       - animation: {fileID: 7400000, guid: a560317b9147edd4fba0893992161518, type: 2}
         animationParry: {fileID: 7400000, guid: da58a7a4c7c34ae44b55870df6440e8d, type: 2}
@@ -107,5 +109,35 @@ MonoBehaviour:
           convictionReduction: 2
           convictionParryGain: 5
           lastAttack: 0
+          attackDirection: {x: 0, y: 0, z: 0}
+          contactPoint: {x: 0, y: 0, z: 0}
+    - distanceMin: 1
+      distanceToChase: 2
+      distanceToLoseAttack: 5
+      isTutoCombo: 1
+      tutoStepToUnlock: 6
+      listAnimationsCombos:
+      - animation: {fileID: 7400000, guid: a560317b9147edd4fba0893992161518, type: 2}
+        animationParry: {fileID: 7400000, guid: da58a7a4c7c34ae44b55870df6440e8d, type: 2}
+        rootMotionMultiplier: 2
+        showVFXAttackType: 1
+        attackData:
+          attackId: 0
+          goSourceId: 0
+          attackType: 2
+          timeCast: 0
+          timeInterval: 0
+          numberOfProjectiles: 0
+          damage: 5
+          knockbackHitDuration: 0.1
+          knockbackHitDistance: 1
+          knockbackOnParryDuration: 0.2
+          knockbackOnParrryDistance: 0.5
+          parryToleranceBeforeHit: 0.05
+          parryToleranceAfterHit: 0.1
+          invicibilityDuration: 0.7
+          convictionReduction: 2
+          convictionParryGain: 5
+          lastAttack: 1
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}

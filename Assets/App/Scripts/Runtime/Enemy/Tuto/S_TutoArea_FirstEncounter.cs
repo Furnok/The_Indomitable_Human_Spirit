@@ -10,16 +10,29 @@ public class S_TutoArea_FirstEncounter : MonoBehaviour
 
     [Header("Inputs")]
     [SerializeField] RSO_SettingsSaved _rsoSettingsSaved;
+    [SerializeField] RSE_OnTutorialStepCompleted _onTutorialStepCompleted;
+    [SerializeField] RSE_OnRequestAcceptedTutorialStep _onRequestAcceptedTutorialStep;
 
     [Header("Outputs")]
     [SerializeField] RSE_OnRequestStartTutorialStep _onRequestStartTutorialStep;
-    [SerializeField] RSE_OnTutorialStepCompleted _onTutorialStepCompleted;
     [SerializeField] private RSE_OnPlayerTargetingCancel rseOnPlayerTargetingCancel;
 
 
     Collider _other;
     bool _hasTriggered = false;
     bool _playerInRange = false;
+
+    private void OnEnable()
+    {
+        _onTutorialStepCompleted.action += OnFinishTutoAttack;
+        _onRequestAcceptedTutorialStep.action += OnStartTutoAttack;
+    }
+
+    private void OnDisable()
+    {
+        _onTutorialStepCompleted.action -= OnFinishTutoAttack;
+        _onRequestAcceptedTutorialStep.action -= OnStartTutoAttack;
+    }
 
 
     private void OnTriggerEnter(Collider other)
@@ -58,5 +71,20 @@ public class S_TutoArea_FirstEncounter : MonoBehaviour
             }
         }
 
+    }
+
+    void OnStartTutoAttack(S_EnumTutorialStep Step)
+    {
+        //if (Step == S_EnumTutorialStep.Attack)
+        //    _enemyTuto.enabled = false;
+    }
+
+    void OnFinishTutoAttack(S_EnumTutorialStep Step)
+    {
+        if (Step == S_EnumTutorialStep.Parry)
+            _enemyTuto.enabled = false;
+
+        if (Step == S_EnumTutorialStep.Attack)
+            _enemyTuto.enabled = true;
     }
 }

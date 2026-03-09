@@ -2,6 +2,7 @@
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -135,6 +136,12 @@ public class S_Enemy : MonoBehaviour
 
     [TabGroup("Outputs")]
     [SerializeField] private SSO_CameraData ssoCameraData;
+
+    [TabGroup("Outputs")]
+    [SerializeField] RSO_SettingsSaved _rsoSettingsSaved;
+
+    [TabGroup("Outputs")]
+    [SerializeField] RSO_ListTutoStepFinished _tutoStepsFinished;
 
     private float health = 0;
     private AnimatorOverrideController overrideController = null;
@@ -630,9 +637,46 @@ public class S_Enemy : MonoBehaviour
     #region Combat
     private void SetCombo()
     {
-        int rnd = Random.Range(0, ssoEnemyData.Value.listCombos.Count);
+        if (_rsoSettingsSaved.Value.activateTuto == true)
+        {
+            var hasTutoCombo = ssoEnemyData.Value.listCombos.Find(c => c.isTutoCombo == true);
 
-        combo = ssoEnemyData.Value.listCombos[rnd];
+            if (hasTutoCombo != null )
+            {
+                combo = hasTutoCombo;
+
+                if (hasTutoCombo.tutoStepToUnlock == S_EnumTutorialStep.Parry && _tutoStepsFinished.Value.Any(x => x.Step == S_EnumTutorialStep.Parry && x.IsFinished == true))
+                {
+                    var listWithoutTuto = ssoEnemyData.Value.listCombos.FindAll(c => c.isTutoCombo == false);
+
+                    int rnd = Random.Range(0, listWithoutTuto.Count);
+
+                    combo = listWithoutTuto[rnd];
+                }
+                
+                return;
+            }
+            else
+            {
+                int rnd = Random.Range(0, ssoEnemyData.Value.listCombos.Count);
+
+                combo = ssoEnemyData.Value.listCombos[rnd];
+            }
+        }
+        else if (ssoEnemyData.Value.listCombos.Exists(c => c.isTutoCombo == true) == true)
+        {
+            var listWithoutTuto = ssoEnemyData.Value.listCombos.FindAll(c => c.isTutoCombo == false);
+
+            int rnd = Random.Range(0, listWithoutTuto.Count);
+
+            combo = listWithoutTuto[rnd];
+        }
+        else
+        {
+            int rnd = Random.Range(0, ssoEnemyData.Value.listCombos.Count);
+
+            combo = ssoEnemyData.Value.listCombos[rnd];
+        }
     }
 
     private void StartCombat()

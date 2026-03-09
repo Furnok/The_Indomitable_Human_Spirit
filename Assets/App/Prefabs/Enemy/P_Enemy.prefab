@@ -305,6 +305,8 @@ MonoBehaviour:
   rsoDataSaved: {fileID: 11400000, guid: db0edbbd21d7571419860daa092a7506, type: 2}
   rsoCurrentTarget: {fileID: 11400000, guid: 21e74e9f4371e414596255356b9bd1f4, type: 2}
   ssoCameraData: {fileID: 11400000, guid: 8a8b9ed3ac9bcab418920e1de02ba0e2, type: 2}
+  _rsoSettingsSaved: {fileID: 11400000, guid: 782057adb6fb88f4db3ac2e35a786bc0, type: 2}
+  _tutoStepsFinished: {fileID: 11400000, guid: d0022d51548eff74a843a82dbabd111d, type: 2}
 --- !u!114 &9183690598147176708
 MonoBehaviour:
   m_ObjectHideFlags: 0
