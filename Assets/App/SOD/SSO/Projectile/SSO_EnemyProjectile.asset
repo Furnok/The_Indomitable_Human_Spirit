@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _value:
     arcHeightMultiplier: 2
-    arcDirection: 0
+    arcDirection: 1
     randomizeArc: 1
-    arcRandomDirectionMin: 0.5
-    arcRandomDirectionMax: 1
+    arcRandomDirectionMin: -2
+    arcRandomDirectionMax: 2
     travelTime: 1
     lifeTime: 3
     speedAnimationCurve:

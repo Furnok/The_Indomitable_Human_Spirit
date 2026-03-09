@@ -180,7 +180,7 @@ public class S_PlayerBasicAttack : MonoBehaviour
 
     private void OnPlayerAttackUpgradeInput()
     {
-        if(_isHolding == false) return;
+        if (_isHolding == false || _playerCurrentState.Value != S_EnumPlayerState.Attacking) return;
 
 
         S_StructPlayerAttackStep nextStepConvitionNeed = _playerAttackSteps.Value.Where(x => x.step == _currenStepAttack + 1).FirstOrDefault();
@@ -213,7 +213,11 @@ public class S_PlayerBasicAttack : MonoBehaviour
     {
         //S_StructPlayerAttackStep stepConvition = _playerAttackSteps.Value.Where(x => x.step == 1).FirstOrDefault();
 
-        if (_playerStateTransitions.Value.CanTransition(_playerCurrentState.Value, S_EnumPlayerState.Attacking) == false || _playerCurrentConviction.Value < 1/* || !stepConvition.Equals(default(S_StructPlayerAttackStep)) && _playerCurrentConviction.Value < stepConvition.ammountConvitionNeeded*/) return;
+        if (_playerStateTransitions.Value.CanTransition(_playerCurrentState.Value, S_EnumPlayerState.Attacking) == false || _playerCurrentConviction.Value < 1/* || !stepConvition.Equals(default(S_StructPlayerAttackStep)) && _playerCurrentConviction.Value < stepConvition.ammountConvitionNeeded*/)
+        {
+            _isHolding = false;
+            return;
+        }
 
         if (_weaponAttackCoroutine != null) StopCoroutine(_weaponAttackCoroutine);
 
@@ -271,7 +275,31 @@ public class S_PlayerBasicAttack : MonoBehaviour
         _isHolding = false;
         rseOnAnimationBoolValueChange.Call(_attackParam, false);
 
-        FinalizeAttack();
+        if ( _currenStepAttack == 0 || _playerCurrentState.Value != S_EnumPlayerState.Attacking)
+        {
+            if (_convictionAccumulationInstance.isValid())
+            {
+                _convictionAccumulationInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                _convictionAccumulationInstance.release();
+                _convictionAccumulationInstance = default;
+            }
+
+            _rseOnRumbleStopChannel.Call(S_EnumRumbleChannel.ChargeAttack);
+            _reservedConviction = 0f;
+            PublishPreconsume(_reservedConviction);
+            rseOnSpawnProjectile.Call(0);
+
+
+            _onPlayerAddState.Call(S_EnumPlayerState.None);
+            _isHolding = false;
+            if (_attackChargeCoroutine == null) return;
+            _attackChargeCoroutine = null;
+        }
+        else
+        {
+            FinalizeAttack();
+
+        }
 
         rseOnSendConsoleMessage.Call("Player Launch Attack!");
 
@@ -467,6 +495,7 @@ public class S_PlayerBasicAttack : MonoBehaviour
             _attackChargeCoroutine = StartCoroutine(S_Utils.Delay(_animationTransitionDelays.Value.attackRecoveryDelay, () =>
             {
                 _onPlayerAddState.Call(S_EnumPlayerState.None);
+                _isHolding = false;
                 if (_attackChargeCoroutine == null) return;
                 _attackChargeCoroutine = null;
             }));
@@ -493,6 +522,8 @@ public class S_PlayerBasicAttack : MonoBehaviour
         rseOnAnimationBoolValueChange.Call(_attackParam, false);
 
         _reservedConviction = 0f;
+
+        rseOnSpawnProjectile.Call(0);
 
         if (_convictionAccumulationInstance.isValid())
         {

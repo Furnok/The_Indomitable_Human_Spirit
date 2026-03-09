@@ -47,7 +47,8 @@ public class S_ParticlesAttract : MonoBehaviour
         int count = _ps.GetParticles(_particles);
         if (count == 0)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            ResetTarget();
             return;
         }
 
@@ -121,5 +122,10 @@ public class S_ParticlesAttract : MonoBehaviour
         //Debug.Log("Total Particles Emitted: " + _totalParticles);
 
         target = transformToAttract;
+    }
+
+    private void ResetTarget()
+    {
+        target = null;
     }
 }

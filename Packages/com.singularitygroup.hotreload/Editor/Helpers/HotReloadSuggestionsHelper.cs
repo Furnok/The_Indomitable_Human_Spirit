@@ -558,6 +558,7 @@ namespace SingularityGroup.HotReload.Editor {
             CheckEditorsWithoutHRAsync().Forget();
         }
 
+        
         static bool checkingEditorsWihtoutHR;
         private static async Task CheckEditorsWithoutHRAsync() {
             try {

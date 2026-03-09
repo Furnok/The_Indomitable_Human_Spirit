@@ -92,6 +92,9 @@ public class S_BossAttack : MonoBehaviour
     [SerializeField] private RSE_OnStopParticle rseOnStopParticle;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnAttractParticle rseOnAttractParticle;
+
+    [TabGroup("Outputs")]
     [SerializeField] private RSE_OnEndAttack rseOnEndAttack;
 
     [TabGroup("Outputs")]
@@ -425,14 +428,20 @@ public class S_BossAttack : MonoBehaviour
         yield return new WaitForSeconds(currentAttack.listComboData[animNumb].animation.length);
         animNumb++;
 
+        rseOnAttractParticle.Call();
+        yield return new WaitForSeconds(3f);
+
         overrideKey = (animNumb % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
         overrideController[overrideKey] = currentAttack.listComboData[animNumb].animation;
 
         animator.SetTrigger(animNumb == 0 ? attackParam : comboParam);
 
-        yield return new WaitForSeconds(currentAttack.listComboData[animNumb].animation.length);
+        rootMotionModifier.Setup(currentAttack.listComboData[animNumb].rootMotionMultiplier);
+        bossAttackData.SetAttackMode(currentAttack.listComboData[animNumb].attackData);
 
         if (currentAttack.listComboData[animNumb].showVFXAttackType) bossAttackData.VFXAttackType();
+
+        yield return new WaitForSeconds(currentAttack.listComboData[animNumb].animation.length);
 
         S_FireProjectile s_FireProjectile = Instantiate(fireProjectile, fireProjectileSpawn.transform.position, Quaternion.identity);
         s_FireProjectile.Initialize(transform.rotation, currentAttack.listComboData[animNumb].attackData);

@@ -7,6 +7,9 @@ using UnityEngine.InputSystem;
 public class S_InputsManager : MonoBehaviour
 {
     #region Inpector Fields
+    [TabGroup("Tutorial")]
+    [SerializeField] private float _timeBeforeInputTutorialAction = 0.3f;
+
     [TabGroup("References")]
     [Title("Player Input")]
     [SerializeField] private PlayerInput playerInput;
@@ -395,40 +398,60 @@ public class S_InputsManager : MonoBehaviour
     private void EnableTutorialParryInput()
     {
         DisableTutorialInputs();
-        iaPlayerInput.Tutorial.Parry.performed += OnParryInput;
-        iaPlayerInput.Tutorial.Parry.performed += OnTutorialParryFinish;
+      
+        StartCoroutine(S_Utils.DelayRealTime(_timeBeforeInputTutorialAction, () =>
+        {
+            iaPlayerInput.Tutorial.Parry.performed += OnParryInput;
+            iaPlayerInput.Tutorial.Parry.performed += OnTutorialParryFinish;
+        }));
     }
 
     private void EnableTutorialParryProjectileInput()
     {
         DisableTutorialInputs();
-        iaPlayerInput.Tutorial.Parry.performed += OnParryInput;
-        iaPlayerInput.Tutorial.Parry.performed += OnTutorialParryProjectileFinish;
+     
+        StartCoroutine(S_Utils.DelayRealTime(_timeBeforeInputTutorialAction, () =>
+        {
+            iaPlayerInput.Tutorial.Parry.performed += OnParryInput;
+            iaPlayerInput.Tutorial.Parry.performed += OnTutorialParryProjectileFinish;
+        }));
     }
 
     void EnableTutoriaSwapTargetInput()
     {
         DisableTutorialInputs();
-        iaPlayerInput.Tutorial.SwapTarget.performed += OnSwapTargetInput;
-        iaPlayerInput.Tutorial.SwapTarget.performed += OnTutorialSwapTargetFinish;
+  
+        StartCoroutine(S_Utils.DelayRealTime(_timeBeforeInputTutorialAction, () =>
+        {
+            iaPlayerInput.Tutorial.SwapTarget.performed += OnSwapTargetInput;
+            iaPlayerInput.Tutorial.SwapTarget.performed += OnTutorialSwapTargetFinish;
+        }));
     }
 
     void EnableTutorialDodgeInput()
     {
         DisableTutorialInputs();
-        iaPlayerInput.Tutorial.Dodge.performed += OnDodgeInput;
-        iaPlayerInput.Tutorial.Dodge.performed += OnTutorialDodgeFinish;
+        
+        StartCoroutine(S_Utils.DelayRealTime(_timeBeforeInputTutorialAction, () =>
+        {
+            iaPlayerInput.Tutorial.Dodge.performed += OnDodgeInput;
+            iaPlayerInput.Tutorial.Dodge.performed += OnTutorialDodgeFinish;
+        }));
     }
 
     void EnableTutorialAttackInput()
     {
         DisableTutorialInputs();
-        iaPlayerInput.Tutorial.Attack.performed += AttackPressedTuto;
-        iaPlayerInput.Tutorial.Attack.canceled += AttackCanceledTuto;
-        iaPlayerInput.Tutorial.AttackUpgrade.performed += OnAttackUpgradeInput;
-        iaPlayerInput.Tutorial.AttackUpgrade.performed += AttackUpgradePressedTuto;
+       
         //iaPlayerInput.Tutorial.AttackUpgrade.canceled += AttackCancelTuto;
         //iaPlayerInput.Tutorial.Attack.canceled += OnTutorialAttackFinish;
+        StartCoroutine(S_Utils.DelayRealTime(_timeBeforeInputTutorialAction, () =>
+        {
+            iaPlayerInput.Tutorial.Attack.performed += AttackPressedTuto;
+            iaPlayerInput.Tutorial.Attack.canceled += AttackCanceledTuto;
+            iaPlayerInput.Tutorial.AttackUpgrade.performed += OnAttackUpgradeInput;
+            iaPlayerInput.Tutorial.AttackUpgrade.performed += AttackUpgradePressedTuto;
+        }));
     }
 
     bool isAttackUpgradePressed = false;
@@ -507,14 +530,22 @@ public class S_InputsManager : MonoBehaviour
     void EnableTutorialTargetingInput()
     {
         DisableTutorialInputs();
-        iaPlayerInput.Tutorial.Targeting.performed += OnTargetingInput;
-        iaPlayerInput.Tutorial.Targeting.performed += OnTutorialTargetingFinish;
+       
+        StartCoroutine(S_Utils.DelayRealTime(_timeBeforeInputTutorialAction, () =>
+        {
+            iaPlayerInput.Tutorial.Targeting.performed += OnTargetingInput;
+            iaPlayerInput.Tutorial.Targeting.performed += OnTutorialTargetingFinish;
+        }));
     }
     void EnableTutorialHealInput()
     {
         DisableTutorialInputs();
-        iaPlayerInput.Tutorial.Heal.performed += OnHealInput;
-        iaPlayerInput.Tutorial.Heal.performed += OnTutorialHealFinish;
+       
+        StartCoroutine(S_Utils.DelayRealTime(_timeBeforeInputTutorialAction, () =>
+        {
+            iaPlayerInput.Tutorial.Heal.performed += OnHealInput;
+            iaPlayerInput.Tutorial.Heal.performed += OnTutorialHealFinish;
+        }));
     }
 
     void EnableTutorialNextInput(S_EnumTutorialStep step)

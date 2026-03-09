@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 9192695445783017885}
   - component: {fileID: 7198958838114668839}
   - component: {fileID: 941580863371954528}
-  - component: {fileID: 2709645350659721066}
+  - component: {fileID: 5767283563217510940}
   - component: {fileID: 150563850403501601}
   m_Layer: 13
   m_Name: FBX_Statue
@@ -300,8 +300,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2709645350659721066
-MeshCollider:
+--- !u!65 &5767283563217510940
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -318,10 +318,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 7314162109352381636, guid: 32f46d0cc0c61f24f982c3eb981160eb, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 1.7809762, y: 2.438128, z: 1.127173}
+  m_Center: {x: 0.007528127, y: 0.8105006, z: 0.027958993}
 --- !u!114 &150563850403501601
 MonoBehaviour:
   m_ObjectHideFlags: 0
