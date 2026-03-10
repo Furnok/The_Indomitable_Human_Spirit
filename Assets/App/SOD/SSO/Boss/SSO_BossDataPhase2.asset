@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SSO_BossDataPhase2
   m_EditorClassIdentifier: 
   _value:
-    health: 1000
-    walkSpeed: 2.5
-    runSpeed: 4
+    health: 2500
+    walkSpeed: 10
+    runSpeed: 13
     phaseState: 1
     timeDisplay: 0
     stunDuration: 3
@@ -49,7 +49,7 @@ MonoBehaviour:
       isSpecialAttack: 1
       timeAfterAttack: 4
       isAttackDistance: 1
-      pvBossUnlock: 100
+      pvBossUnlock: 80
       difficultyLevel: 3
       listComboData:
       - animation: {fileID: -6759780123328594538, guid: ee840371c325fd748b10e1b2f509cff2, type: 3}
@@ -152,7 +152,7 @@ MonoBehaviour:
       isSpecialAttack: 0
       timeAfterAttack: 4
       isAttackDistance: 0
-      pvBossUnlock: 75
+      pvBossUnlock: 100
       difficultyLevel: 2
       listComboData:
       - animation: {fileID: 7400000, guid: 7cf43363318563945bf17ec289351ba9, type: 2}
@@ -181,7 +181,7 @@ MonoBehaviour:
           contactPoint: {x: 0, y: 0, z: 0}
       - animation: {fileID: 7400000, guid: 2906ed0f27f04fb4d9d72d803cf48965, type: 2}
         animationParry: {fileID: 0}
-        rootMotionMultiplier: 2
+        rootMotionMultiplier: 5
         showVFXAttackType: 0
         attackData:
           attackId: 0
