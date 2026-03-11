@@ -38,6 +38,9 @@ public class S_PlayerParry : MonoBehaviour
     [SerializeField] private RSO_PlayerCurrentState _playerCurrentState;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSO_PlayerIsTargeting _PlayerIsTargeting;
+
+    [TabGroup("Outputs")]
     [SerializeField] private SSO_PlayerStats _playerStats;
 
     [TabGroup("Outputs")]
@@ -84,16 +87,19 @@ public class S_PlayerParry : MonoBehaviour
             _parryUp = true;
         }));
 
-        rseOnAnimationBoolValueChange.Call(_parryParam, true);
-
-        if (_weaponParryCoroutine != null)
+        if (!_PlayerIsTargeting.Value)
         {
-            StopCoroutine(_weaponParryCoroutine);
-            _weaponParryCoroutine = null;
+            if (_weaponParryCoroutine != null)
+            {
+                StopCoroutine(_weaponParryCoroutine);
+                _weaponParryCoroutine = null;
+            }
+
+            _weaponHand.SetActive(true);
+            _weaponBack.SetActive(false);
         }
 
-        _weaponHand.SetActive(true);
-        _weaponBack.SetActive(false);
+        rseOnAnimationBoolValueChange.Call(_parryParam, true);
 
         _parryCoroutine = StartCoroutine(S_Utils.Delay(_animationTransitionDelays.Value.parryStartupDelay, () =>
         {
@@ -114,11 +120,17 @@ public class S_PlayerParry : MonoBehaviour
 
                     _onPlayerAddState.Call(S_EnumPlayerState.None);
 
-                    _weaponParryCoroutine = StartCoroutine(S_Utils.Delay(0.6f, () =>
+                    if (!_PlayerIsTargeting.Value)
                     {
-                        _weaponHand.SetActive(false);
-                        _weaponBack.SetActive(true);
-                    }));
+                        _weaponParryCoroutine = StartCoroutine(S_Utils.Delay(0.8f, () =>
+                        {
+                            if (!_PlayerIsTargeting.Value)
+                            {
+                                _weaponHand.SetActive(false);
+                                _weaponBack.SetActive(true);
+                            }
+                        }));
+                    }
                 }));
             }));
         }));

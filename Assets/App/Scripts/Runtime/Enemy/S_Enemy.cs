@@ -861,8 +861,8 @@ public class S_Enemy : MonoBehaviour
     {
         if (!isAttack || ssoEnemyData.Value.isIdle) return;
 
-        waitTime = combo.listAnimationsCombos[currentComboIndex].animationParry.length;
         timer = 0f;
+        waitTime = combo.listAnimationsCombos[currentComboIndex].animationParry.length;
 
         rootMotionModifier.Setup(0, 0);
         animator.SetTrigger(parryParam);

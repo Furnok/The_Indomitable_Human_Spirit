@@ -77,6 +77,9 @@ public class S_PlayerBasicAttack : MonoBehaviour
     [SerializeField] private RSO_PreconsumedConviction _preconsumedConviction;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSO_PlayerIsTargeting _PlayerIsTargeting;
+
+    [TabGroup("Outputs")]
     [SerializeField] private RSO_CurrentChargeStep _rsoCurrentChargeStep;
 
     [TabGroup("Outputs")]
@@ -221,8 +224,11 @@ public class S_PlayerBasicAttack : MonoBehaviour
 
         if (_weaponAttackCoroutine != null) StopCoroutine(_weaponAttackCoroutine);
 
-        _weaponHand.SetActive(true);
-        _weaponBack.SetActive(false);
+        if (!_PlayerIsTargeting.Value)
+        {
+            _weaponHand.SetActive(true);
+            _weaponBack.SetActive(false);
+        }
 
         _onPlayerAddState.Call(S_EnumPlayerState.Attacking);
         
@@ -275,6 +281,18 @@ public class S_PlayerBasicAttack : MonoBehaviour
         _isHolding = false;
         rseOnAnimationBoolValueChange.Call(_attackParam, false);
 
+        if (!_PlayerIsTargeting.Value)
+        {
+            _weaponAttackCoroutine = StartCoroutine(S_Utils.Delay(Mathf.Clamp(0.2f + _currenTimeHold, 0, 0.8f), () =>
+            {
+                if (!_PlayerIsTargeting.Value)
+                {
+                    _weaponHand.SetActive(false);
+                    _weaponBack.SetActive(true);
+                }
+            }));
+        }
+
         if ( _currenStepAttack == 0 || _playerCurrentState.Value != S_EnumPlayerState.Attacking)
         {
             if (_convictionAccumulationInstance.isValid())
@@ -292,26 +310,18 @@ public class S_PlayerBasicAttack : MonoBehaviour
 
             _onPlayerAddState.Call(S_EnumPlayerState.None);
             _isHolding = false;
+
             if (_attackChargeCoroutine == null) return;
             _attackChargeCoroutine = null;
         }
         else
         {
             FinalizeAttack();
-
         }
 
         rseOnSendConsoleMessage.Call("Player Launch Attack!");
 
         _rseOnRumbleStopChannel.Call(S_EnumRumbleChannel.ChargeAttack);
-
-        if (_weaponAttackCoroutine != null) StopCoroutine(_weaponAttackCoroutine);
-
-        _weaponAttackCoroutine = StartCoroutine(S_Utils.Delay(Mathf.Clamp(0.2f + _currenTimeHold, 0, 0.6f), () =>
-        {
-            _weaponHand.SetActive(false);
-            _weaponBack.SetActive(true);
-        }));
     }
 
     /*
