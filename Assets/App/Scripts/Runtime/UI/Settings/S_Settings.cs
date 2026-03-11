@@ -35,6 +35,9 @@ public class S_Settings : MonoBehaviour
     [TabGroup("Outputs")]
     [SerializeField] private RSO_SettingsSaved rsoSettingsSaved;
 
+    [TabGroup("Outputs")]
+    [SerializeField] RSE_OnTutoSettingChange rseOnTutoSettingChange;
+
     private bool isLoaded = false;
     private bool isSave = false;
 
@@ -61,6 +64,9 @@ public class S_Settings : MonoBehaviour
     private bool activateTuto = true;
     private bool devMode = false;
 
+
+    private bool lastValueActivateTuto = true;
+
     private void Awake()
     {
         audioMaster = RuntimeManager.GetBus("bus:/");
@@ -81,6 +87,7 @@ public class S_Settings : MonoBehaviour
         controllerRumble = rsoSettingsSaved.Value.controllerRumble;
         activateTuto = rsoSettingsSaved.Value.activateTuto;
         devMode = rsoSettingsSaved.Value.devMode;
+        lastValueActivateTuto = activateTuto;
     }
 
     private void Update()
@@ -310,7 +317,7 @@ public class S_Settings : MonoBehaviour
 
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[rsoSettingsSaved.Value.languageIndex];
 
-        if (rsoSettingsSaved.Value.activateTuto != activateTuto) ;
+        if (rsoSettingsSaved.Value.activateTuto != activateTuto) lastValueActivateTuto = rsoSettingsSaved.Value.activateTuto;
 
         rsoSettingsSaved.Value.holdLockTarget = holdLockTarget;
         rsoSettingsSaved.Value.controllerRumble = controllerRumble;
@@ -322,6 +329,8 @@ public class S_Settings : MonoBehaviour
         if (!controllerRumble) rseOnRumbleStop.Call();
 
         if (!devMode) rseOnConsole.Call();
+
+        if (lastValueActivateTuto != activateTuto) rseOnTutoSettingChange.Call();
 
         Resolution resolution = GetResolutions(rsoSettingsSaved.Value.resolutionIndex);
 

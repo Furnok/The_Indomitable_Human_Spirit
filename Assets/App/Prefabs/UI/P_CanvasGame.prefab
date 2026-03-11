@@ -5484,6 +5484,7 @@ MonoBehaviour:
   rseOnCancelTargeting: {fileID: 11400000, guid: eb8598b903ee53643b0a3d76f3657c63, type: 2}
   rseOnRumbleStop: {fileID: 11400000, guid: 6635e0cbdfee9eb4e91297029d5a63ca, type: 2}
   rsoSettingsSaved: {fileID: 11400000, guid: 782057adb6fb88f4db3ac2e35a786bc0, type: 2}
+  rseOnTutoSettingChange: {fileID: 11400000, guid: a1b043cf4463d3548a1a57d304d1e739, type: 2}
 --- !u!1 &1137259262900128421
 GameObject:
   m_ObjectHideFlags: 0

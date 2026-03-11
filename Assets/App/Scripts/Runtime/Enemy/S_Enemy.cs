@@ -119,6 +119,9 @@ public class S_Enemy : MonoBehaviour
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnParrySuccess rseOnParrySuccess;
 
+    [TabGroup("Inputs")]
+    [SerializeField] RSE_OnTutoSettingChange rseOnTutoSettingChange;
+
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnSendConsoleMessage rseOnSendConsoleMessage;
 
@@ -216,6 +219,8 @@ public class S_Enemy : MonoBehaviour
         rseOnPlayerRespawn.action += PlayerRespawn;
         rseOnDataLoad.action += LoadEnemy;
         rseOnParrySuccess.action += Parry;
+
+        rseOnTutoSettingChange.action += OnTutoChange;
     }
 
     private void OnDisable()
@@ -224,6 +229,8 @@ public class S_Enemy : MonoBehaviour
         rseOnPlayerRespawn.action -= PlayerRespawn;
         rseOnDataLoad.action -= LoadEnemy;
         rseOnParrySuccess.action -= Parry;
+
+        rseOnTutoSettingChange.action -= OnTutoChange;
     }
 
     private void Start()
@@ -635,6 +642,12 @@ public class S_Enemy : MonoBehaviour
     #endregion
 
     #region Combat
+
+    void OnTutoChange()
+    {
+        SetCombo();
+    }
+
     private void SetCombo()
     {
         if (_rsoSettingsSaved.Value.activateTuto == true)
