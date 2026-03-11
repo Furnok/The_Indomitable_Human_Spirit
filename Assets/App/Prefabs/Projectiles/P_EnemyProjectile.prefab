@@ -191,8 +191,8 @@ MonoBehaviour:
     m_Bits: 34816
   playerLayer: 8
   rb: {fileID: 6375349480578834582}
-  enemyMat: {fileID: 2100000, guid: 46fd367f7816d434ba541584b0a91a9f, type: 2}
-  playerMat: {fileID: 2100000, guid: 6548b5bace388d2448daab8c8e3e506b, type: 2}
+  enemyMat: {fileID: 2100000, guid: 48e29cb13e0b702488fb5fb5c0faf08a, type: 2}
+  playerMat: {fileID: 2100000, guid: a9b9182ba843b9f45b3a5fa84e662d67, type: 2}
   rendered: {fileID: 3757806925846237130}
   ssoProjectileData: {fileID: 11400000, guid: 317737fd7f3f47b4a8b94bb0b06bc92a, type: 2}
 --- !u!1001 &1006660295087244880
