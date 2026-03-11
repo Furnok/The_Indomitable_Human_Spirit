@@ -44,7 +44,7 @@ public class S_TutoManager : MonoBehaviour
     private Dictionary<S_EnumTutorialStep, TutoStepData> _tutorials = new Dictionary<S_EnumTutorialStep, TutoStepData>();
 
     private int _parryCountDupplicate = 0;
-    private int _dodgeCountDupplicate = 0;
+    //private int _dodgeCountDupplicate = 0;
     private int _targetCountDupplicate = 0;
 
 
