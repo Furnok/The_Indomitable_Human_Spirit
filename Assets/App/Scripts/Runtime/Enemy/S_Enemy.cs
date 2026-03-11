@@ -708,7 +708,7 @@ public class S_Enemy : MonoBehaviour
 
     private void Combat()
     {
-        if (canAttack)
+        if (canAttack && currentTarget != null)
         {
             float distance = Vector3.Distance(center.transform.position, currentTarget.transform.position);
 
@@ -720,7 +720,7 @@ public class S_Enemy : MonoBehaviour
                 UpdateState(S_EnumEnemyState.Attack);
             }
         }
-        else if (!isAttack)
+        else if (!isAttack && currentTarget != null)
         {
             float distance = Vector3.Distance(center.transform.position, currentTarget.transform.position);
 
