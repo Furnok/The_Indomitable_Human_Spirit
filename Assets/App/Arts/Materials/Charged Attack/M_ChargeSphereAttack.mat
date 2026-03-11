@@ -290,7 +290,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 0.8679245, g: 0, b: 0, a: 0}
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
-    - _Color: {r: 7.245283, g: 2.3517516, b: 0.9227484, a: 1}
+    - _Color: {r: 8.535022, g: 8.648822, b: 4.514078, a: 1}
     - _ColorAddSubDiff: {r: 1, g: 0, b: 0, a: 0}
     - _DiffusionProfileAsset: {r: 0, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
