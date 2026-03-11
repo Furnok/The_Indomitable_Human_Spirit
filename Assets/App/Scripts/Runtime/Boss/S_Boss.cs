@@ -36,6 +36,9 @@ public class S_Boss : MonoBehaviour
     [SerializeField] private Collider bodyCollider;
 
     [TabGroup("References")]
+    [SerializeField] private Collider reflectCollider;
+
+    [TabGroup("References")]
     [SerializeField] private Collider detectionCollider;
 
     [TabGroup("References")]
@@ -472,6 +475,7 @@ public class S_Boss : MonoBehaviour
     {
         isStunned = true;
         animator.SetTrigger(stunParam);
+        reflectCollider.enabled = false;
         yield return new WaitForSeconds(duration);
         isStunned = false;
         animator.SetBool(idleAttack, true);
@@ -721,7 +725,7 @@ public class S_Boss : MonoBehaviour
         rootMotionModifier.Setup(1);
         animator.SetTrigger(stopAttackParam);
         animator.SetBool(idleAttack, true);
-
+        reflectCollider.enabled = false;
         rb.isKinematic = false;
         isPerformingCombo = false;
         isFighting = false;

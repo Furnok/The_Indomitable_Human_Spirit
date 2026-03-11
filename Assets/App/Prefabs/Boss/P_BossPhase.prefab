@@ -973,6 +973,7 @@ MonoBehaviour:
   center: {fileID: 5109135260119777048}
   rb: {fileID: 6290640343244561212}
   bodyCollider: {fileID: 2172925691496945250}
+  reflectCollider: {fileID: 3961580513568290508}
   detectionCollider: {fileID: 6240607319024186}
   hurtCollider: {fileID: 6623810594226599851}
   bossDetectionRange: {fileID: 4396067441703182030}
@@ -1077,6 +1078,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossData: {fileID: 0}
   bodyCollider: {fileID: 2172925691496945250}
+  reflectCollider: {fileID: 3961580513568290508}
   rbBody: {fileID: 6290640343244561212}
   bossProjectile: {fileID: 8140121101017001052, guid: f1fb51f3df4ed10408671800bfdcfdc4, type: 3}
   enemyProjectile: {fileID: 7501301468289437560, guid: 2ed9513c34b0abb4facaadc6e39513ea, type: 3}
@@ -1100,8 +1102,10 @@ MonoBehaviour:
   rseOnPlayerDeath: {fileID: 0}
   rseOnPlayParticle: {fileID: 11400000, guid: 96e637a3924deff4685a645b52dfc7c2, type: 2}
   rseOnStopParticle: {fileID: 11400000, guid: 4188360d207886043ab568bf24778487, type: 2}
+  rseOnAttractParticle: {fileID: 0}
   rseOnEndAttack: {fileID: 11400000, guid: df61dd20dc38205418f8426747ea5149, type: 2}
   rseOnBossStun: {fileID: 11400000, guid: e52f886ca2039f34da187674d8e07a81, type: 2}
+  rseOnStopAttract: {fileID: 0}
   aimPointPlayer: {fileID: 0}
   overrideController: {fileID: 0}
 --- !u!1 &2812144962020388730
@@ -1872,7 +1876,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 1.1
   m_Height: 3.5
@@ -1890,9 +1894,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5a40d0b4af39c8478375ecc1ed3bea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reflectLayer:
-    serializedVersion: 2
-    m_Bits: 256
   body: {fileID: 2937009420039466711}
 --- !u!1 &5885412673635178662
 GameObject:

@@ -17,6 +17,9 @@ public class S_BossAttack : MonoBehaviour
     [SerializeField] private Collider bodyCollider;
 
     [TabGroup("References")]
+    [SerializeField] private Collider reflectCollider;
+
+    [TabGroup("References")]
     [Title("RigidBody")]
     [SerializeField] private Rigidbody rbBody;
 
@@ -292,6 +295,7 @@ public class S_BossAttack : MonoBehaviour
     #region PingPong
     private void PingPong()
     {
+        reflectCollider.enabled = true;
         pingPongJumpCoroutine = StartCoroutine(DoJump(rbBody, bossData.Value.jumpDistancePingPong, bossData.Value.jumpPowerPingPong, bossData.Value.jumpDurationPingPong, 0, (animIndex) => 
         { pingPongFlyCoroutine = StartCoroutine(DoFly(bossData.Value.flyPowerPingPong, bossData.Value.flyDurationPingPong, animIndex, (nextIndex) => 
         { pingPongCoroutine = StartCoroutine(PingPongCoroutine(nextIndex));
