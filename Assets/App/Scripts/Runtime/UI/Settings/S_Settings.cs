@@ -310,6 +310,8 @@ public class S_Settings : MonoBehaviour
 
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[rsoSettingsSaved.Value.languageIndex];
 
+        if (rsoSettingsSaved.Value.activateTuto != activateTuto) ;
+
         rsoSettingsSaved.Value.holdLockTarget = holdLockTarget;
         rsoSettingsSaved.Value.controllerRumble = controllerRumble;
         rsoSettingsSaved.Value.activateTuto = activateTuto;
