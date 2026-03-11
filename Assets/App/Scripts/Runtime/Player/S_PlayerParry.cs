@@ -7,12 +7,6 @@ public class S_PlayerParry : MonoBehaviour
     [Title("Animation")]
     [SerializeField, S_AnimationName] string _parryParam;
 
-    [TabGroup("References")]
-    [SerializeField] private GameObject _weaponHand;
-
-    [TabGroup("References")]
-    [SerializeField] private GameObject _weaponBack;
-
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnPlayerParryInput rseOnPlayerParry;
 
@@ -29,6 +23,12 @@ public class S_PlayerParry : MonoBehaviour
     [SerializeField] private RSE_OnSendConsoleMessage rseOnSendConsoleMessage;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnDisplayWeaponArmTemp rseOnDisplayWeaponArmTemp;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnHideWeaponArmTemp rseOnHideWeaponArmTemp;
+
+    [TabGroup("Outputs")]
     [SerializeField] private RSO_CanParry _canParry;
 
     [TabGroup("Outputs")]
@@ -36,9 +36,6 @@ public class S_PlayerParry : MonoBehaviour
 
     [TabGroup("Outputs")]
     [SerializeField] private RSO_PlayerCurrentState _playerCurrentState;
-
-    [TabGroup("Outputs")]
-    [SerializeField] private RSO_PlayerIsTargeting _PlayerIsTargeting;
 
     [TabGroup("Outputs")]
     [SerializeField] private SSO_PlayerStats _playerStats;
@@ -87,17 +84,7 @@ public class S_PlayerParry : MonoBehaviour
             _parryUp = true;
         }));
 
-        if (!_PlayerIsTargeting.Value)
-        {
-            if (_weaponParryCoroutine != null)
-            {
-                StopCoroutine(_weaponParryCoroutine);
-                _weaponParryCoroutine = null;
-            }
-
-            _weaponHand.SetActive(true);
-            _weaponBack.SetActive(false);
-        }
+        rseOnDisplayWeaponArmTemp.Call();
 
         rseOnAnimationBoolValueChange.Call(_parryParam, true);
 
@@ -120,17 +107,7 @@ public class S_PlayerParry : MonoBehaviour
 
                     _onPlayerAddState.Call(S_EnumPlayerState.None);
 
-                    if (!_PlayerIsTargeting.Value)
-                    {
-                        _weaponParryCoroutine = StartCoroutine(S_Utils.Delay(0.8f, () =>
-                        {
-                            if (!_PlayerIsTargeting.Value)
-                            {
-                                _weaponHand.SetActive(false);
-                                _weaponBack.SetActive(true);
-                            }
-                        }));
-                    }
+                    rseOnHideWeaponArmTemp.Call(0.8f);
                 }));
             }));
         }));
@@ -146,8 +123,7 @@ public class S_PlayerParry : MonoBehaviour
 
         if (_weaponParryCoroutine != null) StopCoroutine(_weaponParryCoroutine);
 
-        _weaponHand.SetActive(false);
-        _weaponBack.SetActive(true);
+        rseOnHideWeaponArmTemp.Call(0f);
     }
 
     private void ResetValue()

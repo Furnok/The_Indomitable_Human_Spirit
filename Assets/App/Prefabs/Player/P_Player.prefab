@@ -2910,6 +2910,7 @@ GameObject:
   - component: {fileID: 3538150392915714149}
   - component: {fileID: 4137787093588038521}
   - component: {fileID: 502654570337901578}
+  - component: {fileID: 84420379022361896}
   m_Layer: 10
   m_Name: P_Player
   m_TagString: Player
@@ -3119,17 +3120,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parryParam: Parry
-  _weaponHand: {fileID: 546673962529436723}
-  _weaponBack: {fileID: 5836320029152079228}
   rseOnPlayerParry: {fileID: 11400000, guid: a21049edad4c9954db34aebff59e9d2e, type: 2}
   _rseOnPlayerGettingHit: {fileID: 11400000, guid: 0bde5f6bad322664c9a88a5237c9d868, type: 2}
   _onPlayerAddState: {fileID: 11400000, guid: 38569afc7ffff0c4eb66c76bc8a6146e, type: 2}
   rseOnAnimationBoolValueChange: {fileID: 11400000, guid: f3b68030aacb033438a094c87c0e44ca, type: 2}
   rseOnSendConsoleMessage: {fileID: 11400000, guid: e2e3ecd3153d9a14d9d9e380efc21861, type: 2}
+  rseOnDisplayWeaponArmTemp: {fileID: 11400000, guid: e00a05ade0648fa4bb74c5382755cc88, type: 2}
+  rseOnHideWeaponArmTemp: {fileID: 11400000, guid: 3756ab7ef40beab4fa90e420322a448c, type: 2}
   _canParry: {fileID: 11400000, guid: 7ae3103e78e3f8444a77fdea4b6192cc, type: 2}
   _parryStartTime: {fileID: 11400000, guid: 9da05f4356989674baabec68e1a341fa, type: 2}
   _playerCurrentState: {fileID: 11400000, guid: 16388ffed06f1314f8caba9f9a324afe, type: 2}
-  _PlayerIsTargeting: {fileID: 11400000, guid: 53017e014e6ba384988975c6a7762355, type: 2}
   _playerStats: {fileID: 11400000, guid: 672a77f2978d3824b90e0f910ab84268, type: 2}
   _playerStateTransitions: {fileID: 11400000, guid: d6e9b95c877c8a84291c447bbbc229af, type: 2}
   _animationTransitionDelays: {fileID: 11400000, guid: f7ba83029ebbbef4385f8e29045a542a, type: 2}
@@ -3227,8 +3227,6 @@ MonoBehaviour:
       Data3: 1682173861
       Data4: 635480189
     Path: event:/Player/Combat/Attack/AttackCast
-  _weaponHand: {fileID: 546673962529436723}
-  _weaponBack: {fileID: 5836320029152079228}
   rseOnPlayerAttack: {fileID: 11400000, guid: 87ff9d1d837c0324eb87e1b22c96bdf5, type: 2}
   _rseOnPlayerGettingHit: {fileID: 11400000, guid: 0bde5f6bad322664c9a88a5237c9d868, type: 2}
   _onPlayerAttackInputCancel: {fileID: 11400000, guid: 3409a69fdaba2c54cbb587daee9258f3, type: 2}
@@ -3242,11 +3240,12 @@ MonoBehaviour:
   rseOnSendConsoleMessage: {fileID: 11400000, guid: e2e3ecd3153d9a14d9d9e380efc21861, type: 2}
   _rseOnRumbleRequested: {fileID: 11400000, guid: 398d5ea3b7e14d0458a5cba996361021, type: 2}
   _rseOnRumbleStopChannel: {fileID: 11400000, guid: 6f1b7913ca16dc74599e3025edacefd3, type: 2}
+  rseOnDisplayWeaponArmTemp: {fileID: 11400000, guid: e00a05ade0648fa4bb74c5382755cc88, type: 2}
+  rseOnHideWeaponArmTemp: {fileID: 11400000, guid: 3756ab7ef40beab4fa90e420322a448c, type: 2}
   rsoPlayerIsTargeting: {fileID: 11400000, guid: 53017e014e6ba384988975c6a7762355, type: 2}
   _playerCurrentState: {fileID: 11400000, guid: 16388ffed06f1314f8caba9f9a324afe, type: 2}
   _playerCurrentConviction: {fileID: 11400000, guid: e9e6e673e8d688d4b96f8309938dbfdc, type: 2}
   _preconsumedConviction: {fileID: 11400000, guid: dc4cc407de721f349915f989c339ea44, type: 2}
-  _PlayerIsTargeting: {fileID: 11400000, guid: 53017e014e6ba384988975c6a7762355, type: 2}
   _rsoCurrentChargeStep: {fileID: 11400000, guid: 9bb05ac5b06381241a909c86abe75fb4, type: 2}
   _playerStateTransitions: {fileID: 11400000, guid: d6e9b95c877c8a84291c447bbbc229af, type: 2}
   _playerConvictionData: {fileID: 11400000, guid: 69f9f2a36a1381440a990e3461550cb3, type: 2}
@@ -3361,6 +3360,25 @@ MonoBehaviour:
   rsoPlayerIsTargeting: {fileID: 11400000, guid: 53017e014e6ba384988975c6a7762355, type: 2}
   rsoTargetPosition: {fileID: 11400000, guid: 0ac75a93e6bb72c45bd266638c5655fb, type: 2}
   ssoEnemyHead: {fileID: 11400000, guid: e9937c2ede5a94048bf95b7bb105728e, type: 2}
+--- !u!114 &84420379022361896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8313228278302547986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93e3248c4a80feb409b9adde7fdcce57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponHand: {fileID: 546673962529436723}
+  _weaponBack: {fileID: 5836320029152079228}
+  rseOnDisplayWeaponArm: {fileID: 11400000, guid: 801a85645b425404da0b80c7ea76300c, type: 2}
+  rseOnDisplayWeaponArmTemp: {fileID: 11400000, guid: e00a05ade0648fa4bb74c5382755cc88, type: 2}
+  rseOnHideWeaponArm: {fileID: 11400000, guid: b418180b59fd75448a0057e102245013, type: 2}
+  rseOnHideWeaponArmTemp: {fileID: 11400000, guid: 3756ab7ef40beab4fa90e420322a448c, type: 2}
+  rsoPlayerIsTargeting: {fileID: 11400000, guid: 53017e014e6ba384988975c6a7762355, type: 2}
 --- !u!1 &8331153718739846167
 GameObject:
   m_ObjectHideFlags: 0
