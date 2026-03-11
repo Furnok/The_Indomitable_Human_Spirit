@@ -479908,14 +479908,6 @@ PrefabInstance:
       propertyPath: _propLantern
       value: 
       objectReference: {fileID: 1403169022}
-    - target: {fileID: 3715047057152782743, guid: cfbc9a18fd4e24040bc327887bfd4444, type: 3}
-      propertyPath: _playerPosition
-      value: 
-      objectReference: {fileID: 11400000, guid: a3d33267cdb3a0a43bb8ab4811624f21, type: 2}
-    - target: {fileID: 3715047057152782743, guid: cfbc9a18fd4e24040bc327887bfd4444, type: 3}
-      propertyPath: _playerDamageVFX
-      value: 
-      objectReference: {fileID: 5031515662437908494, guid: d7f1e6fbe361f0148ac17a4a49fa4a01, type: 3}
     - target: {fileID: 6440775602794653530, guid: cfbc9a18fd4e24040bc327887bfd4444, type: 3}
       propertyPath: m_Name
       value: P_PlayerManagers
