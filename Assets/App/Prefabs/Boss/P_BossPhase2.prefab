@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_BossPhase2
       objectReference: {fileID: 0}
+    - target: {fileID: 2991559556732496640, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 3961580513568290508, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
       propertyPath: m_Height
       value: 3
@@ -425,7 +429,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 768
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
