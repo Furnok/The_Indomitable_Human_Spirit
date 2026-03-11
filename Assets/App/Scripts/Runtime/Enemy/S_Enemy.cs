@@ -864,6 +864,12 @@ public class S_Enemy : MonoBehaviour
         timer = 0f;
         waitTime = combo.listAnimationsCombos[currentComboIndex].animationParry.length;
 
+        RotateEnemy();
+
+        enemyAttackData.DisableWeaponCollider();
+        enemyAttackData.VFXStopTrail();
+        unlockRotate = false;
+
         rootMotionModifier.Setup(0, 0);
         animator.SetTrigger(parryParam);
     }
