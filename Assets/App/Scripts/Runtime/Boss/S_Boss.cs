@@ -264,13 +264,13 @@ public class S_Boss : MonoBehaviour
     
     private void Update()
     {
-        enemyHeadLookAtIK.SetTarget(target);
+        if ((currentState == S_EnumBossState.Chase || currentState == S_EnumBossState.Combat) && !isDead) enemyHeadLookAtIK.SetTarget(target);
 
         if (target != null && (unlockRotate || !isAttacking) && !isDead) RotateEnemy();
 
-        if (isChasing) Chase();
+        if (isChasing && !isDead) Chase();
 
-        if (isFighting) Fight();
+        if (isFighting && !isDead) Fight();
 
         Debug.Log(health);
     }
@@ -281,13 +281,16 @@ public class S_Boss : MonoBehaviour
     }
     public void RotateEnemy()
     {
-        Vector3 direction = target.transform.position - center.transform.position;
-        direction.y = 0;
+        if (target != null)
+        {
+            Vector3 direction = target.transform.position - center.transform.position;
+            direction.y = 0;
 
-        Quaternion targetRot = Quaternion.LookRotation(direction);
+            Quaternion targetRot = Quaternion.LookRotation(direction);
 
-        transform.DOKill();
-        transform.DORotateQuaternion(targetRot, ssoBossData.Value.rotationTime);
+            transform.DOKill();
+            transform.DORotateQuaternion(targetRot, ssoBossData.Value.rotationTime);
+        }
     }
 
     public void RotateEnemyAnim()

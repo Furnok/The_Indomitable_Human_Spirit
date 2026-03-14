@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _value:
     health: 900
-    walkSpeed: 8
-    runSpeed: 10
+    walkSpeed: 10
+    runSpeed: 12
     phaseState: 0
     timeDisplay: 3
     stunDuration: 3
