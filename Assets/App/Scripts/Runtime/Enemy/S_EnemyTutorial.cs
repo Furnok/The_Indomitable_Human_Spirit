@@ -224,7 +224,7 @@ public class S_EnemyTutorial : MonoBehaviour
 
     private void Update()
     {
-        enemyHeadLookAtIK.SetTarget(target);
+        enemyHeadLookAtIK.SetTarget(target, 0);
 
         if (target != null && (unlockRotate || !isAttacking) && !isDead) RotateEnemy();
 

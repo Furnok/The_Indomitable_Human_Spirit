@@ -17,6 +17,7 @@ MonoBehaviour:
     walkSpeed: 10
     runSpeed: 12
     phaseState: 1
+    yHeadRemove: 1.4
     timeDisplay: 0
     stunDuration: 3
     distanceToChase: 1.5

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _value:
     weight: 1
-    bodyWeight: 0
+    bodyWeight: 0.2
     headWeight: 1
     eyesWeight: 0
-    clampWeight: 0.5
+    clampWeight: 0.6

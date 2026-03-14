@@ -21,6 +21,8 @@ public class S_ClassEnemyData
 
     public bool isIdle = false;
 
+    public float yHeadRemove = 0;
+
     [Title("Combat")]
     [SuffixLabel("s", Overlay = true)]
     public float attackCooldown = 0;

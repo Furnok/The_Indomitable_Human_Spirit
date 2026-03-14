@@ -264,7 +264,7 @@ public class S_Boss : MonoBehaviour
     
     private void Update()
     {
-        if ((currentState == S_EnumBossState.Chase || currentState == S_EnumBossState.Combat) && !isDead) enemyHeadLookAtIK.SetTarget(target);
+        if ((currentState == S_EnumBossState.Chase || currentState == S_EnumBossState.Combat) && !isDead) enemyHeadLookAtIK.SetTarget(target, ssoBossData.Value.yHeadRemove);
 
         if (target != null && (unlockRotate || !isAttacking) && !isDead) RotateEnemy();
 

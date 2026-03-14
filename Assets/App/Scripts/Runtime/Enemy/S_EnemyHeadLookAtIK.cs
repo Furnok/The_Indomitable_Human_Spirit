@@ -12,10 +12,12 @@ public class S_EnemyHeadLookAtIK : MonoBehaviour
 
     private GameObject target = null;
     private bool isDead = false;
+    private float yRemove = 0;
 
-    public void SetTarget(GameObject targetPos)
+    public void SetTarget(GameObject targetPos, float YRemove)
     {
         target = targetPos;
+        yRemove = YRemove;
     }
 
     public void IsDead(bool value)
@@ -35,6 +37,6 @@ public class S_EnemyHeadLookAtIK : MonoBehaviour
             ssoEnemyHead.Value.clampWeight
         );
 
-        animator.SetLookAtPosition(target.GetComponent<S_LookAt>().GetAimPoint());
+        animator.SetLookAtPosition(target.GetComponent<S_LookAt>().GetAimPoint() - new Vector3(0, yRemove, 0));
     }
 }

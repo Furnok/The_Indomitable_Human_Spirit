@@ -251,7 +251,7 @@ public class S_Enemy : MonoBehaviour
 
     private void Update()
     {
-        if ((currentState == S_EnumEnemyState.Chasing || currentState == S_EnumEnemyState.Combat || currentState == S_EnumEnemyState.Attack) && !isDead) enemyHeadLookAtIK.SetTarget(currentTarget);
+        if ((currentState == S_EnumEnemyState.Chasing || currentState == S_EnumEnemyState.Combat || currentState == S_EnumEnemyState.Attack) && !isDead) enemyHeadLookAtIK.SetTarget(currentTarget, ssoEnemyData.Value.yHeadRemove);
 
         if (currentTarget != null && (unlockRotate || !isAttack) && !isDead) RotateEnemy();
 
@@ -428,7 +428,7 @@ public class S_Enemy : MonoBehaviour
 
             animator.SetBool(attackParam, false);
 
-            enemyHeadLookAtIK.SetTarget(null);
+            enemyHeadLookAtIK.SetTarget(null, 0);
 
             if (resetAttack != null)
             {
@@ -586,7 +586,7 @@ public class S_Enemy : MonoBehaviour
         isReturnPatroling = true;
 
         detectionCollider.enabled = false;
-        enemyHeadLookAtIK.SetTarget(null);
+        enemyHeadLookAtIK.SetTarget(null, 0);
 
         navMeshAgent.speed = ssoEnemyData.Value.speedReturnPatrol;
         navMeshAgent.stoppingDistance = 0.2f;
