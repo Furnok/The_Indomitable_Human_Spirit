@@ -356,6 +356,14 @@ PrefabInstance:
       propertyPath: rsoCurrentTarget
       value: 
       objectReference: {fileID: 11400000, guid: 21e74e9f4371e414596255356b9bd1f4, type: 2}
+    - target: {fileID: 9042962056823339771, guid: da095f952b0c0444e9dc72741f85a7dc, type: 3}
+      propertyPath: rseOnHideWeaponArm
+      value: 
+      objectReference: {fileID: 11400000, guid: b418180b59fd75448a0057e102245013, type: 2}
+    - target: {fileID: 9042962056823339771, guid: da095f952b0c0444e9dc72741f85a7dc, type: 3}
+      propertyPath: rseOnDisplayWeaponArm
+      value: 
+      objectReference: {fileID: 11400000, guid: 801a85645b425404da0b80c7ea76300c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

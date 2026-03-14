@@ -75,6 +75,12 @@ public class S_TargetingManager : MonoBehaviour
     [SerializeField] private RSE_OnCameraFOV rseOnCameraFOV;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnDisplayWeaponArm rseOnDisplayWeaponArm;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnHideWeaponArm rseOnHideWeaponArm;
+
+    [TabGroup("Outputs")]
     [SerializeField] private RSO_PlayerIsTargeting rsoPlayerIsTargeting;
 
     [TabGroup("Outputs")]
@@ -421,7 +427,10 @@ public class S_TargetingManager : MonoBehaviour
             else rsoTargetPosition.Value = currentTarget.transform.position;
 
             rseOnStartTargeting.Call();
+            rseOnDisplayWeaponArm.Call();
+
             RuntimeManager.PlayOneShot(_targetLockOnSound);
+            
         }
     }
 
@@ -444,6 +453,7 @@ public class S_TargetingManager : MonoBehaviour
             RuntimeManager.PlayOneShot(_targetLockOffSound);
 
             rseOnStopTargeting.Call();
+            rseOnHideWeaponArm.Call();
         }
 
         S_ClassCameraFOV fov = new S_ClassCameraFOV();
@@ -491,6 +501,7 @@ public class S_TargetingManager : MonoBehaviour
                     rseOnAnimationBoolValueChange.Call("TargetLock", false);
 
                     rseOnStopTargeting.Call();
+                    rseOnHideWeaponArm.Call();
 
                     RuntimeManager.PlayOneShot(_targetLockOffSound);
                 }

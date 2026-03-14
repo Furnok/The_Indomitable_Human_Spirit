@@ -27,6 +27,8 @@ public class S_PlayerWeapon : MonoBehaviour
     [SerializeField] private RSO_PlayerIsTargeting rsoPlayerIsTargeting;
 
     private Coroutine displayWeaponArmTempCoroutine = null;
+    private bool inFight = false;
+    private bool inTemp = false;
 
     private void Awake()
     {
@@ -56,37 +58,49 @@ public class S_PlayerWeapon : MonoBehaviour
         {
             StopCoroutine(displayWeaponArmTempCoroutine);
             displayWeaponArmTempCoroutine = null;
+            inTemp = false;
         }
 
         _weaponHand.SetActive(true);
         _weaponBack.SetActive(false);
+
+        inFight = true;
     }
 
     private void HideWeaponArm()
     {
-        if (displayWeaponArmTempCoroutine != null)
-        {
-            StopCoroutine(displayWeaponArmTempCoroutine);
-            displayWeaponArmTempCoroutine = null;
-        }
-
-        _weaponHand.SetActive(false);
-        _weaponBack.SetActive(true);
-    }
-
-    private void DisplayWeaponArmTemp()
-    {
-        if (!rsoPlayerIsTargeting.Value)
+        if (!inTemp)
         {
             if (displayWeaponArmTempCoroutine != null)
             {
                 StopCoroutine(displayWeaponArmTempCoroutine);
                 displayWeaponArmTempCoroutine = null;
+                inTemp = false;
+            }
+
+            _weaponHand.SetActive(false);
+            _weaponBack.SetActive(true);
+        }
+
+        inFight = false;
+    }
+
+    private void DisplayWeaponArmTemp()
+    {
+        if (!inFight)
+        {
+            if (displayWeaponArmTempCoroutine != null)
+            {
+                StopCoroutine(displayWeaponArmTempCoroutine);
+                displayWeaponArmTempCoroutine = null;
+                inTemp = false;
             }
 
             _weaponHand.SetActive(true);
             _weaponBack.SetActive(false);
         }
+
+        inTemp = true;
     }
 
     private void HideWeaponArmTemp(float time)
@@ -109,10 +123,12 @@ public class S_PlayerWeapon : MonoBehaviour
 
     private void HideWeaponArmTime()
     {
-        if (!rsoPlayerIsTargeting.Value)
+        if (!inFight)
         {
             _weaponHand.SetActive(false);
             _weaponBack.SetActive(true);
         }
+
+        inTemp = false;
     }
 }
