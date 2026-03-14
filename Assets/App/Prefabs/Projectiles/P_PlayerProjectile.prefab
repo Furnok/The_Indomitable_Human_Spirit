@@ -4923,7 +4923,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.7
+  m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4885561947737550249
 MonoBehaviour:
@@ -4939,6 +4939,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerProjectile: {fileID: 1990833724267097}
   _meshRendererProjectile: {fileID: 7941410518295011975}
+  _collider: {fileID: 4960141287862395083}
   _trailParticle: {fileID: 3991253332724076579}
   tagHurt: Hurtbox
   _projectileTravelSound:

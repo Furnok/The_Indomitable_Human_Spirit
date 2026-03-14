@@ -13,6 +13,9 @@ public class S_PlayerProjectile : MonoBehaviour
     [SerializeField] private MeshRenderer _meshRendererProjectile;
 
     [TabGroup("References")]
+    [SerializeField] private SphereCollider _collider;
+
+    [TabGroup("References")]
     [SerializeField] ParticleSystem _trailParticle;
 
     [TabGroup("References")]
@@ -74,7 +77,7 @@ public class S_PlayerProjectile : MonoBehaviour
         _projectileMat = _meshRendererProjectile.material;
     }
 
-    public void Initialize(float damage, S_StructDataProjectileVisuals visualsData, Transform target = null, int attackStep = 0, float convictionUsed = 0)
+    public void Initialize(float damage, S_StructDataProjectileVisuals visualsData, Transform target = null, int attackStep = 0, float convictionUsed = 0, float radius = 0.2f)
     {
         this._target = target;
         this._direction = transform.forward;
@@ -82,6 +85,7 @@ public class S_PlayerProjectile : MonoBehaviour
         _speed = _playerAttackSteps.Value.Find(x => x.step == attackStep).speed;
         _damage = damage;
         _convictionUsed = convictionUsed;
+        _collider.radius = radius;
         _projectileData = _playerAttackSteps.Value.Find(x => x.step == attackStep).projectileData;
         _arcRandomDirectionMin = _projectileData.arcRandomDirectionMin;
         _arcRandomDirectionMax = _projectileData.arcRandomDirectionMax;
@@ -209,6 +213,8 @@ public class S_PlayerProjectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!_isInitialized) return;
+
         if (other.CompareTag(tagHurt) && other.TryGetComponent(out I_Damageable damageable))
         {
             if (damageable != null)

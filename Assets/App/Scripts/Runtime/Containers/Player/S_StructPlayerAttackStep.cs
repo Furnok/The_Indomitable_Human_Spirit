@@ -12,6 +12,8 @@ public struct S_StructPlayerAttackStep
 
     public float ammountConvitionNeeded;
 
+    public float radius;
+
     [SuffixLabel("s", Overlay = true)]
     public float timeHoldingInput;
 
