@@ -15,7 +15,7 @@ MonoBehaviour:
   _value:
     health: 2500
     walkSpeed: 10
-    runSpeed: 13
+    runSpeed: 12
     phaseState: 1
     timeDisplay: 0
     stunDuration: 3

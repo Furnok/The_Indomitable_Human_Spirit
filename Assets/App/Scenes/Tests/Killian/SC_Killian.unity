@@ -904,10 +904,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4137517413373363779, guid: 26b32e26939d3614f9dc5380b22f3191, type: 3}
-      propertyPath: m_AngularSpeed
-      value: 380
-      objectReference: {fileID: 0}
     - target: {fileID: 4283267785218327364, guid: 26b32e26939d3614f9dc5380b22f3191, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.22
@@ -975,7 +971,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1213021771004338432, guid: b40847abdb388e54794a37b68e5bf3ac, type: 3}
       propertyPath: m_WarningMessage
-      value: 
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'Jaw'\n\tFrom animation clip 'Simon_1'\n\tFrom
+        animation clip 'Simon_2'\n\tFrom animation clip 'Simon_3'"
       objectReference: {fileID: 0}
     - target: {fileID: 2818859625446955190, guid: b40847abdb388e54794a37b68e5bf3ac, type: 3}
       propertyPath: m_Name
@@ -3832,6 +3831,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1659810929}
     m_Modifications:
+    - target: {fileID: 1286503324989471069, guid: 0172bb772cbf6cd438211f41bb4053c4, type: 3}
+      propertyPath: detectionCollider
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5717509932139896987, guid: 0172bb772cbf6cd438211f41bb4053c4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.18334436
@@ -3880,7 +3883,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5324433361859509416, guid: 0172bb772cbf6cd438211f41bb4053c4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

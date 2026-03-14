@@ -626,10 +626,6 @@ PrefabInstance:
       propertyPath: m_BaseOffset
       value: -0.08
       objectReference: {fileID: 0}
-    - target: {fileID: 338046699455560462, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
-      propertyPath: m_StoppingDistance
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 480381989175066121, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -40
@@ -694,10 +690,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2991559556732496640, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 768
-      objectReference: {fileID: 0}
     - target: {fileID: 3167146948708643335, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
       propertyPath: m_LocalPosition.y
       value: 3.5
@@ -729,18 +721,6 @@ PrefabInstance:
     - target: {fileID: 5771462203054800011, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
       propertyPath: m_TagString
       value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 6290640343244561212, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
-      propertyPath: m_Mass
-      value: 25000
-      objectReference: {fileID: 0}
-    - target: {fileID: 6290640343244561212, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
-      propertyPath: m_Interpolate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6290640343244561212, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6352494224581732303, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
       propertyPath: bossPhase1UI
