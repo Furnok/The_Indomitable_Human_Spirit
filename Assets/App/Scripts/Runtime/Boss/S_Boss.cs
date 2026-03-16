@@ -568,12 +568,12 @@ public class S_Boss : MonoBehaviour
         if (currentPhaseState == S_EnumBossPhaseState.Phase1)
         {
             rseOnEndBossP1.Call();
-            rseOnFinishBossP1.Call();
+            StartCoroutine(S_Utils.Delay(ssoBossData.Value.timeAfterDeathToFinishBoss, () => rseOnFinishBossP1.Call()));
         }
         else if (currentPhaseState == S_EnumBossPhaseState.Phase2)
         {
             rseOnEndBossP2.Call();
-            rseOnFinishBossP2.Call();
+            StartCoroutine(S_Utils.Delay(ssoBossData.Value.timeAfterDeathToFinishBoss, () => rseOnFinishBossP2.Call()));
         }
     }
     #endregion
@@ -592,6 +592,7 @@ public class S_Boss : MonoBehaviour
             }
             else if (currentPhaseState == S_EnumBossPhaseState.Phase2)
             {
+                rseOnDisplayBossHealth.Call(false);
                 rseOnUpdateBossHealth.Call(health);
             }
         }

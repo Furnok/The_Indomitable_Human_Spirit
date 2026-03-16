@@ -131,7 +131,7 @@ public class S_UIGameManager : MonoBehaviour
     [SerializeField] private RSE_OnSaveDisplay rseOnSaveDisplay;
 
     [TabGroup("Inputs")]
-    [SerializeField] private RSE_OnFinishBossP1 rseOnFinishBossP1;
+    [SerializeField] private RSE_OnFinishBossP2 rseOnFinishBossP2;
 
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnPlayerHealNotEnoughMana rseOnPlayerHealNotEnoughMana;
@@ -255,7 +255,7 @@ public class S_UIGameManager : MonoBehaviour
         rseOnPlayerDeath.action += GameOver;
         rseOnDialogueDisplay.action += DisplayDialogue;
         rseOnSaveDisplay.action += DisplaySave;
-        rseOnFinishBossP1.action += GameWin;
+        rseOnFinishBossP2.action += GameWin;
         rseOnPlayerHealNotEnoughMana.action += DisplayHealNotEnoughtMana;
     }
 
@@ -274,7 +274,7 @@ public class S_UIGameManager : MonoBehaviour
         rseOnPlayerDeath.action -= GameOver;
         rseOnDialogueDisplay.action -= DisplayDialogue;
         rseOnSaveDisplay.action -= DisplaySave;
-        rseOnFinishBossP1.action -= GameWin;
+        rseOnFinishBossP2.action -= GameWin;
         rseOnPlayerHealNotEnoughMana.action -= DisplayHealNotEnoughtMana;
 
         healthTween?.Kill();

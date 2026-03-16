@@ -17,6 +17,8 @@ public class S_ClassBossData
 
     public float yHeadRemove = 0;
 
+    public float timeAfterDeathToFinishBoss;
+
     [Title("UI")]
     [ShowIf("isPhase1")]
     [SuffixLabel("s", Overlay = true)]

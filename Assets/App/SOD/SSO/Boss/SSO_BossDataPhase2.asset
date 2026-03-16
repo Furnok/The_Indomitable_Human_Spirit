@@ -18,6 +18,7 @@ MonoBehaviour:
     runSpeed: 12
     phaseState: 1
     yHeadRemove: 1.4
+    timeAfterDeathToFinishBoss: 2
     timeDisplay: 0
     stunDuration: 3
     distanceToChase: 1.5
