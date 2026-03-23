@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _value:
     health: 2500
-    walkSpeed: 10
-    runSpeed: 12
+    walkSpeed: 8
+    runSpeed: 10
     phaseState: 1
     yHeadRemove: 1.4
     timeAfterDeathToFinishBoss: 2
