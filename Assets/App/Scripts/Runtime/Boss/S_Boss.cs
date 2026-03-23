@@ -260,6 +260,8 @@ public class S_Boss : MonoBehaviour
         UpdateLastHealthValue();
         UpdateState(S_EnumBossState.Idle);
         bossDifficultyLevel = ssoBossData.Value.initialBossDifficultyLevel;
+
+        if (currentPhaseState == S_EnumBossPhaseState.Phase2) StartCoroutine(S_Utils.DelayRealTime(4f, () => bossDetectionRange.gameObject.SetActive(true))); 
     }
     
     private void Update()
@@ -271,8 +273,6 @@ public class S_Boss : MonoBehaviour
         if (isChasing && !isDead) Chase();
 
         if (isFighting && !isDead) Fight();
-
-        Debug.Log(health);
     }
     private void FixedUpdate()
     {
