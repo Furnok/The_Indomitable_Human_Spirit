@@ -30,7 +30,7 @@ public class S_BossManager : MonoBehaviour
     {
         rseOnFadeOut.Call();
 
-        StartCoroutine(S_Utils.DelayRealTime(ssoFadeTime.Value, () =>
+        StartCoroutine(S_Utils.DelayRealTime(ssoFadeTime.Value + 0.3f, () =>
         {
             loadScene.Call(sceneToLoadAfterBossP1);
         }));
