@@ -17,6 +17,9 @@ public class S_BossAttack : MonoBehaviour
     [SerializeField] private Collider bodyCollider;
 
     [TabGroup("References")]
+    [SerializeField] private Collider reflectCollider;
+
+    [TabGroup("References")]
     [Title("RigidBody")]
     [SerializeField] private Rigidbody rbBody;
 
@@ -99,6 +102,9 @@ public class S_BossAttack : MonoBehaviour
 
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnBossStun rseOnBossStun;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnStopAttract rseOnStopAttract;
 
     [HideInInspector] public Transform aimPointPlayer = null;
 
@@ -289,6 +295,7 @@ public class S_BossAttack : MonoBehaviour
     #region PingPong
     private void PingPong()
     {
+        reflectCollider.enabled = true;
         pingPongJumpCoroutine = StartCoroutine(DoJump(rbBody, bossData.Value.jumpDistancePingPong, bossData.Value.jumpPowerPingPong, bossData.Value.jumpDurationPingPong, 0, (animIndex) => 
         { pingPongFlyCoroutine = StartCoroutine(DoFly(bossData.Value.flyPowerPingPong, bossData.Value.flyDurationPingPong, animIndex, (nextIndex) => 
         { pingPongCoroutine = StartCoroutine(PingPongCoroutine(nextIndex));
@@ -423,12 +430,13 @@ public class S_BossAttack : MonoBehaviour
 
         animator.SetTrigger(animNumb == 0 ? attackParam : comboParam);
 
-        rseOnStopParticle.Call();
-
+        
         yield return new WaitForSeconds(currentAttack.listComboData[animNumb].animation.length);
         animNumb++;
 
+        rseOnStopParticle.Call();
         rseOnAttractParticle.Call();
+
         yield return new WaitForSeconds(3f);
 
         overrideKey = (animNumb % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
@@ -447,6 +455,7 @@ public class S_BossAttack : MonoBehaviour
         s_FireProjectile.Initialize(transform.rotation, currentAttack.listComboData[animNumb].attackData);
 
         rseOnPlayParticle.Call();
+        rseOnStopAttract.Call();
         rbBody.isKinematic = false;
         bossNavMeshAgent.enabled = true;
         rseOnEndAttack.Call();

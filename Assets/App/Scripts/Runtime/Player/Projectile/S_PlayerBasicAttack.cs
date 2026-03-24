@@ -19,12 +19,6 @@ public class S_PlayerBasicAttack : MonoBehaviour
     [TabGroup("References")]
     [SerializeField] private EventReference _attackPerformedSound;
 
-    [TabGroup("References")]
-    [SerializeField] private GameObject _weaponHand;
-
-    [TabGroup("References")]
-    [SerializeField] private GameObject _weaponBack;
-
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnPlayerAttackInput rseOnPlayerAttack;
 
@@ -63,6 +57,12 @@ public class S_PlayerBasicAttack : MonoBehaviour
 
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnRumbleStopChannel _rseOnRumbleStopChannel;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnDisplayWeaponArmTemp rseOnDisplayWeaponArmTemp;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnHideWeaponArmTemp rseOnHideWeaponArmTemp;
 
     [TabGroup("Outputs")]
     [SerializeField] private RSO_PlayerIsTargeting rsoPlayerIsTargeting;
@@ -138,9 +138,6 @@ public class S_PlayerBasicAttack : MonoBehaviour
             _stepTimes.Add(s.timeHoldingInput);
             _stepConvThresholds.Add(s.ammountConvitionNeeded);
         }
-
-        _weaponHand.SetActive(false);
-        _weaponBack.SetActive(true);
     }
 
     private void OnEnable()
@@ -221,8 +218,7 @@ public class S_PlayerBasicAttack : MonoBehaviour
 
         if (_weaponAttackCoroutine != null) StopCoroutine(_weaponAttackCoroutine);
 
-        _weaponHand.SetActive(true);
-        _weaponBack.SetActive(false);
+        rseOnDisplayWeaponArmTemp.Call();
 
         _onPlayerAddState.Call(S_EnumPlayerState.Attacking);
         
@@ -275,6 +271,8 @@ public class S_PlayerBasicAttack : MonoBehaviour
         _isHolding = false;
         rseOnAnimationBoolValueChange.Call(_attackParam, false);
 
+        rseOnHideWeaponArmTemp.Call(Mathf.Clamp(0.2f + _currenTimeHold, 0, 0.8f));
+
         if ( _currenStepAttack == 0 || _playerCurrentState.Value != S_EnumPlayerState.Attacking)
         {
             if (_convictionAccumulationInstance.isValid())
@@ -292,26 +290,18 @@ public class S_PlayerBasicAttack : MonoBehaviour
 
             _onPlayerAddState.Call(S_EnumPlayerState.None);
             _isHolding = false;
+
             if (_attackChargeCoroutine == null) return;
             _attackChargeCoroutine = null;
         }
         else
         {
             FinalizeAttack();
-
         }
 
         rseOnSendConsoleMessage.Call("Player Launch Attack!");
 
         _rseOnRumbleStopChannel.Call(S_EnumRumbleChannel.ChargeAttack);
-
-        if (_weaponAttackCoroutine != null) StopCoroutine(_weaponAttackCoroutine);
-
-        _weaponAttackCoroutine = StartCoroutine(S_Utils.Delay(Mathf.Clamp(0.2f + _currenTimeHold, 0, 0.6f), () =>
-        {
-            _weaponHand.SetActive(false);
-            _weaponBack.SetActive(true);
-        }));
     }
 
     /*
@@ -535,6 +525,8 @@ public class S_PlayerBasicAttack : MonoBehaviour
         _rseOnRumbleStopChannel.Call(S_EnumRumbleChannel.ChargeAttack);
 
         PublishPreconsume(_reservedConviction);
+
+        rseOnHideWeaponArmTemp.Call(0f);
     }
 
     private void PublishPreconsume(float value)

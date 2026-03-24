@@ -5011,48 +5011,48 @@ MonoBehaviour:
     ParticlesEmission: 20
     ParticlesOrbitalMinEmission: 1
     ParticlesOrbitalMaxEmission: 1
-    ParticleColor: {r: 0.8679245, g: 0, b: 0, a: 1}
-    SphereColor: {r: 0.764151, g: 0, b: 0, a: 1}
+    ParticleColor: {r: 1, g: 0.89411765, b: 0.46666667, a: 1}
+    SphereColor: {r: 1, g: 0.62352943, b: 0, a: 1}
     ScaleEnergySphere: 0.1
   - Step: 1
     SpeedModifier: 1.2
     ParticlesEmission: 40
     ParticlesOrbitalMinEmission: 1
     ParticlesOrbitalMaxEmission: 2
-    ParticleColor: {r: 1, g: 0.22385049, b: 0, a: 1}
-    SphereColor: {r: 0.6509434, g: 0.14550501, b: 0, a: 1}
+    ParticleColor: {r: 1, g: 0.89411765, b: 0.46666667, a: 1}
+    SphereColor: {r: 1, g: 0.68235296, b: 0.09411765, a: 1}
     ScaleEnergySphere: 0.2
   - Step: 2
     SpeedModifier: 1.4
     ParticlesEmission: 60
     ParticlesOrbitalMinEmission: 1
     ParticlesOrbitalMaxEmission: 3
-    ParticleColor: {r: 1, g: 0.57489336, b: 0, a: 1}
-    SphereColor: {r: 0.6981132, g: 0.40244174, b: 0, a: 1}
+    ParticleColor: {r: 1, g: 0.89411765, b: 0.46666667, a: 1}
+    SphereColor: {r: 1, g: 0.7411765, b: 0.1882353, a: 1}
     ScaleEnergySphere: 0.3
   - Step: 3
     SpeedModifier: 1.6
     ParticlesEmission: 80
     ParticlesOrbitalMinEmission: 1
     ParticlesOrbitalMaxEmission: 4
-    ParticleColor: {r: 1, g: 0.9532509, b: 0, a: 1}
-    SphereColor: {r: 0.754717, g: 0.7192009, b: 0, a: 1}
+    ParticleColor: {r: 1, g: 0.89411765, b: 0.46666667, a: 1}
+    SphereColor: {r: 1, g: 0.8, b: 0.2784314, a: 1}
     ScaleEnergySphere: 0.4
   - Step: 4
     SpeedModifier: 1.8
     ParticlesEmission: 100
     ParticlesOrbitalMinEmission: 1
     ParticlesOrbitalMaxEmission: 5
-    ParticleColor: {r: 1, g: 0.9532509, b: 0, a: 1}
-    SphereColor: {r: 0.745283, g: 0.71021086, b: 0, a: 1}
+    ParticleColor: {r: 1, g: 0.89411765, b: 0.46666667, a: 1}
+    SphereColor: {r: 1, g: 0.85490197, b: 0.37254903, a: 1}
     ScaleEnergySphere: 0.6
   - Step: 5
     SpeedModifier: 2
     ParticlesEmission: 120
     ParticlesOrbitalMinEmission: 1
     ParticlesOrbitalMaxEmission: 6
-    ParticleColor: {r: 1, g: 0.97595996, b: 0.6462264, a: 1}
-    SphereColor: {r: 1, g: 0.97515726, b: 0.6273585, a: 1}
+    ParticleColor: {r: 1, g: 0.89411765, b: 0.46666667, a: 1}
+    SphereColor: {r: 1, g: 0.89411765, b: 0.46666667, a: 1}
     ScaleEnergySphere: 0.8
   _hdrIntensity: 2
   _energySphere: {fileID: 5932719491109299566}

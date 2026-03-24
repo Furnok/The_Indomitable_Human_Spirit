@@ -16,6 +16,7 @@ MonoBehaviour:
   - step: 0
     multipliers: 1
     ammountConvitionNeeded: 0
+    radius: 0.2
     timeHoldingInput: 0
     speed: 10
     color: {r: 1, g: 0.7530705, b: 0, a: 0}
@@ -27,6 +28,7 @@ MonoBehaviour:
       arcRandomDirectionMax: 1
       travelTime: 0.5
       lifeTime: 0
+      timeReduce: 0
       speedAnimationCurve:
         serializedVersion: 2
         m_Curve:
@@ -56,6 +58,7 @@ MonoBehaviour:
   - step: 1
     multipliers: 2
     ammountConvitionNeeded: 12
+    radius: 0.2
     timeHoldingInput: 0.6
     speed: 10
     color: {r: 1, g: 0.7529412, b: 0, a: 0}
@@ -67,6 +70,7 @@ MonoBehaviour:
       arcRandomDirectionMax: 1
       travelTime: 0.5
       lifeTime: 0
+      timeReduce: 0
       speedAnimationCurve:
         serializedVersion: 2
         m_Curve:
@@ -96,6 +100,7 @@ MonoBehaviour:
   - step: 2
     multipliers: 4
     ammountConvitionNeeded: 24
+    radius: 0.3
     timeHoldingInput: 0.9
     speed: 10
     color: {r: 1, g: 0.8496671, b: 0.3915094, a: 0}
@@ -107,6 +112,7 @@ MonoBehaviour:
       arcRandomDirectionMax: 1
       travelTime: 0.5
       lifeTime: 0
+      timeReduce: 0
       speedAnimationCurve:
         serializedVersion: 2
         m_Curve:
@@ -136,6 +142,7 @@ MonoBehaviour:
   - step: 3
     multipliers: 6
     ammountConvitionNeeded: 38
+    radius: 0.4
     timeHoldingInput: 1.2
     speed: 10
     color: {r: 1, g: 0.8839623, b: 0.5330188, a: 0}
@@ -147,6 +154,7 @@ MonoBehaviour:
       arcRandomDirectionMax: 1
       travelTime: 0.5
       lifeTime: 0
+      timeReduce: 0
       speedAnimationCurve:
         serializedVersion: 2
         m_Curve:
@@ -176,6 +184,7 @@ MonoBehaviour:
   - step: 4
     multipliers: 8
     ammountConvitionNeeded: 63
+    radius: 0.5
     timeHoldingInput: 1.5
     speed: 10
     color: {r: 1, g: 0.9275805, b: 0.7028302, a: 0}
@@ -187,6 +196,7 @@ MonoBehaviour:
       arcRandomDirectionMax: 1
       travelTime: 0.5
       lifeTime: 0
+      timeReduce: 0
       speedAnimationCurve:
         serializedVersion: 2
         m_Curve:
@@ -216,6 +226,7 @@ MonoBehaviour:
   - step: 5
     multipliers: 12
     ammountConvitionNeeded: 110
+    radius: 0.6
     timeHoldingInput: 1.8
     speed: 10
     color: {r: 1, g: 1, b: 1, a: 0}
@@ -227,6 +238,7 @@ MonoBehaviour:
       arcRandomDirectionMax: 1
       travelTime: 0.5
       lifeTime: 0
+      timeReduce: 0
       speedAnimationCurve:
         serializedVersion: 2
         m_Curve:

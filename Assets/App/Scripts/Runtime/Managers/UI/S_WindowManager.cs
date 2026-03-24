@@ -81,6 +81,9 @@ public class S_WindowManager : MonoBehaviour
     [SerializeField] private RSE_OnHideMouseCursor rseOnHideMouseCursor;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnNeedCursor rseOnNeedCursor;
+
+    [TabGroup("Outputs")]
     [SerializeField] private RSE_OnResetFocus rseOnResetFocus;
 
     [TabGroup("Outputs")]
@@ -149,6 +152,7 @@ public class S_WindowManager : MonoBehaviour
         if (defaultWindow == menuWindow)
         {
             if (Gamepad.current == null) rseOnShowMouseCursor.Call();
+            rseOnNeedCursor.Call(true);
 
             rseOnUIInputEnabled.Call();
             rseOnOpenWindow.Call(menuWindow);
@@ -157,6 +161,7 @@ public class S_WindowManager : MonoBehaviour
         else if (defaultWindow == mainMenuWindow)
         {
             if (Gamepad.current == null) rseOnShowMouseCursor.Call();
+            rseOnNeedCursor.Call(true);
 
             rseOnUIInputEnabled.Call();
             rsoInGame.Value = false;
@@ -173,6 +178,9 @@ public class S_WindowManager : MonoBehaviour
         }
         else
         {
+            rseOnHideMouseCursor.Call();
+            rseOnNeedCursor.Call(true);
+
             rsoInGame.Value = true;
             DisplayUIGame(true);
             rseOnGameActionInputEnabled.Call();
@@ -230,12 +238,14 @@ public class S_WindowManager : MonoBehaviour
             }
 
             rseOnHideMouseCursor.Call();
+            rseOnNeedCursor.Call(false);
 
             if (rsoGameInPause.Value)
             {
                 rseOnUIInputEnabled.Call();
 
                 if (Gamepad.current == null) rseOnShowMouseCursor.Call();
+                rseOnNeedCursor.Call(true);
             }
             else rseOnGameInputEnabled.Call();
 
@@ -259,6 +269,7 @@ public class S_WindowManager : MonoBehaviour
                 RuntimeManager.PlayOneShot(uiSound);
 
                 if (Gamepad.current == null) rseOnShowMouseCursor.Call();
+                rseOnNeedCursor.Call(true);
 
                 rseOnUIInputEnabled.Call();
                 OpenWindow(menuWindow);

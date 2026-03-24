@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6508f7aa86714f742ab52a87660c99bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gettingHitRumbleData: {fileID: 11400000, guid: 4f916cdda67c10b4e901769045f71008, type: 2}
   _damageSound:
     Guid:
       Data1: -1442991527
@@ -52,14 +51,17 @@ MonoBehaviour:
       Data3: 343391415
       Data4: 817223673
     Path: event:/Player/Combat/DamagePlayer
+  _playerDamageVFX: {fileID: 5031515662437908494, guid: d7f1e6fbe361f0148ac17a4a49fa4a01, type: 3}
+  _propLantern: {fileID: 0}
   _rseOnPlayerHit: {fileID: 11400000, guid: 577377e3b86e97b4eb3c9400800347ce, type: 2}
   rseOnPlayerHealthReduced: {fileID: 11400000, guid: d9db70b8d640c8d47b38c443abcec2ff, type: 2}
   rseOnAnimationTriggerValueChange: {fileID: 11400000, guid: fb9393b66f5b44f45ab0b720e7cf09b2, type: 2}
   _rseOnPlayerGettingHit: {fileID: 11400000, guid: 0bde5f6bad322664c9a88a5237c9d868, type: 2}
   _onPlayerAddState: {fileID: 11400000, guid: 38569afc7ffff0c4eb66c76bc8a6146e, type: 2}
+  _rseOnRumbleRequested: {fileID: 11400000, guid: 398d5ea3b7e14d0458a5cba996361021, type: 2}
+  _rseOnRumbleStopChannel: {fileID: 11400000, guid: 6f1b7913ca16dc74599e3025edacefd3, type: 2}
   _playerCurrentState: {fileID: 11400000, guid: 16388ffed06f1314f8caba9f9a324afe, type: 2}
   _debugPlayer: {fileID: 11400000, guid: 687c0d8c74f9fdc41aa6ff08b1c72f77, type: 2}
   _playerStateTransitions: {fileID: 11400000, guid: d6e9b95c877c8a84291c447bbbc229af, type: 2}
   _playerStats: {fileID: 11400000, guid: 672a77f2978d3824b90e0f910ab84268, type: 2}
-  _rseOnRumbleRequested: {fileID: 11400000, guid: 398d5ea3b7e14d0458a5cba996361021, type: 2}
-  _rseOnRumbleStopChannel: {fileID: 11400000, guid: 6f1b7913ca16dc74599e3025edacefd3, type: 2}
+  _gettingHitRumbleData: {fileID: 11400000, guid: 4f916cdda67c10b4e901769045f71008, type: 2}

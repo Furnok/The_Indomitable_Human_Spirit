@@ -626,10 +626,6 @@ PrefabInstance:
       propertyPath: m_BaseOffset
       value: -0.08
       objectReference: {fileID: 0}
-    - target: {fileID: 338046699455560462, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
-      propertyPath: m_StoppingDistance
-      value: 0.2
-      objectReference: {fileID: 0}
     - target: {fileID: 480381989175066121, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -40
@@ -726,6 +722,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 6324034822133534210, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+      propertyPath: ssoFadeTime
+      value: 
+      objectReference: {fileID: 11400000, guid: 611e366585d4976458e7989ec5477367, type: 2}
+    - target: {fileID: 6324034822133534210, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+      propertyPath: rseOnFadeOut
+      value: 
+      objectReference: {fileID: 11400000, guid: 04361f481971a204cbdc1bd2d01954af, type: 2}
     - target: {fileID: 6352494224581732303, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
       propertyPath: bossPhase1UI
       value: 

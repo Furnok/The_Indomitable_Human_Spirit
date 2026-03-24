@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a9b9182ba843b9f45b3a5fa84e662d67, type: 2}
+  - {fileID: 2100000, guid: c4c1a2bf0e95f90419b6f9e61f27147f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -131,8 +131,8 @@ Rigidbody:
   m_GameObject: {fileID: 8767378737508242072}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 0.05
+  m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -146,9 +146,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Interpolate: 1
+  m_Constraints: 112
+  m_CollisionDetection: 2
 --- !u!135 &3724131154372977999
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -168,7 +168,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.25
+  m_Radius: 0.4
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7501301468289437560
 MonoBehaviour:
@@ -191,8 +191,8 @@ MonoBehaviour:
     m_Bits: 34816
   playerLayer: 8
   rb: {fileID: 6375349480578834582}
-  enemyMat: {fileID: 2100000, guid: 46fd367f7816d434ba541584b0a91a9f, type: 2}
-  playerMat: {fileID: 2100000, guid: 6548b5bace388d2448daab8c8e3e506b, type: 2}
+  enemyMat: {fileID: 2100000, guid: c4c1a2bf0e95f90419b6f9e61f27147f, type: 2}
+  playerMat: {fileID: 2100000, guid: a9b9182ba843b9f45b3a5fa84e662d67, type: 2}
   rendered: {fileID: 3757806925846237130}
   ssoProjectileData: {fileID: 11400000, guid: 317737fd7f3f47b4a8b94bb0b06bc92a, type: 2}
 --- !u!1001 &1006660295087244880

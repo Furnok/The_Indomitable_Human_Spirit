@@ -20,6 +20,7 @@ MonoBehaviour:
     detectionRange: 10
     detectionAggroRangeMax: 30
     isIdle: 1
+    yHeadRemove: 1
     attackCooldown: 2
     stunTime: 1
     rotationTime: 0.6
@@ -36,6 +37,8 @@ MonoBehaviour:
     - distanceMin: 1
       distanceToChase: 12
       distanceToLoseAttack: 13.2
+      isTutoCombo: 0
+      tutoStepToUnlock: 0
       listAnimationsCombos:
       - animation: {fileID: 7400000, guid: 348c9aeec081fb74f86aba7e2f2e2409, type: 2}
         animationParry: {fileID: 0}
@@ -76,7 +79,7 @@ MonoBehaviour:
           knockbackHitDuration: 0.1
           knockbackHitDistance: 1
           knockbackOnParryDuration: 0.2
-          knockbackOnParrryDistance: 0.3
+          knockbackOnParrryDistance: 0.1
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
@@ -148,7 +151,7 @@ MonoBehaviour:
           knockbackHitDuration: 0.1
           knockbackHitDistance: 1
           knockbackOnParryDuration: 0.2
-          knockbackOnParrryDistance: 0.3
+          knockbackOnParrryDistance: 0.1
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
@@ -220,7 +223,7 @@ MonoBehaviour:
           knockbackHitDuration: 0.1
           knockbackHitDistance: 1
           knockbackOnParryDuration: 0.2
-          knockbackOnParrryDistance: 0.3
+          knockbackOnParrryDistance: 0.1
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
@@ -292,7 +295,7 @@ MonoBehaviour:
           knockbackHitDuration: 0.1
           knockbackHitDistance: 1
           knockbackOnParryDuration: 0.2
-          knockbackOnParrryDistance: 0.3
+          knockbackOnParrryDistance: 0.1
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
@@ -364,7 +367,7 @@ MonoBehaviour:
           knockbackHitDuration: 0.1
           knockbackHitDistance: 1
           knockbackOnParryDuration: 0.2
-          knockbackOnParrryDistance: 0.3
+          knockbackOnParrryDistance: 0.1
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7

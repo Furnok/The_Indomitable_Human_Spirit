@@ -60,6 +60,9 @@ public class S_UIMainMenu : MonoBehaviour
     [SerializeField] private RSE_OnHideMouseCursor rseOnHideMouseCursor;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnNeedCursor rseOnNeedCursor;
+
+    [TabGroup("Outputs")]
     [SerializeField] private RSE_OnDataLoad rseOnDataLoad;
 
     [TabGroup("Outputs")]
@@ -146,6 +149,7 @@ public class S_UIMainMenu : MonoBehaviour
             RuntimeManager.PlayOneShot(uiSound);
 
             rseOnHideMouseCursor.Call();
+            rseOnNeedCursor.Call(false);
 
             rseOnCloseAllWindows.Call();
 
@@ -170,6 +174,7 @@ public class S_UIMainMenu : MonoBehaviour
             isTransit = true;
 
             rseOnHideMouseCursor.Call();
+            rseOnNeedCursor.Call(false);
 
             rseOnCloseAllWindows.Call();
 

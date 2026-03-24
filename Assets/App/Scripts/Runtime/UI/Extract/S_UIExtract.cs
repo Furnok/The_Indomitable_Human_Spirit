@@ -60,6 +60,9 @@ public class S_UIExtract : MonoBehaviour
     [SerializeField] private RSE_OnHideMouseCursor rseOnHideMouseCursor;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnNeedCursor rseOnNeedCursor;
+
+    [TabGroup("Outputs")]
     [SerializeField] private RSO_Navigation rsoNavigation;
 
     [TabGroup("Outputs")]
@@ -87,6 +90,7 @@ public class S_UIExtract : MonoBehaviour
         rseOnPlayerPause.action += CloseEscape;
 
         if (Gamepad.current == null) rseOnShowMouseCursor.Call();
+        rseOnNeedCursor.Call(true);
 
         scrollRect.verticalNormalizedPosition = 1;
     }
@@ -156,6 +160,7 @@ public class S_UIExtract : MonoBehaviour
         if (!isClosing)
         {
             rseOnHideMouseCursor.Call();
+            rseOnNeedCursor.Call(false);
 
             RuntimeManager.PlayOneShot(uiSound);
 

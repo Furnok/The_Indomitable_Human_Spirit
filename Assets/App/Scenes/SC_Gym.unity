@@ -946,7 +946,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.13333334
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: c1487c3dde738c340978feb3d74dbc24, type: 2}
   m_BuildHeightMesh: 0
@@ -2237,10 +2237,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7001074866567191048, guid: c444780b51848d8418703b99fa6f886c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c444780b51848d8418703b99fa6f886c, type: 3}
 --- !u!4 &1517400466 stripped
 Transform:
@@ -2469,10 +2466,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3260091571107037593, guid: 5759e65e96771f94b89cb17b77e01de1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5759e65e96771f94b89cb17b77e01de1, type: 3}
 --- !u!4 &1657679556 stripped
 Transform:
@@ -2743,10 +2737,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5736843024701416805, guid: ef5e7817ffab7e94e826143b71dbfc3d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef5e7817ffab7e94e826143b71dbfc3d, type: 3}
 --- !u!4 &1947696370 stripped
 Transform:
@@ -3202,27 +3193,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4678236891978517612, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.6049404
+      value: 4.304235
       objectReference: {fileID: 0}
     - target: {fileID: 4678236891978517612, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.6760187
+      value: -5.7223015
       objectReference: {fileID: 0}
     - target: {fileID: 4678236891978517612, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9827496
+      value: 0.98836154
       objectReference: {fileID: 0}
     - target: {fileID: 4678236891978517612, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.18494129
+      value: 0.15212339
       objectReference: {fileID: 0}
     - target: {fileID: 4678236891978517612, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000014165965
+      value: 0.0000000062440946
       objectReference: {fileID: 0}
     - target: {fileID: 4678236891978517612, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000002665859
+      value: -9.610582e-10
       objectReference: {fileID: 0}
     - target: {fileID: 4957929126819055299, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3274,11 +3265,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8703180912700670871, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.6049404
+      value: 4.304235
       objectReference: {fileID: 0}
     - target: {fileID: 8703180912700670871, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.6760187
+      value: -5.7223015
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703180912700670871, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.98836154
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703180912700670871, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.15212339
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703180912700670871, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.0000000062440946
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703180912700670871, guid: d63a12b3e37c6234cb40b92f31212e41, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -9.610582e-10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3450,6 +3457,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5808531014389773024, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
+      propertyPath: levelName.sceneGUID
+      value: b2539c53cd8755042bb5c5fcf7ab0cbd
+      objectReference: {fileID: 0}
+    - target: {fileID: 5808531014389773024, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
+      propertyPath: levelName.sceneName
+      value: SC_Game
+      objectReference: {fileID: 0}
+    - target: {fileID: 5808531014389773024, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
+      propertyPath: levelName.scenePath
+      value: Assets/App/Scenes/SC_Game.unity
+      objectReference: {fileID: 0}
     - target: {fileID: 6197051584241607373, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
       propertyPath: haveGameOver
       value: 1
@@ -3458,6 +3477,18 @@ PrefabInstance:
       propertyPath: defaultWindow
       value: 
       objectReference: {fileID: 3316049811810972054}
+    - target: {fileID: 9037223619176970534, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
+      propertyPath: levelName.sceneGUID
+      value: b2539c53cd8755042bb5c5fcf7ab0cbd
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037223619176970534, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
+      propertyPath: levelName.sceneName
+      value: SC_Game
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037223619176970534, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
+      propertyPath: levelName.scenePath
+      value: Assets/App/Scenes/SC_Game.unity
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

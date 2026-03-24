@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_BossPhase2
       objectReference: {fileID: 0}
+    - target: {fileID: 2991559556732496640, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 768
+      objectReference: {fileID: 0}
     - target: {fileID: 3961580513568290508, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
       propertyPath: m_Height
       value: 3
@@ -162,6 +166,10 @@ PrefabInstance:
       propertyPath: rseOnStartBossP2
       value: 
       objectReference: {fileID: 11400000, guid: cb17ca66c2d0ac543b2ac2048eac14a3, type: 2}
+    - target: {fileID: 6352494224581732303, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+      propertyPath: detectionCollider
+      value: 
+      objectReference: {fileID: 8796385610939646881}
     - target: {fileID: 6352494224581732303, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
       propertyPath: enemyHeadLookAtIK
       value: 
@@ -194,6 +202,10 @@ PrefabInstance:
       propertyPath: rseOnPlayerDeath
       value: 
       objectReference: {fileID: 11400000, guid: 05b30ffda8ad63c4d82da9ab419e36e1, type: 2}
+    - target: {fileID: 6465511601208726001, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+      propertyPath: rseOnStopAttract
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f3b2c4511629e34d954d68b026a5106, type: 2}
     - target: {fileID: 6465511601208726001, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
       propertyPath: durationGathering
       value: 1
@@ -228,6 +240,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2728780361816490054, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4302473150569301254}
+    - targetCorrespondingSourceObject: {fileID: 8189462692929267531, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 8796385610939646881}
   m_SourcePrefab: {fileID: 100100000, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
 --- !u!114 &1033410510423273019 stripped
 MonoBehaviour:
@@ -255,6 +270,32 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7812970438274539343, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
   m_PrefabInstance: {fileID: 5328325853840481938}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4059103153397561817 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8189462692929267531, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+  m_PrefabInstance: {fileID: 5328325853840481938}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &8796385610939646881
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4059103153397561817}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 768
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 30
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &5453112315392468119 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 170957429800417797, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
@@ -295,6 +336,7 @@ MonoBehaviour:
   fireAttract: {fileID: 1154783769500328815, guid: b4257b7bc18f7254892b6b102b3c61da, type: 3}
   bossTransform: {fileID: 1364584018897827843}
   rseOnAttractParticle: {fileID: 11400000, guid: 6b56ca48f31ff474482a67eb74243284, type: 2}
+  rseOnStopAttract: {fileID: 11400000, guid: 8f3b2c4511629e34d954d68b026a5106, type: 2}
 --- !u!1001 &7584749744290211997
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -375,6 +417,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2013937455260769207, guid: 9b42a44743b9a1442bfa1facacf63695, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a9b9182ba843b9f45b3a5fa84e662d67, type: 2}
     m_RemovedComponents:
     - {fileID: 476060215, guid: 9b42a44743b9a1442bfa1facacf63695, type: 3}
     m_RemovedGameObjects: []
@@ -416,7 +462,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 768
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -439,7 +485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 2710950465709425117}
-  delay: 1.5
+  delay: 0.5
   syncValuesInstantly: 1
 --- !u!114 &13417093255898653
 MonoBehaviour:

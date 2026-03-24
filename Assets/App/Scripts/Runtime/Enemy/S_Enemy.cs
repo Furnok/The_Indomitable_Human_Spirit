@@ -2,6 +2,7 @@
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -118,6 +119,9 @@ public class S_Enemy : MonoBehaviour
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnParrySuccess rseOnParrySuccess;
 
+    [TabGroup("Inputs")]
+    [SerializeField] RSE_OnTutoSettingChange rseOnTutoSettingChange;
+
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnSendConsoleMessage rseOnSendConsoleMessage;
 
@@ -135,6 +139,12 @@ public class S_Enemy : MonoBehaviour
 
     [TabGroup("Outputs")]
     [SerializeField] private SSO_CameraData ssoCameraData;
+
+    [TabGroup("Outputs")]
+    [SerializeField] RSO_SettingsSaved _rsoSettingsSaved;
+
+    [TabGroup("Outputs")]
+    [SerializeField] RSO_ListTutoStepFinished _tutoStepsFinished;
 
     private float health = 0;
     private AnimatorOverrideController overrideController = null;
@@ -209,6 +219,8 @@ public class S_Enemy : MonoBehaviour
         rseOnPlayerRespawn.action += PlayerRespawn;
         rseOnDataLoad.action += LoadEnemy;
         rseOnParrySuccess.action += Parry;
+
+        rseOnTutoSettingChange.action += OnTutoChange;
     }
 
     private void OnDisable()
@@ -217,6 +229,8 @@ public class S_Enemy : MonoBehaviour
         rseOnPlayerRespawn.action -= PlayerRespawn;
         rseOnDataLoad.action -= LoadEnemy;
         rseOnParrySuccess.action -= Parry;
+
+        rseOnTutoSettingChange.action -= OnTutoChange;
     }
 
     private void Start()
@@ -237,7 +251,7 @@ public class S_Enemy : MonoBehaviour
 
     private void Update()
     {
-        if ((currentState == S_EnumEnemyState.Chasing || currentState == S_EnumEnemyState.Combat || currentState == S_EnumEnemyState.Attack) && !isDead) enemyHeadLookAtIK.SetTarget(currentTarget);
+        if ((currentState == S_EnumEnemyState.Chasing || currentState == S_EnumEnemyState.Combat || currentState == S_EnumEnemyState.Attack) && !isDead) enemyHeadLookAtIK.SetTarget(currentTarget, ssoEnemyData.Value.yHeadRemove);
 
         if (currentTarget != null && (unlockRotate || !isAttack) && !isDead) RotateEnemy();
 
@@ -414,7 +428,7 @@ public class S_Enemy : MonoBehaviour
 
             animator.SetBool(attackParam, false);
 
-            enemyHeadLookAtIK.SetTarget(null);
+            enemyHeadLookAtIK.SetTarget(null, 0);
 
             if (resetAttack != null)
             {
@@ -572,7 +586,7 @@ public class S_Enemy : MonoBehaviour
         isReturnPatroling = true;
 
         detectionCollider.enabled = false;
-        enemyHeadLookAtIK.SetTarget(null);
+        enemyHeadLookAtIK.SetTarget(null, 0);
 
         navMeshAgent.speed = ssoEnemyData.Value.speedReturnPatrol;
         navMeshAgent.stoppingDistance = 0.2f;
@@ -628,11 +642,54 @@ public class S_Enemy : MonoBehaviour
     #endregion
 
     #region Combat
+
+    void OnTutoChange()
+    {
+        SetCombo();
+    }
+
     private void SetCombo()
     {
-        int rnd = Random.Range(0, ssoEnemyData.Value.listCombos.Count);
+        if (_rsoSettingsSaved.Value.activateTuto == true)
+        {
+            var hasTutoCombo = ssoEnemyData.Value.listCombos.Find(c => c.isTutoCombo == true);
 
-        combo = ssoEnemyData.Value.listCombos[rnd];
+            if (hasTutoCombo != null )
+            {
+                combo = hasTutoCombo;
+
+                if (hasTutoCombo.tutoStepToUnlock == S_EnumTutorialStep.Parry && _tutoStepsFinished.Value.Any(x => x.Step == S_EnumTutorialStep.Parry && x.IsFinished == true))
+                {
+                    var listWithoutTuto = ssoEnemyData.Value.listCombos.FindAll(c => c.isTutoCombo == false);
+
+                    int rnd = Random.Range(0, listWithoutTuto.Count);
+
+                    combo = listWithoutTuto[rnd];
+                }
+                
+                return;
+            }
+            else
+            {
+                int rnd = Random.Range(0, ssoEnemyData.Value.listCombos.Count);
+
+                combo = ssoEnemyData.Value.listCombos[rnd];
+            }
+        }
+        else if (ssoEnemyData.Value.listCombos.Exists(c => c.isTutoCombo == true) == true)
+        {
+            var listWithoutTuto = ssoEnemyData.Value.listCombos.FindAll(c => c.isTutoCombo == false);
+
+            int rnd = Random.Range(0, listWithoutTuto.Count);
+
+            combo = listWithoutTuto[rnd];
+        }
+        else
+        {
+            int rnd = Random.Range(0, ssoEnemyData.Value.listCombos.Count);
+
+            combo = ssoEnemyData.Value.listCombos[rnd];
+        }
     }
 
     private void StartCombat()
@@ -651,7 +708,7 @@ public class S_Enemy : MonoBehaviour
 
     private void Combat()
     {
-        if (canAttack)
+        if (canAttack && currentTarget != null)
         {
             float distance = Vector3.Distance(center.transform.position, currentTarget.transform.position);
 
@@ -663,7 +720,7 @@ public class S_Enemy : MonoBehaviour
                 UpdateState(S_EnumEnemyState.Attack);
             }
         }
-        else if (!isAttack)
+        else if (!isAttack && currentTarget != null)
         {
             float distance = Vector3.Distance(center.transform.position, currentTarget.transform.position);
 
@@ -804,8 +861,14 @@ public class S_Enemy : MonoBehaviour
     {
         if (!isAttack || ssoEnemyData.Value.isIdle) return;
 
-        waitTime = combo.listAnimationsCombos[currentComboIndex].animationParry.length;
         timer = 0f;
+        waitTime = combo.listAnimationsCombos[currentComboIndex].animationParry.length;
+
+        RotateEnemy();
+
+        enemyAttackData.DisableWeaponCollider();
+        enemyAttackData.VFXStopTrail();
+        unlockRotate = false;
 
         rootMotionModifier.Setup(0, 0);
         animator.SetTrigger(parryParam);

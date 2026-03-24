@@ -15,6 +15,10 @@ public class S_ClassBossData
 
     public S_EnumBossPhaseState phaseState;
 
+    public float yHeadRemove = 0;
+
+    public float timeAfterDeathToFinishBoss;
+
     [Title("UI")]
     [ShowIf("isPhase1")]
     [SuffixLabel("s", Overlay = true)]

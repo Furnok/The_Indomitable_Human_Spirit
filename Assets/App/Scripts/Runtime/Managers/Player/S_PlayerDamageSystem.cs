@@ -7,7 +7,12 @@ public class S_PlayerDamageSystem : MonoBehaviour
     [TabGroup("Reference")]
     [Title("Audio")]
     [SerializeField] private EventReference _damageSound;
+
+    [TabGroup("Reference")]
+    [Title("Particle")]
     [SerializeField] private GameObject _playerDamageVFX;
+
+    [TabGroup("Reference")]
     [SerializeField] private GameObject _propLantern;
 
     [TabGroup("Inputs")]
@@ -72,7 +77,7 @@ public class S_PlayerDamageSystem : MonoBehaviour
 
 
             RuntimeManager.PlayOneShot(_damageSound);
-            Instantiate(_playerDamageVFX, _propLantern.transform.position, Quaternion.identity);
+            Instantiate(_playerDamageVFX, _propLantern.transform.position, Quaternion.identity, gameObject.transform);
 
             rseOnAnimationTriggerValueChange.Call("isHit");
             _onPlayerAddState.Call(S_EnumPlayerState.HitReact);

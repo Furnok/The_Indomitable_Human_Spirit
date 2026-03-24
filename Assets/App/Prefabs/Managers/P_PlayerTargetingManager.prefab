@@ -74,20 +74,28 @@ MonoBehaviour:
   rseOnEnemyTargetDied: {fileID: 11400000, guid: a6d4a41f4054c224a832b2ce84286687, type: 2}
   _rseOnPlayerCenter: {fileID: 11400000, guid: 0a40b7ab63540b84891bec3b379c9b89, type: 2}
   _onPlayerDeathRse: {fileID: 11400000, guid: 05b30ffda8ad63c4d82da9ab419e36e1, type: 2}
+  rseOnStartBossP2: {fileID: 11400000, guid: cb17ca66c2d0ac543b2ac2048eac14a3, type: 2}
+  rseOnEndBossP2: {fileID: 11400000, guid: bad8e97ad43c8c44985e6df7981e0470, type: 2}
   rseOnStartTargeting: {fileID: 11400000, guid: 06dd5cb141e805f4886a0677d415d129, type: 2}
   rseOnNewTargeting: {fileID: 11400000, guid: c5f673ce9067f6241b1df96e6d83520f, type: 2}
   rseOnPlayerCancelTargeting: {fileID: 11400000, guid: d8d0a24f7352ea84ba1f5614f16bb752, type: 2}
   rseOnStopTargeting: {fileID: 11400000, guid: 608c9d5cdb53a9d40a4926c3ca41a1ff, type: 2}
   rseOnAnimationBoolValueChange: {fileID: 11400000, guid: f3b68030aacb033438a094c87c0e44ca, type: 2}
+  rseOnResetCam: {fileID: 11400000, guid: 70986f4a312d85b4bb428dfa81d3c259, type: 2}
+  rseOnCameraFOV: {fileID: 11400000, guid: be074528f87be5f469eb9a1c75eeb202, type: 2}
+  rseOnDisplayWeaponArm: {fileID: 11400000, guid: 801a85645b425404da0b80c7ea76300c, type: 2}
+  rseOnHideWeaponArm: {fileID: 11400000, guid: b418180b59fd75448a0057e102245013, type: 2}
   rsoPlayerIsTargeting: {fileID: 11400000, guid: 53017e014e6ba384988975c6a7762355, type: 2}
   rsoPlayerPosition: {fileID: 11400000, guid: a3d33267cdb3a0a43bb8ab4811624f21, type: 2}
   rsoSettingsSaved: {fileID: 11400000, guid: 782057adb6fb88f4db3ac2e35a786bc0, type: 2}
   rsoTargetPosition: {fileID: 11400000, guid: 0ac75a93e6bb72c45bd266638c5655fb, type: 2}
+  rsoCurrentTarget: {fileID: 11400000, guid: 21e74e9f4371e414596255356b9bd1f4, type: 2}
   ssoPlayerMaxDistanceTargeting: {fileID: 11400000, guid: 541adfab7eb5e28439bb20fb68f82377, type: 2}
   ssoPlayerTargetRangeRadius: {fileID: 11400000, guid: 5be727c44da2ea945accbd91b94caaf1, type: 2}
   ssoPargetObstacleBreakDelay: {fileID: 11400000, guid: 12b9fac0e12e2f94bbd815009f9dfa4c, type: 2}
   ssoFrontConeAngle: {fileID: 11400000, guid: 1a334ea9ff9f95d45bd16bd34d05d126, type: 2}
   ssoDisplay: {fileID: 11400000, guid: 67fbeef0288ea2244886151a8aa34e0b, type: 2}
+  ssoCameraData: {fileID: 11400000, guid: 8a8b9ed3ac9bcab418920e1de02ba0e2, type: 2}
 --- !u!114 &7025031120701374793
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -81,13 +81,13 @@ public class S_PlayerProjectileManager : MonoBehaviour
     private void GetProjectileFromPool(float attackconviction)
     {
         if (attackconviction < 1) return;
-        
+
         var stepsUpperCurrentConviction = _playerAttackSteps.Value.FindAll(x => x.ammountConvitionNeeded <= attackconviction);
         var currentStepAttack = stepsUpperCurrentConviction.OrderByDescending(x => x.ammountConvitionNeeded).First();
 
         var projectile = projectilePool.Get();
-        projectile.transform.position = _playerPosition.Value + _playerRotation.Value * _playerStats.Value.attackOffset;
-        projectile.transform.rotation = _playerRotation.Value;
+        projectile.transform.SetPositionAndRotation(_playerPosition.Value + _playerRotation.Value * _playerStats.Value.attackOffset, _playerRotation.Value);
+        Physics.SyncTransforms();
 
         Transform aimPoint = null;
 
@@ -97,7 +97,7 @@ public class S_PlayerProjectileManager : MonoBehaviour
             aimPoint = aimPointProvider != null ? aimPointProvider.GetAimPoint() : target;
         }
 
-        projectile.Initialize(attackconviction * currentStepAttack.multipliers, _playerCurrentVisualProjectile.Value, aimPoint, currentStepAttack.step, attackconviction);
+        projectile.Initialize(attackconviction * currentStepAttack.multipliers, _playerCurrentVisualProjectile.Value, aimPoint, currentStepAttack.step, attackconviction, currentStepAttack.radius);
     }
 
     private void ReturnProjectileToPool(S_PlayerProjectile projectile)

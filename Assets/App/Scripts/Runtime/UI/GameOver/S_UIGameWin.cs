@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class S_UIGameWin : MonoBehaviour
 {
+    [TabGroup("References")]
+    [Title("Levels")]
+    [SerializeField] private S_SceneReference levelName;
+
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnCloseAllWindows rseOnCloseAllWindows;
 
@@ -24,6 +28,9 @@ public class S_UIGameWin : MonoBehaviour
     [SerializeField] private RSE_OnShowMouseCursor rseOnShowMouseCursor;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnNeedCursor rseOnNeedCursor;
+
+    [TabGroup("Outputs")]
     [SerializeField] private RSO_Navigation rsoNavigation;
 
     [TabGroup("Outputs")]
@@ -34,6 +41,7 @@ public class S_UIGameWin : MonoBehaviour
     private void OnEnable()
     {
         if (Gamepad.current == null) rseOnShowMouseCursor.Call();
+        rseOnNeedCursor.Call(true);
 
         isTransit = false;
     }
@@ -62,8 +70,15 @@ public class S_UIGameWin : MonoBehaviour
 
                 rseOnGamePause.Call(false);
 
-                Scene currentScene = SceneManager.GetActiveScene();
-                rseOnLoadScene.Call(currentScene.name);
+                if (!string.IsNullOrEmpty(levelName.Name))
+                {
+                    rseOnLoadScene.Call(levelName.Name);
+                }
+                else
+                {
+                    Scene currentScene = SceneManager.GetActiveScene();
+                    rseOnLoadScene.Call(currentScene.name);
+                }
             }));
         }
     }

@@ -856,6 +856,7 @@ GameObject:
   - component: {fileID: 3231315390003761703}
   - component: {fileID: 461593203997373390}
   - component: {fileID: 6465511601208726001}
+  - component: {fileID: 6324034822133534210}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -895,10 +896,10 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.75
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 20
   avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_AngularSpeed: 180
+  m_StoppingDistance: 0.2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -936,8 +937,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2728780361816490054}
   serializedVersion: 4
-  m_Mass: 100000
-  m_Drag: 0
+  m_Mass: 25000
+  m_Drag: 0.05
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -954,7 +955,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &6352494224581732303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -973,6 +974,7 @@ MonoBehaviour:
   center: {fileID: 5109135260119777048}
   rb: {fileID: 6290640343244561212}
   bodyCollider: {fileID: 2172925691496945250}
+  reflectCollider: {fileID: 3961580513568290508}
   detectionCollider: {fileID: 6240607319024186}
   hurtCollider: {fileID: 6623810594226599851}
   bossDetectionRange: {fileID: 4396067441703182030}
@@ -1077,6 +1079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossData: {fileID: 0}
   bodyCollider: {fileID: 2172925691496945250}
+  reflectCollider: {fileID: 3961580513568290508}
   rbBody: {fileID: 6290640343244561212}
   bossProjectile: {fileID: 8140121101017001052, guid: f1fb51f3df4ed10408671800bfdcfdc4, type: 3}
   enemyProjectile: {fileID: 7501301468289437560, guid: 2ed9513c34b0abb4facaadc6e39513ea, type: 3}
@@ -1100,10 +1103,27 @@ MonoBehaviour:
   rseOnPlayerDeath: {fileID: 0}
   rseOnPlayParticle: {fileID: 11400000, guid: 96e637a3924deff4685a645b52dfc7c2, type: 2}
   rseOnStopParticle: {fileID: 11400000, guid: 4188360d207886043ab568bf24778487, type: 2}
+  rseOnAttractParticle: {fileID: 0}
   rseOnEndAttack: {fileID: 11400000, guid: df61dd20dc38205418f8426747ea5149, type: 2}
   rseOnBossStun: {fileID: 11400000, guid: e52f886ca2039f34da187674d8e07a81, type: 2}
+  rseOnStopAttract: {fileID: 0}
   aimPointPlayer: {fileID: 0}
   overrideController: {fileID: 0}
+--- !u!114 &6324034822133534210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2728780361816490054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7052dd1682e68ad4383ea3efefa89af1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoadAfterBossP1: SC_Boss
+  onFinishBossP1: {fileID: 11400000, guid: 1cc4dea73a1f48a4eaec2f0d611b0d63, type: 2}
+  loadScene: {fileID: 11400000, guid: 3e9462016f0203448bead1ff197b69f0, type: 2}
 --- !u!1 &2812144962020388730
 GameObject:
   m_ObjectHideFlags: 0
@@ -1872,7 +1892,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 1.1
   m_Height: 3.5
@@ -1890,9 +1910,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5a40d0b4af39c8478375ecc1ed3bea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reflectLayer:
-    serializedVersion: 2
-    m_Bits: 256
   body: {fileID: 2937009420039466711}
 --- !u!1 &5885412673635178662
 GameObject:
@@ -2356,7 +2373,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 768
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -3068,7 +3085,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 768
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0

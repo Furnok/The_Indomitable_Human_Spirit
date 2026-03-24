@@ -7,12 +7,6 @@ public class S_PlayerParry : MonoBehaviour
     [Title("Animation")]
     [SerializeField, S_AnimationName] string _parryParam;
 
-    [TabGroup("References")]
-    [SerializeField] private GameObject _weaponHand;
-
-    [TabGroup("References")]
-    [SerializeField] private GameObject _weaponBack;
-
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnPlayerParryInput rseOnPlayerParry;
 
@@ -27,6 +21,12 @@ public class S_PlayerParry : MonoBehaviour
 
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnSendConsoleMessage rseOnSendConsoleMessage;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnDisplayWeaponArmTemp rseOnDisplayWeaponArmTemp;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnHideWeaponArmTemp rseOnHideWeaponArmTemp;
 
     [TabGroup("Outputs")]
     [SerializeField] private RSO_CanParry _canParry;
@@ -84,16 +84,9 @@ public class S_PlayerParry : MonoBehaviour
             _parryUp = true;
         }));
 
+        rseOnDisplayWeaponArmTemp.Call();
+
         rseOnAnimationBoolValueChange.Call(_parryParam, true);
-
-        if (_weaponParryCoroutine != null)
-        {
-            StopCoroutine(_weaponParryCoroutine);
-            _weaponParryCoroutine = null;
-        }
-
-        _weaponHand.SetActive(true);
-        _weaponBack.SetActive(false);
 
         _parryCoroutine = StartCoroutine(S_Utils.Delay(_animationTransitionDelays.Value.parryStartupDelay, () =>
         {
@@ -114,11 +107,7 @@ public class S_PlayerParry : MonoBehaviour
 
                     _onPlayerAddState.Call(S_EnumPlayerState.None);
 
-                    _weaponParryCoroutine = StartCoroutine(S_Utils.Delay(0.6f, () =>
-                    {
-                        _weaponHand.SetActive(false);
-                        _weaponBack.SetActive(true);
-                    }));
+                    rseOnHideWeaponArmTemp.Call(0.8f);
                 }));
             }));
         }));
@@ -134,8 +123,7 @@ public class S_PlayerParry : MonoBehaviour
 
         if (_weaponParryCoroutine != null) StopCoroutine(_weaponParryCoroutine);
 
-        _weaponHand.SetActive(false);
-        _weaponBack.SetActive(true);
+        rseOnHideWeaponArmTemp.Call(0f);
     }
 
     private void ResetValue()

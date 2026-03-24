@@ -48,6 +48,9 @@ public class S_UIMenu : MonoBehaviour
     [SerializeField] private RSE_OnHideMouseCursor rseOnHideMouseCursor;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnNeedCursor rseOnNeedCursor;
+
+    [TabGroup("Outputs")]
     [SerializeField] private RSO_Navigation rsoNavigation;
 
     [TabGroup("Outputs")]
@@ -93,6 +96,7 @@ public class S_UIMenu : MonoBehaviour
             RuntimeManager.PlayOneShot(uiSound);
 
             rseOnHideMouseCursor.Call();
+            rseOnNeedCursor.Call(false);
 
             rseOnGameInputEnabled.Call();
             rseOnCloseAllWindows.Call();
