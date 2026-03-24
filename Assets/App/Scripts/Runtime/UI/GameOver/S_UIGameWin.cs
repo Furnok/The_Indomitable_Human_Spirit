@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class S_UIGameWin : MonoBehaviour
 {
+    [TabGroup("References")]
+    [Title("Levels")]
+    [SerializeField] private S_SceneReference levelName;
+
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnCloseAllWindows rseOnCloseAllWindows;
 
@@ -66,8 +70,15 @@ public class S_UIGameWin : MonoBehaviour
 
                 rseOnGamePause.Call(false);
 
-                Scene currentScene = SceneManager.GetActiveScene();
-                rseOnLoadScene.Call(currentScene.name);
+                if (!string.IsNullOrEmpty(levelName.Name))
+                {
+                    rseOnLoadScene.Call(levelName.Name);
+                }
+                else
+                {
+                    Scene currentScene = SceneManager.GetActiveScene();
+                    rseOnLoadScene.Call(currentScene.name);
+                }
             }));
         }
     }

@@ -404156,6 +404156,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_CanvasGame
       objectReference: {fileID: 0}
+    - target: {fileID: 4159629814828498666, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
+      propertyPath: levelName.sceneGUID
+      value: b2539c53cd8755042bb5c5fcf7ab0cbd
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159629814828498666, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
+      propertyPath: levelName.sceneName
+      value: SC_Game
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159629814828498666, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
+      propertyPath: levelName.scenePath
+      value: Assets/App/Scenes/SC_Game.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 5808531014389773024, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
+      propertyPath: levelName.sceneGUID
+      value: b2539c53cd8755042bb5c5fcf7ab0cbd
+      objectReference: {fileID: 0}
+    - target: {fileID: 5808531014389773024, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
+      propertyPath: levelName.sceneName
+      value: SC_Game
+      objectReference: {fileID: 0}
+    - target: {fileID: 5808531014389773024, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
+      propertyPath: levelName.scenePath
+      value: Assets/App/Scenes/SC_Game.unity
+      objectReference: {fileID: 0}
     - target: {fileID: 6114157488131244317, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -404164,6 +404188,18 @@ PrefabInstance:
       propertyPath: defaultWindow
       value: 
       objectReference: {fileID: 1601685484}
+    - target: {fileID: 9037223619176970534, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
+      propertyPath: levelName.sceneGUID
+      value: b2539c53cd8755042bb5c5fcf7ab0cbd
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037223619176970534, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
+      propertyPath: levelName.sceneName
+      value: SC_Game
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037223619176970534, guid: 491dded18362a2244a4f115da8847ffb, type: 3}
+      propertyPath: levelName.scenePath
+      value: Assets/App/Scenes/SC_Game.unity
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
