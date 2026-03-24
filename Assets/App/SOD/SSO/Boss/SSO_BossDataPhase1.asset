@@ -21,8 +21,8 @@ MonoBehaviour:
     timeAfterDeathToFinishBoss: 2
     timeDisplay: 3
     stunDuration: 3
-    distanceToChase: 2
-    distanceToRun: 5
+    distanceToChase: 1
+    distanceToRun: 2
     strafeRotationMin: 30
     strafeRotationMax: 90
     initialBossDifficultyLevel: 5

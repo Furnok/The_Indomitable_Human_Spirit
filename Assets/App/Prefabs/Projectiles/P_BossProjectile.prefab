@@ -189,8 +189,8 @@ MonoBehaviour:
   playerLayer: 8
   enemyLayer: 9
   rb: {fileID: 4349038876630830940}
-  enemyMat: {fileID: 2100000, guid: 46fd367f7816d434ba541584b0a91a9f, type: 2}
-  playerMat: {fileID: 2100000, guid: 6548b5bace388d2448daab8c8e3e506b, type: 2}
+  enemyMat: {fileID: 2100000, guid: c4c1a2bf0e95f90419b6f9e61f27147f, type: 2}
+  playerMat: {fileID: 2100000, guid: a9b9182ba843b9f45b3a5fa84e662d67, type: 2}
   rendered: {fileID: 6361965147665062620}
   ssoProjectileData: {fileID: 11400000, guid: 23b95da35d5e45f41bcdb4cb89596898, type: 2}
   onEndFly: {fileID: 11400000, guid: 4250bf271bad23e42ab1b18f912469ba, type: 2}

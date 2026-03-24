@@ -552,7 +552,7 @@ MonoBehaviour:
       isSpecialAttack: 1
       timeAfterAttack: 2
       isAttackDistance: 1
-      pvBossUnlock: 10
+      pvBossUnlock: 30
       difficultyLevel: 10
       listComboData:
       - animation: {fileID: -6759780123328594538, guid: ee840371c325fd748b10e1b2f509cff2, type: 3}
@@ -942,7 +942,7 @@ MonoBehaviour:
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0
           convictionReduction: 0.5
-          convictionParryGain: 0.5
+          convictionParryGain: 5
           lastAttack: 1
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
@@ -950,7 +950,7 @@ MonoBehaviour:
       isSpecialAttack: 0
       timeAfterAttack: 2
       isAttackDistance: 0
-      pvBossUnlock: 80
+      pvBossUnlock: 70
       difficultyLevel: 6
       listComboData:
       - animation: {fileID: 7400000, guid: d5edc2e14f76b8c4eabcc27f4b4084fe, type: 2}
@@ -973,7 +973,7 @@ MonoBehaviour:
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
           convictionReduction: 2
-          convictionParryGain: 5
+          convictionParryGain: 10
           lastAttack: 0
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
@@ -997,7 +997,7 @@ MonoBehaviour:
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
           convictionReduction: 2
-          convictionParryGain: 5
+          convictionParryGain: 10
           lastAttack: 0
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
@@ -1021,7 +1021,7 @@ MonoBehaviour:
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
           convictionReduction: 2
-          convictionParryGain: 5
+          convictionParryGain: 10
           lastAttack: 1
           attackDirection: {x: 0, y: 0, z: 0}
           contactPoint: {x: 0, y: 0, z: 0}
