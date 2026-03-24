@@ -749,7 +749,7 @@ public class S_Boss : MonoBehaviour
     }
     private void Fight()
     {
-        if (canAttack)
+        if (canAttack && target != null && !isAttack)
         {
             float distanceToTarget = Vector3.Distance(body.transform.position, target.transform.position);
             bool destinationReached = distanceToTarget <= (ssoBossData.Value.distanceToChase);
