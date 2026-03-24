@@ -32,7 +32,7 @@ public class S_HitEffects : MonoBehaviour
 	{
         rseOnPlayerGettingHit.action -= Hit;
 
-        materialInstance.SetFloat("_Vignette_radius", 1);
+        materialInstance.SetFloat("_Vignette_radius", 2);
     }
 
     private void Hit()
@@ -52,19 +52,19 @@ public class S_HitEffects : MonoBehaviour
 	}
 	private IEnumerator screenDamage(float intensity)
 	{
-		var targetRadius = Remap(intensity, 0, 1, 0.5f, 0f);
+		var targetRadius = Remap(intensity, 0, 2, 0.5f, 0f);
 		var curRadius = 1f;
 
 		for(float t = 0; curRadius != targetRadius; t += Time.deltaTime)
 		{
-			curRadius = Mathf.Clamp(Mathf.Lerp(1, targetRadius, t), 1, targetRadius);
+			curRadius = Mathf.Clamp(Mathf.Lerp(2, targetRadius, t), 2, targetRadius);
             materialInstance.SetFloat("_Vignette_radius", curRadius);
 			yield return null;
 		}
 
-		for(float t = 0; curRadius < 1; t += Time.deltaTime)
+		for(float t = 0; curRadius < 2; t += Time.deltaTime)
 		{
-			curRadius = Mathf.Lerp(targetRadius, 1, t);
+			curRadius = Mathf.Lerp(targetRadius, 2, t);
             materialInstance.SetFloat("_Vignette_radius", curRadius);
 			yield return null;
 		}	
