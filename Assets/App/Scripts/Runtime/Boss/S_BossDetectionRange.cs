@@ -14,8 +14,6 @@ public class S_BossDetectionRange : MonoBehaviour
     {
         if (other.CompareTag(playerTag))
         {
-            Debug.Log("Target");
-
             onTargetDetected.Invoke(other.gameObject);
         }
     }

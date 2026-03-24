@@ -3,10 +3,8 @@ using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Burst.Intrinsics;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Events;
 
 public class S_Boss : MonoBehaviour
 {
@@ -177,11 +175,12 @@ public class S_Boss : MonoBehaviour
     private bool isDead = false;
     private bool isChasing = false;
     private bool isFighting = false;
+    private bool isAttack = false;
     private bool isStunned = false;
 
     private bool canAttack = false;
     private bool isPlayerDeath = false;
-    private bool isAttacking = false;
+    //private bool isAttacking = false;
     private bool unlockRotate = false;
 
     private Vector3 posSpawn = Vector3.zero;
@@ -268,7 +267,7 @@ public class S_Boss : MonoBehaviour
     {
         if ((currentState == S_EnumBossState.Chase || currentState == S_EnumBossState.Combat) && !isDead) enemyHeadLookAtIK.SetTarget(target, ssoBossData.Value.yHeadRemove);
 
-        if (target != null && (unlockRotate || !isAttacking) && !isDead) RotateEnemy();
+        if (target != null && (unlockRotate || !isAttack) && !isDead) RotateEnemy();
 
         if (isChasing && !isDead) Chase();
 
@@ -350,8 +349,9 @@ public class S_Boss : MonoBehaviour
         isPerformingCombo = false;
         isChasing = false;
         isFighting = false;
+        isAttack = false;
         isStunned = false;
-        isAttacking = false;
+        //isAttacking = false;
         unlockRotate = false;
 
         navMeshAgent.ResetPath();
@@ -736,7 +736,7 @@ public class S_Boss : MonoBehaviour
         rb.isKinematic = false;
         isPerformingCombo = false;
         isFighting = false;
-        isAttacking = false;
+        //isAttacking = false;
         unlockRotate = false;
         UpdateState(S_EnumBossState.Chase);
         if (resetAttack != null)
@@ -751,38 +751,51 @@ public class S_Boss : MonoBehaviour
     {
         if (canAttack)
         {
-            canAttack = false;
+            float distanceToTarget = Vector3.Distance(body.transform.position, target.transform.position);
+            bool destinationReached = distanceToTarget <= (ssoBossData.Value.distanceToChase);
 
-            if (currentAttack.bossAttack.attackName == "Gathering" || currentAttack.bossAttack.attackName == "Wings Of Hell")
-            {
-                listAttackOwnedPossibilities.RemoveAt(listAttackOwnedPossibilities.IndexOf(currentAttack));
-                Debug.Log(listAttackOwnedPossibilities.Count);
-            }
+            if (!destinationReached) UpdateState(S_EnumBossState.Chase);
             else
             {
-                lastAttack = currentAttack;
-                currentAttack.frequency++;
-            }
+                canAttack = false;
 
-
-            if (currentAttack.bossAttack.isSpecialAttack)
-            {
-                animator.SetBool(idleAttack, false);
-                onExecuteAttack.Call(currentAttack.bossAttack);
-                isPerformingCombo = true;
-            }
-            else
-            {
-                if (comboCoroutine != null)
+                if (currentAttack.bossAttack.attackName == "Gathering" || currentAttack.bossAttack.attackName == "Wings Of Hell")
                 {
-                    StopCoroutine(comboCoroutine);
-                    comboCoroutine = null;
+                    listAttackOwnedPossibilities.RemoveAt(listAttackOwnedPossibilities.IndexOf(currentAttack));
+                    Debug.Log(listAttackOwnedPossibilities.Count);
+                }
+                else
+                {
+                    lastAttack = currentAttack;
+                    currentAttack.frequency++;
                 }
 
-                comboCoroutine = StartCoroutine(PlayComboSequence());
-            }
 
-            return;
+                if (currentAttack.bossAttack.isSpecialAttack)
+                {
+                    animator.SetBool(idleAttack, false);
+                    onExecuteAttack.Call(currentAttack.bossAttack);
+                    isPerformingCombo = true;
+                }
+                else
+                {
+                    if (comboCoroutine != null)
+                    {
+                        StopCoroutine(comboCoroutine);
+                        comboCoroutine = null;
+                    }
+
+                    isAttack = true;
+                    comboCoroutine = StartCoroutine(PlayComboSequence());
+                }
+            }
+        }
+        else if (!isAttack && target != null)
+        {
+            float distanceToTarget = Vector3.Distance(body.transform.position, target.transform.position);
+            bool destinationReached = distanceToTarget <= (ssoBossData.Value.distanceToChase);
+
+            if (!destinationReached) UpdateState(S_EnumBossState.Chase);
         }
     }
     private IEnumerator PlayComboSequence()
@@ -792,11 +805,11 @@ public class S_Boss : MonoBehaviour
         yield return null;
 
         animator.SetBool(idleAttack, false);
-        isAttacking = false;
+        //isAttacking = false;
 
         for (int i = 0; i < currentAttack.bossAttack.listComboData.Count; i++)
         {
-            isAttacking = true;
+            //isAttacking = true;
             RotateEnemy();
 
             string overrideKey = (i % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
@@ -812,7 +825,7 @@ public class S_Boss : MonoBehaviour
 
             yield return new WaitForSeconds(currentAttack.bossAttack.listComboData[i].animation.length);
 
-            isAttacking = false;
+            //isAttacking = false;
             RotateEnemy();
 
             if (target == null)
@@ -830,7 +843,8 @@ public class S_Boss : MonoBehaviour
         animator.SetBool(idleAttack, true);
 
         isPerformingCombo = false;
-        isAttacking = false;
+        //isAttacking = false;
+        isAttack = false;
         unlockRotate = false;
 
         if (pendingState.HasValue)
