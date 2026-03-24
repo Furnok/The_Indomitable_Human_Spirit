@@ -736,6 +736,7 @@ public class S_Boss : MonoBehaviour
         rb.isKinematic = false;
         isPerformingCombo = false;
         isFighting = false;
+        isAttack = false;
         //isAttacking = false;
         unlockRotate = false;
         UpdateState(S_EnumBossState.Chase);
@@ -773,6 +774,8 @@ public class S_Boss : MonoBehaviour
 
                 if (currentAttack.bossAttack.isSpecialAttack)
                 {
+                    isAttack = true;
+
                     animator.SetBool(idleAttack, false);
                     onExecuteAttack.Call(currentAttack.bossAttack);
                     isPerformingCombo = true;
