@@ -3674,6 +3674,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8480268941253436221, guid: c156732cb46eb1c4f825606c4264be76, type: 3}
+      propertyPath: ssoPlayerTargetRangeRadius
+      value: 
+      objectReference: {fileID: 11400000, guid: c903667ff85a27e449480aa06bf70be8, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
