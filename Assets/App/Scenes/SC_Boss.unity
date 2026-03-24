@@ -40310,6 +40310,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 255415759671636686, guid: cfbc9a18fd4e24040bc327887bfd4444, type: 3}
+      propertyPath: ssoPlayerTargetRangeRadius
+      value: 
+      objectReference: {fileID: 11400000, guid: c903667ff85a27e449480aa06bf70be8, type: 2}
     - target: {fileID: 2176152735098272420, guid: cfbc9a18fd4e24040bc327887bfd4444, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
