@@ -53,6 +53,12 @@ public class S_TargetingManager : MonoBehaviour
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnPlayerDeath _onPlayerDeathRse;
 
+    [TabGroup("Inputs")]
+    [SerializeField] private RSE_OnStartBossP2 rseOnStartBossP2;
+
+    [TabGroup("Inputs")]
+    [SerializeField] private RSE_OnEndBossP2 rseOnEndBossP2;
+
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnStartTargeting rseOnStartTargeting;
 
@@ -133,6 +139,8 @@ public class S_TargetingManager : MonoBehaviour
     private bool _swapLeftGOActive = false;
     private bool _swapRightGOActive = false;
 
+    private bool isBoss = false;
+
     private void Awake()
     {
         rsoPlayerIsTargeting.Value = false;
@@ -164,6 +172,9 @@ public class S_TargetingManager : MonoBehaviour
         _rseOnPlayerCenter.action += GetPlayerCenterTransform;
 
         _onPlayerDeathRse.action += CancelTargeting;
+
+        rseOnStartBossP2.action += BossP2Start;
+        rseOnEndBossP2.action += BossP2End;
     }
 
     private void OnDisable()
@@ -178,6 +189,9 @@ public class S_TargetingManager : MonoBehaviour
         _rseOnPlayerCenter.action -= GetPlayerCenterTransform;
 
         _onPlayerDeathRse.action -= CancelTargeting;
+
+        rseOnStartBossP2.action -= BossP2Start;
+        rseOnEndBossP2.action -= BossP2End;
     }
 
     private void Update()
@@ -275,7 +289,10 @@ public class S_TargetingManager : MonoBehaviour
 
             float distance = Vector3.Distance(rsoPlayerPosition.Value, currentTarget.transform.position);
 
-            if (distance > ssoPlayerMaxDistanceTargeting.Value && currentTarget != null) CancelTargeting();
+            if (!isBoss)
+            {
+                if (distance > ssoPlayerMaxDistanceTargeting.Value && currentTarget != null) CancelTargeting();
+            }
 
             var playerPos = new Vector3(rsoPlayerPosition.Value.x, rsoPlayerPosition.Value.y + 1.0f, rsoPlayerPosition.Value.z);
 
@@ -294,6 +311,21 @@ public class S_TargetingManager : MonoBehaviour
             }
             else obstacleTimer = 0f;
         }
+    }
+
+    private void BossP2Start()
+    {
+        if (currentTarget == null)
+        {
+            OnPlayerTargetingInput();
+        }
+        
+        isBoss = true;
+    }
+
+    private void BossP2End()
+    {
+        isBoss = false;
     }
 
     private void DisplayPreviewArrow(GameObject arrow)
@@ -401,6 +433,8 @@ public class S_TargetingManager : MonoBehaviour
 
     private void OnPlayerTargetingInput()
     {
+        if (isBoss) return;
+
         if (rsoSettingsSaved.Value.holdLockTarget == false && rsoPlayerIsTargeting.Value == true)
         {
             CancelTargeting();
@@ -436,6 +470,8 @@ public class S_TargetingManager : MonoBehaviour
 
     private void OnPlayerCancelTargetingInput()
     {
+        if (isBoss) return;
+
         if (rsoSettingsSaved.Value.holdLockTarget == false) return;
         
         CancelTargeting();
