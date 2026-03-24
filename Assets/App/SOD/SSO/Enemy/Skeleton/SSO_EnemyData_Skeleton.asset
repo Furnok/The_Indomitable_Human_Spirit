@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _value:
     health: 80
-    speedPatrol: 4.5
-    speedReturnPatrol: 6
-    speedChase: 6
+    speedPatrol: 2.5
+    speedReturnPatrol: 4
+    speedChase: 4
     detectionRange: 5
     detectionAggroRangeMax: 30
     isIdle: 0
+    yHeadRemove: 0
     attackCooldown: 2
     stunTime: 1
     rotationTime: 0.6
@@ -54,7 +55,7 @@ MonoBehaviour:
           knockbackHitDuration: 0.1
           knockbackHitDistance: 1
           knockbackOnParryDuration: 0.2
-          knockbackOnParrryDistance: 0.5
+          knockbackOnParrryDistance: 0.1
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
@@ -78,7 +79,7 @@ MonoBehaviour:
           knockbackHitDuration: 0.1
           knockbackHitDistance: 1
           knockbackOnParryDuration: 0.1
-          knockbackOnParrryDistance: 0.5
+          knockbackOnParrryDistance: 0.1
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
@@ -100,9 +101,9 @@ MonoBehaviour:
           numberOfProjectiles: 0
           damage: 5
           knockbackHitDuration: 0.1
-          knockbackHitDistance: 1.5
+          knockbackHitDistance: 1
           knockbackOnParryDuration: 0.2
-          knockbackOnParrryDistance: 0.7
+          knockbackOnParrryDistance: 0.1
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
@@ -132,7 +133,7 @@ MonoBehaviour:
           knockbackHitDuration: 0.1
           knockbackHitDistance: 1
           knockbackOnParryDuration: 0.2
-          knockbackOnParrryDistance: 0.5
+          knockbackOnParrryDistance: 0.1
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7

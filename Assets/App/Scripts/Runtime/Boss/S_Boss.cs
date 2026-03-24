@@ -260,6 +260,8 @@ public class S_Boss : MonoBehaviour
         UpdateLastHealthValue();
         UpdateState(S_EnumBossState.Idle);
         bossDifficultyLevel = ssoBossData.Value.initialBossDifficultyLevel;
+
+        if (currentPhaseState == S_EnumBossPhaseState.Phase2) StartCoroutine(S_Utils.DelayRealTime(3f, () => bossDetectionRange.gameObject.SetActive(true))); 
     }
     
     private void Update()
@@ -271,8 +273,6 @@ public class S_Boss : MonoBehaviour
         if (isChasing && !isDead) Chase();
 
         if (isFighting && !isDead) Fight();
-
-        Debug.Log(health);
     }
     private void FixedUpdate()
     {
@@ -599,6 +599,7 @@ public class S_Boss : MonoBehaviour
 
         aimPoint = null;
         detectionCollider.enabled = false;
+        bossDetectionRange.gameObject.SetActive(false);
         listAttackOwnedPossibilities.Clear();
         lastValueHealth = 101f;
         isPlayerDeath = true;
@@ -629,6 +630,8 @@ public class S_Boss : MonoBehaviour
 
             if (currentPhaseState == S_EnumBossPhaseState.Phase1) rseOnEndBossP1.Call();
             else if (currentPhaseState == S_EnumBossPhaseState.Phase2) rseOnEndBossP2.Call();
+
+            if (currentPhaseState == S_EnumBossPhaseState.Phase2) StartCoroutine(S_Utils.DelayRealTime(3f, () => bossDetectionRange.gameObject.SetActive(true)));
         }
     } 
     #endregion

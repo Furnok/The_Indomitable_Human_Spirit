@@ -1,5 +1,4 @@
 using Sirenix.OdinInspector;
-using System.Collections;
 using UnityEngine;
 
 public class S_BossManager : MonoBehaviour
@@ -10,8 +9,14 @@ public class S_BossManager : MonoBehaviour
     [TabGroup("Inputs")]
     [SerializeField] private RSE_OnFinishBossP1 onFinishBossP1;
 
+    [TabGroup("Inputs")]
+    [SerializeField] private RSE_OnFadeOut rseOnFadeOut;
+
     [TabGroup("Outputs")]
     [SerializeField] private RSE_OnLoadScene loadScene;
+
+    [TabGroup("Outputs")]
+    [SerializeField] private SSO_FadeTime ssoFadeTime;
 
     private void OnEnable()
     {
@@ -23,6 +28,11 @@ public class S_BossManager : MonoBehaviour
     }
     private void OnFinishBossP1()
     {
-        loadScene.Call(sceneToLoadAfterBossP1);
+        rseOnFadeOut.Call();
+
+        StartCoroutine(S_Utils.DelayRealTime(ssoFadeTime.Value + 0.3f, () =>
+        {
+            loadScene.Call(sceneToLoadAfterBossP1);
+        }));
     }
 }

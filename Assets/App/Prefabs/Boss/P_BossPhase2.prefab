@@ -167,6 +167,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: cb17ca66c2d0ac543b2ac2048eac14a3, type: 2}
     - target: {fileID: 6352494224581732303, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
+      propertyPath: detectionCollider
+      value: 
+      objectReference: {fileID: 8796385610939646881}
+    - target: {fileID: 6352494224581732303, guid: bacd2fd4c8113604ab1b047c1347c7dd, type: 3}
       propertyPath: enemyHeadLookAtIK
       value: 
       objectReference: {fileID: 1033410510423273019}

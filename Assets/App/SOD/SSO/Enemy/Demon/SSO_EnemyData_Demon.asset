@@ -79,7 +79,7 @@ MonoBehaviour:
           knockbackHitDuration: 0.1
           knockbackHitDistance: 1
           knockbackOnParryDuration: 0.2
-          knockbackOnParrryDistance: 0.3
+          knockbackOnParrryDistance: 0.1
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
@@ -151,7 +151,7 @@ MonoBehaviour:
           knockbackHitDuration: 0.1
           knockbackHitDistance: 1
           knockbackOnParryDuration: 0.2
-          knockbackOnParrryDistance: 0.3
+          knockbackOnParrryDistance: 0.1
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
@@ -223,7 +223,7 @@ MonoBehaviour:
           knockbackHitDuration: 0.1
           knockbackHitDistance: 1
           knockbackOnParryDuration: 0.2
-          knockbackOnParrryDistance: 0.3
+          knockbackOnParrryDistance: 0.1
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
@@ -295,7 +295,7 @@ MonoBehaviour:
           knockbackHitDuration: 0.1
           knockbackHitDistance: 1
           knockbackOnParryDuration: 0.2
-          knockbackOnParrryDistance: 0.3
+          knockbackOnParrryDistance: 0.1
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
@@ -367,7 +367,7 @@ MonoBehaviour:
           knockbackHitDuration: 0.1
           knockbackHitDistance: 1
           knockbackOnParryDuration: 0.2
-          knockbackOnParrryDistance: 0.3
+          knockbackOnParrryDistance: 0.1
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
