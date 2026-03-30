@@ -46,8 +46,8 @@ namespace SingularityGroup.HotReload.Editor {
 
         // Resources.Load uses cache, so it's safe to call it every frame.
         //  Retrying Load every time fixes an issue where you import the package and constructor runs, but resources aren't loadable yet.
-        private Texture iconCheck => Resources.Load<Texture>("icon_check_circle");
-        private Texture iconWarning => Resources.Load<Texture>("icon_warning_circle");
+        private Texture iconCheck => Resources.Load<Texture>("Hot_Reload_icon_check_circle");
+        private Texture iconWarning => Resources.Load<Texture>("Hot_Reload_icon_warning_circle");
 
         [SuppressMessage("ReSharper", "Unity.UnknownResource")] // Rider doesn't check packages
         public HotReloadSettingsTab(HotReloadWindow window) : base(window,
@@ -153,7 +153,6 @@ namespace SingularityGroup.HotReload.Editor {
                                     // misc
                                     RenderMiscHeader();
                                     using (new EditorGUILayout.VerticalScope(paddedStyle ?? (paddedStyle = new GUIStyle { padding = new RectOffset(20, 0, 0, 0) }))) {
-                                        RenderAutoClearTimeline();
                                         RenderAutostart();
                                         RenderConsoleWindow();
 
@@ -199,7 +198,7 @@ namespace SingularityGroup.HotReload.Editor {
                                     DisableDetailedErrorReporting();
                                     PauseHotReloadInEditMode();
 #if UNITY_EDITOR_WIN
-                                    if (PackageConst.DefaultLocale == RuntimeLocalization.Locale.English) {
+                                    if (PackageConst.DefaultLocaleField == Locale.English) {
                                         UseWatchman();
                                     }
 #endif
@@ -397,22 +396,6 @@ namespace SingularityGroup.HotReload.Editor {
             }
         }
         
-        void RenderAutoClearTimeline() {
-            var newSettings = EditorGUILayout.BeginToggleGroup(new GUIContent(Translations.Settings.ToggleAutoClearTimeline), HotReloadPrefs.AutoClearTimeline);
-            if (newSettings != HotReloadPrefs.AutoClearTimeline) {
-                HotReloadPrefs.AutoClearTimeline = newSettings;
-            }
-            string toggleDescription;
-            if (HotReloadPrefs.AutoClearTimeline) {
-                toggleDescription = Translations.Settings.SettingsAutoClearTimelineOn;
-            } else {
-                toggleDescription = Translations.Settings.SettingsAutoClearTimelineOff;
-            }
-            EditorGUILayout.LabelField(toggleDescription, HotReloadWindowStyles.WrapStyle);
-            EditorGUILayout.EndToggleGroup();
-            EditorGUILayout.Space();
-        }
-
         void RenderAutostart() {
             var newSettings = EditorGUILayout.BeginToggleGroup(new GUIContent(Translations.Settings.ToggleAutostart), HotReloadPrefs.LaunchOnEditorStart);
             if (newSettings != HotReloadPrefs.LaunchOnEditorStart) {
@@ -919,11 +902,11 @@ namespace SingularityGroup.HotReload.Editor {
         }
 
         void DrawDisabledCircle(Rect rect) => DrawCircleIcon(rect,
-            Resources.Load<Texture>("icon_circle_gray"),
+            Resources.Load<Texture>("Hot_Reload_icon_circle_gray"),
             Color.clear); // smaller circle draws less attention
 
         void DrawBlackCircle(Rect rect) => DrawCircleIcon(rect,
-            Resources.Load<Texture>("icon_circle_black"),
+            Resources.Load<Texture>("Hot_Reload_icon_circle_black"),
             new Color(0.14f, 0.14f, 0.14f)); // black is too dark in unity light theme
 
         void DrawCircleIcon(Rect rect, Texture circleIcon, Color borderColor) {

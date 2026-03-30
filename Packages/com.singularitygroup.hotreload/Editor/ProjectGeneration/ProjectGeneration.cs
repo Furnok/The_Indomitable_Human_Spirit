@@ -401,7 +401,7 @@ namespace SingularityGroup.HotReload.Editor.ProjectGeneration {
             List<ResponseFileData> responseFilesData,
             Config config
         ) {
-            var otherResponseFilesData = GetOtherArgumentsFromResponseFilesData(responseFilesData);
+            var otherData = GetOtherArguments(responseFilesData, assembly.Assembly.compilerOptions);
             var arguments = new object[] {
                 k_ToolsVersion,
                 k_ProductVersion,
@@ -414,18 +414,18 @@ namespace SingularityGroup.HotReload.Editor.ProjectGeneration {
                 assembly.OutputPath,
                 assembly.RootNamespace,
                 "",
-                GenerateLangVersion(otherResponseFilesData["langversion"], assembly),
+                GenerateLangVersion(otherData["langversion"], assembly),
                 k_BaseDirectory,
                 assembly.CompilerOptions.AllowUnsafeCode | responseFilesData.Any(x => x.Unsafe),
-                GenerateNoWarn(otherResponseFilesData["nowarn"].Distinct().ToList()),
-                config.excludeAllAnalyzers ? "" : GenerateAnalyserItemGroup(RetrieveRoslynAnalyzers(assembly, otherResponseFilesData)),
-                config.excludeAllAnalyzers ? "" : GenerateAnalyserAdditionalFiles(otherResponseFilesData["additionalfile"].SelectMany(x=>x.Split(';')).Distinct().ToArray()),
-                config.excludeAllAnalyzers ? "" : GenerateRoslynAnalyzerRulesetPath(assembly, otherResponseFilesData),
-                GenerateWarningLevel(otherResponseFilesData["warn"].Concat(otherResponseFilesData["w"]).Distinct()),
-                GenerateWarningAsError(otherResponseFilesData["warnaserror"], otherResponseFilesData["warnaserror-"],
-                    otherResponseFilesData["warnaserror+"]),
-                GenerateDocumentationFile(otherResponseFilesData["doc"].ToArray()),
-                GenerateNullable(otherResponseFilesData["nullable"])
+                GenerateNoWarn(otherData["nowarn"].Distinct().ToList()),
+                config.excludeAllAnalyzers ? "" : GenerateAnalyserItemGroup(RetrieveRoslynAnalyzers(assembly, otherData)),
+                config.excludeAllAnalyzers ? "" : GenerateAnalyserAdditionalFiles(RetrieveRoslynAdditionalFiles(assembly, otherData)),
+                config.excludeAllAnalyzers ? "" : GenerateRoslynAnalyzerRulesetPath(assembly, otherData),
+                GenerateWarningLevel(otherData["warn"].Concat(otherData["w"]).Distinct()),
+                GenerateWarningAsError(otherData["warnaserror"], otherData["warnaserror-"],
+                    otherData["warnaserror+"]),
+                GenerateDocumentationFile(otherData["doc"].ToArray()),
+                GenerateNullable(otherData["nullable"])
             };
 
             try {
@@ -434,6 +434,30 @@ namespace SingularityGroup.HotReload.Editor.ProjectGeneration {
                 throw new NotSupportedException(
                     string.Format(Translations.Utility.FailedCreateCSharpProject, arguments.Length));
             }
+        }
+
+        private static string[] RetrieveRoslynAdditionalFiles(ProjectPart assembly, ILookup<string, string> otherResponseFilesData) {
+            // return otherResponseFilesData["additionalfile"].SelectMany(x => x.Split(';')).Distinct().ToArray();
+            string[] additionalFilePathsFromCompilationPipeline;
+      #if UNITY_2021_3 // https://github.com/JetBrains/resharper-unity/issues/2401
+            var type = assembly.CompilerOptions.GetType();
+            var propertyInfo = type.GetProperty("RoslynAdditionalFilePaths");
+            if (propertyInfo != null && propertyInfo.GetValue(assembly.CompilerOptions) is string[] value)
+            {
+              additionalFilePathsFromCompilationPipeline = value;
+            } else {
+                additionalFilePathsFromCompilationPipeline = Array.Empty<string>();
+            }
+      #elif UNITY_2022_2_OR_NEWER // https://docs.unity3d.com/2021.3/Documentation/ScriptReference/Compilation.ScriptCompilerOptions.RoslynAdditionalFilePaths.html
+            additionalFilePathsFromCompilationPipeline = assembly.CompilerOptions.RoslynAdditionalFilePaths;
+      #else
+            additionalFilePathsFromCompilationPipeline = Array.Empty<string>();
+      #endif
+            return otherResponseFilesData["additionalfile"]
+                .SelectMany(x => x.Split(';'))
+                .Concat(additionalFilePathsFromCompilationPipeline)
+                .Select(MakeAbsolutePath)
+                .Distinct().ToArray();
         }
 
         string[] RetrieveRoslynAnalyzers(ProjectPart assembly, ILookup<string, string> otherResponseFilesData) {
@@ -653,38 +677,38 @@ namespace SingularityGroup.HotReload.Editor.ProjectGeneration {
             return string.Format(GetSolutionText(), fileversion, vsversion, projectEntries, projectConfigurations);
         }
 
-        private static ILookup<string, string> GetOtherArgumentsFromResponseFilesData(List<ResponseFileData> responseFilesData) {
-            var paths = responseFilesData.SelectMany(x => {
-                    return x.OtherArguments
-                        .Where(a => a.StartsWith("/", StringComparison.Ordinal) || a.StartsWith("-", StringComparison.Ordinal))
-                        .Select(b => {
-                            var index = b.IndexOf(":", StringComparison.Ordinal);
-                            if (index > 0 && b.Length > index) {
-                                var key = b.Substring(1, index - 1);
-                                return new KeyValuePair<string, string>(key.ToLowerInvariant(), b.Substring(index + 1));
-                            }
+        private static ILookup<string, string> GetOtherArguments(List<ResponseFileData> responseFilesData, ScriptCompilerOptions compilationOptions) {
+            return responseFilesData.SelectMany(x => x.OtherArguments)
+                #if UNITY_2020_3_OR_NEWER
+                .Concat((compilationOptions.AdditionalCompilerArguments ?? Enumerable.Empty<string>()))
+                #endif
+                .Where(a => a.StartsWith("/", StringComparison.Ordinal) || a.StartsWith("-", StringComparison.Ordinal))
+                .Select(b => {
+                    var index = b.IndexOf(":", StringComparison.Ordinal);
+                    if (index > 0 && b.Length > index) {
+                        var key = b.Substring(1, index - 1);
+                        return new KeyValuePair<string, string>(key.ToLowerInvariant(), b.Substring(index + 1));
+                    }
 
-                            const string warnaserror = "warnaserror";
-                            if (b.Substring(1).StartsWith(warnaserror, StringComparison.Ordinal)) {
-                                return new KeyValuePair<string, string>(warnaserror, b.Substring(warnaserror.Length + 1));
-                            }
+                    const string warnaserror = "warnaserror";
+                    if (b.Substring(1).StartsWith(warnaserror, StringComparison.Ordinal)) {
+                        return new KeyValuePair<string, string>(warnaserror, b.Substring(warnaserror.Length + 1));
+                    }
 
-                            const string nullable = "nullable";
-                            if (b.Substring(1).StartsWith(nullable)) {
-                                var res = b.Substring(nullable.Length + 1);
-                                if (string.IsNullOrWhiteSpace(res) || res.Equals("+"))
-                                    res = "enable";
-                                else if (res.Equals("-"))
-                                    res = "disable";
-                                return new KeyValuePair<string, string>(nullable, res);
-                            }
+                    const string nullable = "nullable";
+                    if (b.Substring(1).StartsWith(nullable)) {
+                        var res = b.Substring(nullable.Length + 1);
+                        if (string.IsNullOrWhiteSpace(res) || res.Equals("+"))
+                            res = "enable";
+                        else if (res.Equals("-"))
+                            res = "disable";
+                        return new KeyValuePair<string, string>(nullable, res);
+                    }
 
-                            return default(KeyValuePair<string, string>);
-                        });
+                    return default(KeyValuePair<string, string>);
                 })
                 .Distinct()
                 .ToLookup(o => o.Key, pair => pair.Value);
-            return paths;
         }
 
         private string GenerateLangVersion(IEnumerable<string> langVersionList, ProjectPart assembly) {

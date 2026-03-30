@@ -16,13 +16,14 @@ using Debug = UnityEngine.Debug;
 using Task = System.Threading.Tasks.Task;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using SingularityGroup.HotReload.Editor.Localization;
+using SingularityGroup.HotReload.Localization;
 using SingularityGroup.HotReload.Newtonsoft.Json;
 using UnityEditor.Build;
 using UnityEditor.Compilation;
 using UnityEditor.UIElements;
 using UnityEditorInternal;
 using UnityEngine.UIElements;
+using Translations = SingularityGroup.HotReload.Editor.Localization.Translations;
 
 [assembly: InternalsVisibleTo("SingularityGroup.HotReload.IntegrationTests")]
 
@@ -130,7 +131,7 @@ namespace SingularityGroup.HotReload.Editor {
             } else {
                 UpdateHost();
             }
-            licenseType = UnityLicenseHelper.GetLicenseType();
+            licenseType = UnityLicenseHelper.GetLicenseType(isChina: PackageConst.DefaultLocale == Locale.SimplifiedChinese);
             compileChecker = CompileChecker.Create();
             compileChecker.onCompilationFinished += OnCompilationFinished;
             EditorApplication.delayCall += InstallUtility.CheckForNewInstall;
@@ -149,7 +150,7 @@ namespace SingularityGroup.HotReload.Editor {
             };
             
             ServerHealthCheck.instance.CheckHealth();
-            if (ServerHealthCheck.I.IsServerHealthy && !HotReloadPrefs.AutoClearTimeline) {
+            if (ServerHealthCheck.I.IsServerHealthy) {
                 HotReloadTimelineHelper.InitPersistedEvents().Forget();
             } else {
                 HotReloadTimelineHelper.ClearPersistance();
@@ -199,9 +200,8 @@ namespace SingularityGroup.HotReload.Editor {
                 HotReloadRunTab.recompiling = false;
                 CompileMethodDetourer.Reset();
                 
-                if (!HotReloadPrefs.AutoClearTimeline) {
-                    HotReloadTimelineHelper.CreateReloadFinishedEventEntry(patchedMethodsDisplayNames: new string[]{"Full assembly recompilation"});
-                }
+                
+                HotReloadTimelineHelper.CreateReloadFinishedEventEntry(patchedMethodsDisplayNames: new string[]{ Translations.Timeline.FullAssemblyRecompilation }, isCompile: true);
             };
             DetectEditorStart();
             DetectVersionUpdate();
@@ -298,7 +298,7 @@ namespace SingularityGroup.HotReload.Editor {
             if (!HotReloadPrefs.AutoRecompileUnsupportedChanges
                 || !CodePatcher.I.anyFailures
                     && (!HotReloadPrefs.AutoRecompilePartiallyUnsupportedChanges || !hasPartiallyUnsupportedPatches)
-                || _compileError 
+                || _compileError && !CodePatcher.I.ignoreCompileErrorOnRecompileUnsupported
                 || isPlaying && !HotReloadPrefs.AutoRecompileUnsupportedChangesInPlayMode
                 || !isPlaying && !HotReloadPrefs.AutoRecompileUnsupportedChangesInEditMode
             ) {
@@ -706,6 +706,7 @@ namespace SingularityGroup.HotReload.Editor {
             ".asmdef",
             ".asmref",
             ".rsp",
+            ".additionalfile",
         };
 
         public static string[] plugins = new[] {
@@ -742,6 +743,8 @@ namespace SingularityGroup.HotReload.Editor {
                 if (assetPath.EndsWith(compileFile, StringComparison.Ordinal)) {
                     HotReloadTimelineHelper.CreateErrorEventEntry(string.Format(Translations.Utility.AssemblyFileEditError, assetPath), entryType: EntryType.Foldout);
                     CodePatcher.I.anyFailures = true;
+                    // we need to ignore compile errors because changes to compile files can inherently introduce them and without recompiling there is no way to resolve them
+                    CodePatcher.I.ignoreCompileErrorOnRecompileUnsupported = true;
                     _applyingFailed = true;
                     if (HotReloadPrefs.AutoRecompileUnsupportedChangesImmediately || UnityEditorInternal.InternalEditorUtility.isApplicationActive) {
                         TryRecompileUnsupportedChanges();
@@ -808,7 +811,7 @@ namespace SingularityGroup.HotReload.Editor {
                 // Might be inside a package "file:"
                 try {
                     foreach (var package in UnityEditor.PackageManager.PackageInfo.GetAllRegisteredPackages()) {
-                        if (assetPath.StartsWith(package.resolvedPath.Replace("\\", "/"), StringComparison.Ordinal)) {
+                        if (assetPath.Replace("\\", "/").StartsWith(package.resolvedPath.Replace("\\", "/"), StringComparison.Ordinal)) {
                             relativePathPackages = $"Packages/{package.name}/{assetPath.Substring(package.resolvedPath.Length)}";
                             break;
                         }
@@ -1330,6 +1333,10 @@ namespace SingularityGroup.HotReload.Editor {
             if (resp.lastLicenseError == null) {
                 // If we got success, we should always show an error next time it comes up
                 HotReloadPrefs.ErrorHidden = false;
+            }
+
+            if (!string.IsNullOrEmpty(resp.hardwareId)) {
+                HotReloadPrefs.HardwareId = resp.hardwareId;
             }
 
             var oldStartupProgress = startupProgress;

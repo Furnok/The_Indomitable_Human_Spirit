@@ -61,8 +61,9 @@ namespace SingularityGroup.HotReload.Editor {
         public readonly bool detiled;
         public readonly DateTime createdAt;
         public readonly string[] patchedMembersDisplayNames;
+        public readonly bool isCompile;
 
-        public AlertData(AlertEntryType alertEntryType, DateTime createdAt, bool detiled = false, EntryType entryType = EntryType.Standalone, string errorString = null, string methodName = null, string methodSimpleName = null, PartiallySupportedChange partiallySupportedChange = default(PartiallySupportedChange), string[] patchedMembersDisplayNames = null) {
+        public AlertData(AlertEntryType alertEntryType, DateTime createdAt, bool detiled = false, EntryType entryType = EntryType.Standalone, string errorString = null, string methodName = null, string methodSimpleName = null, PartiallySupportedChange partiallySupportedChange = default(PartiallySupportedChange), string[] patchedMembersDisplayNames = null, bool isCompile = false) {
             this.alertEntryType = alertEntryType;
             this.createdAt = createdAt;
             this.detiled = detiled;
@@ -72,6 +73,7 @@ namespace SingularityGroup.HotReload.Editor {
             this.methodSimpleName = methodSimpleName;
             this.partiallySupportedChange = partiallySupportedChange;
             this.patchedMembersDisplayNames = patchedMembersDisplayNames;
+            this.isCompile = isCompile;
         }
     }
     
@@ -141,7 +143,8 @@ namespace SingularityGroup.HotReload.Editor {
                         case AlertEntryType.PatchApplied:
                             CreateReloadFinishedEventEntry(
                                 createdAt: alertData.createdAt,
-                                patchedMethodsDisplayNames: alertData.patchedMembersDisplayNames
+                                patchedMethodsDisplayNames: alertData.patchedMembersDisplayNames,
+                                isCompile: alertData.isCompile
                             );
                             break;
                         case AlertEntryType.PartiallySupportedChange:
@@ -185,12 +188,12 @@ namespace SingularityGroup.HotReload.Editor {
         }
         
         internal static readonly Dictionary<AlertType, string> alertIconString = new Dictionary<AlertType, string> {
-            { AlertType.Suggestion, "alert_info" },
-            { AlertType.UnsupportedChange, "warning" },
-            { AlertType.CompileError, "error" },
-            { AlertType.PartiallySupportedChange, "infos" },
-            { AlertType.AppliedChange, "applied_patch" },
-            { AlertType.UndetectedChange, "undetected" },
+            { AlertType.Suggestion, "Hot_Reload_alert_info" },
+            { AlertType.UnsupportedChange, "Hot_Reload_warning" },
+            { AlertType.CompileError, "Hot_Reload_error" },
+            { AlertType.PartiallySupportedChange, "Hot_Reload_infos" },
+            { AlertType.AppliedChange, "Hot_Reload_applied_patch" },
+            { AlertType.UndetectedChange, "Hot_Reload_status_undetected" },
         };
         
 #pragma warning disable CS0612 // obsolete
@@ -210,13 +213,27 @@ namespace SingularityGroup.HotReload.Editor {
             {PartiallySupportedChange.MultipleFieldsEditedInTheSameType, Translations.Timeline.PartiallySupportedMultipleFieldsEditedInTheSameType},
         };
 #pragma warning restore CS0612
+
+        public static int CountTimelineEnties(Predicate<AlertEntry> predicate = null) {
+            var count = 0;
+            foreach (var alertEntry in EventsTimeline) {
+                if (predicate == null || predicate(alertEntry)) {
+                    count++;
+                }
+                if (!HotReloadPrefs.TimelineViewAll && alertEntry.alertData?.isCompile == true) {
+                    // break on first compile entry if we only viewing recent events
+                    break;
+                }
+            }
+            return count;
+        }
         
         internal static List<AlertEntry> Suggestions = new List<AlertEntry>();
-        internal static int UnsupportedChangesCount => EventsTimeline.Count(alert => alert.alertType == AlertType.UnsupportedChange && alert.entryType != EntryType.Child);
-        internal static int PartiallySupportedChangesCount => EventsTimeline.Count(alert => alert.alertType == AlertType.PartiallySupportedChange && alert.entryType != EntryType.Child);
-        internal static int UndetectedChangesCount => EventsTimeline.Count(alert => alert.alertType == AlertType.UndetectedChange && alert.entryType != EntryType.Child);
-        internal static int CompileErrorsCount => EventsTimeline.Count(alert => alert.alertType == AlertType.CompileError);
-        internal static int AppliedChangesCount => EventsTimeline.Count(alert => alert.alertType == AlertType.AppliedChange);
+        internal static int UnsupportedChangesCount => CountTimelineEnties(alert => alert.alertType == AlertType.UnsupportedChange && alert.entryType != EntryType.Child);
+        internal static int PartiallySupportedChangesCount => CountTimelineEnties(alert => alert.alertType == AlertType.PartiallySupportedChange && alert.entryType != EntryType.Child);
+        internal static int UndetectedChangesCount => CountTimelineEnties(alert => alert.alertType == AlertType.UndetectedChange && alert.entryType != EntryType.Child);
+        internal static int CompileErrorsCount => CountTimelineEnties(alert => alert.alertType == AlertType.CompileError);
+        internal static int AppliedChangesCount => CountTimelineEnties(alert => alert.alertType == AlertType.AppliedChange);
 
         static Regex shortDescriptionRegex = new Regex(PackageConst.DefaultLocale == Locale.SimplifiedChinese ? @"^([\p{L}\p{N}_]+)\s([\p{L}\p{N}_]+)(?=:)" : @"^(\w+)\s(\w+)(?=:)", RegexOptions.Compiled);
         
@@ -248,6 +265,12 @@ namespace SingularityGroup.HotReload.Editor {
             }
         }
         
+        internal static void RenderReportBugButton(string title, string detail = null) {
+            if (GUILayout.Button(Translations.Common.ButtonBugReport.Trim(), GUILayout.Width(80))) {
+                ReportWindowAPI.OpenBugReport(title?.Replace($", {Translations.UI.TapHereToSeeMore}", ""), detail);
+            }
+        }
+        
         private static float maxScrollPos;
         internal static void RenderErrorEventActions(string description, ErrorData errorData) {
             int maxLen = 2400;
@@ -266,6 +289,8 @@ namespace SingularityGroup.HotReload.Editor {
                 if (!errorData.stacktrace.Contains("error CS")) {
                     RenderCompileButton();
                 }
+                
+                RenderReportBugButton(errorData.error, errorData.stacktrace);
             
                 // Link
                 if (errorData.file) {
@@ -363,16 +388,18 @@ namespace SingularityGroup.HotReload.Editor {
             }
             var patchesList = patchedMethodsDisplayNames?.Length > 0 ? string.Join("\n• ", patchedMethodsDisplayNames) : "";
             var timestamp = createdAt ?? DateTime.Now;
+            var title = Translations.Timeline.EventTitleFailedApplyingPatch;
             var entry = new AlertEntry(
                 timestamp: timestamp,
                 alertType : AlertType.UnsupportedChange, 
-                title: Translations.Timeline.EventTitleFailedApplyingPatch, 
+                title: title, 
                 description: $"{Translations.Timeline.EventDescriptionInlinedMethods}\n\n• {(truncated ? patchesList + "\n..." : patchesList)}",
                 entryType: EntryType.Parent,
                 actionData: () => {
                     GUILayout.Space(10f);
                     using (new EditorGUILayout.HorizontalScope()) {
                         RenderCompileButton();
+                        RenderReportBugButton(title);
                         var suggestion = HotReloadSuggestionsHelper.suggestionMap[HotReloadSuggestionKind.SwitchToDebugModeForInlinedMethods];
                         if (suggestion?.actionData != null) {
                             suggestion.actionData();
@@ -419,7 +446,7 @@ namespace SingularityGroup.HotReload.Editor {
             return truncatedList;
         }
         
-        internal static void CreateReloadFinishedEventEntry(DateTime? createdAt = null, string[] patchedMethodsDisplayNames = null) {
+        internal static void CreateReloadFinishedEventEntry(DateTime? createdAt = null, string[] patchedMethodsDisplayNames = null, bool isCompile = false) {
             var truncated = false;
             if (patchedMethodsDisplayNames?.Length > 25) {
                 patchedMethodsDisplayNames = TruncateList(patchedMethodsDisplayNames, 25);
@@ -439,6 +466,7 @@ namespace SingularityGroup.HotReload.Editor {
                     AlertEntryType.PatchApplied, 
                     createdAt: timestamp, 
                     entryType: EntryType.Standalone,
+                    isCompile: isCompile,
                     patchedMembersDisplayNames: patchedMethodsDisplayNames)
             );
             
@@ -494,15 +522,17 @@ namespace SingularityGroup.HotReload.Editor {
         
         internal static void CreateReloadUndetectedChangeEventEntry(DateTime? createdAt = null) {
             var timestamp = createdAt ?? DateTime.Now;
+            var title = EditorIndicationState.IndicationText[EditorIndicationState.IndicationStatus.Undetected];
             InsertEntry(new AlertEntry(
                 timestamp: timestamp,
                 alertType : AlertType.UndetectedChange, 
-                title: EditorIndicationState.IndicationText[EditorIndicationState.IndicationStatus.Undetected],
+                title: title,
                 description: Translations.Timeline.EventDescriptionUndetectedChange,
                 actionData: () => {
                     GUILayout.Space(10f);
                     using (new EditorGUILayout.HorizontalScope()) {
                         RenderCompileButton();
+                        RenderReportBugButton(title);
                         GUILayout.FlexibleSpace();
                         OpenURLButton.Render(Translations.Suggestions.ButtonDocs, Constants.UndetectedChangesURL);
                         GUILayout.Space(10f);
@@ -519,16 +549,18 @@ namespace SingularityGroup.HotReload.Editor {
             if (!partiallySupportedChangeDescriptions.TryGetValue(partiallySupportedChange, out description)) {
                 return;
             }
+            var title = detailed ? Translations.Timeline.EventTitleChangePartiallyApplied : ToString(partiallySupportedChange);
             InsertEntry(new AlertEntry(
                 timestamp: timestamp,
                 alertType : AlertType.PartiallySupportedChange, 
-                title : detailed ? Translations.Timeline.EventTitleChangePartiallyApplied : ToString(partiallySupportedChange),
+                title : title,
                 description : description,
                 shortDescription: detailed ? ToString(partiallySupportedChange) : null,
                 actionData: () => {
                     GUILayout.Space(10f);
                     using (new EditorGUILayout.HorizontalScope()) {
                         RenderCompileButton();
+                        RenderReportBugButton(title);
                         GUILayout.FlexibleSpace();
                         if (GetPartiallySupportedChangePref(partiallySupportedChange)) {
                             if (GUILayout.Button(Translations.Timeline.ButtonIgnoreEventType, HotReloadWindowStyles.LinkStyle)) {

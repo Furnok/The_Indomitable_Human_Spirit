@@ -457,11 +457,16 @@ namespace SingularityGroup.HotReload.Editor {
                 if (alertEntry.alertType != AlertType.Suggestion && HotReloadWindowStyles.windowScreenWidth > 400 && entryType != EntryType.Child) {
                     using (new EditorGUILayout.HorizontalScope()) {
                         var ago = (DateTime.Now - alertEntry.timestamp);
-                        GUI.Label(new Rect(startRect.x + startRect.width - 60, startRect.y, 80, 20), ago.TotalMinutes < 1 ? "now" : $"{(ago.TotalHours > 1 ? $"{Math.Floor(ago.TotalHours)} h " : string.Empty)}{ago.Minutes} min", HotReloadWindowStyles.TimestampStyle);
+                        GUI.Label(new Rect(startRect.x + startRect.width - 60, startRect.y, 80, 20), ago.TotalMinutes < 1 ? Translations.Timeline.EntryTimeNow : $"{(ago.TotalHours > 1 ? $"{Math.Floor(ago.TotalHours)} {Translations.Timeline.EntryTimeHours} " : string.Empty)}{ago.Minutes} {Translations.Timeline.EntryTimeMinutes}", HotReloadWindowStyles.TimestampStyle);
                     }
                 }
                 
                 GUILayout.Space(1f);
+                
+                if (timelineType == TimelineType.Timeline && !HotReloadPrefs.TimelineViewAll && alertEntry.alertData?.isCompile == true) {
+                    // break on first compile entry if we only viewing recent events
+                    break;
+                }
             }
             if (timelineType != TimelineType.Suggestions && HotReloadTimelineHelper.GetRunTabTimelineEventCount() > 40) { 
                 GUILayout.Space(3f);
@@ -549,7 +554,7 @@ namespace SingularityGroup.HotReload.Editor {
                                         text = Translations.Timeline.MessageCompleteRegistration;
                                     } else if (!currentState.running) {
                                         text = Translations.Timeline.MessageUseStartButton;
-                                    } else if (enabledFilters.Count < 4 && HotReloadTimelineHelper.EventsTimeline.Count != 0) {
+                                    } else if (enabledFilters.Count < 4 && HotReloadTimelineHelper.CountTimelineEnties() != 0) {
                                         text = Translations.Timeline.MessageEnableFilters;
                                     } else {
                                         text = Translations.Timeline.MessageMakeCodeChanges;
@@ -559,7 +564,11 @@ namespace SingularityGroup.HotReload.Editor {
                                 GUILayout.FlexibleSpace();
                             } else {
                                 GUILayout.FlexibleSpace();
-                                if (HotReloadTimelineHelper.EventsTimeline.Count > 0 && GUILayout.Button(Translations.Common.ButtonClear)) {
+
+                                if (HotReloadTimelineHelper.CountTimelineEnties() > 0 && GUILayout.Button(HotReloadPrefs.TimelineViewAll ? Translations.Timeline.ViewRecent : Translations.Timeline.ViewAll)) {
+                                    HotReloadPrefs.TimelineViewAll = !HotReloadPrefs.TimelineViewAll;
+                                }
+                                if (HotReloadTimelineHelper.CountTimelineEnties() > 0 && GUILayout.Button(Translations.Common.ButtonClear)) {
                                     HotReloadTimelineHelper.ClearEntries();
                                     if (HotReloadWindow.Current) {
                                         HotReloadWindow.Current.Repaint();
@@ -1070,7 +1079,11 @@ namespace SingularityGroup.HotReload.Editor {
                 OpenURLButton.Render(errInfo.supportButtonText, Constants.ContactURL);
             }
             if (currentState.loginStatus?.lastLicenseError != null) {
-                HotReloadAboutTab.reportIssueButton.OnGUI();
+                var text = HotReloadAboutTab.reportIssueButton.text;
+                
+                if (GUILayout.Button(new GUIContent(text.StartsWith(" ") ? text : " " + text))) {
+                    ReportWindowAPI.OpenBugReport(title: Translations.BugReport.LicenseActivationFailed, description: string.Format(Translations.BugReport.LicenseActivationFailedWithError, currentState.loginStatus.lastLicenseError));
+                }
             }
         }
         
@@ -1345,7 +1358,7 @@ namespace SingularityGroup.HotReload.Editor {
                         using (new EditorGUILayout.HorizontalScope()) {
                             progress = EditorCodePatcher.DownloadProgress;
                             EditorGUI.ProgressBar(barRect, Mathf.Clamp(progress, 0f, 1f), "");
-                            if (GUI.Button(new Rect(barRect) { x = barRect.x + barRect.width + 5, height = barRect.height, width = 60 }, new GUIContent(" Info", GUIHelper.GetLocalIcon("alert_info")))) {
+                            if (GUI.Button(new Rect(barRect) { x = barRect.x + barRect.width + 5, height = barRect.height, width = 60 }, new GUIContent(" Info", GUIHelper.GetLocalIcon("Hot_Reload_alert_info")))) {
                                 Application.OpenURL(Constants.AdditionalContentURL);
                             }
                         }

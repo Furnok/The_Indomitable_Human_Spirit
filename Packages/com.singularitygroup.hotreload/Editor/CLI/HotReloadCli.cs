@@ -166,7 +166,7 @@ namespace SingularityGroup.HotReload.Editor.Cli {
             }
             
             var searchAssemblies = string.Join(";", CodePatcher.I.GetAssemblySearchPaths());
-            var cliArguments = $@"-u ""{unityProjDir}"" -s ""{slnPath}"" -t ""{cliTempDir}"" -a ""{searchAssemblies}"" -ver ""{PackageConst.Version}"" -proc ""{Process.GetCurrentProcess().Id}"" -assets ""{allAssetChanges}"" -p ""{port}"" -r {isReleaseMode} -detailed-error-reporting {detailedErrorReporting}";
+            var cliArguments = $@"-u ""{unityProjDir}"" -s ""{slnPath}"" -t ""{cliTempDir}"" -a ""{searchAssemblies}"" -ver ""{PackageConst.Version}"" -proc ""{Process.GetCurrentProcess().Id}"" -assets ""{allAssetChanges}"" -p ""{port}"" -r {isReleaseMode} -detailed-error-reporting {detailedErrorReporting} -default-locale {PackageConst.DefaultLocale}";
             if (loginData != null) {
                 cliArguments += $@" -email ""{loginData.email}"" -pass ""{loginData.password}""";
             }

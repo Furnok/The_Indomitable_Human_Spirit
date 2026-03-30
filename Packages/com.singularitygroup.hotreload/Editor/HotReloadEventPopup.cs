@@ -84,6 +84,10 @@ namespace SingularityGroup.HotReload.Editor {
                 using (new EditorGUILayout.HorizontalScope()) {
                     GUILayout.Space(21);
                     HotReloadTimelineHelper.RenderAlertFilters();
+                    
+                    if (GUILayout.Button(GUIHelper.GetInvertibleIcon(InvertibleIcon.BugReport), GUILayout.MaxHeight(20), GUILayout.MaxWidth(30))) {
+                        ReportWindowAPI.OpenBugReport();
+                    }
                 }
             }
             HotReloadState.ShowingRedDot = false;

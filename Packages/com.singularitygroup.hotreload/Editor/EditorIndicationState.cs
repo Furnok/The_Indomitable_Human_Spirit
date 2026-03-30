@@ -28,9 +28,9 @@ namespace SingularityGroup.HotReload.Editor {
             Paused,
         }
 
-        internal static readonly string greyIconPath = "grey";
-        internal static readonly string greenIconPath = "green";
-        internal static readonly string redIconPath = "red";
+        internal static readonly string greyIconPath = "Hot_Reload_status_grey";
+        internal static readonly string greenIconPath = "Hot_Reload_status_green";
+        internal static readonly string redIconPath = "Hot_Reload_status_red";
         private static readonly Dictionary<IndicationStatus, string> IndicationIcon = new Dictionary<IndicationStatus, string> {
             // grey icon:
             { IndicationStatus.FinishRegistration, greyIconPath },

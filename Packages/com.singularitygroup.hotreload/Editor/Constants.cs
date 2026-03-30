@@ -1,4 +1,5 @@
-﻿using SingularityGroup.HotReload.Editor.Localization;
+﻿using SingularityGroup.HotReload.DTO;
+using SingularityGroup.HotReload.Editor.Localization;
 using SingularityGroup.HotReload.Localization;
 using Translations = SingularityGroup.HotReload.Editor.Localization.Translations;
 
@@ -39,7 +40,7 @@ namespace SingularityGroup.HotReload.Editor {
         public const int UpgradeLicenseNoteHideHeight = 150;
         public const int RateAppHideHeight = 325;
         public const int RateAppHideWidth = 300;
-        public const int EventFiltersShownHideWidth = 275;
+        public const int EventFiltersShownHideWidth = 325;
         public const int ConsumptionsHideWidth = 300;
         public const int ConsumptionsHideHeight = 360;
         
