@@ -88,7 +88,6 @@ public class S_FireAttract : MonoBehaviour
     }
     public void InitializeTransform(Transform transformToAttract)
     {
-        Debug.Log("Initialize Fire Attract");
         _ps.Play();
 
         var emission = _ps.emission;

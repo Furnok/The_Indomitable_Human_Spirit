@@ -14,8 +14,6 @@ public class S_BossReflect : MonoBehaviour
         {
             if (reflectable.CanReflect() == false) return;
 
-            Debug.Log("Boss reflected a projectile!" + reflectable.CanReflect());
-
             var reflectOwner = body != null ? body.transform : transform;
             reflectable.Reflect(reflectOwner);
         }

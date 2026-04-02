@@ -26,9 +26,6 @@ public class S_FireProjectile : MonoBehaviour, I_AttackProvider
         transform.rotation = rotation;
         this.attackData = attackData;
         isInitialized = true;
-
-        Debug.Log(this.attackData.attackType);
-        Debug.Log(this.attackData.damage);
     }
 
     private void Update()
