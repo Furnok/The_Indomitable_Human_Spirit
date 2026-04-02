@@ -911,6 +911,12 @@ public class S_Enemy : MonoBehaviour
         resetAttack = StartCoroutine(S_Utils.Delay(ssoEnemyData.Value.attackCooldown, () => canAttack = true));
         SetCombo();
 
+        if (stunCoroutine != null)
+        {
+            StopCoroutine(stunCoroutine);
+            stunCoroutine = null;
+        }
+
         stunCoroutine = StartCoroutine(Stun());
     }
 
