@@ -587,6 +587,7 @@ public class S_Enemy : MonoBehaviour
 
         detectionCollider.enabled = false;
         enemyHeadLookAtIK.SetTarget(null, 0);
+        animator.SetBool(combatParam, false);
 
         navMeshAgent.speed = ssoEnemyData.Value.speedReturnPatrol;
         navMeshAgent.stoppingDistance = 0.2f;
