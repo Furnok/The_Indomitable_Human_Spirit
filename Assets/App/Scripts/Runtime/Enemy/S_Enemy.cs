@@ -536,6 +536,7 @@ public class S_Enemy : MonoBehaviour
         float waitTime = Random.Range(ssoEnemyData.Value.startPatrolWaitMin, ssoEnemyData.Value.startPatrolWaitMax );
 
         animator.SetBool(moveParam, false);
+        animator.SetFloat(moveSpeedParam, navMeshAgent.speed);
 
         idleCoroutine = StartCoroutine(S_Utils.Delay(waitTime, () => UpdateState(S_EnumEnemyState.Patroling)));
     }
