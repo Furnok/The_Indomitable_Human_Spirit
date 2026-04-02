@@ -147,6 +147,7 @@ public class S_Enemy : MonoBehaviour
     [SerializeField] RSO_ListTutoStepFinished _tutoStepsFinished;
 
     private float health = 0;
+
     private AnimatorOverrideController overrideController = null;
     private S_ClassAnimationsCombos combo = null;
 
