@@ -11,6 +11,9 @@ public class S_EnemyRootMotionModifier : MonoBehaviour
     [SerializeField, S_TagName] private string tagObstacle;
 
     [TabGroup("References")]
+    [SerializeField] private LayerMask maskPlayer;
+
+    [TabGroup("References")]
     [Title("Animator")]
     [SerializeField] private Animator animator;
 
@@ -57,10 +60,11 @@ public class S_EnemyRootMotionModifier : MonoBehaviour
 
     private bool CanMove(Vector3 delta)
     {
-        RaycastHit hit;
-        if (Physics.Raycast(body.transform.position, delta.normalized, out hit, distanceMin))
+        RaycastHit[] hits = Physics.RaycastAll(body.transform.position, delta.normalized, distanceMin, maskPlayer);
+
+        foreach (var h in hits)
         {
-            if (hit.collider.CompareTag(tagPlayer) || hit.collider.CompareTag(tagObstacle)) return false;
+            if (h.collider.CompareTag(tagPlayer) || h.collider.CompareTag(tagObstacle)) return false;
         }
 
         return true;

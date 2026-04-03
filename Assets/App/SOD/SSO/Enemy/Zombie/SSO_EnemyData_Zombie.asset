@@ -51,14 +51,14 @@ MonoBehaviour:
           timeCast: 0
           timeInterval: 0
           numberOfProjectiles: 0
-          damage: 20
+          damage: 15
           knockbackHitDuration: 0.1
           knockbackHitDistance: 2
           knockbackOnParryDuration: 0
           knockbackOnParrryDistance: 0
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
-          invicibilityDuration: 1.2
+          invicibilityDuration: 1
           convictionReduction: 2
           convictionParryGain: 0
           lastAttack: 0
@@ -75,14 +75,14 @@ MonoBehaviour:
           timeCast: 0
           timeInterval: 0
           numberOfProjectiles: 0
-          damage: 20
+          damage: 15
           knockbackHitDuration: 0.1
           knockbackHitDistance: 2
           knockbackOnParryDuration: 0
           knockbackOnParrryDistance: 0
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
-          invicibilityDuration: 1.2
+          invicibilityDuration: 1
           convictionReduction: 2
           convictionParryGain: 0
           lastAttack: 0
@@ -99,14 +99,14 @@ MonoBehaviour:
           timeCast: 0
           timeInterval: 0
           numberOfProjectiles: 0
-          damage: 20
+          damage: 15
           knockbackHitDuration: 0.1
           knockbackHitDistance: 2
           knockbackOnParryDuration: 0
           knockbackOnParrryDistance: 0
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
-          invicibilityDuration: 1.2
+          invicibilityDuration: 1
           convictionReduction: 2
           convictionParryGain: 0
           lastAttack: 1

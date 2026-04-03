@@ -51,10 +51,10 @@ MonoBehaviour:
           timeCast: 0
           timeInterval: 0
           numberOfProjectiles: 0
-          damage: 5
+          damage: 10
           knockbackHitDuration: 0.1
           knockbackHitDistance: 1
-          knockbackOnParryDuration: 0.2
+          knockbackOnParryDuration: 0.1
           knockbackOnParrryDistance: 0.1
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
@@ -75,7 +75,7 @@ MonoBehaviour:
           timeCast: 0
           timeInterval: 0
           numberOfProjectiles: 0
-          damage: 5
+          damage: 10
           knockbackHitDuration: 0.1
           knockbackHitDistance: 1
           knockbackOnParryDuration: 0.1
@@ -99,7 +99,7 @@ MonoBehaviour:
           timeCast: 0
           timeInterval: 0
           numberOfProjectiles: 0
-          damage: 5
+          damage: 10
           knockbackHitDuration: 0.1
           knockbackHitDistance: 1
           knockbackOnParryDuration: 0.2
@@ -129,10 +129,10 @@ MonoBehaviour:
           timeCast: 0
           timeInterval: 0
           numberOfProjectiles: 0
-          damage: 5
+          damage: 10
           knockbackHitDuration: 0.1
           knockbackHitDistance: 1
-          knockbackOnParryDuration: 0.2
+          knockbackOnParryDuration: 0.1
           knockbackOnParrryDistance: 0.1
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
