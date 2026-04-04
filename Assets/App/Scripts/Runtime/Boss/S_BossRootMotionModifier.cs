@@ -11,6 +11,9 @@ public class S_BossRootMotionModifier : MonoBehaviour
     [SerializeField, S_TagName] private string tagObstacle;
 
     [TabGroup("References")]
+    [SerializeField] private LayerMask maskPlayer;
+
+    [TabGroup("References")]
     [Title("Animator")]
     [SerializeField] private Animator animator;
 
@@ -26,6 +29,7 @@ public class S_BossRootMotionModifier : MonoBehaviour
     [SerializeField] private RSO_GameInPause isPause;
 
     private float rootMotionMultiplier = 1f;
+    private float distanceMin = 0;
 
     private void OnAnimatorMove()
     {
@@ -48,17 +52,19 @@ public class S_BossRootMotionModifier : MonoBehaviour
         }
     }
 
-    public void Setup(float value)
+    public void Setup(float value, float newDistanceMin)
     {
         rootMotionMultiplier = value;
+        distanceMin = newDistanceMin;
     }
 
     private bool CanMove(Vector3 delta)
     {
-        RaycastHit hit;
-        if (Physics.Raycast(body.transform.position, delta.normalized, out hit, 1f))
+        RaycastHit[] hits = Physics.RaycastAll(body.transform.position, delta.normalized, distanceMin, maskPlayer);
+
+        foreach (var h in hits)
         {
-            if (hit.collider.CompareTag(tagPlayer) || hit.collider.CompareTag(tagObstacle)) return false;
+            if (h.collider.CompareTag(tagPlayer) || h.collider.CompareTag(tagObstacle)) return false;
         }
 
         return true;

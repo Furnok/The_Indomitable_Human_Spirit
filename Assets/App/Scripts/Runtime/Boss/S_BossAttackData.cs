@@ -42,6 +42,7 @@ public class S_BossAttackData : MonoBehaviour
     [SerializeField] private S_BossWeapon bossAfterImageWeapon;
 
     private S_StructAttackData attackData;
+    private bool isInterupted = false;
 
     public void SetAttackMode(S_StructAttackData bossAttackData)
     {
@@ -52,71 +53,79 @@ public class S_BossAttackData : MonoBehaviour
         if (bossAfterImageWeapon != null) bossAfterImageWeapon.ChangeAttackData(attackData);
     }
 
+    public void Interuption(bool value)
+    {
+        isInterupted = value;
+    }
+
     public void EnableWeaponCollider()
     {
-        if (weaponCollider != null) weaponCollider.enabled = true;
+        if (weaponCollider != null && !isInterupted) weaponCollider.enabled = true;
     }
 
     public void DisableWeaponCollider()
     {
-        if (weaponCollider != null) weaponCollider.enabled = false;
+        if (weaponCollider != null && !isInterupted) weaponCollider.enabled = false;
     }
 
     public void EnableAfterImageWeaponCollider()
     {
-        if (afterImageWeaponCollider != null) afterImageWeaponCollider.enabled = true;
+        if (afterImageWeaponCollider != null && !isInterupted) afterImageWeaponCollider.enabled = true;
     }
     public void DisableAfterImageWeaponCollider()
     {
-        if (afterImageWeaponCollider != null) afterImageWeaponCollider.enabled = false;
+        if (afterImageWeaponCollider != null && !isInterupted) afterImageWeaponCollider.enabled = false;
     }
 
     public void EnableAfterImageWeapon()
     {
-        if (afterImageWeaponPrefabs != null) afterImageWeaponPrefabs.SetActive(true);
+        if (afterImageWeaponPrefabs != null && !isInterupted) afterImageWeaponPrefabs.SetActive(true);
     }
     public void DisableAfterImageWeapon()
     {
-        if (afterImageWeaponPrefabs != null) afterImageWeaponPrefabs.SetActive(false);
+        if (afterImageWeaponPrefabs != null && !isInterupted) afterImageWeaponPrefabs.SetActive(false);
     }
 
     public void Rotate()
     {
-        boss.RotateEnemyAnim();
+        if (!isInterupted) boss.RotateBossAnim();
     }
 
     public void StopRotate()
     {
-        boss.StopRotateEnemyAnim();
+        if (!isInterupted) boss.StopRotateBossAnim();
     }
 
     public void PlayFmod(string eventName)
     {
-        RuntimeManager.PlayOneShot(eventName, transform.position);
+        if (!isInterupted) RuntimeManager.PlayOneShot(eventName, transform.position);
     }
 
     public void VFXAttackType()
     {
-        if (attackData.attackType == S_EnumAttackType.Parryable || attackData.attackType == S_EnumAttackType.Projectile)
+        if (!isInterupted)
         {
-            if (particleParryType != null) particleParryType.Play();
-        }
-        else if (attackData.attackType == S_EnumAttackType.Dodgeable)
-        {
-            if (particleDodgeType != null) particleDodgeType.Play();
+            if (attackData.attackType == S_EnumAttackType.Parryable || attackData.attackType == S_EnumAttackType.Projectile)
+            {
+                if (particleParryType != null) particleParryType.Play();
+            }
+            else if (attackData.attackType == S_EnumAttackType.Dodgeable)
+            {
+                if (particleDodgeType != null) particleDodgeType.Play();
+            }
         }
     }
 
     public void VFXStartTrail()
     {
-        if (particlesTrail == null || particlesTrail.Count == 0) return;
+        if (particlesTrail == null || particlesTrail.Count == 0 || isInterupted) return;
 
         foreach (ParticleSystem particle in particlesTrail) particle.Play();
     }
 
     public void VFXStopTrail()
     {
-        if (particlesTrail == null || particlesTrail.Count == 0) return;
+        if (particlesTrail == null || particlesTrail.Count == 0 || isInterupted) return;
 
         foreach (ParticleSystem particle in particlesTrail) particle.Stop();
     }

@@ -1,8 +1,11 @@
 public enum S_EnumBossState
 {
+    None,
     Idle,
-    Chase,
+    ReturnIdle,
+    Chasing,
     Combat,
+    Attack,
     Stun,
     Death,
 }

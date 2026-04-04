@@ -1,6 +1,5 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class S_BossDetectionRange : MonoBehaviour
 {
@@ -8,13 +7,12 @@ public class S_BossDetectionRange : MonoBehaviour
     [Title("Filters")]
     [SerializeField][S_TagName] private string playerTag;
 
-    [HideInInspector] public UnityEvent<GameObject> onTargetDetected;
+    [TabGroup("References")]
+    [Title("Scripts")]
+    [SerializeField] private S_Boss boss;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(playerTag))
-        {
-            onTargetDetected.Invoke(other.gameObject);
-        }
+        if (other.CompareTag(playerTag)) boss.DetectTarget(other.gameObject);
     }
 }
