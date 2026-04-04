@@ -740,6 +740,7 @@ MonoBehaviour:
   cinemachineCameraIntro: {fileID: 3925711368591419889}
   cinemachineCameraPlayer: {fileID: 4498866734127298347}
   cinemachineCameraOrbitalFollow: {fileID: 3187908799981269826}
+  cinemachineCameraRotationComposer: {fileID: 606360146567169182}
   cinemachineCameraCinematic:
   - {fileID: 8040167007817381413}
   playerPoint: {fileID: 4679355963983762286}
@@ -757,6 +758,7 @@ MonoBehaviour:
   rseOnPlayerMove: {fileID: 11400000, guid: 881d0608fef60064c9e33701b880054c, type: 2}
   rseOnCameraFOV: {fileID: 11400000, guid: be074528f87be5f469eb9a1c75eeb202, type: 2}
   rseOnLookActivated: {fileID: 11400000, guid: ae1843c9e0dc35f4f9d4213dbed65142, type: 2}
+  rseOnPlayerRespawn: {fileID: 11400000, guid: 3b09f2a06394f4642a88a2d57f0cec43, type: 2}
   rseOnTPCam: {fileID: 11400000, guid: e9ff4dc3fe9055d43a1068c65738e620, type: 2}
   rseOnCinematicInputEnabled: {fileID: 11400000, guid: 4a8e19feb57a19146b6b4bf5ad1cf371, type: 2}
   rseOnGameInputEnabled: {fileID: 11400000, guid: 0526673c0b0752b418ffdef1cdaaf184, type: 2}

@@ -883,6 +883,7 @@ Transform:
   - {fileID: 1991927486943782219}
   - {fileID: 7124349030728515615}
   - {fileID: 3167146948708643335}
+  - {fileID: 5928063605135205519}
   m_Father: {fileID: 480381989175066121}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &338046699455560462
@@ -975,22 +976,24 @@ MonoBehaviour:
   rb: {fileID: 6290640343244561212}
   bodyCollider: {fileID: 2172925691496945250}
   reflectCollider: {fileID: 3961580513568290508}
-  detectionCollider: {fileID: 6240607319024186}
+  detectionCollider: {fileID: 7846410964732315304}
   hurtCollider: {fileID: 6623810594226599851}
   bossDetectionRange: {fileID: 4396067441703182030}
-  enemyHeadLookAtIK: {fileID: 0}
+  enemyHeadLookAtIK: {fileID: 5162652671263256745}
   animator: {fileID: 3048319605574608049}
   moveParam: isMoving
-  deathParam: isDead
-  idleAttack: isIdleAttack
-  attackParam: isAttacking
+  moveSpeedParam: MoveSpeed
+  combatParam: isCombat
+  attackParam: isAttack
   comboParam: isCombo
-  stopAttackParam: isStopAttacking
   stunParam: isStun
+  deathParam: isDead
   bossHurt: {fileID: 3224904401570858492}
   rootMotionModifier: {fileID: 3231315390003761703}
   bossAttackData: {fileID: 461593203997373390}
   bossAttack: {fileID: 6465511601208726001}
+  bossUIDamage: {fileID: 312695594127994060, guid: 449c3528711f68d49905cceb93251876, type: 3}
+  textParent: {fileID: 6258378922948947106}
   bossPhase1UI: {fileID: 0}
   rseOnPlayerGettingHit: {fileID: 11400000, guid: 0bde5f6bad322664c9a88a5237c9d868, type: 2}
   rseOnPlayerDeath: {fileID: 11400000, guid: 05b30ffda8ad63c4d82da9ab419e36e1, type: 2}
@@ -1000,15 +1003,18 @@ MonoBehaviour:
   rseOnEnemyTargetDied: {fileID: 11400000, guid: a6d4a41f4054c224a832b2ce84286687, type: 2}
   rseOnPlayerRespawn: {fileID: 11400000, guid: 3b09f2a06394f4642a88a2d57f0cec43, type: 2}
   rseOnDisplayBossHealth: {fileID: 11400000, guid: 052e4c694acd8a444bcd0135bc6f4cea, type: 2}
-  rseOnBossHealthSetup: {fileID: 0}
+  rseOnBossHealthSetup: {fileID: 11400000, guid: fa5e674b008435f468e167ec38d17337, type: 2}
   rseOnUpdateBossHealth: {fileID: 11400000, guid: 1203186c34fa193419cb1fea26546c78, type: 2}
   rseOnBossDeath: {fileID: 11400000, guid: a8782c22c581a2b44ace556be4c59d62, type: 2}
-  rseOnStartBossP1: {fileID: 0}
-  rseOnStartBossP2: {fileID: 0}
-  rseOnEndBossP1: {fileID: 0}
-  rseOnEndBossP2: {fileID: 0}
-  rseOnFinishBossP1: {fileID: 0}
-  rseOnFinishBossP2: {fileID: 0}
+  rseOnStartBossP1: {fileID: 11400000, guid: 62b1da89936f5104d8255d8c58eacecf, type: 2}
+  rseOnStartBossP2: {fileID: 11400000, guid: cb17ca66c2d0ac543b2ac2048eac14a3, type: 2}
+  rseOnEndBossP1: {fileID: 11400000, guid: a21c06250d221c244954874cebe8452f, type: 2}
+  rseOnEndBossP2: {fileID: 11400000, guid: bad8e97ad43c8c44985e6df7981e0470, type: 2}
+  rseOnFinishBossP1: {fileID: 11400000, guid: 1cc4dea73a1f48a4eaec2f0d611b0d63, type: 2}
+  rseOnFinishBossP2: {fileID: 11400000, guid: 36662af26eb208c49952f842a15d1d15, type: 2}
+  rseOnCameraFOV: {fileID: 11400000, guid: be074528f87be5f469eb9a1c75eeb202, type: 2}
+  rsoCurrentTarget: {fileID: 11400000, guid: 21e74e9f4371e414596255356b9bd1f4, type: 2}
+  ssoCameraData: {fileID: 11400000, guid: 8a8b9ed3ac9bcab418920e1de02ba0e2, type: 2}
 --- !u!114 &5162652671263256745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1093,20 +1099,20 @@ MonoBehaviour:
   boss: {fileID: 2728780361816490054}
   bossNavMeshAgent: {fileID: 338046699455560462}
   animator: {fileID: 3048319605574608049}
-  attackParam: isAttacking
+  attackParam: isAttack
   comboParam: isCombo
-  jumpParam: 
-  flyParam: 
+  jumpParam: isJump
+  flyParam: isFly
   onExecuteAttack: {fileID: 11400000, guid: 3da07f09686258c4f84c0ab1889d9bcd, type: 2}
   onEndFly: {fileID: 11400000, guid: 4250bf271bad23e42ab1b18f912469ba, type: 2}
   rseOnBossDeath: {fileID: 11400000, guid: a8782c22c581a2b44ace556be4c59d62, type: 2}
-  rseOnPlayerDeath: {fileID: 0}
+  rseOnPlayerDeath: {fileID: 11400000, guid: 05b30ffda8ad63c4d82da9ab419e36e1, type: 2}
   rseOnPlayParticle: {fileID: 11400000, guid: 96e637a3924deff4685a645b52dfc7c2, type: 2}
   rseOnStopParticle: {fileID: 11400000, guid: 4188360d207886043ab568bf24778487, type: 2}
-  rseOnAttractParticle: {fileID: 0}
+  rseOnAttractParticle: {fileID: 11400000, guid: 6b56ca48f31ff474482a67eb74243284, type: 2}
   rseOnEndAttack: {fileID: 11400000, guid: df61dd20dc38205418f8426747ea5149, type: 2}
   rseOnBossStun: {fileID: 11400000, guid: e52f886ca2039f34da187674d8e07a81, type: 2}
-  rseOnStopAttract: {fileID: 0}
+  rseOnStopAttract: {fileID: 11400000, guid: 8f3b2c4511629e34d954d68b026a5106, type: 2}
   aimPointPlayer: {fileID: 0}
   overrideController: {fileID: 0}
 --- !u!114 &6324034822133534210
@@ -1123,7 +1129,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoadAfterBossP1: SC_Boss
   onFinishBossP1: {fileID: 11400000, guid: 1cc4dea73a1f48a4eaec2f0d611b0d63, type: 2}
+  rseOnFadeOut: {fileID: 11400000, guid: 04361f481971a204cbdc1bd2d01954af, type: 2}
   loadScene: {fileID: 11400000, guid: 3e9462016f0203448bead1ff197b69f0, type: 2}
+  ssoFadeTime: {fileID: 11400000, guid: 611e366585d4976458e7989ec5477367, type: 2}
 --- !u!1 &2812144962020388730
 GameObject:
   m_ObjectHideFlags: 0
@@ -1198,7 +1206,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2937009420039466711}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 50ccf89f1a95b2347bd9127a8da1d9d0, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1974,6 +1982,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3695168581150404510}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6258378922948947106
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5928063605135205519}
+  m_Layer: 0
+  m_Name: Texts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5928063605135205519
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6258378922948947106}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6565682890114688657}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6467010481358264125
 GameObject:
   m_ObjectHideFlags: 0
@@ -2336,7 +2375,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3396151423068580471}
-  - component: {fileID: 6240607319024186}
+  - component: {fileID: 7846410964732315304}
   - component: {fileID: 4396067441703182030}
   m_Layer: 11
   m_Name: DetectionRange
@@ -2360,8 +2399,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 480381989175066121}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &6240607319024186
-BoxCollider:
+--- !u!135 &7846410964732315304
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2379,7 +2418,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 30, y: 7, z: 30}
+  m_Radius: 15
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4396067441703182030
 MonoBehaviour:
@@ -2394,9 +2433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTag: Player
-  onTargetDetected:
-    m_PersistentCalls:
-      m_Calls: []
+  boss: {fileID: 6352494224581732303}
 --- !u!1 &8256329899273872263
 GameObject:
   m_ObjectHideFlags: 0

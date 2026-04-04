@@ -274,11 +274,11 @@ MonoBehaviour:
   hurtCollider: {fileID: 6177182004407894465}
   animator: {fileID: 5886562096679836169}
   moveParam: IsMoving
-  moveSpeedParam: 
+  moveSpeedParam: MoveSpeed
   combatParam: IsCombat
   attackParam: IsAttack
   comboParam: IsCombo
-  parryParam: 
+  parryParam: IsParry
   stunParam: IsStun
   deadParam: IsDead
   body: {fileID: 6905421159853868602}
@@ -298,7 +298,7 @@ MonoBehaviour:
   rseOnEnemyTargetDied: {fileID: 11400000, guid: a6d4a41f4054c224a832b2ce84286687, type: 2}
   rseOnDataLoad: {fileID: 11400000, guid: d8401e7eeb710344ca47f8e9df92d71d, type: 2}
   rseOnPlayerDeath: {fileID: 11400000, guid: 05b30ffda8ad63c4d82da9ab419e36e1, type: 2}
-  rseOnParrySuccess: {fileID: 0}
+  rseOnParrySuccess: {fileID: 11400000, guid: 3328b726d20642440a7825c060ff63d7, type: 2}
   rseOnTutoSettingChange: {fileID: 11400000, guid: a1b043cf4463d3548a1a57d304d1e739, type: 2}
   rseOnSendConsoleMessage: {fileID: 11400000, guid: e2e3ecd3153d9a14d9d9e380efc21861, type: 2}
   rseOnPlayerRespawn: {fileID: 11400000, guid: 3b09f2a06394f4642a88a2d57f0cec43, type: 2}
@@ -326,7 +326,7 @@ MonoBehaviour:
   particlesTrail: []
   enemy: {fileID: 445208566684554611}
   enemyWeapon: {fileID: 0}
-  rseOnRequestStartTutorialStep: {fileID: 0}
+  rseOnRequestStartTutorialStep: {fileID: 11400000, guid: c7e748c38ce2f3242ad3ce2dedebbbaf, type: 2}
 --- !u!114 &8400928163415866521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,6 +355,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tagPlayer: Player
   tagObstacle: Obstacle
+  maskPlayer:
+    serializedVersion: 2
+    m_Bits: 1024
   animator: {fileID: 5886562096679836169}
   rb: {fileID: 2819568101127906853}
   body: {fileID: 5421673960955687534}

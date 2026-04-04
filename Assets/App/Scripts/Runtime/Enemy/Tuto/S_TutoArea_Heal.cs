@@ -34,7 +34,6 @@ public class S_TutoArea_Heal : MonoBehaviour
 
             StartCoroutine(S_Utils.Delay(0.1f, () =>
             {
-                Debug.Log("Start Heal Tuto");
                 _onRequestStartTutorialStep.Call(S_EnumTutorialStep.Heal);
             }));
         }

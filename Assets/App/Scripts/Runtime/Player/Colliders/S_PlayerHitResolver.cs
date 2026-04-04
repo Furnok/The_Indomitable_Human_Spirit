@@ -170,7 +170,6 @@ public class S_PlayerHitResolver : MonoBehaviour
             var canHit = _attackCanHitPlayer.Value.ContainsKey(attackData.goSourceId);
 
             if (canHit) _rseOnPlayerHit.Call(contact);
-            else Debug.Log("Dont hit cause dodge perfect");
         }
         else if (attackData.attackType == S_EnumAttackType.Projectile)
         {
@@ -187,7 +186,6 @@ public class S_PlayerHitResolver : MonoBehaviour
                     _rseOnRumbleRequested.Call(_parryRumbleData.Value);
 
                     TryReflectProjectile(contact.source);
-                    Debug.Log("Parried!");
 
                     EventInstance _parryEventInstanceSFX;
 

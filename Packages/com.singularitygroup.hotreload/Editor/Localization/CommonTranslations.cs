@@ -8,6 +8,7 @@ namespace SingularityGroup.HotReload.Editor.Localization {
             public static string ButtonStart;
             public static string ButtonStop;
             public static string ButtonRecompile;
+            public static string ButtonBugReport;
             public static string ButtonProceed;
             public static string ButtonYes;
             public static string ButtonNo;
@@ -45,6 +46,7 @@ namespace SingularityGroup.HotReload.Editor.Localization {
                 ButtonStart = " Start";
                 ButtonStop = " Stop";
                 ButtonRecompile = " Recompile";
+                ButtonBugReport = "Report bug";
                 ButtonProceed = "Proceed";
                 ButtonYes = "Yes";
                 ButtonNo = "No";
@@ -82,6 +84,7 @@ namespace SingularityGroup.HotReload.Editor.Localization {
                 ButtonClear = "清除";
                 ButtonStart = " 开始";
                 ButtonStop = " 停止";
+                ButtonBugReport = "报告错误";
                 ButtonRecompile = " 重新编译";
                 ButtonProceed = "继续";
                 ButtonYes = "是";

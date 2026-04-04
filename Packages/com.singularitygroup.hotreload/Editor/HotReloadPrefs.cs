@@ -2,6 +2,7 @@ using System;
 using System.Globalization;
 using System.IO;
 using JetBrains.Annotations;
+using SingularityGroup.HotReload.DTO;
 using SingularityGroup.HotReload.Editor.Cli;
 using UnityEditor;
 using UnityEngine;
@@ -19,6 +20,7 @@ namespace SingularityGroup.HotReload.Editor {
         private const string PasswordCachedKey = "HotReloadWindow.PasswordCached";
         private const string ExposeServerToLocalNetworkKey = "HotReloadWindow.ExposeServerToLocalNetwork";
         private const string ErrorHiddenCachedKey = "HotReloadWindow.ErrorHiddenCachedKey";
+        private const string HardwareIdKey = "HotReloadWindow.HardwareId";
         private const string RefreshManuallyTipCachedKey = "HotReloadWindow.RefreshManuallyTipCachedKey";
         private const string ShowLoginCachedKey = "HotReloadWindow.ShowLoginCachedKey";
         private const string ConfigurationKey = "HotReloadWindow.Configuration";
@@ -35,7 +37,9 @@ namespace SingularityGroup.HotReload.Editor {
         private const string PatchesCollapseKey = "HotReloadWindow.PatchesCollapse";
         private const string PatchesGroupAllKey = "HotReloadWindow.PatchesGroupAll";
         private const string LaunchOnEditorStartKey = "HotReloadWindow.LaunchOnEditorStart";
+        [Obsolete]
         private const string AutoClearTimelineKey = "HotReloadWindow.AutoClearTimeline";
+        private const string TimelineViewAllKey = "HotReloadWindow.TimelineViewAll";
         private const string AutoRecompileUnsupportedChangesKey = "HotReloadWindow.AutoRecompileUnsupportedChanges";
         private const string AutoRecompilePartiallyUnsupportedChangesKey = "HotReloadWindow.AutoRecompilePartiallyUnsupportedChanges";
         private const string DisplayNewMonobehaviourMethodsAsPartiallySupportedKey = "HotReloadWindow.DisplayNewMonobehaviourMethodsAsPartiallySupported";
@@ -167,6 +171,11 @@ namespace SingularityGroup.HotReload.Editor {
             set { EditorPrefs.SetBool(ErrorHiddenCachedKey, value); }
         }
         
+        public static string HardwareId {
+            get { return EditorPrefs.GetString(HardwareIdKey); }
+            set { EditorPrefs.SetString(HardwareIdKey, value); }
+        }
+        
         public static bool ShowLogin {
             get { return EditorPrefs.GetBool(ShowLoginCachedKey, true); }
             set { EditorPrefs.SetBool(ShowLoginCachedKey, value); }
@@ -283,9 +292,15 @@ namespace SingularityGroup.HotReload.Editor {
             set { EditorPrefs.SetBool(LaunchOnEditorStartKey, value); }
         }
         
+        [Obsolete]
         public static bool AutoClearTimeline {
             get { return EditorPrefs.GetBool(AutoClearTimelineKey, true); }
             set { EditorPrefs.SetBool(AutoClearTimelineKey, value); }
+        }
+        
+        public static bool TimelineViewAll {
+            get { return EditorPrefs.GetBool(TimelineViewAllKey, false); }
+            set { EditorPrefs.SetBool(TimelineViewAllKey, value); }
         }
 
         public static bool AutoRecompileUnsupportedChanges {
@@ -511,7 +526,7 @@ namespace SingularityGroup.HotReload.Editor {
         
         #if UNITY_EDITOR_WIN
         public static bool UseWatchman {
-            get { return EditorPrefs.GetBool(UseWatchmanKey, PackageConst.DefaultLocale == RuntimeLocalization.Locale.English); }
+            get { return EditorPrefs.GetBool(UseWatchmanKey, PackageConst.DefaultLocale == Locale.English); }
             set { EditorPrefs.SetBool(UseWatchmanKey, value); }
         }
         #endif

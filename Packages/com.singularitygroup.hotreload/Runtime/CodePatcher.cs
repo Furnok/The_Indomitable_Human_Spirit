@@ -66,6 +66,7 @@ namespace SingularityGroup.HotReload {
         public FieldHandler fieldHandler;
         public bool debuggerCompatibilityEnabled;
         public bool anyFailures;
+        public bool ignoreCompileErrorOnRecompileUnsupported;
         
         public IReadOnlyList<MethodPatchResponse> PatchHistory => patchHistory;
 

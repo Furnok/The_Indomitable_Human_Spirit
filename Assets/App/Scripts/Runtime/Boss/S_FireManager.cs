@@ -47,7 +47,6 @@ public class S_FireManager : MonoBehaviour
         int count = Mathf.Max(0, Mathf.FloorToInt(nmbParticle));
         for (int i = 0; i < count; i++)
         {
-            Debug.Log("Instantiate Fire Attract");
             Vector2 rnd = Random.insideUnitCircle * _spawnRadius;
             Vector3 spawnPos = spawnCenter.position + new Vector3(rnd.x, _spawnHeight, rnd.y);
 

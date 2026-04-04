@@ -164,6 +164,9 @@ public class S_UIGameManager : MonoBehaviour
     [SerializeField] private RSE_OnPlayerRespawn rseOnPlayerRespawn;
 
     [TabGroup("Outputs")]
+    [SerializeField] private RSE_OnLookActivated rseOnLookActivated;
+
+    [TabGroup("Outputs")]
     [SerializeField] private RSO_PreconsumedConviction rsoPreconsumedConviction;
 
     [TabGroup("Outputs")]
@@ -587,6 +590,8 @@ public class S_UIGameManager : MonoBehaviour
     {
         StartCoroutine(S_Utils.Delay(ssoGameOver.Value, () =>
         {
+            rseOnLookActivated.Call(false);
+
             if (haveGameOver)
             {
                 rseOnUIInputEnabled.Call();

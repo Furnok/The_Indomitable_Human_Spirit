@@ -347,13 +347,14 @@ public class S_BossAttack : MonoBehaviour
             string overrideKey = (i % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
             overrideController[overrideKey] = currentAttack.listComboData[i].animation;
 
-            rootMotionModifier.Setup(currentAttack.listComboData[i].rootMotionMultiplier);
+            rootMotionModifier.Setup(currentAttack.listComboData[i].rootMotionMultiplier, 1);
 
             bossAttackData.SetAttackMode(currentAttack.listComboData[i].attackData);
 
             if (currentAttack.listComboData[i].showVFXAttackType) bossAttackData.VFXAttackType();
 
-            animator.SetTrigger(i == 0 ? attackParam : comboParam);
+            if (i == 0) animator.SetBool(attackParam, true);
+            else animator.SetTrigger(comboParam);
 
             yield return new WaitForSeconds(currentAttack.listComboData[i].animation.length);
 
@@ -385,13 +386,14 @@ public class S_BossAttack : MonoBehaviour
             string overrideKey = (i % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
             overrideController[overrideKey] = currentAttack.listComboData[i].animation;
 
-            rootMotionModifier.Setup(currentAttack.listComboData[i].rootMotionMultiplier);
+            rootMotionModifier.Setup(currentAttack.listComboData[i].rootMotionMultiplier, 1);
 
             bossAttackData.SetAttackMode(currentAttack.listComboData[i].attackData);
 
             if (currentAttack.listComboData[i].showVFXAttackType) bossAttackData.VFXAttackType();
 
-            animator.SetTrigger(i == 0 ? attackParam : comboParam);
+            if (i == 0) animator.SetBool(attackParam, true);
+            else animator.SetTrigger(comboParam);
 
             yield return new WaitForSeconds(currentAttack.listComboData[i].animation.length);
 
@@ -428,9 +430,10 @@ public class S_BossAttack : MonoBehaviour
         string overrideKey = (animNumb % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
         overrideController[overrideKey] = currentAttack.listComboData[animNumb].animation;
 
-        animator.SetTrigger(animNumb == 0 ? attackParam : comboParam);
+        if (animNumb == 0) animator.SetBool(attackParam, true);
+        else animator.SetTrigger(comboParam);
 
-        
+
         yield return new WaitForSeconds(currentAttack.listComboData[animNumb].animation.length);
         animNumb++;
 
@@ -442,9 +445,10 @@ public class S_BossAttack : MonoBehaviour
         overrideKey = (animNumb % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
         overrideController[overrideKey] = currentAttack.listComboData[animNumb].animation;
 
-        animator.SetTrigger(animNumb == 0 ? attackParam : comboParam);
+        if (animNumb == 0) animator.SetBool(attackParam, true);
+        else animator.SetTrigger(comboParam);
 
-        rootMotionModifier.Setup(currentAttack.listComboData[animNumb].rootMotionMultiplier);
+        rootMotionModifier.Setup(currentAttack.listComboData[animNumb].rootMotionMultiplier, 1);
         bossAttackData.SetAttackMode(currentAttack.listComboData[animNumb].attackData);
 
         if (currentAttack.listComboData[animNumb].showVFXAttackType) bossAttackData.VFXAttackType();
@@ -499,13 +503,14 @@ public class S_BossAttack : MonoBehaviour
             string overrideKey = (i % 2 == 0) ? "AttackAnimation" : "AttackAnimation2";
             overrideController[overrideKey] = currentAttack.listComboData[i].animation;
 
-            rootMotionModifier.Setup(currentAttack.listComboData[i].rootMotionMultiplier);
+            rootMotionModifier.Setup(currentAttack.listComboData[i].rootMotionMultiplier, 1);
 
             bossAttackData.SetAttackMode(currentAttack.listComboData[i].attackData);
 
             if (currentAttack.listComboData[i].showVFXAttackType) bossAttackData.VFXAttackType();
 
-            animator.SetTrigger(i == 0 ? attackParam : comboParam);
+            if (i == 0) animator.SetBool(attackParam, true);
+            else animator.SetTrigger(comboParam);
 
             yield return new WaitForSeconds(currentAttack.listComboData[i].animation.length);
 

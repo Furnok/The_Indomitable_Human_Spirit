@@ -3221,6 +3221,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a799269b477d034f83afb74cddbe6d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelName:
+    sceneName: 
+    sceneGUID: 
+    scenePath: 
   rseOnCloseAllWindows: {fileID: 11400000, guid: c88a81ef8edc4ec47964039b13b9935d, type: 2}
   rseOnQuitGame: {fileID: 11400000, guid: 20d7180e7bae6694fb8ddf9ff9a7a20d, type: 2}
   rseOnLoadScene: {fileID: 11400000, guid: 3e9462016f0203448bead1ff197b69f0, type: 2}
@@ -15882,6 +15886,7 @@ MonoBehaviour:
   rseOnResetFocus: {fileID: 11400000, guid: 49e933a059aabdf4ab8547deb65c6764, type: 2}
   rseOnGamePause: {fileID: 11400000, guid: ae0312c6248bf454a8f047511417352d, type: 2}
   rseOnPlayerRespawn: {fileID: 11400000, guid: 3b09f2a06394f4642a88a2d57f0cec43, type: 2}
+  rseOnLookActivated: {fileID: 11400000, guid: ae1843c9e0dc35f4f9d4213dbed65142, type: 2}
   rsoPreconsumedConviction: {fileID: 11400000, guid: dc4cc407de721f349915f989c339ea44, type: 2}
   rsoConsoleDisplay: {fileID: 11400000, guid: b2b28a67ee40be44db63f313f51179d5, type: 2}
   rsoInConsole: {fileID: 11400000, guid: e1beabb5f0d65584fb5f954d5250ed63, type: 2}
@@ -19815,6 +19820,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 383a5df94bdc3fe4f90f61f40529624c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelName:
+    sceneName: 
+    sceneGUID: 
+    scenePath: 
   uiSound:
     Guid:
       Data1: 847927044

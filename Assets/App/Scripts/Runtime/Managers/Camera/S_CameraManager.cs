@@ -27,6 +27,9 @@ public class S_CameraManager : MonoBehaviour
     [SerializeField] private CinemachineOrbitalFollow cinemachineCameraOrbitalFollow;
 
     [TabGroup("References")]
+    [SerializeField] private CinemachineRotationComposer cinemachineCameraRotationComposer;
+
+    [TabGroup("References")]
     [SerializeField] private List<CinemachineCamera> cinemachineCameraCinematic;
 
     [TabGroup("References")]
@@ -76,6 +79,9 @@ public class S_CameraManager : MonoBehaviour
     [SerializeField] private RSE_OnLookActivated rseOnLookActivated;
 
     [TabGroup("Inputs")]
+    [SerializeField] private RSE_OnPlayerRespawn rseOnPlayerRespawn;
+
+    [TabGroup("Inputs")]
     [SerializeField] private RSE_OnTPCam rseOnTPCam;
 
     [TabGroup("Outputs")]
@@ -117,6 +123,7 @@ public class S_CameraManager : MonoBehaviour
     private Coroutine shakeRoutine = null;
     private Coroutine skipRoutine = null;
 
+    private bool isTp = false;
     private bool isSkipping = false;
     private float skipHold = 0;
 
@@ -160,6 +167,7 @@ public class S_CameraManager : MonoBehaviour
         rseOnCameraFOV.action += HandleFOV;
         rseOnLookActivated.action += LookActivated;
         rseOnTPCam.action += CamTP;
+        rseOnPlayerRespawn.action += Respawn;
     }
 
     private void OnDisable()
@@ -179,6 +187,7 @@ public class S_CameraManager : MonoBehaviour
         rseOnCameraFOV.action -= HandleFOV;
         rseOnLookActivated.action -= LookActivated;
         rseOnTPCam.action -= CamTP;
+        rseOnPlayerRespawn.action -= Respawn;
     }
 
     private void Update()
@@ -187,11 +196,11 @@ public class S_CameraManager : MonoBehaviour
 
         playerPoint.position = playerPos.position;
 
-        HandleSkipHold();
-        HandlePlayerFade();
-        HandleTargeting();
+        if (!isTp) HandleSkipHold();
+        if (!isTp) HandlePlayerFade();
+        if (!isTp) HandleTargeting();
 
-        Offset();
+        if (!isTp) Offset();
     }
 
     private void SetTarget(GameObject target)
@@ -252,23 +261,47 @@ public class S_CameraManager : MonoBehaviour
 
     private void CamTP()
     {
-        StartCoroutine(Tp());
+        StartCoroutine(ResetDampingNextFrame());
+    }
+
+    private IEnumerator ResetDampingNextFrame()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        isTp = true;
+
+        resetHorizontalTween?.Kill();
+        resetVerticalTween?.Kill();
+        radiusTween?.Kill();
+
+        cinemachineCameraOrbitalFollow.TrackerSettings.PositionDamping = Vector3.zero;
+        cinemachineCameraRotationComposer.Damping = Vector3.zero;
 
         float yaw = playerPos.eulerAngles.y;
         yaw = (yaw > 180f) ? yaw - 360f : yaw;
 
+        cinemachineCameraPlayer.PreviousStateIsValid = false;
+
         cinemachineCameraOrbitalFollow.HorizontalAxis.Value = yaw;
         cinemachineCameraOrbitalFollow.VerticalAxis.Value = cinemachineCameraOrbitalFollow.VerticalAxis.Center;
         cinemachineCameraPlayer.Lens.FieldOfView = 60;
-    }
+        cinemachineCameraOrbitalFollow.Radius = 6;
 
-    private IEnumerator Tp()
-    {
-        cinemachineCameraOrbitalFollow.TrackerSettings.PositionDamping = Vector3.zero;
+        cinemachineCameraRotationComposer.Composition.DeadZone.Size = Vector2.zero;
+
+        cinemachineCameraOrbitalFollow.TargetOffset = new Vector3(0f, 0.5f, 0f);
+        cinemachineCameraRotationComposer.TargetOffset = new Vector3(0f, 0.5f, 0f);
 
         yield return null;
 
-        cinemachineCameraOrbitalFollow.TrackerSettings.PositionDamping = new Vector3(0.5f, 0.5f, 0.5f);
+        cinemachineCameraRotationComposer.Composition.DeadZone.Size = new Vector2(0.1f, 0.2f);
+
+        cinemachineCameraOrbitalFollow.TrackerSettings.PositionDamping = new Vector3(0.6f, 0.6f, 0.6f);
+        cinemachineCameraRotationComposer.Damping = new Vector3(0.6f, 0.6f, 0.6f);
+
+        cinemachineCameraPlayer.PreviousStateIsValid = true;
+
+        isTp = false;
     }
     #endregion
 
@@ -357,6 +390,11 @@ public class S_CameraManager : MonoBehaviour
         rseOnDisplayUIGame.Call(true);
         rseOnGameInputEnabled.Call();
 
+    }
+
+    private void Respawn()
+    {
+        LookActivated(true);
     }
 
     private void LookActivated(bool value)

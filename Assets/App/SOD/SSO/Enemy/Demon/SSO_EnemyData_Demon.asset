@@ -34,7 +34,7 @@ MonoBehaviour:
     displayUITime: 3
     controllerOverride: {fileID: 22100000, guid: cae966d33f19b4242ab9041cca2e1f84, type: 2}
     listCombos:
-    - distanceMin: 1
+    - distanceMin: 1.5
       distanceToChase: 12
       distanceToLoseAttack: 13.2
       isTutoCombo: 0
@@ -75,11 +75,11 @@ MonoBehaviour:
           timeCast: 0.5
           timeInterval: 0
           numberOfProjectiles: 0
-          damage: 20
+          damage: 10
           knockbackHitDuration: 0.1
           knockbackHitDistance: 1
-          knockbackOnParryDuration: 0.2
-          knockbackOnParrryDistance: 0.1
+          knockbackOnParryDuration: 0.1
+          knockbackOnParrryDistance: 0.4
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
@@ -147,11 +147,11 @@ MonoBehaviour:
           timeCast: 0.5
           timeInterval: 0
           numberOfProjectiles: 0
-          damage: 20
+          damage: 10
           knockbackHitDuration: 0.1
           knockbackHitDistance: 1
-          knockbackOnParryDuration: 0.2
-          knockbackOnParrryDistance: 0.1
+          knockbackOnParryDuration: 0.1
+          knockbackOnParrryDistance: 0.4
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
@@ -219,11 +219,11 @@ MonoBehaviour:
           timeCast: 0.5
           timeInterval: 0
           numberOfProjectiles: 0
-          damage: 20
+          damage: 10
           knockbackHitDuration: 0.1
           knockbackHitDistance: 1
-          knockbackOnParryDuration: 0.2
-          knockbackOnParrryDistance: 0.1
+          knockbackOnParryDuration: 0.1
+          knockbackOnParrryDistance: 0.4
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
@@ -291,11 +291,11 @@ MonoBehaviour:
           timeCast: 0.5
           timeInterval: 0
           numberOfProjectiles: 0
-          damage: 20
+          damage: 10
           knockbackHitDuration: 0.1
           knockbackHitDistance: 1
-          knockbackOnParryDuration: 0.2
-          knockbackOnParrryDistance: 0.1
+          knockbackOnParryDuration: 0.1
+          knockbackOnParrryDistance: 0.4
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7
@@ -363,11 +363,11 @@ MonoBehaviour:
           timeCast: 0.5
           timeInterval: 0
           numberOfProjectiles: 0
-          damage: 20
+          damage: 10
           knockbackHitDuration: 0.1
           knockbackHitDistance: 1
-          knockbackOnParryDuration: 0.2
-          knockbackOnParrryDistance: 0.1
+          knockbackOnParryDuration: 0.1
+          knockbackOnParrryDistance: 0.4
           parryToleranceBeforeHit: 0.05
           parryToleranceAfterHit: 0.1
           invicibilityDuration: 0.7

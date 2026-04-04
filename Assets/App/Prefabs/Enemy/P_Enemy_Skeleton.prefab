@@ -2249,18 +2249,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 445208566684554611, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
-      propertyPath: parryParam
-      value: IsParry
-      objectReference: {fileID: 0}
-    - target: {fileID: 445208566684554611, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
-      propertyPath: moveSpeedParam
-      value: MoveSpeed
-      objectReference: {fileID: 0}
-    - target: {fileID: 445208566684554611, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
-      propertyPath: rseOnParrySuccess
-      value: 
-      objectReference: {fileID: 11400000, guid: 3328b726d20642440a7825c060ff63d7, type: 2}
     - target: {fileID: 1039572514723219672, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
       propertyPath: m_Name
       value: Skeleton

@@ -2567,10 +2567,6 @@ PrefabInstance:
       value: MoveSpeed
       objectReference: {fileID: 0}
     - target: {fileID: 445208566684554611, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
-      propertyPath: rseOnParrySuccess
-      value: 
-      objectReference: {fileID: 11400000, guid: 3328b726d20642440a7825c060ff63d7, type: 2}
-    - target: {fileID: 445208566684554611, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
       propertyPath: spawnProjectilePoint
       value: 
       objectReference: {fileID: 2058934923921469545}
@@ -2624,9 +2620,7 @@ PrefabInstance:
       objectReference: {fileID: 9000000, guid: f73b3e550cb69994690c4d5fd527d523, type: 3}
     - target: {fileID: 5886562096679836169, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'Jaw'\n\tFrom animation clip 'A_Attack_HeavyFlourish_Sword'"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6177182004407894465, guid: 5d4f05f5ea5eefd4b88eed29797b79bc, type: 3}
       propertyPath: m_Height

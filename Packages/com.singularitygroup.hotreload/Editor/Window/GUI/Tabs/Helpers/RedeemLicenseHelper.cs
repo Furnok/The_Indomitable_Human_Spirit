@@ -6,10 +6,11 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using SingularityGroup.HotReload.DTO;
-using SingularityGroup.HotReload.Editor.Localization;
+using SingularityGroup.HotReload.Localization;
 using SingularityGroup.HotReload.Newtonsoft.Json;
 using UnityEditor;
 using UnityEngine;
+using Translations = SingularityGroup.HotReload.Editor.Localization.Translations;
 
 namespace SingularityGroup.HotReload.Editor {
     internal enum RedeemStage {
@@ -166,7 +167,7 @@ namespace SingularityGroup.HotReload.Editor {
                 error = validationError;
                 return;
             }
-            var resp = await RequestRedeem(email: email, invoiceNumber: invoiceNumber);
+            var resp = await RequestRedeem(email: email, invoiceNumber: invoiceNumber, isChina: PackageConst.DefaultLocale == Locale.SimplifiedChinese);
             status = resp?.status;
             if (status != null) {
                 if (status != statusSuccess && status != statusAlreadyClaimed) {
@@ -210,14 +211,15 @@ namespace SingularityGroup.HotReload.Editor {
             }
         }
 
-        async Task<RedeemResponse> RequestRedeem(string email, string invoiceNumber) {
+        async Task<RedeemResponse> RequestRedeem(string email, string invoiceNumber, bool isChina) {
             requestingRedeem = true;
             await ThreadUtility.SwitchToThreadPool();
             try {
                 redeemClient = redeemClient ?? (redeemClient = HttpClientUtils.CreateHttpClient());
-                var input = new Dictionary<string, string> {
+                var input = new Dictionary<string, object> {
                     { "email", email },
-                    { "invoice", invoiceNumber }
+                    { "invoice", invoiceNumber },
+                    { "isChina", isChina },
                 };
                 var content = new StringContent(JsonConvert.SerializeObject(input), Encoding.UTF8, "application/json");
                 using (var resp = await redeemClient.PostAsync(redeemUrl, content, HotReloadWindow.Current.cancelToken).ConfigureAwait(false)) {

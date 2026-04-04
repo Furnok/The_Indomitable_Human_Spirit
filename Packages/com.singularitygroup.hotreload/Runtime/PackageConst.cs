@@ -1,5 +1,5 @@
 using System.IO;
-using UnityEngine;
+using SingularityGroup.HotReload.DTO;
 
 namespace SingularityGroup.HotReload {
     internal static class PackageConst {
@@ -8,12 +8,13 @@ namespace SingularityGroup.HotReload {
         public static bool IsAssetStoreBuild => false;
 
         
-        public const string Version = "1.13.17";
+        public const string Version = "1.13.19";
         // Never higher than Version
         // Used for the download
-        public const string ServerVersion = "1.13.17";
+        public const string ServerVersion = "1.13.19";
         public const string PackageName = "com.singularitygroup.hotreload";
-        public const string DefaultLocale = Localization.Locale.English;
+        // IMPORTANT: if this is changed also change set-chinese.clj & set-chinese.sh
+        public const string DefaultLocale = Locale.English;
         // avoids unreachable code warnings from using const
         public static string DefaultLocaleField = DefaultLocale;
         public static readonly string LibraryCachePath = MultiplayerPlaymodeHelper.PathToMainProject("Library/" + PackageName);

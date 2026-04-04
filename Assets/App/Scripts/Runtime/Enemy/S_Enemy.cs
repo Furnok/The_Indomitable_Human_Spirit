@@ -147,6 +147,7 @@ public class S_Enemy : MonoBehaviour
     [SerializeField] RSO_ListTutoStepFinished _tutoStepsFinished;
 
     private float health = 0;
+
     private AnimatorOverrideController overrideController = null;
     private S_ClassAnimationsCombos combo = null;
 
@@ -535,6 +536,7 @@ public class S_Enemy : MonoBehaviour
         float waitTime = Random.Range(ssoEnemyData.Value.startPatrolWaitMin, ssoEnemyData.Value.startPatrolWaitMax );
 
         animator.SetBool(moveParam, false);
+        animator.SetFloat(moveSpeedParam, navMeshAgent.speed);
 
         idleCoroutine = StartCoroutine(S_Utils.Delay(waitTime, () => UpdateState(S_EnumEnemyState.Patroling)));
     }
@@ -587,6 +589,7 @@ public class S_Enemy : MonoBehaviour
 
         detectionCollider.enabled = false;
         enemyHeadLookAtIK.SetTarget(null, 0);
+        animator.SetBool(combatParam, false);
 
         navMeshAgent.speed = ssoEnemyData.Value.speedReturnPatrol;
         navMeshAgent.stoppingDistance = 0.2f;
@@ -907,6 +910,12 @@ public class S_Enemy : MonoBehaviour
 
         resetAttack = StartCoroutine(S_Utils.Delay(ssoEnemyData.Value.attackCooldown, () => canAttack = true));
         SetCombo();
+
+        if (stunCoroutine != null)
+        {
+            StopCoroutine(stunCoroutine);
+            stunCoroutine = null;
+        }
 
         stunCoroutine = StartCoroutine(Stun());
     }

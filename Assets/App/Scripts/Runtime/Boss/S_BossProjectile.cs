@@ -233,7 +233,6 @@ public class S_BossProjectile : MonoBehaviour, I_AttackProvider, I_ReflectablePr
             {
                 damageable.TakeDamage(attackData.damage);
                 bossHit = true;
-                Debug.Log("Get Stun");
                 onBossStun.Call(S_EnumBossState.Stun);
                 Destroy(gameObject);
             }
@@ -242,7 +241,6 @@ public class S_BossProjectile : MonoBehaviour, I_AttackProvider, I_ReflectablePr
     private void OnDestroy()
     {
         if(bossHit) return;
-        Debug.Log("Fly End");
         onEndFly.Call();
     }
     public ref S_StructAttackData GetAttackData()

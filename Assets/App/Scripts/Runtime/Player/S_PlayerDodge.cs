@@ -207,7 +207,6 @@ public class S_PlayerDodge : MonoBehaviour
         {
             haveDodgePerfect = true;
 
-            Debug.Log("Dodge perfect");
             RuntimeManager.PlayOneShot(_dodgeSound);
 
             S_ClassCameraFOV fov = new S_ClassCameraFOV();
