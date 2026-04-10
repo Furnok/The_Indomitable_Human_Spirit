@@ -751,6 +751,7 @@ public class S_Boss : MonoBehaviour
 
         if (currentAttack.bossAttack.isSpecialAttack)
         {
+            RotateBossAnim();
             onExecuteAttack.Call(currentAttack.bossAttack);
         }
         else
@@ -849,6 +850,7 @@ public class S_Boss : MonoBehaviour
     {
         isAttack = false;
         unlockRotate = false;
+        StopRotateBossAnim();
 
         rootMotionModifier.Setup(1, 0);
 
