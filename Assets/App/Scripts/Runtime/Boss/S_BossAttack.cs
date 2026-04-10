@@ -455,7 +455,7 @@ public class S_BossAttack : MonoBehaviour
 
         yield return new WaitForSeconds(currentAttack.listComboData[animNumb].animation.length);
 
-        S_FireProjectile s_FireProjectile = Instantiate(fireProjectile, fireProjectileSpawn.transform.position, Quaternion.identity);
+        S_FireProjectile s_FireProjectile = Instantiate(fireProjectile, fireProjectileSpawn.transform.position, fireProjectileSpawn.transform.rotation);
         s_FireProjectile.Initialize(transform.rotation, currentAttack.listComboData[animNumb].attackData);
 
         rseOnPlayParticle.Call();

@@ -650,8 +650,9 @@ public class S_Boss : MonoBehaviour
         {
             if (attack.bossAttack.pvBossUnlock >= minValue && attack.bossAttack.pvBossUnlock < maxValue)
             {
-                if (attack.bossAttack.attackName == "Gathering" || attack.bossAttack.attackName == "Wings Of Hell") ultimateAttack = attack;
-                else AddListAttackPossible(attack);
+                if (attack.bossAttack.attackName == "Gathering" || attack.bossAttack.attackName == "WingsOfHell") ultimateAttack = attack;
+                
+                AddListAttackPossible(attack);
             }
         }
     }
@@ -738,7 +739,7 @@ public class S_Boss : MonoBehaviour
         navMeshAgent.stoppingDistance = ssoBossData.Value.distanceToChase - 0.5f;
         navMeshAgent.speed = ssoBossData.Value.walkSpeed;
 
-        if (currentAttack.bossAttack.attackName == "Gathering" || currentAttack.bossAttack.attackName == "Wings Of Hell")
+        if (currentAttack.bossAttack.attackName == "Gathering" || currentAttack.bossAttack.attackName == "WingsOfHell")
         {
             listAttackOwnedPossibilities.RemoveAt(listAttackOwnedPossibilities.IndexOf(currentAttack));
         }
@@ -862,7 +863,7 @@ public class S_Boss : MonoBehaviour
             resetAttack = null;
         }
 
-        resetAttack = StartCoroutine(S_Utils.Delay(lastAttack.bossAttack.timeAfterAttack, () => canAttack = true));
+        resetAttack = StartCoroutine(S_Utils.Delay(2f, () => canAttack = true));
 
         if (!isPlayerDeath || target != null)
         {
