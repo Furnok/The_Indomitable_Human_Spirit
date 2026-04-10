@@ -3,7 +3,6 @@ using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Burst.Intrinsics;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -200,6 +199,7 @@ public class S_Boss : MonoBehaviour
     private bool isPlayerDeath = false;
     private bool canAttack = false;
     private bool unlockRotate = false;
+    private bool isSpecialAttack = false;
     #endregion
 
     private void Awake()
@@ -302,7 +302,9 @@ public class S_Boss : MonoBehaviour
             Quaternion targetRot = Quaternion.LookRotation(direction);
 
             rotateTween?.Kill();
-            rotateTween = transform.DORotateQuaternion(targetRot, ssoBossData.Value.rotationTime);
+
+            if (isSpecialAttack) rotateTween = transform.DORotateQuaternion(targetRot, 0);
+            else rotateTween = transform.DORotateQuaternion(targetRot, ssoBossData.Value.rotationTime);
         }
     }
 
@@ -365,6 +367,7 @@ public class S_Boss : MonoBehaviour
         isDead = false;
 
         unlockRotate = false;
+        isSpecialAttack = false;
 
         rotateTween?.Kill();
 
@@ -751,6 +754,7 @@ public class S_Boss : MonoBehaviour
 
         if (currentAttack.bossAttack.isSpecialAttack)
         {
+            isSpecialAttack = true;
             RotateBossAnim();
             onExecuteAttack.Call(currentAttack.bossAttack);
         }
@@ -850,6 +854,7 @@ public class S_Boss : MonoBehaviour
     {
         isAttack = false;
         unlockRotate = false;
+        isSpecialAttack = false;
         StopRotateBossAnim();
 
         rootMotionModifier.Setup(1, 0);
