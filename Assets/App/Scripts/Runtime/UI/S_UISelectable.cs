@@ -127,7 +127,7 @@ public class S_UISelectable : MonoBehaviour
 
     public void Unselected(Selectable uiElement)
     {
-        if (uiElement.interactable && Gamepad.current != null)  PlayColorTransition(colorBase, colorBase2);
+        if (uiElement.interactable && Gamepad.current != null) PlayColorTransition(colorBase, colorBase2);
         else if (isSelected)
         {
             PlayColorTransition(colorBase, colorBase2);

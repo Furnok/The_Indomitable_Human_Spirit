@@ -152,6 +152,8 @@ public class S_WindowManager : MonoBehaviour
         if (defaultWindow == menuWindow)
         {
             if (Gamepad.current == null) rseOnShowMouseCursor.Call();
+            else rseOnHideMouseCursor.Call();
+
             rseOnNeedCursor.Call(true);
 
             rseOnUIInputEnabled.Call();
@@ -161,6 +163,8 @@ public class S_WindowManager : MonoBehaviour
         else if (defaultWindow == mainMenuWindow)
         {
             if (Gamepad.current == null) rseOnShowMouseCursor.Call();
+            else rseOnHideMouseCursor.Call();
+
             rseOnNeedCursor.Call(true);
 
             rseOnUIInputEnabled.Call();
